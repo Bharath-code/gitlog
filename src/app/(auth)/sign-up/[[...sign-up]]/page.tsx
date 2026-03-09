@@ -14,7 +14,7 @@ export default function SignUpPage() {
             Start auto-generating changelogs in seconds
           </p>
         </div>
-        
+
         <SignUp
           appearance={{
             elements: {
@@ -35,8 +35,8 @@ export default function SignUpPage() {
           routing="path"
           path="/sign-up"
           signInUrl="/sign-in"
-          afterSignInUrl="/onboarding"
-          afterSignUpUrl="/onboarding"
+          fallbackRedirectUrl="/onboarding"
+          signInFallbackRedirectUrl="/onboarding"
         />
       </div>
     </div>

@@ -4,16 +4,17 @@ import { getEntry, updateEntry } from '@/shared/lib/db/entry';
 
 export async function GET(
   req: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const user = await currentUser();
     if (!user) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const entry = await getEntry(params.id);
-    
+    const entry = await getEntry(id);
+
     if (!entry) {
       return NextResponse.json({ error: 'Draft not found' }, { status: 404 });
     }
@@ -35,18 +36,19 @@ export async function GET(
 
 export async function PUT(
   req: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const user = await currentUser();
     if (!user) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
     const { title, category, aiRewrite } = await req.json();
-    
-    const entry = await getEntry(params.id);
-    
+
+    const entry = await getEntry(id);
+
     if (!entry) {
       return NextResponse.json({ error: 'Draft not found' }, { status: 404 });
     }
@@ -57,7 +59,7 @@ export async function PUT(
     }
 
     // Update entry
-    await updateEntry(params.id, {
+    await updateEntry(id, {
       title: title || entry.title,
       category: category || entry.category,
       aiRewrite: aiRewrite !== undefined ? aiRewrite : entry.aiRewrite,
@@ -75,16 +77,17 @@ export async function PUT(
 
 export async function DELETE(
   req: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const user = await currentUser();
     if (!user) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const entry = await getEntry(params.id);
-    
+    const entry = await getEntry(id);
+
     if (!entry) {
       return NextResponse.json({ error: 'Draft not found' }, { status: 404 });
     }
@@ -96,11 +99,11 @@ export async function DELETE(
 
     // Delete from KV
     const { kv } = await import('@vercel/kv');
-    await kv.del(params.id);
+    await kv.del(id);
 
     // Remove from draft index
     const draftIndexKey = `user:${user.id}:drafts`;
-    await kv.lrem(draftIndexKey, 1, params.id);
+    await kv.lrem(draftIndexKey, 1, id);
 
     return NextResponse.json({ success: true });
   } catch (error) {

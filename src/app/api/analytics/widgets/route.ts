@@ -16,7 +16,7 @@ interface WidgetAnalytics {
 export async function GET(request: NextRequest) {
   try {
     const { userId } = await auth();
-    
+
     if (!userId) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
@@ -34,7 +34,7 @@ export async function GET(request: NextRequest) {
         // Get impressions and clicks from separate keys
         const impressions = await kv.get<number>(`widget:impressions:${config.id}`) || 0;
         const clicks = await kv.get<number>(`widget:clicks:${config.id}`) || 0;
-        
+
         // Calculate CTR
         const ctr = impressions > 0 ? (clicks / impressions) * 100 : 0;
 
@@ -69,7 +69,7 @@ export async function GET(request: NextRequest) {
 }
 
 // Get daily stats for a specific widget
-export async function getDailyStats(widgetId: string, period: string) {
+async function getDailyStats(widgetId: string, period: string) {
   const days = period === '7d' ? 7 : period === '30d' ? 30 : period === '90d' ? 90 : 365;
   const stats: Array<{ date: string; impressions: number; clicks: number }> = [];
 
@@ -77,11 +77,11 @@ export async function getDailyStats(widgetId: string, period: string) {
     const date = new Date();
     date.setDate(date.getDate() - i);
     const dateStr = date.toISOString().split('T')[0];
-    
+
     // Get stats for this date (in production, you'd store daily stats)
     const impressions = await kv.get<number>(`widget:impressions:${widgetId}:${dateStr}`) || 0;
     const clicks = await kv.get<number>(`widget:clicks:${widgetId}:${dateStr}`) || 0;
-    
+
     stats.push({
       date: dateStr,
       impressions,

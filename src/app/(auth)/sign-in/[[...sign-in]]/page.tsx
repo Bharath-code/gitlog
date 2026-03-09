@@ -14,7 +14,7 @@ export default function SignInPage() {
             Auto-generate changelogs from your GitHub PRs
           </p>
         </div>
-        
+
         <SignIn
           appearance={{
             elements: {
@@ -35,10 +35,10 @@ export default function SignInPage() {
           routing="path"
           path="/sign-in"
           signUpUrl="/sign-up"
-          afterSignInUrl="/onboarding"
-          afterSignUpUrl="/onboarding"
+          fallbackRedirectUrl="/onboarding"
+          signUpFallbackRedirectUrl="/onboarding"
         />
-        
+
         <div className="grid grid-cols-3 gap-4 pt-4">
           <div className="text-center">
             <div className="text-sm font-semibold text-foreground">10s</div>

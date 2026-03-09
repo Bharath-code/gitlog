@@ -4,11 +4,11 @@ import { siteConfig } from '@/shared/config/site';
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: Promise<{ username: string; repo: string }> }
+  { params }: { params: Promise<{ user: string; repo: string }> }
 ) {
   try {
-    const { username, repo } = await params;
-    const entries = await getPublishedEntriesByRepo(`${username}/${repo}`);
+    const { user, repo } = await params;
+    const entries = await getPublishedEntriesByRepo(`${user}/${repo}`);
 
     if (entries.length === 0) {
       return NextResponse.json(
@@ -18,7 +18,7 @@ export async function GET(
     }
 
     const repoName = repo.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
-    const changelogUrl = `${siteConfig.url}/changelog/${username}/${repo}`;
+    const changelogUrl = `${siteConfig.url}/changelog/${user}/${repo}`;
 
     // Generate RSS feed
     const rss = `<?xml version="1.0" encoding="UTF-8"?>

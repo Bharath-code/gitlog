@@ -1,3 +1,5 @@
+"use client";
+
 import Link from 'next/link';
 import { GitMerge, ArrowLeft, Home } from 'lucide-react';
 import { Button } from '@/shared/components/ui/button';
@@ -11,13 +13,13 @@ export default function NotFound() {
             <GitMerge className="h-8 w-8 text-white" />
           </div>
         </div>
-        
+
         <h1 className="text-6xl font-bold mb-3">404</h1>
         <h2 className="text-2xl font-semibold mb-4">Page not found</h2>
         <p className="text-muted mb-8">
           Sorry, we couldn't find the page you're looking for. It might have been moved or doesn't exist.
         </p>
-        
+
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
           <Link href="/">
             <Button className="gap-2 bg-accent hover:bg-accent/90">
@@ -25,7 +27,7 @@ export default function NotFound() {
               Go Home
             </Button>
           </Link>
-          
+
           <Button variant="outline" onClick={() => window.history.back()} className="gap-2">
             <ArrowLeft className="h-4 w-4" />
             Go Back
