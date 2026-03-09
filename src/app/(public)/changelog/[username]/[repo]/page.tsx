@@ -4,7 +4,7 @@ import { getPublishedEntriesByRepo } from '@/shared/lib/db/entry';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { Metadata } from 'next';
-import { GitMerge, Calendar, User, ExternalLink, Star, GitFork, MapPin, Link as LinkIcon, Building, Twitter, Linkedin, Copy, Check } from 'lucide-react';
+import { GitMerge, Calendar, User, ExternalLink, Star, GitFork, MapPin, Link as LinkIcon, Building, Twitter, Linkedin, Copy, Check, Rss, Sparkles } from 'lucide-react';
 import { Badge } from '@/shared/components/ui/badge';
 import { formatDate } from '@/shared/lib/utils';
 import { ChangelogJsonLd, BreadcrumbJsonLd } from '@/shared/components/common/json-ld';
@@ -42,6 +42,7 @@ interface GitHubRepoDetails {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const repoName = params.repo.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+  const changelogUrl = `${siteConfig.url}/changelog/${params.username}/${params.repo}`;
   
   return {
     title: `What's New in ${repoName} | GitLog`,
@@ -55,6 +56,16 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       card: 'summary_large_image',
       title: `What's New in ${repoName}`,
       description: `Latest updates and changelog for ${repoName}`,
+    },
+    other: {
+      'link': [
+        {
+          rel: 'alternate',
+          type: 'application/rss+xml',
+          title: `${repoName} Changelog RSS`,
+          href: `${changelogUrl}/rss`,
+        },
+      ],
     },
   };
 }
@@ -105,6 +116,7 @@ function GitHubRepoHeader({
   const [loading, setLoading] = useState(true);
   const [details, setDetails] = useState<GitHubRepoDetails | null>(null);
   const [copied, setCopied] = useState(false);
+  const [userRepos, setUserRepos] = useState<Array<{ name: string; entryCount: number }>>([]);
 
   const currentUrl = typeof window !== 'undefined' ? window.location.href : '';
   const shareText = `Check out the changelog for ${repo} - Latest updates and improvements`;
@@ -117,6 +129,21 @@ function GitHubRepoHeader({
 
   const twitterShareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(currentUrl)}`;
   const linkedinShareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(currentUrl)}`;
+
+  // Fetch user's other changelogs
+  useEffect(() => {
+    async function fetchUserRepos() {
+      try {
+        const res = await fetch(`/api/user/changelogs?username=${username}`);
+        const data = await res.json();
+        setUserRepos(data.repos?.filter((r: any) => r.name !== repo) || []);
+      } catch (error) {
+        console.error('Error fetching user repos:', error);
+      }
+    }
+
+    fetchUserRepos();
+  }, [username, repo]);
 
   useEffect(() => {
     async function fetchRepoDetails() {
@@ -271,7 +298,7 @@ function GitHubRepoHeader({
         {/* Social Sharing */}
         <div className="border-t border-line bg-surface/30">
           <div className="max-w-4xl mx-auto px-4 py-4">
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 flex-wrap">
               <span className="text-sm text-muted">Share:</span>
               
               {/* Twitter */}
@@ -313,6 +340,18 @@ function GitHubRepoHeader({
                   {copied ? 'Copied!' : 'Copy'}
                 </span>
               </button>
+
+              {/* RSS Feed */}
+              <a
+                href={`/api/changelog/${username}/${repo}/rss`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-line bg-surface hover:bg-orange-500/10 hover:border-orange-500/50 transition-colors group"
+                title="Subscribe to RSS feed"
+              >
+                <Rss className="h-4 w-4 text-muted group-hover:text-orange-500 transition-colors" />
+                <span className="text-xs font-medium text-muted group-hover:text-orange-500">RSS</span>
+              </a>
             </div>
           </div>
         </div>
@@ -466,6 +505,38 @@ export default async function ChangelogPage({ params }: PageProps) {
         ))}
       </main>
 
+      {/* More from this User */}
+      {userRepos.length > 0 && (
+        <section className="border-t border-line bg-surface/30">
+          <div className="max-w-4xl mx-auto px-4 py-8">
+            <h2 className="text-xl font-semibold mb-4">
+              More from @{username}
+            </h2>
+            <div className="grid gap-3 md:grid-cols-2">
+              {userRepos.map((repoItem) => (
+                <Link
+                  key={repoItem.name}
+                  href={`/changelog/${username}/${repoItem.name}`}
+                  className="p-4 rounded-lg border border-line bg-surface hover:border-accent/50 hover:bg-surface-highlight transition-colors group"
+                >
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h3 className="font-medium group-hover:text-accent transition-colors">
+                        {repoItem.name}
+                      </h3>
+                      <p className="text-sm text-muted mt-1">
+                        {repoItem.entryCount} update{repoItem.entryCount !== 1 ? 's' : ''}
+                      </p>
+                    </div>
+                    <ExternalLink className="h-4 w-4 text-muted group-hover:text-accent transition-colors" />
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Footer */}
       <footer className="border-t border-line bg-surface/50">
         <div className="max-w-4xl mx-auto px-4 py-8">
@@ -494,9 +565,9 @@ export default async function ChangelogPage({ params }: PageProps) {
                 href="https://gitlog.app"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-md bg-accent px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-accent/90"
+                className="inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-accent to-accent/90 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-accent-glow/20 transition-all hover:shadow-xl hover:shadow-accent-glow/30 hover:scale-105"
               >
-                <GitMerge className="h-4 w-4" />
+                <Sparkles className="h-4 w-4" />
                 Create your changelog
               </a>
             </div>
