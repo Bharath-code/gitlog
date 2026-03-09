@@ -4,7 +4,7 @@ import { getPublishedEntriesByRepo } from '@/shared/lib/db/entry';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { Metadata } from 'next';
-import { GitMerge, Calendar, User, ExternalLink, Star, GitFork, MapPin, Link as LinkIcon, Building } from 'lucide-react';
+import { GitMerge, Calendar, User, ExternalLink, Star, GitFork, MapPin, Link as LinkIcon, Building, Twitter, Linkedin, Copy, Check } from 'lucide-react';
 import { Badge } from '@/shared/components/ui/badge';
 import { formatDate } from '@/shared/lib/utils';
 import { ChangelogJsonLd, BreadcrumbJsonLd } from '@/shared/components/common/json-ld';
@@ -104,6 +104,19 @@ function GitHubRepoHeader({
 }) {
   const [loading, setLoading] = useState(true);
   const [details, setDetails] = useState<GitHubRepoDetails | null>(null);
+  const [copied, setCopied] = useState(false);
+
+  const currentUrl = typeof window !== 'undefined' ? window.location.href : '';
+  const shareText = `Check out the changelog for ${repo} - Latest updates and improvements`;
+
+  const handleCopyLink = async () => {
+    await navigator.clipboard.writeText(currentUrl);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  const twitterShareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(currentUrl)}`;
+  const linkedinShareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(currentUrl)}`;
 
   useEffect(() => {
     async function fetchRepoDetails() {
@@ -254,9 +267,58 @@ function GitHubRepoHeader({
             </div>
           </div>
         </div>
-      </div>
-    </header>
-  );
+
+        {/* Social Sharing */}
+        <div className="border-t border-line bg-surface/30">
+          <div className="max-w-4xl mx-auto px-4 py-4">
+            <div className="flex items-center gap-3">
+              <span className="text-sm text-muted">Share:</span>
+              
+              {/* Twitter */}
+              <a
+                href={twitterShareUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-line bg-surface hover:bg-twitter/10 hover:border-twitter/50 transition-colors group"
+                title="Share on Twitter"
+              >
+                <Twitter className="h-4 w-4 text-muted group-hover:text-twitter transition-colors" />
+                <span className="text-xs font-medium text-muted group-hover:text-twitter">Tweet</span>
+              </a>
+              
+              {/* LinkedIn */}
+              <a
+                href={linkedinShareUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-line bg-surface hover:bg-linkedin/10 hover:border-linkedin/50 transition-colors group"
+                title="Share on LinkedIn"
+              >
+                <Linkedin className="h-4 w-4 text-muted group-hover:text-linkedin transition-colors" />
+                <span className="text-xs font-medium text-muted group-hover:text-linkedin">Share</span>
+              </a>
+              
+              {/* Copy Link */}
+              <button
+                onClick={handleCopyLink}
+                className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-line bg-surface hover:bg-surface-highlight transition-colors group"
+                title="Copy link"
+              >
+                {copied ? (
+                  <Check className="h-4 w-4 text-success" />
+                ) : (
+                  <Copy className="h-4 w-4 text-muted group-hover:text-foreground transition-colors" />
+                )}
+                <span className="text-xs font-medium text-muted group-hover:text-foreground">
+                  {copied ? 'Copied!' : 'Copy'}
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </header>
+    );
+  }
 }
 
 export default async function ChangelogPage({ params }: PageProps) {
