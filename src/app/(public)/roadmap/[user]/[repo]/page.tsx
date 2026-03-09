@@ -95,9 +95,9 @@ export default function PublicRoadmapPage({
   }
 
   const totalUpvotes = items.reduce((sum, item) => sum + item.upvotes, 0);
-  const topFeature = items.length > 0 ? items.reduce((prev, current) => 
+  const topFeature = items.length > 0 ? items.reduce((prev, current) =>
     current.upvotes > prev.upvotes ? current : prev
-  );
+  ) : null;
 
   return (
     <div className="min-h-screen bg-background p-6">

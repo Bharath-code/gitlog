@@ -4,7 +4,7 @@ import {
   GitPullRequestArrow,
   LayoutPanelTop,
   ShieldCheck,
-  Widget2,
+  Globe,
   Share2,
   Mail,
   BarChart3,
@@ -84,7 +84,7 @@ export const featureCards = [
       "Turn implementation language into user-facing updates without sounding robotic or overly technical.",
   },
   {
-    icon: Widget2,
+    icon: Globe,
     title: "Embeddable widget",
     description:
       "Add a 'What's New' badge to your website in 1 line of code. Customizable colors, position, and size.",

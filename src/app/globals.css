@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@source "../";
 
 :root {
   /* Premium Dark Theme (Default) */
@@ -20,14 +21,14 @@
   --purple-glow: rgba(139, 92, 246, 0.25);
   --blue: #3b82f6;
   --blue-glow: rgba(59, 130, 246, 0.25);
-  
+
   /* Shadows */
   --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
   --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.4);
   --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.5);
   --shadow-xl: 0 24px 80px rgba(0, 0, 0, 0.6);
   --glow-accent: 0 0 80px rgba(255, 107, 53, 0.15);
-  
+
   /* Radius */
   --radius-sm: 8px;
   --radius-md: 12px;
@@ -56,7 +57,7 @@
   --purple-glow: rgba(124, 58, 237, 0.15);
   --blue: #2563eb;
   --blue-glow: rgba(37, 99, 235, 0.15);
-  
+
   --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
   --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.12);
   --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.16);
@@ -110,7 +111,7 @@ body::before {
   inset: 0;
   z-index: -1;
   content: "";
-  background: 
+  background:
     radial-gradient(circle at 15% 50%, rgba(255, 107, 53, 0.08), transparent 25%),
     radial-gradient(circle at 85% 30%, rgba(139, 92, 246, 0.06), transparent 25%),
     radial-gradient(circle at 50% 80%, rgba(59, 130, 246, 0.05), transparent 30%);
@@ -128,7 +129,7 @@ body::after {
   inset: 0;
   z-index: -1;
   content: "";
-  background-image: 
+  background-image:
     linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
   background-size: 80px 80px;
@@ -137,7 +138,7 @@ body::after {
 }
 
 [data-theme="light"] body::after {
-  background-image: 
+  background-image:
     linear-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 1px),
     linear-gradient(90deg, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
 }
@@ -580,8 +581,15 @@ textarea {
 }
 
 @keyframes border-pulse {
-  0%, 100% { opacity: 0.5; }
-  50% { opacity: 0.8; }
+
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+
+  50% {
+    opacity: 0.8;
+  }
 }
 
 .pricing-badge {
@@ -671,6 +679,7 @@ textarea {
     opacity: 0;
     transform: translateY(-10px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -705,8 +714,13 @@ textarea {
 }
 
 @keyframes rotate-gradient {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .cta-card {
@@ -772,10 +786,21 @@ button:active {
   transform: translateY(0);
 }
 
-.stagger-1 { transition-delay: 0.1s; }
-.stagger-2 { transition-delay: 0.2s; }
-.stagger-3 { transition-delay: 0.3s; }
-.stagger-4 { transition-delay: 0.4s; }
+.stagger-1 {
+  transition-delay: 0.1s;
+}
+
+.stagger-2 {
+  transition-delay: 0.2s;
+}
+
+.stagger-3 {
+  transition-delay: 0.3s;
+}
+
+.stagger-4 {
+  transition-delay: 0.4s;
+}
 
 /* ========== Hover Lift Effect ========== */
 .hover-lift {
@@ -811,23 +836,49 @@ button:active {
 
 /* ========== Animations ========== */
 @keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
 @keyframes pulse-glow {
-  0%, 100% { opacity: 0.4; transform: scale(1); }
-  50% { opacity: 0.7; transform: scale(1.05); }
+
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.7;
+    transform: scale(1.05);
+  }
 }
 
 @keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
 }
 
 @keyframes spin-slow {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .animate-float {
@@ -853,12 +904,12 @@ button:active {
   .workflow-step {
     padding: 2rem;
   }
-  
+
   .footer-shell {
     flex-direction: row;
     align-items: flex-start;
   }
-  
+
   .cta-shell {
     padding: 4rem 3rem;
   }
@@ -869,7 +920,7 @@ button:active {
     grid-template-columns: 1fr;
     gap: 1rem;
   }
-  
+
   .workflow-number {
     height: 2.5rem;
     width: 2.5rem;
