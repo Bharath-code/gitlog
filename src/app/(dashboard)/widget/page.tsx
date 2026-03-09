@@ -7,11 +7,13 @@ import { Badge } from '@/shared/components/ui/badge';
 import { SectionHeading } from '@/shared/components/ui/section-heading';
 import { Copy, Code, Check, Sparkles, ExternalLink } from 'lucide-react';
 import { useToast } from '@/shared/hooks/use-toast';
+import { WidgetCustomizer } from '@/shared/components/widgets/widget-customizer';
 
 export default function WidgetPage() {
   const [widgetId, setWidgetId] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [repoId] = useState('default-repo'); // In production, get from connected repos
   const toast = useToast();
 
   const generateWidgetId = async () => {
@@ -186,28 +188,35 @@ export default function WidgetPage() {
         </Card>
       )}
 
-      {/* Customization Options */}
+      {/* Customization */}
+      {widgetId && (
+        <WidgetCustomizer widgetId={widgetId} repoId={repoId} />
+      )}
+
+      {/* Next Steps */}
       {widgetId && (
         <Card className="p-6">
           <div className="space-y-4">
             <h2 className="text-xl font-semibold">Next Steps</h2>
             <div className="grid gap-4 md:grid-cols-2">
               <div className="p-4 rounded-lg border border-line bg-surface">
-                <h3 className="font-semibold mb-2">Customize Widget</h3>
-                <p className="text-sm text-muted mb-3">
-                  Change colors, position, and size to match your brand.
-                </p>
-                <Button variant="outline" size="sm" className="w-full">
-                  Customize
-                </Button>
-              </div>
-              <div className="p-4 rounded-lg border border-line bg-surface">
-                <h3 className="font-semibold mb-2">View Analytics</h3>
+                <h3 className="font-semibold mb-2">📊 View Analytics</h3>
                 <p className="text-sm text-muted mb-3">
                   Track impressions and clicks from your widget.
                 </p>
+                <a href="/analytics/widgets">
+                  <Button variant="outline" size="sm" className="w-full">
+                    View Analytics
+                  </Button>
+                </a>
+              </div>
+              <div className="p-4 rounded-lg border border-line bg-surface">
+                <h3 className="font-semibold mb-2">📚 Documentation</h3>
+                <p className="text-sm text-muted mb-3">
+                  Learn more about widget integration and advanced usage.
+                </p>
                 <Button variant="outline" size="sm" className="w-full">
-                  View Analytics
+                  View Docs
                 </Button>
               </div>
             </div>
