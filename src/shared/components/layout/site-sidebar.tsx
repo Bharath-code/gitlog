@@ -10,13 +10,22 @@ import {
   Settings,
   GitMerge,
   Sparkles,
+  Widget,
+  Share2,
+  Mail,
+  BarChart3,
+  Map,
 } from 'lucide-react';
 
 const navItems = [
   { label: 'Overview', href: '/dashboard', icon: LayoutDashboard },
-  { label: 'Drafts', href: '/dashboard/drafts', icon: FileText },
-  { label: 'Published', href: '/dashboard/published', icon: CheckCircle },
-  { label: 'Settings', href: '/dashboard/settings', icon: Settings },
+  { label: 'Drafts', href: '/drafts', icon: FileText },
+  { label: 'Published', href: '/published', icon: CheckCircle },
+  { label: 'Social Posts', href: '/social', icon: Share2 },
+  { label: 'Roadmap', href: '/roadmap', icon: Map },
+  { label: 'Analytics', href: '/analytics/widgets', icon: BarChart3 },
+  { label: 'Widget', href: '/widget', icon: Widget },
+  { label: 'Settings', href: '/settings', icon: Settings },
 ];
 
 export function SiteSidebar() {

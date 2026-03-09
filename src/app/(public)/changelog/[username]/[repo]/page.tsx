@@ -1,5 +1,6 @@
 import { getPublishedEntriesByRepo } from '@/shared/lib/db/entry';
 import { notFound } from 'next/navigation';
+import Link from 'next/link';
 import { Metadata } from 'next';
 import { GitMerge, Calendar, User, ExternalLink } from 'lucide-react';
 import { Badge } from '@/shared/components/ui/badge';
@@ -235,16 +236,24 @@ export default async function ChangelogPage({ params }: PageProps) {
                 GitLog
               </a>
             </div>
-            
-            <a
-              href="https://gitlog.app"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-md bg-accent px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-accent/90"
-            >
-              <GitMerge className="h-4 w-4" />
-              Create your changelog
-            </a>
+
+            <div className="flex items-center gap-4">
+              <Link
+                href={`/changelog/${params.username}/${params.repo}/subscribe`}
+                className="text-sm text-muted hover:text-accent transition-colors"
+              >
+                📧 Subscribe to updates
+              </Link>
+              <a
+                href="https://gitlog.app"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-md bg-accent px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-accent/90"
+              >
+                <GitMerge className="h-4 w-4" />
+                Create your changelog
+              </a>
+            </div>
           </div>
         </div>
       </footer>
