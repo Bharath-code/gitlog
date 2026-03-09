@@ -1,12 +1,16 @@
+'use client';
+
 import { getPublishedEntriesByRepo } from '@/shared/lib/db/entry';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { Metadata } from 'next';
-import { GitMerge, Calendar, User, ExternalLink } from 'lucide-react';
+import { GitMerge, Calendar, User, ExternalLink, Star, GitFork, MapPin, Link as LinkIcon, Building } from 'lucide-react';
 import { Badge } from '@/shared/components/ui/badge';
 import { formatDate } from '@/shared/lib/utils';
 import { ChangelogJsonLd, BreadcrumbJsonLd } from '@/shared/components/common/json-ld';
 import { siteConfig } from '@/shared/config/site';
+import { useState, useEffect } from 'react';
+import { Skeleton } from '@/shared/components/ui/skeleton';
 
 interface PageProps {
   params: { username: string; repo: string };
@@ -21,6 +25,19 @@ interface ChangelogEntry {
   prUrl: string;
   author: string;
   labels: string[];
+}
+
+interface GitHubRepoDetails {
+  name: string;
+  description: string;
+  stars: number;
+  forks: number;
+  avatar: string;
+  url: string;
+  userUrl: string;
+  company?: string | null;
+  blog?: string | null;
+  location?: string | null;
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
@@ -71,8 +88,175 @@ function getCategoryBadge(category: string) {
     Improved: 'bg-blue/10 text-blue border-blue/20',
     Other: 'bg-muted/10 text-muted border-muted/20',
   };
-  
+
   return colors[category] || colors.Other;
+}
+
+// Client component for GitHub repo details
+function GitHubRepoHeader({ 
+  username, 
+  repo,
+  entries 
+}: { 
+  username: string; 
+  repo: string;
+  entries: ChangelogEntry[];
+}) {
+  const [loading, setLoading] = useState(true);
+  const [details, setDetails] = useState<GitHubRepoDetails | null>(null);
+
+  useEffect(() => {
+    async function fetchRepoDetails() {
+      try {
+        const res = await fetch('/api/github/repo-details', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, repo }),
+        });
+
+        const data = await res.json();
+        setDetails(data);
+      } catch (error) {
+        console.error('Error fetching repo details:', error);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchRepoDetails();
+  }, [username, repo]);
+
+  const repoName = repo.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+
+  if (loading) {
+    return (
+      <header className="border-b border-line bg-surface/50">
+        <div className="max-w-4xl mx-auto px-4 py-8">
+          <div className="flex items-center gap-4">
+            <Skeleton className="h-16 w-16 rounded-full" />
+            <div className="flex-1 space-y-2">
+              <Skeleton className="h-8 w-64" />
+              <Skeleton className="h-4 w-48" />
+              <div className="flex gap-4">
+                <Skeleton className="h-4 w-20" />
+                <Skeleton className="h-4 w-20" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+    );
+  }
+
+  return (
+    <header className="border-b border-line bg-surface/50">
+      <div className="max-w-4xl mx-auto px-4 py-8">
+        <div className="flex items-start gap-4">
+          {/* User Avatar */}
+          <a
+            href={details?.userUrl || `https://github.com/${username}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex-shrink-0"
+          >
+            <img
+              src={details?.avatar || `https://github.com/${username}.png`}
+              alt={username}
+              className="h-16 w-16 rounded-full hover:opacity-80 transition-opacity"
+            />
+          </a>
+
+          {/* Repo Info */}
+          <div className="flex-1">
+            <div className="flex items-center gap-2 mb-2">
+              <h1 className="text-3xl font-bold">
+                {repoName} Changelog
+              </h1>
+              <Badge variant="outline">{entries.length} entries</Badge>
+            </div>
+
+            {/* Description */}
+            {details?.description && details.description !== 'No description' && (
+              <p className="text-muted mb-3">{details.description}</p>
+            )}
+
+            {/* Meta Links */}
+            <div className="flex flex-wrap items-center gap-4 text-sm">
+              <a
+                href={details?.userUrl || `https://github.com/${username}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1 text-muted hover:text-accent transition-colors"
+              >
+                <User className="h-4 w-4" />
+                @{username}
+              </a>
+              
+              <a
+                href={details?.url || `https://github.com/${username}/${repo}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1 text-muted hover:text-accent transition-colors"
+              >
+                <GitMerge className="h-4 w-4" />
+                {repo}
+              </a>
+
+              {details && details.stars > 0 && (
+                <a
+                  href={`${details.url}/stargazers`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-1 text-muted hover:text-accent transition-colors"
+                >
+                  <Star className="h-4 w-4" />
+                  {details.stars.toLocaleString()}
+                </a>
+              )}
+
+              {details && details.forks > 0 && (
+                <a
+                  href={`${details.url}/forks`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-1 text-muted hover:text-accent transition-colors"
+                >
+                  <GitFork className="h-4 w-4" />
+                  {details.forks.toLocaleString()}
+                </a>
+              )}
+
+              {details?.company && (
+                <span className="flex items-center gap-1 text-muted">
+                  <Building className="h-4 w-4" />
+                  {details.company}
+                </span>
+              )}
+
+              {details?.location && (
+                <span className="flex items-center gap-1 text-muted">
+                  <MapPin className="h-4 w-4" />
+                  {details.location}
+                </span>
+              )}
+
+              {details?.blog && (
+                <a
+                  href={details.blog.startsWith('http') ? details.blog : `https://${details.blog}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-1 text-muted hover:text-accent transition-colors"
+                >
+                  <LinkIcon className="h-4 w-4" />
+                  Blog
+                </a>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+  );
 }
 
 export default async function ChangelogPage({ params }: PageProps) {
