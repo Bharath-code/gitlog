@@ -10,7 +10,7 @@ import {
   Settings,
   GitMerge,
   Sparkles,
-  Widget,
+  Globe,
   Share2,
   Mail,
   BarChart3,
@@ -24,7 +24,7 @@ const navItems = [
   { label: 'Social Posts', href: '/social', icon: Share2 },
   { label: 'Roadmap', href: '/roadmap', icon: Map },
   { label: 'Analytics', href: '/analytics/widgets', icon: BarChart3 },
-  { label: 'Widget', href: '/widget', icon: Widget },
+  { label: 'Widget', href: '/widget', icon: Globe },
   { label: 'Settings', href: '/settings', icon: Settings },
 ];
 

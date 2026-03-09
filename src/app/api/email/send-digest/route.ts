@@ -4,7 +4,7 @@ import { kv } from '@vercel/kv';
 import { sendEmail } from '@/lib/resend';
 import { getRepoSubscribers } from '@/features/email/subscription-manager';
 import { ReleaseEmailTemplate } from '@/features/email/templates/release-email';
-import { render } from '@react-email/html';
+import { render } from '@react-email/render';
 
 export async function POST(request: NextRequest) {
   try {
