@@ -8,6 +8,7 @@ import { ClerkProvider } from '@clerk/nextjs';
 import { Analytics } from "@vercel/analytics/react";
 
 import { siteConfig } from "@/shared/config/site";
+import { ToastProvider } from '@/shared/components/common/toast';
 
 import "./globals.css";
 
@@ -62,8 +63,10 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en" suppressHydrationWarning>
         <body className={`${display.variable} ${sans.variable} ${mono.variable}`}>
-          {children}
-          <Analytics />
+          <ToastProvider>
+            {children}
+            <Analytics />
+          </ToastProvider>
         </body>
       </html>
     </ClerkProvider>

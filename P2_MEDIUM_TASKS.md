@@ -1,9 +1,21 @@
 # GitLog P2 Medium Priority Tasks - Completion Sprint
 
 **Created:** 2026-03-08  
+**Updated:** 2026-03-09 (Phase 2 clarified)  
 **Total P2 Tasks:** 15  
 **Goal:** Complete all P2 tasks for enhanced user experience  
 **Timeline:** 1-2 days (after P1 complete)
+
+---
+
+## ⚠️ Note: P2 vs Phase 2
+
+**P2 (Medium Priority Tasks):** 15 tasks to complete before/during launch (Days 9-13)  
+**Phase 2 (Next Development Phase):** 20 tasks for Month 2-3 development
+
+**This file covers P2 medium priority tasks only.** For Phase 2 features (Widget, Social Posts, Email, Analytics, Roadmap), see:
+- **Phase 2 Implementation Plan:** [`PHASE2_IMPLEMENTATION_PLAN.md`](./PHASE2_IMPLEMENTATION_PLAN.md)
+- **Phase 2 Progress Tracker:** [`PHASE2_PROGRESS.md`](./PHASE2_PROGRESS.md)
 
 ---
 

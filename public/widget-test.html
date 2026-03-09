@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GitLog Widget Test Page</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 2rem;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 12px;
+      padding: 3rem;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: #1a1a2e;
+    }
+
+    .subtitle {
+      font-size: 1.25rem;
+      color: #666;
+      margin-bottom: 2rem;
+    }
+
+    .section {
+      margin: 2rem 0;
+    }
+
+    .section h2 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: #1a1a2e;
+    }
+
+    .code-block {
+      background: #f4f4f5;
+      border: 1px solid #e4e4e7;
+      border-radius: 8px;
+      padding: 1.5rem;
+      overflow-x: auto;
+      margin: 1rem 0;
+    }
+
+    code {
+      font-family: 'Courier New', monospace;
+      font-size: 0.875rem;
+      color: #333;
+    }
+
+    .info-box {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+    }
+
+    .info-box h3 {
+      color: #1e40af;
+      margin-bottom: 0.5rem;
+    }
+
+    .info-box p {
+      color: #1e3a8a;
+    }
+
+    .button {
+      display: inline-block;
+      background: #ff6b35;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      margin-top: 1rem;
+      transition: background 0.2s;
+    }
+
+    .button:hover {
+      background: #ff5a1f;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    .feature {
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 1rem;
+    }
+
+    .feature h3 {
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+      color: #1a1a2e;
+    }
+
+    .feature p {
+      font-size: 0.875rem;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎉 GitLog Widget Test Page</h1>
+    <p class="subtitle">This page demonstrates how to embed the GitLog widget on your website</p>
+
+    <div class="info-box">
+      <h3>📋 Widget Installation Instructions</h3>
+      <p>Copy the script below and paste it into your website's HTML, right before the closing <code>&lt;/body&gt;</code> tag.</p>
+    </div>
+
+    <div class="section">
+      <h2>1. Embed Script</h2>
+      <div class="code-block">
+        <code>&lt;script src="http://localhost:3000/widget.js" data-widget-id="YOUR_WIDGET_ID" async&gt;&lt;/script&gt;</code>
+      </div>
+      <p><strong>Replace <code>YOUR_WIDGET_ID</code></strong> with the widget ID generated from your GitLog dashboard.</p>
+    </div>
+
+    <div class="section">
+      <h2>2. Widget Features</h2>
+      <div class="features">
+        <div class="feature">
+          <h3>🎨 Customizable</h3>
+          <p>Match your brand colors, position, and size</p>
+        </div>
+        <div class="feature">
+          <h3>⚡ Fast Loading</h3>
+          <p>Async loading won't slow down your site</p>
+        </div>
+        <div class="feature">
+          <h3>📱 Mobile Responsive</h3>
+          <p>Works perfectly on all devices</p>
+        </div>
+        <div class="feature">
+          <h3>📊 Analytics Built-in</h3>
+          <p>Track impressions and clicks automatically</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>3. Configuration Options</h2>
+      <div class="code-block">
+        <code>
+&lt;script 
+  src="http://localhost:3000/widget.js" 
+  data-widget-id="YOUR_WIDGET_ID"
+  data-position="bottom-right"
+  data-size="medium"
+  data-api-url="http://localhost:3000/api/widget"
+  async
+&gt;&lt;/script&gt;
+        </code>
+      </div>
+      <p><strong>Available options:</strong></p>
+      <ul style="margin: 1rem 0 1rem 1.5rem; color: #666;">
+        <li><code>data-position</code>: bottom-right, bottom-left, top-right, top-left</li>
+        <li><code>data-size</code>: small, medium, large</li>
+        <li><code>data-api-url</code>: Your GitLog API URL (optional)</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>4. Testing the Widget</h2>
+      <ol style="margin: 1rem 0 1rem 1.5rem; color: #666; line-height: 1.8;">
+        <li>Go to your GitLog dashboard at <a href="http://localhost:3000/widget" style="color: #ff6b35;">http://localhost:3000/widget</a></li>
+        <li>Click "Generate Widget ID"</li>
+        <li>Copy the script snippet</li>
+        <li>Replace <code>YOUR_WIDGET_ID</code> in this page's source code</li>
+        <li>Refresh the page to see the widget!</li>
+      </ol>
+    </div>
+
+    <div class="section">
+      <h2>5. Need Help?</h2>
+      <p style="color: #666;">
+        Check out the <a href="http://localhost:3000/docs/widget" style="color: #ff6b35;">widget documentation</a> or contact support at 
+        <a href="mailto:hello@gitlog.app" style="color: #ff6b35;">hello@gitlog.app</a>
+      </p>
+    </div>
+
+    <div class="section">
+      <a href="http://localhost:3000/widget" class="button">Go to Dashboard →</a>
+    </div>
+  </div>
+
+  <!-- 
+    🚀 WIDGET INSTALLATION
+    Replace YOUR_WIDGET_ID with your actual widget ID from GitLog dashboard
+  -->
+  <script 
+    src="http://localhost:3000/widget.js" 
+    data-widget-id="YOUR_WIDGET_ID"
+    data-position="bottom-right"
+    data-size="medium"
+    async
+  ></script>
+</body>
+</html>

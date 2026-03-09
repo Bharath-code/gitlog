@@ -1,7 +1,8 @@
 # GitLog Remaining Tasks
 
 **Created:** 2026-03-08  
-**Total Tasks:** 115  
+**Updated:** 2026-03-09 (Phase 2 added)  
+**Total Tasks:** 135 (115 MVP + 20 Phase 2)  
 **Status:** Ready for Testing & Launch
 
 ---
@@ -14,8 +15,17 @@
 | **P1: High** | 20 | ⬜ 0% | Day 8-9 |
 | **P2: Medium** | 15 | ⬜ 0% | Day 9-10 |
 | **P3: Low** | 10 | ⬜ 0% | Post-Launch |
+| **Phase 2** | 20 | ⬜ 0% | Month 2-3 |
 
-**Total:** 115 tasks
+**Total:** 135 tasks
+
+---
+
+## 📌 Quick Links
+
+- **Phase 2 Implementation Plan:** [`PHASE2_IMPLEMENTATION_PLAN.md`](./PHASE2_IMPLEMENTATION_PLAN.md)
+- **Phase 2 Progress Tracker:** [`PHASE2_PROGRESS.md`](./PHASE2_PROGRESS.md)
+- **MVP Tasks:** See sections below
 
 ---
 
@@ -472,9 +482,29 @@
 
 ---
 
-**Last Updated:** 2026-03-08  
+**Last Updated:** 2026-03-09  
 **Next Review:** End of Day 7  
 **Owner:** Founder
+
+---
+
+## 🚀 Phase 2 Features (Month 2-3)
+
+**See dedicated trackers:**
+- **Implementation Plan:** [`PHASE2_IMPLEMENTATION_PLAN.md`](./PHASE2_IMPLEMENTATION_PLAN.md)
+- **Progress Tracker:** [`PHASE2_PROGRESS.md`](./PHASE2_PROGRESS.md)
+
+### **Phase 2 Summary (20 tasks, 40 hours)**
+
+| Feature Area | Tasks | Hours | Status |
+| :---- | :---- | :---- | :---- |
+| **Embeddable Widget** | 4 | 8h | ⬜ Not Started |
+| **Social Post Drafts** | 4 | 6h | ⬜ Not Started |
+| **Email Integrations** | 4 | 10h | ⬜ Not Started |
+| **Analytics Dashboard** | 4 | 8h | ⬜ Not Started |
+| **Roadmap from Issues** | 4 | 8h | ⬜ Not Started |
+
+**Timeline:** 8 weeks (Month 2-3)
 
 ---
 

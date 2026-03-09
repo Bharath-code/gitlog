@@ -14,6 +14,22 @@ GitLog connects to GitHub once and auto-generates a public changelog from merged
 
 ---
 
+## 🗺️ Roadmap
+
+### ✅ Phase 1 (MVP) - Days 1-8
+Core changelog automation: GitHub sync, AI rewrite, publish flow, payments
+
+### 🚀 Phase 2 (Month 2-3) - 20 New Features
+- **Embeddable Widget** - "What's New" badge for your website
+- **Social Post Drafts** - Auto-generate Twitter threads + LinkedIn posts
+- **Email Integrations** - Resend + Mailchimp for release digests
+- **Analytics Dashboard** - Page views, unique visitors, upvotes
+- **Roadmap from Issues** - GitHub Issues → public roadmap
+
+**See:** [`PHASE2_IMPLEMENTATION_PLAN.md`](./PHASE2_IMPLEMENTATION_PLAN.md) | [`PHASE2_PROGRESS.md`](./PHASE2_PROGRESS.md)
+
+---
+
 ## 🚀 Quick Start
 
 ### Prerequisites
