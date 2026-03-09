@@ -1,5 +1,6 @@
 import { Card } from '@/shared/components/ui/card';
 import { pricing } from '@/shared/config';
+import { cn } from '@/shared/lib/utils';
 
 interface UsageCardProps {
   plan: 'free' | 'pro';
@@ -80,5 +81,3 @@ export function UsageCard({ plan, usage }: UsageCardProps) {
     </Card>
   );
 }
-
-import { cn } from '@/shared/lib/utils';

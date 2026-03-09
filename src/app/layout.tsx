@@ -5,6 +5,7 @@ import {
   IBM_Plex_Sans,
 } from "next/font/google";
 import { ClerkProvider } from '@clerk/nextjs';
+import { Analytics } from "@vercel/analytics/react";
 
 import { siteConfig } from "@/shared/config/site";
 
@@ -62,6 +63,7 @@ export default function RootLayout({
       <html lang="en" suppressHydrationWarning>
         <body className={`${display.variable} ${sans.variable} ${mono.variable}`}>
           {children}
+          <Analytics />
         </body>
       </html>
     </ClerkProvider>

@@ -11,10 +11,20 @@ export function SyncButton() {
   const handleSync = async () => {
     setSyncing(true);
     try {
-      const res = await fetch('/api/github/sync/manual', { method: 'POST' });
-      if (!res.ok) throw new Error('Sync failed');
+      const res = await fetch('/api/github/sync/manual', { 
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({}),
+      });
       
-      // Show success feedback
+      const data = await res.json();
+      
+      if (!res.ok) {
+        throw new Error(data.error || 'Sync failed');
+      }
+      
+      // Show success and reload
+      alert(data.message || 'Sync completed!');
       window.location.reload();
     } catch (error) {
       console.error('Sync error:', error);

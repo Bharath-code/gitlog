@@ -1,7 +1,7 @@
 import { currentUser } from '@clerk/nextjs/server';
 import { NextResponse } from 'next/server';
 import { kv } from '@vercel/kv';
-import { rewritePR } from '@/shared/lib/ai/gemini';
+import { rewritePR, type Tone } from '@/shared/lib/ai/gemini';
 import { pricing } from '@/shared/config';
 
 export async function POST(req: Request) {
@@ -11,7 +11,7 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const { entryId } = await req.json();
+    const { entryId, tone } = await req.json();
     if (!entryId) {
       return NextResponse.json({ error: 'Entry ID required' }, { status: 400 });
     }
@@ -42,11 +42,12 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'Not authorized' }, { status: 403 });
     }
 
-    // Generate rewrite
+    // Generate rewrite with tone
     const aiRewrite = await rewritePR({
       title: entry.title,
       body: entry.body,
       labels: entry.labels || [],
+      tone: tone as Tone || 'casual',
     });
 
     // Update entry with rewrite

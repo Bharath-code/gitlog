@@ -6,6 +6,8 @@ import { DraftCard } from '@/features/drafts/components/draft-card';
 import { UsageCard } from '@/features/dashboard/components/usage-card';
 import { EmptyState } from '@/features/dashboard/components/empty-state';
 import { SyncButton } from '@/features/dashboard/components/sync-button';
+import { Tooltip } from '@/shared/components/common/tooltip';
+import { Info } from 'lucide-react';
 
 export default async function DashboardPage() {
   const user = await currentUser();
@@ -32,8 +34,11 @@ export default async function DashboardPage() {
           <h1 className="text-3xl font-bold tracking-tight">
             Welcome back, {user.firstName || user.emailAddresses[0].emailAddress.split('@')[0]}!
           </h1>
-          <p className="text-muted mt-1">
+          <p className="text-muted mt-1 flex items-center gap-2">
             Manage your changelog drafts and published entries
+            <Tooltip content="Drafts are auto-created from merged PRs. Review and publish them to your public changelog.">
+              <Info className="h-4 w-4 text-muted cursor-help" />
+            </Tooltip>
           </p>
         </div>
         <SyncButton />

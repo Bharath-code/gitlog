@@ -54,3 +54,7 @@ export function timeAgo(date: Date | string): string {
 
   return 'just now';
 }
+
+export function formatTimeAgo(date: Date | string): string {
+  return timeAgo(date);
+}

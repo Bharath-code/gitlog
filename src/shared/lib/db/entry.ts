@@ -44,6 +44,23 @@ export async function getPublishedEntries(userId: string, limit = 50): Promise<C
     .slice(0, limit);
 }
 
+export async function getPublishedEntriesByRepo(repoSlug: string): Promise<ChangelogEntry[]> {
+  // Get all entries for this repo
+  const keys = await kv.keys(`entry:*:${repoSlug}:*`);
+  
+  if (keys.length === 0) {
+    return [];
+  }
+  
+  const entries = await Promise.all(
+    keys.map(key => kv.get<ChangelogEntry>(key))
+  );
+  
+  return entries
+    .filter((e): e is ChangelogEntry => e !== null && e.status === 'published')
+    .sort((a, b) => new Date(b.publishedAt || b.mergedAt).getTime() - new Date(a.publishedAt || a.mergedAt).getTime());
+}
+
 export async function getEntry(entryId: string): Promise<ChangelogEntry | null> {
   return await kv.get<ChangelogEntry>(entryId);
 }
