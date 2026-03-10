@@ -98,6 +98,49 @@
 
 ---
 
+## 🔌 Public API & Integrations
+
+### ✅ **Developer-Friendly API** (Phase 4)
+
+#### **Public API with API Keys**
+- 🔑 Generate and manage API keys
+- 🔒 Secure authentication (hashed keys)
+- 📖 Full API documentation
+- ⚡ Rate limiting ready
+
+**API Endpoints:**
+```
+GET    /api/public/v1/keys          - List API keys
+POST   /api/public/v1/keys          - Create API key
+DELETE /api/public/v1/keys/:id      - Revoke API key
+GET    /api/public/v1/changelog     - Get published entries
+```
+
+**Example Usage:**
+```bash
+curl https://gitlog.app/api/public/v1/changelog \
+  -H "Authorization: Bearer YOUR_API_KEY"
+```
+
+#### **Slack/Discord Notifications**
+- 🔔 Get notified when entries are published
+- ⏰ Scheduled publish notifications
+- 🏷️ Release notifications
+- 🎯 Configurable triggers
+
+**Triggers:**
+- ✅ On Publish
+- ✅ On Scheduled Publish
+- ✅ On Release
+
+**Setup:**
+1. Get webhook URL from Slack/Discord
+2. Add to GitLog Settings → Notifications
+3. Choose triggers
+4. Done!
+
+---
+
 ## 💰 Pricing
 
 | Plan | Price | Entries/Mo | AI Rewrites | Repos | Features |
@@ -431,7 +474,7 @@ npm run start    # Start production server
 npm run lint     # ESLint check
 ```
 
-### API Routes (30+ Endpoints)
+### API Routes (40+ Endpoints)
 
 | Endpoint | Method | Auth | Purpose |
 | :---- | :---- | :---- | :---- |
@@ -476,6 +519,13 @@ npm run lint     # ESLint check
 | `/api/user/settings` | GET/PUT | User | Publishing settings |
 | **Cron (Phase 3)** |
 | `/api/cron/scheduled-publish` | POST | Cron | Scheduled publishing |
+| **Public API (Phase 4)** |
+| `/api/public/v1/keys` | GET/POST | User | Manage API keys |
+| `/api/public/v1/keys/:id` | DELETE | User | Revoke API key |
+| `/api/public/v1/changelog` | GET | API Key | Get changelog entries |
+| **Notifications (Phase 4)** |
+| `/api/notifications` | GET/POST | User | Manage notifications |
+| `/api/notifications/:id` | DELETE | User | Delete notification |
 | **Payment** |
 | `/api/payment/checkout` | POST | User | Create checkout session |
 | `/api/payment/webhook` | POST | None | Handle webhook events |
@@ -609,11 +659,16 @@ _None - Production Ready!_ ✅
 - Publishing settings UI
 - 10+ new API endpoints
 
-### 🚀 Phase 4 (Month 5-6) - Planned
+### ✅ Phase 4 (Month 5) - Complete
+- Public API with API keys
+- Slack notifications
+- Discord notifications
+- Notification management UI
+- API documentation
+
+### 🚀 Phase 5 (Month 6-7) - Planned
 - Team accounts (multi-user)
 - Custom domains
-- Public API
-- Slack/Discord notifications
 - Advanced analytics (funnels)
 - A/B testing
 - Mobile app (React Native)
@@ -665,4 +720,4 @@ MIT © 2026 GitLog
 **Ready to Launch!** 🚀
 
 *Last Updated: 2026-03-10*  
-*Status: Phase 3 Complete - Enterprise Ready*
+*Status: Phase 4 Complete - API Ready*
