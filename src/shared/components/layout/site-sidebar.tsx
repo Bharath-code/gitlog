@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { cn } from '@/shared/lib/utils';
@@ -15,46 +16,122 @@ import {
   Mail,
   BarChart3,
   Map,
+  ChevronDown,
+  Command,
+  Search,
 } from 'lucide-react';
 
-const navItems = [
-  { label: 'Overview', href: '/dashboard', icon: LayoutDashboard },
-  { label: 'Drafts', href: '/drafts', icon: FileText },
-  { label: 'Published', href: '/published', icon: CheckCircle },
-  { label: 'Social Posts', href: '/social', icon: Share2 },
-  { label: 'Roadmap', href: '/roadmap', icon: Map },
+// Primary navigation (always visible)
+const primaryNavItems = [
+  { label: 'Dashboard', href: '/dashboard', icon: LayoutDashboard, shortcut: 'G D' },
+  { label: 'Drafts', href: '/drafts', icon: FileText, shortcut: 'G F' },
+  { label: 'Published', href: '/published', icon: CheckCircle, shortcut: 'G P' },
+  { label: 'Settings', href: '/settings', icon: Settings, shortcut: ',' },
+];
+
+// Secondary navigation (in "More" dropdown)
+const secondaryNavItems = [
   { label: 'Analytics', href: '/analytics/widgets', icon: BarChart3 },
   { label: 'Widget', href: '/widget', icon: Globe },
-  { label: 'Settings', href: '/settings', icon: Settings },
+  { label: 'Roadmap', href: '/roadmap', icon: Map },
+  { label: 'Social Posts', href: '/social', icon: Share2 },
+  { label: 'Email', href: '/email', icon: Mail },
 ];
 
 export function SiteSidebar() {
   const pathname = usePathname();
+  const [showMore, setShowMore] = useState(false);
 
   return (
     <aside className="hidden w-64 flex-shrink-0 border-r border-line bg-surface lg:block">
       <div className="flex h-full flex-col">
-        {/* Navigation */}
+        {/* Search / Command Palette Trigger */}
+        <div className="p-4 border-b border-line">
+          <button
+            onClick={() => {
+              // Will trigger command palette
+              const event = new KeyboardEvent('keydown', { key: 'k', metaKey: true });
+              window.dispatchEvent(event);
+            }}
+            className={cn(
+              'flex w-full items-center gap-2 rounded-lg border border-line bg-surface-highlight',
+              'px-3 py-2 text-sm text-muted hover:border-accent/50 hover:text-foreground transition-colors'
+            )}
+          >
+            <Search className="h-4 w-4" />
+            <span className="flex-1 text-left">Search...</span>
+            <kbd className="hidden lg:inline-flex items-center gap-1 rounded border border-line bg-surface px-1.5 py-0.5 text-xs">
+              <Command className="h-3 w-3" />
+              K
+            </kbd>
+          </button>
+        </div>
+
+        {/* Primary Navigation */}
         <nav className="flex-1 space-y-1 p-4">
-          {navItems.map((item) => {
+          {primaryNavItems.map((item) => {
             const isActive = pathname === item.href;
             return (
               <Link
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  'flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors',
+                  'group flex items-center justify-between rounded-lg px-3 py-2.5 text-sm font-medium transition-colors',
                   isActive
                     ? 'bg-accent/10 text-accent'
                     : 'text-muted hover:bg-surface-highlight hover:text-foreground'
                 )}
               >
-                <item.icon className="h-4 w-4" />
-                {item.label}
+                <div className="flex items-center gap-3">
+                  <item.icon className="h-4 w-4" />
+                  {item.label}
+                </div>
+                {item.shortcut && (
+                  <kbd className="hidden lg:inline-flex items-center rounded border border-line bg-surface px-1.5 py-0.5 text-xs text-muted group-hover:text-foreground">
+                    {item.shortcut}
+                  </kbd>
+                )}
               </Link>
             );
           })}
         </nav>
+
+        {/* More Dropdown */}
+        <div className="border-t border-line p-2">
+          <button
+            onClick={() => setShowMore(!showMore)}
+            className="flex w-full items-center justify-between rounded-lg px-3 py-2.5 text-sm font-medium text-muted hover:bg-surface-highlight hover:text-foreground transition-colors"
+          >
+            <div className="flex items-center gap-3">
+              <Globe className="h-4 w-4" />
+              More
+            </div>
+            <ChevronDown className={cn("h-4 w-4 transition-transform", showMore && "rotate-180")} />
+          </button>
+          
+          {showMore && (
+            <div className="mt-1 space-y-1 animate-in slide-in-from-top-2 duration-200">
+              {secondaryNavItems.map((item) => {
+                const isActive = pathname === item.href;
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className={cn(
+                      'flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors pl-10',
+                      isActive
+                        ? 'bg-accent/10 text-accent'
+                        : 'text-muted hover:bg-surface-highlight hover:text-foreground'
+                    )}
+                  >
+                    <item.icon className="h-4 w-4" />
+                    {item.label}
+                  </Link>
+                );
+              })}
+            </div>
+          )}
+        </div>
 
         {/* Connected Repos */}
         <div className="border-t border-line p-4">

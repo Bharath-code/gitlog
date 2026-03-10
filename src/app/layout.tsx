@@ -10,6 +10,7 @@ import { Analytics } from "@vercel/analytics/react";
 import { siteConfig } from "@/shared/config/site";
 import { ToastProvider } from '@/shared/components/common/toast';
 import { ErrorBoundary } from '@/shared/components/common/error-boundary';
+import { CommandPalette } from '@/shared/components/common/command-palette';
 
 import "./globals.css";
 
@@ -66,6 +67,7 @@ export default function RootLayout({
         <body className={`${display.variable} ${sans.variable} ${mono.variable}`}>
           <ErrorBoundary>
             <ToastProvider>
+              <CommandPalette />
               {children}
               <Analytics />
             </ToastProvider>
