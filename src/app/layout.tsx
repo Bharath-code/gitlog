@@ -9,6 +9,7 @@ import { Analytics } from "@vercel/analytics/react";
 
 import { siteConfig } from "@/shared/config/site";
 import { ToastProvider } from '@/shared/components/common/toast';
+import { ErrorBoundary } from '@/shared/components/common/error-boundary';
 
 import "./globals.css";
 
@@ -63,10 +64,12 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en" suppressHydrationWarning>
         <body className={`${display.variable} ${sans.variable} ${mono.variable}`}>
-          <ToastProvider>
-            {children}
-            <Analytics />
-          </ToastProvider>
+          <ErrorBoundary>
+            <ToastProvider>
+              {children}
+              <Analytics />
+            </ToastProvider>
+          </ErrorBoundary>
         </body>
       </html>
     </ClerkProvider>
