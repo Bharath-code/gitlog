@@ -1,6 +1,6 @@
 # GitLog - Auto-Changelog from GitHub
 
-**Status:** ✅ **Phase 2 Complete - Production Ready**  
+**Status:** ✅ **Phase 3 Complete - Enterprise Ready**  
 **Launch:** Ready for Production  
 **Users:** 100+ beta users  
 **Tech Stack:** Next.js 15, Clerk, Vercel KV, Google Gemini, DodoPayment, Resend, Mailchimp
@@ -48,6 +48,40 @@
 - 📋 Roadmap cards (Kanban-style board)
 - 🗳️ Upvoting functionality (public roadmap)
 - ✨ Auto-move to changelog (completed → published)
+
+---
+
+## 🚀 What's New in Phase 3
+
+### ✅ **Flexible Publishing System** (Month 4)
+
+#### **1. Auto-Publish Toggle** ✅
+- ⚡ Automatically publish merged PRs
+- 🔔 No manual review required
+- ⚙️ Configurable per user
+
+#### **2. Batch Publish** ✅
+- ✅ Select multiple drafts
+- 📦 Publish all at once
+- 🎯 Review before publishing
+
+#### **3. Scheduled Publishing** ✅
+- 📅 Weekly digest (choose day)
+- 📆 Monthly roundup (choose date)
+- ⏰ Auto-publish at 9 AM UTC
+- 📧 Email digest automation
+
+#### **4. Release Grouping** ✅
+- 🏷️ Versioned releases (v1.0.0, v1.1.0)
+- 📝 Release notes & highlights
+- 🔀 Semantic versioning support
+- 📊 Migration guides
+
+#### **5. Advanced Filtering** ✅
+- 🎯 Filter by label, author, title, files, size
+- 🔍 Regex support
+- ⚡ Priority-based rules
+- 🎁 Preset filters (exclude chores, tests, etc.)
 
 ---
 
@@ -397,7 +431,7 @@ npm run start    # Start production server
 npm run lint     # ESLint check
 ```
 
-### API Routes (20+ Endpoints)
+### API Routes (30+ Endpoints)
 
 | Endpoint | Method | Auth | Purpose |
 | :---- | :---- | :---- | :---- |
@@ -411,13 +445,15 @@ npm run lint     # ESLint check
 | `/api/ai/rewrite` | POST | User | Generate AI rewrite |
 | **Entries** |
 | `/api/entries/publish` | POST | User | Publish draft |
+| `/api/entries/publish-batch` | POST | User | Batch publish |
 | `/api/entries/unpublish` | POST | User | Revert to draft |
 | `/api/entries/discard` | POST | User | Delete draft |
 | **Social (Phase 2)** |
 | `/api/social/generate` | POST/GET | User | Generate/get social posts |
-| **Email (Phase 2)** |
+| **Email (Phase 2, 3)** |
 | `/api/email/subscribe` | POST/GET | None | Subscribe/unsubscribe |
 | `/api/email/send-digest` | POST | User | Send digest email |
+| `/api/email/send-digest-manual` | POST | User | Manual digest trigger |
 | **Analytics (Phase 2)** |
 | `/api/analytics/track` | POST | None | Track page views |
 | `/api/analytics/upvote` | POST/GET | None | Upvote entries |
@@ -431,6 +467,15 @@ npm run lint     # ESLint check
 | `/api/widget/customize` | PUT | User | Customize widget |
 | `/api/widget/[widgetId]` | GET | None | Public widget data |
 | `/api/widget/track` | POST | None | Track widget events |
+| **Releases (Phase 3)** |
+| `/api/releases` | GET/POST | User | List/create releases |
+| `/api/releases/[version]` | GET/PUT | User | Get/update release |
+| **Filters (Phase 3)** |
+| `/api/user/filters` | GET/POST | User | Manage filter rules |
+| **Settings (Phase 3)** |
+| `/api/user/settings` | GET/PUT | User | Publishing settings |
+| **Cron (Phase 3)** |
+| `/api/cron/scheduled-publish` | POST | Cron | Scheduled publishing |
 | **Payment** |
 | `/api/payment/checkout` | POST | User | Create checkout session |
 | `/api/payment/webhook` | POST | None | Handle webhook events |
@@ -554,7 +599,17 @@ _None - Production Ready!_ ✅
 - Branding improvements (6 enhancements)
 - Payment fixes (5 critical fixes)
 
-### 🚀 Phase 3 (Month 4-6) - Planned
+### ✅ Phase 3 (Month 4) - Complete
+- Auto-publish toggle
+- Batch publish functionality
+- Scheduled publishing (cron job)
+- Email digest automation
+- Release grouping with versioning
+- Advanced filtering rules engine
+- Publishing settings UI
+- 10+ new API endpoints
+
+### 🚀 Phase 4 (Month 5-6) - Planned
 - Team accounts (multi-user)
 - Custom domains
 - Public API
@@ -609,5 +664,5 @@ MIT © 2026 GitLog
 
 **Ready to Launch!** 🚀
 
-*Last Updated: 2026-03-09*  
-*Status: Phase 2 Complete - Production Ready*
+*Last Updated: 2026-03-10*  
+*Status: Phase 3 Complete - Enterprise Ready*

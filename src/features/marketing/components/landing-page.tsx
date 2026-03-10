@@ -16,6 +16,7 @@ import {
   SiteHeader,
   WorkflowSection,
 } from "./sections";
+import { Phase3FeaturesSection } from "./phase3-features";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -112,6 +113,7 @@ export function LandingPage() {
       <HeroSection />
       <WorkflowSection />
       <FeatureSection />
+      <Phase3FeaturesSection />
       <PricingSection />
       <FaqSection />
       <FinalCtaSection />
