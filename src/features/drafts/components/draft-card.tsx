@@ -7,6 +7,8 @@ import { Badge } from '@/shared/components/ui/badge';
 import { Sparkles, Edit, Check, Trash, ExternalLink } from 'lucide-react';
 import { cn, timeAgo } from '@/shared/lib/utils';
 import { useRouter } from 'next/navigation';
+import { useToast } from '@/shared/hooks/use-toast';
+import confetti from 'canvas-confetti';
 
 interface DraftCardProps {
   draft: {
@@ -52,13 +54,22 @@ export function DraftCard({ draft }: DraftCardProps) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ entryId: draft.id }),
       });
-      
+
       if (!res.ok) throw new Error('Failed to publish');
-      
+
+      // Celebrate! 🎉
+      confetti({
+        particleCount: 100,
+        spread: 70,
+        origin: { y: 0.6 },
+        colors: ['#ff6b35', '#22c55e', '#3b82f6'],
+      });
+
+      toast.success('Published! Your users can see this now 🎉');
       router.refresh();
     } catch (error) {
       console.error('Publish error:', error);
-      alert('Failed to publish. Please try again.');
+      toast.error('Failed to publish. Please try again.');
     }
   };
 

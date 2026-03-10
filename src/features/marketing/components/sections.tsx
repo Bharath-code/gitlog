@@ -180,17 +180,18 @@ export function HeroSection() {
           <div className="space-y-6">
             <span className="eyebrow eyebrow-accent inline-flex">
               <span className="h-2 w-2 rounded-full bg-accent animate-pulse" />
-              Release communication for teams shipping from GitHub
+              Trusted by 100+ founders
             </span>
-            
+
             <h1 className="font-display text-5xl leading-[1.1] tracking-tight text-foreground sm:text-6xl lg:text-7xl">
-              Your PRs already tell the story.
-              <span className="block gradient-text-accent">We make users read it.</span>
+              Your Changelog Writes Itself
+              <span className="block gradient-text-accent">Zero Manual Writing. Zero BS.</span>
             </h1>
-            
+
             <p className="body-balance max-w-xl text-lg leading-relaxed text-muted">
-              Merge a pull request. GitLog prepares the draft. You review once and publish
-              a clean public update without rewriting the same release in another tool.
+              Merge a PR. GitLog handles the rest.
+              Auto-generate changelogs, social posts, email digests, and roadmap updates.
+              Save 5 hours every week.
             </p>
           </div>
 
