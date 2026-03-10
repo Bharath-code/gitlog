@@ -10,6 +10,15 @@ export interface UserConfig {
   githubToken?: string;
   createdAt: string;
   location?: 'in' | 'intl';
+  // Publishing settings
+  autoPublish?: boolean; // Auto-publish merged PRs
+  publishSchedule?: 'immediate' | 'weekly' | 'monthly'; // Publishing schedule
+  scheduleDay?: number; // Day of week (0-6) for weekly, day of month (1-31) for monthly
+  // Filter settings
+  filterLabels?: {
+    exclude: string[]; // Labels to exclude (e.g., ['chore', 'test'])
+    include: string[]; // Labels to include (e.g., ['feat', 'fix'])
+  };
 }
 
 export async function getUserConfig(userId: string): Promise<UserConfig | null> {
