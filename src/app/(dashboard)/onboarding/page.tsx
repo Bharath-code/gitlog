@@ -5,8 +5,10 @@ import { useRouter } from 'next/navigation';
 import { useUser } from '@clerk/nextjs';
 import { Card } from '@/shared/components/ui/card';
 import { Button } from '@/shared/components/ui/button';
-import { GitMerge, Search, Check, ExternalLink } from 'lucide-react';
+import { GitMerge, Search, Check, ExternalLink, Rocket } from 'lucide-react';
 import { cn } from '@/shared/lib/utils';
+import { useToast } from '@/shared/hooks/use-toast';
+import confetti from 'canvas-confetti';
 
 interface GitHubRepo {
   id: number;
@@ -20,11 +22,13 @@ interface GitHubRepo {
 export default function OnboardingPage() {
   const router = useRouter();
   const { user } = useUser();
+  const toast = useToast();
   const [repos, setRepos] = useState<GitHubRepo[]>([]);
   const [loading, setLoading] = useState(true);
   const [connecting, setConnecting] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [error, setError] = useState('');
+  const [step, setStep] = useState(1);
 
   // Fetch GitHub repos on mount
   useEffect(() => {
@@ -37,6 +41,7 @@ export default function OnboardingPage() {
         }
         const data = await res.json();
         setRepos(data.repos);
+        setStep(2); // Repos loaded, ready to select
       } catch (err) {
         setError(err instanceof Error ? err.message : 'Failed to load repositories');
       } finally {
@@ -68,10 +73,24 @@ export default function OnboardingPage() {
         throw new Error(data.error || 'Failed to connect repository');
       }
 
-      // Redirect to dashboard after successful connection
-      router.push('/dashboard?connected=true');
+      // Celebrate! 🎉
+      confetti({
+        particleCount: 150,
+        spread: 80,
+        origin: { y: 0.6 },
+        colors: ['#ff6b35', '#22c55e', '#3b82f6', '#f59e0b'],
+      });
+
+      toast.success(`${repo.name} connected! You're all set! 🎉`);
+      
+      // Redirect to dashboard with celebration flag
+      setTimeout(() => {
+        router.push('/dashboard?onboarding=complete&connected=true');
+      }, 800);
     } catch (err) {
+      console.error('Connect error:', err);
       setError(err instanceof Error ? err.message : 'Failed to connect repository');
+      toast.error('Failed to connect. Please try again.');
     } finally {
       setConnecting(null);
     }
@@ -97,15 +116,39 @@ export default function OnboardingPage() {
 
   return (
     <div className="min-h-screen bg-background p-4">
-      <div className="mx-auto max-w-3xl pt-12">
+      <div className="mx-auto max-w-3xl pt-8">
+        {/* Progress Indicator */}
+        <div className="mb-8">
+          <div className="flex items-center justify-between mb-2">
+            <span className="text-sm font-medium text-muted">Step {step} of 2</span>
+            <span className="text-sm text-muted">
+              {step === 1 ? 'Loading your repos...' : 'Select a repository'}
+            </span>
+          </div>
+          <div className="w-full bg-surface-highlight rounded-full h-2 overflow-hidden">
+            <div
+              className="bg-accent h-full transition-all duration-500 ease-out"
+              style={{ width: step === 1 ? '50%' : '100%' }}
+            />
+          </div>
+        </div>
+
         {/* Header */}
         <div className="text-center mb-8">
-          <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-accent to-accent/80 shadow-lg shadow-accent-glow/20">
-            <GitMerge className="h-6 w-6 text-white" />
+          <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-accent to-accent/80 shadow-lg shadow-accent-glow/20">
+            {step === 1 ? (
+              <div className="h-6 w-6 animate-spin rounded-full border-2 border-white border-t-transparent" />
+            ) : (
+              <Rocket className="h-7 w-7 text-white" />
+            )}
           </div>
-          <h1 className="text-3xl font-bold">Connect Your Repository</h1>
+          <h1 className="text-3xl font-bold">
+            {step === 1 ? 'Setting Up Your Account...' : 'Connect Your Repository'}
+          </h1>
           <p className="text-muted mt-2 max-w-md mx-auto">
-            Select a GitHub repository to start auto-generating changelogs from merged PRs.
+            {step === 1
+              ? 'Fetching your GitHub repositories...'
+              : 'Select a repository to start auto-generating changelogs from merged PRs.'}
           </p>
         </div>
 
@@ -222,19 +265,39 @@ export default function OnboardingPage() {
         )}
 
         {/* Info Box */}
-        <Card className="mt-8 p-4 bg-surface-highlight border-line">
+        <Card className="mt-8 p-5 bg-gradient-to-br from-surface-highlight to-surface border-line">
           <div className="flex items-start gap-3">
-            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-accent/10 flex-shrink-0">
-              <Check className="h-4 w-4 text-accent" />
+            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-accent/10 flex-shrink-0">
+              <Check className="h-5 w-5 text-accent" />
             </div>
             <div>
-              <h4 className="font-semibold text-sm">What happens next?</h4>
-              <ul className="text-sm text-muted mt-2 space-y-1">
-                <li>• We'll create a webhook in your repository</li>
-                <li>• Merged PRs will automatically appear as drafts</li>
-                <li>• AI will rewrite them into user-friendly changelog entries</li>
-                <li>• You review and publish with one click</li>
+              <h4 className="font-semibold text-base">You're 1 click away from automated changelogs! 🚀</h4>
+              <p className="text-sm text-muted mt-2 mb-3">
+                After connecting, here's what happens:
+              </p>
+              <ul className="text-sm text-muted space-y-2">
+                <li className="flex items-start gap-2">
+                  <span className="text-accent mt-0.5">✓</span>
+                  <span>We'll create a webhook in your repository (takes 2 seconds)</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-accent mt-0.5">✓</span>
+                  <span>Merged PRs automatically appear as drafts within 30 seconds</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-accent mt-0.5">✓</span>
+                  <span>AI rewrites them into user-friendly changelog entries</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-accent mt-0.5">✓</span>
+                  <span>You review and publish with one click</span>
+                </li>
               </ul>
+              <div className="mt-4 p-3 rounded-lg bg-accent/5 border border-accent/10">
+                <p className="text-xs text-accent font-medium">
+                  ⏱️ Total setup time: ~30 seconds
+                </p>
+              </div>
             </div>
           </div>
         </Card>
