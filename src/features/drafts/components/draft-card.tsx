@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { Card } from '@/shared/components/ui/card';
 import { Button } from '@/shared/components/ui/button';
 import { Badge } from '@/shared/components/ui/badge';
-import { Sparkles, Edit, Check, Trash, ExternalLink } from 'lucide-react';
+import { Sparkles, Edit, Check, Trash, ExternalLink, Eye } from 'lucide-react';
 import { cn, timeAgo } from '@/shared/lib/utils';
 import { useRouter } from 'next/navigation';
 import { useToast } from '@/shared/hooks/use-toast';
@@ -25,7 +25,9 @@ export function DraftCard({ draft }: DraftCardProps) {
   const router = useRouter();
   const { success, error } = useToast();
   const [rewriting, setRewriting] = useState(false);
+  const [publishing, setPublishing] = useState(false);
   const [aiRewrite, setAiRewrite] = useState(draft.aiRewrite);
+  const [showPreview, setShowPreview] = useState(false);
 
   const handleRewrite = async () => {
     setRewriting(true);
@@ -40,15 +42,17 @@ export function DraftCard({ draft }: DraftCardProps) {
 
       const data = await res.json();
       setAiRewrite(data.aiRewrite);
-    } catch (error) {
-      console.error('Rewrite error:', error);
-      alert('Failed to generate AI rewrite. Please try again.');
+      success('AI rewrite generated! ✨');
+    } catch (err) {
+      console.error('Rewrite error:', err);
+      error('Failed to generate AI rewrite. Please try again.');
     } finally {
       setRewriting(false);
     }
   };
 
   const handlePublish = async () => {
+    setPublishing(true);
     try {
       const res = await fetch('/api/entries/publish', {
         method: 'POST',
@@ -67,10 +71,16 @@ export function DraftCard({ draft }: DraftCardProps) {
       });
 
       success('Published! Your users can see this now 🎉');
-      router.refresh();
+
+      // Animate to published
+      setTimeout(() => {
+        router.refresh();
+      }, 800);
     } catch (err) {
       console.error('Publish error:', err);
       error('Failed to publish. Please try again.');
+    } finally {
+      setPublishing(false);
     }
   };
 
@@ -126,15 +136,39 @@ export function DraftCard({ draft }: DraftCardProps) {
             variant="outline"
             size="sm"
             className="gap-1"
+            onClick={() => setShowPreview(true)}
+          >
+            <Eye className="h-3.5 w-3.5" />
+            Preview
+          </Button>
+
+          <Button
+            variant="outline"
+            size="sm"
+            className="gap-1"
             onClick={() => router.push(`/dashboard/drafts/${draft.id}`)}
           >
             <Edit className="h-3.5 w-3.5" />
             Edit
           </Button>
 
-          <Button size="sm" className="gap-1 bg-accent hover:bg-accent/90" onClick={handlePublish}>
-            <Check className="h-3.5 w-3.5" />
-            Publish
+          <Button
+            size="sm"
+            className="gap-1 bg-accent hover:bg-accent/90"
+            onClick={handlePublish}
+            disabled={publishing}
+          >
+            {publishing ? (
+              <>
+                <div className="h-3.5 w-3.5 animate-spin rounded-full border-2 border-white border-t-transparent" />
+                Publishing...
+              </>
+            ) : (
+              <>
+                <Check className="h-3.5 w-3.5" />
+                Publish
+              </>
+            )}
           </Button>
         </div>
       </div>
