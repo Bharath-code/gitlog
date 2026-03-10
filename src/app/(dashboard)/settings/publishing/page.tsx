@@ -72,9 +72,7 @@ export default function PublishingSettingsPage() {
     <div className="space-y-8">
       <div>
         <SectionHeading title="Publishing Settings" />
-        <p className="text-muted mt-2">
-          Control how and when your changelog entries are published
-        </p>
+        <p className="text-muted mt-2">Control how and when your changelog entries are published</p>
       </div>
 
       {/* Auto-Publish Toggle */}
@@ -116,9 +114,7 @@ export default function PublishingSettingsPage() {
           </div>
           <div className="flex-1">
             <h2 className="text-xl font-semibold">Publishing Schedule</h2>
-            <p className="text-sm text-muted mt-1">
-              Choose when to publish your changelog entries
-            </p>
+            <p className="text-sm text-muted mt-1">Choose when to publish your changelog entries</p>
             <div className="mt-4 space-y-3">
               <label className="flex items-center gap-3 cursor-pointer">
                 <input
@@ -144,7 +140,9 @@ export default function PublishingSettingsPage() {
                 <div className="ml-7 mt-2">
                   <select
                     value={settings.scheduleDay}
-                    onChange={(e) => setSettings({ ...settings, scheduleDay: parseInt(e.target.value) })}
+                    onChange={(e) =>
+                      setSettings({ ...settings, scheduleDay: parseInt(e.target.value) })
+                    }
                     className="text-sm rounded-md border border-line bg-surface px-3 py-2"
                   >
                     <option value={1}>Monday</option>
@@ -171,12 +169,16 @@ export default function PublishingSettingsPage() {
                 <div className="ml-7 mt-2">
                   <select
                     value={settings.scheduleDay}
-                    onChange={(e) => setSettings({ ...settings, scheduleDay: parseInt(e.target.value) })}
+                    onChange={(e) =>
+                      setSettings({ ...settings, scheduleDay: parseInt(e.target.value) })
+                    }
                     className="text-sm rounded-md border border-line bg-surface px-3 py-2"
                   >
                     {Array.from({ length: 31 }, (_, i) => i + 1).map((day) => (
                       <option key={day} value={day}>
-                        {day}{day === 1 ? 'st' : day === 2 ? 'nd' : day === 3 ? 'rd' : 'th'} of each month
+                        {day}
+                        {day === 1 ? 'st' : day === 2 ? 'nd' : day === 3 ? 'rd' : 'th'} of each
+                        month
                       </option>
                     ))}
                   </select>
@@ -195,19 +197,22 @@ export default function PublishingSettingsPage() {
           </div>
           <div className="flex-1">
             <h2 className="text-xl font-semibold">PR Filtering</h2>
-            <p className="text-sm text-muted mt-1">
-              Control which PRs appear in your changelog
-            </p>
+            <p className="text-sm text-muted mt-1">Control which PRs appear in your changelog</p>
             <div className="mt-4 space-y-4">
               <div>
                 <label className="text-sm font-medium">Exclude labels (comma-separated)</label>
                 <input
                   type="text"
                   value={settings.filterLabels.exclude.join(', ')}
-                  onChange={(e) => setSettings({
-                    ...settings,
-                    filterLabels: { ...settings.filterLabels, exclude: e.target.value.split(',').map(s => s.trim()) }
-                  })}
+                  onChange={(e) =>
+                    setSettings({
+                      ...settings,
+                      filterLabels: {
+                        ...settings.filterLabels,
+                        exclude: e.target.value.split(',').map((s) => s.trim()),
+                      },
+                    })
+                  }
                   className="mt-1 w-full rounded-md border border-line bg-surface px-3 py-2 text-sm"
                   placeholder="chore, test, refactor"
                 />
@@ -220,10 +225,15 @@ export default function PublishingSettingsPage() {
                 <input
                   type="text"
                   value={settings.filterLabels.include.join(', ')}
-                  onChange={(e) => setSettings({
-                    ...settings,
-                    filterLabels: { ...settings.filterLabels, include: e.target.value.split(',').map(s => s.trim()) }
-                  })}
+                  onChange={(e) =>
+                    setSettings({
+                      ...settings,
+                      filterLabels: {
+                        ...settings.filterLabels,
+                        include: e.target.value.split(',').map((s) => s.trim()),
+                      },
+                    })
+                  }
                   className="mt-1 w-full rounded-md border border-line bg-surface px-3 py-2 text-sm"
                   placeholder="feat, fix, docs"
                 />
@@ -264,11 +274,7 @@ export default function PublishingSettingsPage() {
 
       {/* Save Button */}
       <div className="flex justify-end">
-        <Button
-          onClick={saveSettings}
-          disabled={saving}
-          className="bg-accent hover:bg-accent/90"
-        >
+        <Button onClick={saveSettings} disabled={saving} className="bg-accent hover:bg-accent/90">
           {saving ? 'Saving...' : 'Save Settings'}
         </Button>
       </div>

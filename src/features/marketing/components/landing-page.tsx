@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import { useLayoutEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useLayoutEffect, useRef } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-import { siteConfig } from "@/shared/config/site";
+import { siteConfig } from '@/shared/config/site';
 
 import {
   FaqSection,
@@ -15,9 +15,9 @@ import {
   SiteFooter,
   SiteHeader,
   WorkflowSection,
-} from "./sections";
-import { Phase3FeaturesSection } from "./phase3-features";
-import { ApiAndIntegrationsSection } from "./api-and-integrations";
+} from './sections';
+import { Phase3FeaturesSection } from './phase3-features';
+import { ApiAndIntegrationsSection } from './api-and-integrations';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -29,41 +29,41 @@ export function LandingPage() {
       return;
     }
 
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduceMotion) {
       // Add revealed class immediately if motion is reduced
-      document.querySelectorAll(".reveal-on-scroll").forEach((el) => {
-        el.classList.add("revealed");
+      document.querySelectorAll('.reveal-on-scroll').forEach((el) => {
+        el.classList.add('revealed');
       });
       return;
     }
 
     const context = gsap.context(() => {
       // Parallax effect for hero glows
-      gsap.to(".hero-glow-1", {
+      gsap.to('.hero-glow-1', {
         yPercent: 20,
         scrollTrigger: {
-          trigger: "body",
-          start: "top top",
-          end: "bottom top",
+          trigger: 'body',
+          start: 'top top',
+          end: 'bottom top',
           scrub: 1,
         },
       });
 
-      gsap.to(".hero-glow-2", {
+      gsap.to('.hero-glow-2', {
         yPercent: -20,
         scrollTrigger: {
-          trigger: "body",
-          start: "top top",
-          end: "bottom top",
+          trigger: 'body',
+          start: 'top top',
+          end: 'bottom top',
           scrub: 1,
         },
       });
 
       // Stagger animation for feature cards on hover
-      gsap.utils.toArray<HTMLElement>(".feature-card").forEach((card, index) => {
-        card.addEventListener("mouseenter", () => {
-          gsap.utils.toArray<HTMLElement>(".feature-card").forEach((otherCard, otherIndex) => {
+      gsap.utils.toArray<HTMLElement>('.feature-card').forEach((card, index) => {
+        card.addEventListener('mouseenter', () => {
+          gsap.utils.toArray<HTMLElement>('.feature-card').forEach((otherCard, otherIndex) => {
             if (otherCard !== card) {
               gsap.to(otherCard, {
                 scale: 0.98,
@@ -74,8 +74,8 @@ export function LandingPage() {
           });
         });
 
-        card.addEventListener("mouseleave", () => {
-          gsap.utils.toArray<HTMLElement>(".feature-card").forEach((otherCard) => {
+        card.addEventListener('mouseleave', () => {
+          gsap.utils.toArray<HTMLElement>('.feature-card').forEach((otherCard) => {
             gsap.to(otherCard, {
               scale: 1,
               opacity: 1,
@@ -86,20 +86,20 @@ export function LandingPage() {
       });
 
       // Progress indicator for pricing cards
-      gsap.utils.toArray<HTMLElement>(".pricing-card").forEach((card) => {
-        card.addEventListener("mouseenter", () => {
+      gsap.utils.toArray<HTMLElement>('.pricing-card').forEach((card) => {
+        card.addEventListener('mouseenter', () => {
           gsap.to(card, {
             scale: 1.02,
             duration: 0.4,
-            ease: "power2.out",
+            ease: 'power2.out',
           });
         });
 
-        card.addEventListener("mouseleave", () => {
+        card.addEventListener('mouseleave', () => {
           gsap.to(card, {
             scale: 1,
             duration: 0.4,
-            ease: "power2.out",
+            ease: 'power2.out',
           });
         });
       });

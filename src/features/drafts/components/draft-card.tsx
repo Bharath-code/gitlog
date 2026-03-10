@@ -23,6 +23,7 @@ interface DraftCardProps {
 
 export function DraftCard({ draft }: DraftCardProps) {
   const router = useRouter();
+  const { success, error } = useToast();
   const [rewriting, setRewriting] = useState(false);
   const [aiRewrite, setAiRewrite] = useState(draft.aiRewrite);
 
@@ -34,9 +35,9 @@ export function DraftCard({ draft }: DraftCardProps) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ entryId: draft.id }),
       });
-      
+
       if (!res.ok) throw new Error('Failed to rewrite');
-      
+
       const data = await res.json();
       setAiRewrite(data.aiRewrite);
     } catch (error) {
@@ -65,19 +66,21 @@ export function DraftCard({ draft }: DraftCardProps) {
         colors: ['#ff6b35', '#22c55e', '#3b82f6'],
       });
 
-      toast.success('Published! Your users can see this now 🎉');
+      success('Published! Your users can see this now 🎉');
       router.refresh();
-    } catch (error) {
-      console.error('Publish error:', error);
-      toast.error('Failed to publish. Please try again.');
+    } catch (err) {
+      console.error('Publish error:', err);
+      error('Failed to publish. Please try again.');
     }
   };
 
   return (
-    <Card className={cn(
-      'group p-4 transition-all duration-300 hover-lift',
-      'border-line bg-surface hover:border-accent/50 hover:shadow-lg hover:shadow-accent-glow/5'
-    )}>
+    <Card
+      className={cn(
+        'group p-4 transition-all duration-300 hover-lift',
+        'border-line bg-surface hover:border-accent/50 hover:shadow-lg hover:shadow-accent-glow/5'
+      )}
+    >
       <div className="flex items-start justify-between gap-4">
         <div className="flex-1 space-y-3">
           <div className="flex items-center gap-2 flex-wrap">
@@ -86,18 +89,16 @@ export function DraftCard({ draft }: DraftCardProps) {
             </Badge>
             <h3 className="font-semibold text-lg">{draft.title}</h3>
           </div>
-          
+
           {aiRewrite ? (
-            <p className="text-muted text-sm leading-relaxed">
-              {aiRewrite}
-            </p>
+            <p className="text-muted text-sm leading-relaxed">{aiRewrite}</p>
           ) : (
             <div className="flex items-center gap-2 text-sm text-muted">
               <Sparkles className="h-3.5 w-3.5" />
               <span>AI rewrite not generated yet</span>
             </div>
           )}
-          
+
           <div className="flex items-center gap-4 text-xs text-muted">
             <span>{timeAgo(draft.mergedAt)}</span>
             {draft.repoId && (
@@ -117,10 +118,10 @@ export function DraftCard({ draft }: DraftCardProps) {
             disabled={rewriting}
             className="gap-1"
           >
-            <Sparkles className={cn("h-3.5 w-3.5", rewriting && "animate-spin")} />
+            <Sparkles className={cn('h-3.5 w-3.5', rewriting && 'animate-spin')} />
             {rewriting ? 'Writing...' : 'Rewrite'}
           </Button>
-          
+
           <Button
             variant="outline"
             size="sm"
@@ -130,12 +131,8 @@ export function DraftCard({ draft }: DraftCardProps) {
             <Edit className="h-3.5 w-3.5" />
             Edit
           </Button>
-          
-          <Button
-            size="sm"
-            className="gap-1 bg-accent hover:bg-accent/90"
-            onClick={handlePublish}
-          >
+
+          <Button size="sm" className="gap-1 bg-accent hover:bg-accent/90" onClick={handlePublish}>
             <Check className="h-3.5 w-3.5" />
             Publish
           </Button>

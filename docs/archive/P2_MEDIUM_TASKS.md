@@ -14,6 +14,7 @@
 **Phase 2 (Next Development Phase):** 20 tasks for Month 2-3 development
 
 **This file covers P2 medium priority tasks only.** For Phase 2 features (Widget, Social Posts, Email, Analytics, Roadmap), see:
+
 - **Phase 2 Implementation Plan:** [`PHASE2_IMPLEMENTATION_PLAN.md`](./PHASE2_IMPLEMENTATION_PLAN.md)
 - **Phase 2 Progress Tracker:** [`PHASE2_PROGRESS.md`](./PHASE2_PROGRESS.md)
 
@@ -21,11 +22,11 @@
 
 ## 📊 P2 Task Summary
 
-| Category | Count | Estimated Time | Status |
-| :---- | :---- | :---- | :---- |
-| Documentation Pages | 5 | 8 hours | ⬜ 0% |
-| Additional Features | 5 | 10 hours | ⬜ 0% |
-| Growth Features | 5 | 8 hours | ⬜ 0% |
+| Category            | Count | Estimated Time | Status |
+| :------------------ | :---- | :------------- | :----- |
+| Documentation Pages | 5     | 8 hours        | ⬜ 0%  |
+| Additional Features | 5     | 10 hours       | ⬜ 0%  |
+| Growth Features     | 5     | 8 hours        | ⬜ 0%  |
 
 **Total:** 15 tasks, ~26 hours of work
 
@@ -35,9 +36,9 @@
 
 ### **Morning: Getting Started Guide (2 hours)**
 
-| ID | Task | Details | Time | Status |
-| :---- | :---- | :---- | :---- | :---- |
-| DOC-P2-01 | Create `/docs/getting-started` | Step-by-step guide | 2 hours | ⬜ |
+| ID        | Task                           | Details            | Time    | Status |
+| :-------- | :----------------------------- | :----------------- | :------ | :----- |
+| DOC-P2-01 | Create `/docs/getting-started` | Step-by-step guide | 2 hours | ⬜     |
 
 **Implementation:**
 
@@ -162,9 +163,9 @@ export default function GettingStartedPage() {
 
 ### **Late Morning: GitHub Setup Guide (2 hours)**
 
-| ID | Task | Details | Time | Status |
-| :---- | :---- | :---- | :---- | :---- |
-| DOC-P2-02 | Create `/docs/github-setup` | Webhook configuration guide | 2 hours | ⬜ |
+| ID        | Task                        | Details                     | Time    | Status |
+| :-------- | :-------------------------- | :-------------------------- | :------ | :----- |
+| DOC-P2-02 | Create `/docs/github-setup` | Webhook configuration guide | 2 hours | ⬜     |
 
 **Implementation:**
 
@@ -244,7 +245,7 @@ export default function GitHubSetupPage() {
         {/* Label Best Practices */}
         <Card className="p-6">
           <h2 className="text-2xl font-semibold mb-6">PR Label Best Practices</h2>
-          
+
           <div className="space-y-4">
             <div className="p-4 rounded-lg border border-line bg-surface">
               <div className="flex items-center gap-2 mb-2">
@@ -281,7 +282,7 @@ export default function GitHubSetupPage() {
         {/* Troubleshooting */}
         <Card className="p-6">
           <h2 className="text-2xl font-semibold mb-6">Troubleshooting</h2>
-          
+
           <div className="space-y-4">
             <div>
               <h3 className="font-semibold mb-2">Webhook not firing?</h3>
@@ -322,11 +323,11 @@ export default function GitHubSetupPage() {
 
 ### **Afternoon: Best Practices + Billing Docs (4 hours)**
 
-| ID | Task | Details | Time | Status |
-| :---- | :---- | :---- | :---- | :---- |
-| DOC-P2-03 | Create `/docs/best-practices` | Changelog writing tips | 2 hours | ⬜ |
-| DOC-P2-04 | Create `/docs/billing` | Plans, payment, FAQs | 1 hour | ⬜ |
-| DOC-P2-05 | Create `/docs/api` | API reference | 2 hours | ⬜ |
+| ID        | Task                          | Details                | Time    | Status |
+| :-------- | :---------------------------- | :--------------------- | :------ | :----- |
+| DOC-P2-03 | Create `/docs/best-practices` | Changelog writing tips | 2 hours | ⬜     |
+| DOC-P2-04 | Create `/docs/billing`        | Plans, payment, FAQs   | 1 hour  | ⬜     |
+| DOC-P2-05 | Create `/docs/api`            | API reference          | 2 hours | ⬜     |
 
 ---
 
@@ -334,27 +335,27 @@ export default function GitHubSetupPage() {
 
 ### **Morning: Tooltips + Mobile UX (4 hours)**
 
-| ID | Task | Details | Time | Status |
-| :---- | :---- | :---- | :---- | :---- |
-| FEAT-P2-01 | Add tooltips | Help text on hover | 2 hours | ⬜ |
-| FEAT-P2-02 | Improve mobile UX | Bottom nav, touch targets | 2 hours | ⬜ |
+| ID         | Task              | Details                   | Time    | Status |
+| :--------- | :---------------- | :------------------------ | :------ | :----- |
+| FEAT-P2-01 | Add tooltips      | Help text on hover        | 2 hours | ⬜     |
+| FEAT-P2-02 | Improve mobile UX | Bottom nav, touch targets | 2 hours | ⬜     |
 
 ---
 
 ### **Afternoon: Search + Bulk Actions (4 hours)**
 
-| ID | Task | Details | Time | Status |
-| :---- | :---- | :---- | :---- | :---- |
-| FEAT-P2-03 | Add search to dashboard | Search across drafts, published | 2 hours | ⬜ |
-| FEAT-P2-04 | Bulk actions | Select multiple, bulk publish | 2 hours | ⬜ |
+| ID         | Task                    | Details                         | Time    | Status |
+| :--------- | :---------------------- | :------------------------------ | :------ | :----- |
+| FEAT-P2-03 | Add search to dashboard | Search across drafts, published | 2 hours | ⬜     |
+| FEAT-P2-04 | Bulk actions            | Select multiple, bulk publish   | 2 hours | ⬜     |
 
 ---
 
 ### **Late Afternoon: Export Feature (2 hours)**
 
-| ID | Task | Details | Time | Status |
-| :---- | :---- | :---- | :---- | :---- |
-| FEAT-P2-05 | Export changelog | Export as Markdown, PDF | 2 hours | ⬜ |
+| ID         | Task             | Details                 | Time    | Status |
+| :--------- | :--------------- | :---------------------- | :------ | :----- |
+| FEAT-P2-05 | Export changelog | Export as Markdown, PDF | 2 hours | ⬜     |
 
 ---
 
@@ -362,26 +363,27 @@ export default function GitHubSetupPage() {
 
 ### **Morning: Referral Program (4 hours)**
 
-| ID | Task | Details | Time | Status |
-| :---- | :---- | :---- | :---- | :---- |
-| GROWTH-P2-01 | Referral program | Refer a founder, get 1 month free | 2 hours | ⬜ |
-| GROWTH-P2-02 | Affiliate system | Track referrals, pay commissions | 2 hours | ⬜ |
+| ID           | Task             | Details                           | Time    | Status |
+| :----------- | :--------------- | :-------------------------------- | :------ | :----- |
+| GROWTH-P2-01 | Referral program | Refer a founder, get 1 month free | 2 hours | ⬜     |
+| GROWTH-P2-02 | Affiliate system | Track referrals, pay commissions  | 2 hours | ⬜     |
 
 ---
 
 ### **Afternoon: Directory Submissions (4 hours)**
 
-| ID | Task | Details | Time | Status |
-| :---- | :---- | :---- | :---- | :---- |
-| GROWTH-P2-03 | Submit to SaaS directories | 10+ sites | 2 hours | ⬜ |
-| GROWTH-P2-04 | Guest post outreach | Pitch 5 dev blogs | 2 hours | ⬜ |
-| GROWTH-P2-05 | HARO responses | 3 responses/week | Ongoing | ⬜ |
+| ID           | Task                       | Details           | Time    | Status |
+| :----------- | :------------------------- | :---------------- | :------ | :----- |
+| GROWTH-P2-03 | Submit to SaaS directories | 10+ sites         | 2 hours | ⬜     |
+| GROWTH-P2-04 | Guest post outreach        | Pitch 5 dev blogs | 2 hours | ⬜     |
+| GROWTH-P2-05 | HARO responses             | 3 responses/week  | Ongoing | ⬜     |
 
 ---
 
 ## ✅ P2 Completion Checklist
 
 ### **Documentation (5/5)**
+
 - [ ] DOC-P2-01: Getting started guide
 - [ ] DOC-P2-02: GitHub setup guide
 - [ ] DOC-P2-03: Best practices
@@ -389,6 +391,7 @@ export default function GitHubSetupPage() {
 - [ ] DOC-P2-05: API reference
 
 ### **Additional Features (5/5)**
+
 - [ ] FEAT-P2-01: Tooltips added
 - [ ] FEAT-P2-02: Mobile UX improved
 - [ ] FEAT-P2-03: Search functionality
@@ -396,6 +399,7 @@ export default function GitHubSetupPage() {
 - [ ] FEAT-P2-05: Export feature
 
 ### **Growth Features (5/5)**
+
 - [ ] GROWTH-P2-01: Referral program
 - [ ] GROWTH-P2-02: Affiliate system
 - [ ] GROWTH-P2-03: Directory submissions
@@ -408,44 +412,46 @@ export default function GitHubSetupPage() {
 
 ### **Day 11 Progress**
 
-| Time | Task | Status |
-| :---- | :---- | :---- |
-| 9:00 AM - 11:00 AM | Getting Started Guide | ⬜ |
-| 11:00 AM - 1:00 PM | GitHub Setup Guide | ⬜ |
-| 2:00 PM - 4:00 PM | Best Practices | ⬜ |
-| 4:00 PM - 5:00 PM | Billing Docs | ⬜ |
-| 5:00 PM - 7:00 PM | API Reference | ⬜ |
+| Time               | Task                  | Status |
+| :----------------- | :-------------------- | :----- |
+| 9:00 AM - 11:00 AM | Getting Started Guide | ⬜     |
+| 11:00 AM - 1:00 PM | GitHub Setup Guide    | ⬜     |
+| 2:00 PM - 4:00 PM  | Best Practices        | ⬜     |
+| 4:00 PM - 5:00 PM  | Billing Docs          | ⬜     |
+| 5:00 PM - 7:00 PM  | API Reference         | ⬜     |
 
 ### **Day 12 Progress**
 
-| Time | Task | Status |
-| :---- | :---- | :---- |
-| 9:00 AM - 11:00 AM | Tooltips | ⬜ |
-| 11:00 AM - 1:00 PM | Mobile UX | ⬜ |
-| 2:00 PM - 4:00 PM | Search | ⬜ |
-| 4:00 PM - 6:00 PM | Bulk Actions | ⬜ |
-| 6:00 PM - 8:00 PM | Export Feature | ⬜ |
+| Time               | Task           | Status |
+| :----------------- | :------------- | :----- |
+| 9:00 AM - 11:00 AM | Tooltips       | ⬜     |
+| 11:00 AM - 1:00 PM | Mobile UX      | ⬜     |
+| 2:00 PM - 4:00 PM  | Search         | ⬜     |
+| 4:00 PM - 6:00 PM  | Bulk Actions   | ⬜     |
+| 6:00 PM - 8:00 PM  | Export Feature | ⬜     |
 
 ### **Day 13 Progress**
 
-| Time | Task | Status |
-| :---- | :---- | :---- |
-| 9:00 AM - 11:00 AM | Referral Program | ⬜ |
-| 11:00 AM - 1:00 PM | Affiliate System | ⬜ |
-| 2:00 PM - 4:00 PM | Directory Submissions | ⬜ |
-| 4:00 PM - 6:00 PM | Guest Post Outreach | ⬜ |
+| Time               | Task                  | Status |
+| :----------------- | :-------------------- | :----- |
+| 9:00 AM - 11:00 AM | Referral Program      | ⬜     |
+| 11:00 AM - 1:00 PM | Affiliate System      | ⬜     |
+| 2:00 PM - 4:00 PM  | Directory Submissions | ⬜     |
+| 4:00 PM - 6:00 PM  | Guest Post Outreach   | ⬜     |
 
 ---
 
 ## 🎯 Success Criteria
 
 **P2 Complete When:**
+
 - [ ] All 15 P2 tasks completed
 - [ ] Documentation published
 - [ ] Additional features working
 - [ ] Growth initiatives launched
 
 **After P2 Complete:**
+
 - ✅ Enhanced user experience
 - ✅ Better documentation
 - ✅ Growth engines active
@@ -453,12 +459,12 @@ export default function GitHubSetupPage() {
 
 ---
 
-**Start Date:** ___________  
+**Start Date:** \***\*\_\_\_\*\***  
 **Target End Date:** 3 days from start  
-**Actual End Date:** ___________
+**Actual End Date:** \***\*\_\_\_\*\***
 
 **Status:** ⬜ Not Started → 🔄 In Progress → ✅ Complete
 
 ---
 
-*Complete P2 tasks to enhance the product before adding Phase 2 features!*
+_Complete P2 tasks to enhance the product before adding Phase 2 features!_

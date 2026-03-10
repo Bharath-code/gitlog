@@ -92,7 +92,7 @@ export default function MostViewedPage() {
             See which changelog entries are getting the most attention
           </p>
         </div>
-        <Badge variant="accent">Phase 2</Badge>
+        <Badge variant="default">Phase 2</Badge>
       </div>
 
       {/* Time Period Filter */}
@@ -164,13 +164,18 @@ function EntryRow({ entry, rank }: { entry: EntryViews; rank: number }) {
   return (
     <div className="flex items-center gap-4 p-4 rounded-lg border border-line hover:bg-surface-highlight transition-colors">
       {/* Rank */}
-      <div className={cn(
-        'flex h-10 w-10 items-center justify-center rounded-full font-bold',
-        rank === 1 ? 'bg-yellow-500/10 text-yellow-500' :
-        rank === 2 ? 'bg-gray-400/10 text-gray-400' :
-        rank === 3 ? 'bg-amber-600/10 text-amber-600' :
-        'bg-muted/10 text-muted-foreground'
-      )}>
+      <div
+        className={cn(
+          'flex h-10 w-10 items-center justify-center rounded-full font-bold',
+          rank === 1
+            ? 'bg-yellow-500/10 text-yellow-500'
+            : rank === 2
+              ? 'bg-gray-400/10 text-gray-400'
+              : rank === 3
+                ? 'bg-amber-600/10 text-amber-600'
+                : 'bg-muted/10 text-muted-foreground'
+        )}
+      >
         {rank}
       </div>
 
@@ -188,10 +193,12 @@ function EntryRow({ entry, rank }: { entry: EntryViews; rank: number }) {
 
       {/* Trend */}
       {entry.trend && (
-        <div className={cn(
-          'flex items-center gap-1 text-sm font-medium',
-          entry.trend > 0 ? 'text-success' : 'text-red-500'
-        )}>
+        <div
+          className={cn(
+            'flex items-center gap-1 text-sm font-medium',
+            entry.trend > 0 ? 'text-success' : 'text-red-500'
+          )}
+        >
           {entry.trend > 0 ? (
             <ArrowUpRight className="h-4 w-4" />
           ) : (

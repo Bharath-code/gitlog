@@ -61,8 +61,7 @@ export function SiteSidebar() {
             <Search className="h-4 w-4" />
             <span className="flex-1 text-left">Search...</span>
             <kbd className="hidden lg:inline-flex items-center gap-1 rounded border border-line bg-surface px-1.5 py-0.5 text-xs">
-              <Command className="h-3 w-3" />
-              K
+              <Command className="h-3 w-3" />K
             </kbd>
           </button>
         </div>
@@ -106,9 +105,9 @@ export function SiteSidebar() {
               <Globe className="h-4 w-4" />
               More
             </div>
-            <ChevronDown className={cn("h-4 w-4 transition-transform", showMore && "rotate-180")} />
+            <ChevronDown className={cn('h-4 w-4 transition-transform', showMore && 'rotate-180')} />
           </button>
-          
+
           {showMore && (
             <div className="mt-1 space-y-1 animate-in slide-in-from-top-2 duration-200">
               {secondaryNavItems.map((item) => {
@@ -139,10 +138,7 @@ export function SiteSidebar() {
             <span className="font-mono text-xs uppercase tracking-wider text-muted">
               Connected Repos
             </span>
-            <Link
-              href="/dashboard/settings"
-              className="text-muted hover:text-foreground"
-            >
+            <Link href="/dashboard/settings" className="text-muted hover:text-foreground">
               <Settings className="h-3.5 w-3.5" />
             </Link>
           </div>

@@ -46,7 +46,9 @@ export function hashApiKey(key: string): string {
 /**
  * Create a new API key
  */
-export async function createApiKey(input: ApiKeyCreateInput): Promise<{ apiKey: ApiKey; rawKey: string }> {
+export async function createApiKey(
+  input: ApiKeyCreateInput
+): Promise<{ apiKey: ApiKey; rawKey: string }> {
   const { key, keyPrefix } = generateApiKey();
   const hashedKey = hashApiKey(key);
 
@@ -78,7 +80,7 @@ export async function createApiKey(input: ApiKeyCreateInput): Promise<{ apiKey: 
  */
 export async function getUserApiKeys(userId: string): Promise<ApiKey[]> {
   const keyIds = await kv.smembers(`user:${userId}:apikeys`);
-  const keys = await Promise.all(keyIds.map(id => kv.get<ApiKey>(id)));
+  const keys = await Promise.all(keyIds.map((id) => kv.get<ApiKey>(id)));
   return keys.filter((k): k is ApiKey => k !== null && k.isActive);
 }
 
@@ -87,11 +89,11 @@ export async function getUserApiKeys(userId: string): Promise<ApiKey[]> {
  */
 export async function validateApiKey(rawKey: string): Promise<ApiKey | null> {
   const hashedKey = hashApiKey(rawKey);
-  
+
   // We need to search through all keys - in production, use a different indexing strategy
   const allKeyPattern = `apikey:*:*`;
   const keys = await kv.keys(allKeyPattern);
-  
+
   for (const key of keys) {
     const apiKey = await kv.get<ApiKey>(key);
     if (apiKey && apiKey.key === hashedKey && apiKey.isActive) {
@@ -99,15 +101,15 @@ export async function validateApiKey(rawKey: string): Promise<ApiKey | null> {
       if (apiKey.expiresAt && new Date(apiKey.expiresAt) < new Date()) {
         return null;
       }
-      
+
       // Update last used
       apiKey.lastUsedAt = new Date().toISOString();
       await kv.set(key, apiKey);
-      
+
       return apiKey;
     }
   }
-  
+
   return null;
 }
 
@@ -132,14 +134,14 @@ export function hasPermission(apiKey: ApiKey, permission: 'read' | 'write'): boo
   if (!apiKey.isActive) {
     return false;
   }
-  
+
   if (permission === 'read') {
     return apiKey.permissions.read;
   }
-  
+
   if (permission === 'write') {
     return apiKey.permissions.write;
   }
-  
+
   return false;
 }

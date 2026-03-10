@@ -61,7 +61,7 @@ export async function confirmSubscription(
 ): Promise<{ success: boolean; error?: string }> {
   try {
     const subscriber = await getSubscriber(email, repoId);
-    
+
     if (!subscriber) {
       return { success: false, error: 'Subscription not found' };
     }
@@ -137,7 +137,7 @@ export async function updateSubscriberPreferences(
 ): Promise<{ success: boolean; error?: string }> {
   try {
     const subscriber = await getSubscriber(email, repoId);
-    
+
     if (!subscriber) {
       return { success: false, error: 'Subscription not found' };
     }

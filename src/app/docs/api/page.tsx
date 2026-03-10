@@ -11,7 +11,7 @@ export default function APIDocsPage() {
           method: 'GET',
           path: '/api/github/repos',
           auth: 'User',
-          description: 'Get list of user\'s GitHub repositories',
+          description: "Get list of user's GitHub repositories",
           response: '{ repos: Array<{id, name, private, html_url}> }',
         },
         {
@@ -83,14 +83,14 @@ export default function APIDocsPage() {
           method: 'GET',
           path: '/api/user/plan',
           auth: 'User',
-          description: 'Get user\'s current plan (free/pro)',
+          description: "Get user's current plan (free/pro)",
           response: '{ plan: "free" | "pro" }',
         },
         {
           method: 'GET',
           path: '/api/user/repos',
           auth: 'User',
-          description: 'Get user\'s connected repositories',
+          description: "Get user's connected repositories",
           response: '{ repos: Array<Repo> }',
         },
       ],
@@ -141,8 +141,8 @@ export default function APIDocsPage() {
           <h2 className="text-2xl font-semibold mb-4">Overview</h2>
           <div className="space-y-4 text-muted">
             <p>
-              The GitLog API allows you to programmatically manage your changelog entries,
-              sync repositories, and integrate with your existing workflows.
+              The GitLog API allows you to programmatically manage your changelog entries, sync
+              repositories, and integrate with your existing workflows.
             </p>
             <div className="grid gap-4 md:grid-cols-3">
               <div className="p-4 rounded-lg bg-surface-highlight">
@@ -166,9 +166,8 @@ export default function APIDocsPage() {
           <h2 className="text-2xl font-semibold mb-4">Authentication</h2>
           <div className="space-y-4 text-muted">
             <p>
-              Most API endpoints require authentication. User-authenticated endpoints 
-              require an active Clerk session. Webhook endpoints are authenticated via 
-              signature verification.
+              Most API endpoints require authentication. User-authenticated endpoints require an
+              active Clerk session. Webhook endpoints are authenticated via signature verification.
             </p>
             <div className="flex gap-4">
               <div className="flex items-center gap-2 p-3 rounded-lg bg-surface-highlight">
@@ -197,9 +196,7 @@ export default function APIDocsPage() {
               {category.endpoints.map((endpoint, idx) => (
                 <div key={idx} className="p-4 rounded-lg border border-line bg-surface space-y-3">
                   <div className="flex items-center gap-3 flex-wrap">
-                    <Badge className={methodColors[endpoint.method]}>
-                      {endpoint.method}
-                    </Badge>
+                    <Badge className={methodColors[endpoint.method]}>{endpoint.method}</Badge>
                     <code className="text-sm font-mono text-accent">{endpoint.path}</code>
                     <Badge variant={endpoint.auth === 'User' ? 'default' : 'secondary'}>
                       {endpoint.auth === 'User' ? (
@@ -210,9 +207,9 @@ export default function APIDocsPage() {
                       {endpoint.auth}
                     </Badge>
                   </div>
-                  
+
                   <p className="text-muted">{endpoint.description}</p>
-                  
+
                   {endpoint.body && (
                     <div>
                       <div className="text-sm font-semibold mb-1">Request Body:</div>
@@ -221,7 +218,7 @@ export default function APIDocsPage() {
                       </pre>
                     </div>
                   )}
-                  
+
                   <div>
                     <div className="text-sm font-semibold mb-1">Response:</div>
                     <pre className="text-xs font-mono p-3 rounded-lg bg-surface-dark overflow-x-auto">
@@ -238,9 +235,7 @@ export default function APIDocsPage() {
         <Card className="p-6">
           <h2 className="text-2xl font-semibold mb-4">Rate Limits</h2>
           <div className="space-y-4 text-muted">
-            <p>
-              API requests are rate limited to ensure fair usage:
-            </p>
+            <p>API requests are rate limited to ensure fair usage:</p>
             <ul className="space-y-2">
               <li className="flex items-start gap-2">
                 <span className="text-accent">•</span>
@@ -261,9 +256,7 @@ export default function APIDocsPage() {
         {/* Support */}
         <Card className="p-6 text-center">
           <h2 className="text-2xl font-bold mb-4">Need Help?</h2>
-          <p className="text-muted mb-6">
-            Have questions about the API? We're here to help.
-          </p>
+          <p className="text-muted mb-6">Have questions about the API? We're here to help.</p>
           <div className="flex gap-3 justify-center flex-wrap">
             <a
               href="mailto:hello@gitlog.app"

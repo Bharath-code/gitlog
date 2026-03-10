@@ -2,19 +2,22 @@
 
 **Created:** 2026-03-10  
 **Goal:** 100 users in 30 days  
-**Revenue Target:** $1,000-3,000 MRR  
+**Revenue Target:** $1,000-3,000 MRR
 
 ---
 
 ## 🎯 The Strategy
 
 ### **Phase 1: Days 1-7 (Launch Week)**
+
 **Goal:** 50 users, $500 MRR
 
 ### **Phase 2: Days 8-21 (Growth)**
+
 **Goal:** 100 users, $1,500 MRR
 
 ### **Phase 3: Days 22-30 (Scale)**
+
 **Goal:** 150 users, $3,000 MRR
 
 ---
@@ -24,6 +27,7 @@
 ### **Day 1: Product Hunt Launch** 🎯
 
 **Why:**
+
 - Massive exposure (10k-50k visitors)
 - Tech-savvy early adopters
 - Press coverage
@@ -32,12 +36,14 @@
 **Preparation (Do This BEFORE Launch):**
 
 **1. Create Product Hunt Page:**
+
 ```
 URL: producthunt.com/posts/gitlog
 Submit 5 days before launch date
 ```
 
 **2. Assets Needed:**
+
 - ✅ Logo (240x240px)
 - ✅ Screenshots (4-6 images)
 - ✅ Demo video (2 min max)
@@ -45,6 +51,7 @@ Submit 5 days before launch date
 - ✅ Description: 300 words highlighting benefits
 
 **3. Build Hype (5 Days Before):**
+
 ```
 Twitter: "Something big is coming... 👀"
 Email waitlist: "Launching on Product Hunt!"
@@ -54,20 +61,21 @@ DM 50 friends: "Can you support my launch?"
 **4. Launch Day Script:**
 
 **Hunter Comment:**
+
 ```
 Hey Product Hunt! 👋
 
 I'm [Your Name], founder of GitLog.
 
 Problem:
-I launched 5 side projects. Every time I promised to maintain a changelog. 
+I launched 5 side projects. Every time I promised to maintain a changelog.
 Every time I quit after 2 weeks.
 
-Writing changelogs manually sucks. It's tedious, time-consuming, and 
+Writing changelogs manually sucks. It's tedious, time-consuming, and
 nobody reads them anyway.
 
 Solution:
-GitLog connects to GitHub once and auto-generates a public changelog from 
+GitLog connects to GitHub once and auto-generates a public changelog from
 merged PRs. Zero manual writing.
 
 Merge a PR → Changelog updates automatically in 60 seconds.
@@ -93,6 +101,7 @@ AMA! 🚀
 ```
 
 **5. Engagement Strategy:**
+
 ```
 9 AM PST: Launch goes live
 9-11 AM: Respond to EVERY comment (within 5 min)
@@ -102,6 +111,7 @@ AMA! 🚀
 ```
 
 **6. Expected Results:**
+
 - Upvotes: 300-800
 - Visitors: 2,000-5,000
 - Signups: 50-150
@@ -113,6 +123,7 @@ AMA! 🚀
 ### **Day 2: Twitter/X Blitz** 🐦
 
 **Why:**
+
 - #buildinpublic community is HUGE
 - Free traffic
 - Founders = your ICP
@@ -121,6 +132,7 @@ AMA! 🚀
 **Strategy:**
 
 **1. Launch Thread (9 AM):**
+
 ```
 🚀 Introducing GitLog
 
@@ -169,21 +181,22 @@ RT to support! 🙏
 ```
 
 **2. Engagement Tweets (Throughout Day):**
+
 ```
 10 AM: "Just launched GitLog on Product Hunt! Would love your support 👉 [PH link]"
 
-12 PM: "The problem: Developers merge PRs daily. Users don't know what changed. 
+12 PM: "The problem: Developers merge PRs daily. Users don't know what changed.
 GitLog fixes this automatically."
 
-2 PM: "5 hours/week. That's how much time GitLog saves you. 
+2 PM: "5 hours/week. That's how much time GitLog saves you.
 What would you do with an extra 5 hours?"
 
-4 PM: "Just hit 50 signups in 24 hours! 🎉 
-Thank you all so much! 
+4 PM: "Just hit 50 signups in 24 hours! 🎉
+Thank you all so much!
 Try it free: https://gitlog.app"
 
-6 PM: "Feature spotlight: Embeddable widget 
-Add a 'What's New' badge to your website in 1 line of code. 
+6 PM: "Feature spotlight: Embeddable widget
+Add a 'What's New' badge to your website in 1 line of code.
 [GIF demo]"
 
 8 PM: "Day 1 recap:
@@ -194,11 +207,13 @@ Thank you! Day 2 starts now 🚀"
 ```
 
 **3. Hashtags:**
+
 ```
 #buildinpublic #SaaS #indiehackers #github #changelog #AI #NextJS #webdev
 ```
 
 **4. Expected Results:**
+
 - Impressions: 10k-50k
 - Profile clicks: 500-1,000
 - Signups: 30-80
@@ -212,13 +227,14 @@ Thank you! Day 2 starts now 🚀"
 **Subreddits to Post:**
 
 **1. r/SaaS (450k members)**
+
 ```
 Title: "I built an auto-changelog generator from GitHub (free for 50 entries/mo)"
 
 Body:
 Hey r/SaaS!
 
-I just launched GitLog after getting tired of manually writing changelogs 
+I just launched GitLog after getting tired of manually writing changelogs
 (and abandoning them after 2 weeks).
 
 **The Problem:**
@@ -228,7 +244,7 @@ I just launched GitLog after getting tired of manually writing changelogs
 - Most founders quit after a few weeks
 
 **The Solution:**
-GitLog connects to GitHub once and auto-generates a public changelog from 
+GitLog connects to GitHub once and auto-generates a public changelog from
 merged PRs. Zero manual writing.
 
 **How it works:**
@@ -268,6 +284,7 @@ AMA! Happy to answer questions about building, launching, or growing a SaaS prod
 ```
 
 **2. r/entrepreneur (2M members)**
+
 ```
 Title: "From idea to $500 MRR in 7 days (auto-changelog from GitHub)"
 
@@ -287,6 +304,7 @@ Body:
 ```
 
 **3. r/webdev (1M members)**
+
 ```
 Title: "Built an auto-changelog generator with Next.js 15 + AI (open for feedback)"
 
@@ -312,6 +330,7 @@ Body:
 ```
 
 **4. r/indiehackers (50k members)**
+
 ```
 Title: "Launched GitLog on Product Hunt, hit 50 signups in 24 hours"
 
@@ -320,6 +339,7 @@ Body:
 ```
 
 **Expected Results:**
+
 - Total upvotes: 500-1,500
 - Comments: 50-150
 - Signups: 40-100
@@ -331,6 +351,7 @@ Body:
 ### **Day 4: Indie Hackers + Communities** 🏘️
 
 **1. Indie Hackers Post:**
+
 ```
 indiehackers.com/post/[your-post]
 
@@ -351,6 +372,7 @@ Link: https://gitlog.app
 ```
 
 **2. Hacker News (Show HN):**
+
 ```
 news.ycombinator.com/submit
 
@@ -359,14 +381,15 @@ Title: "Show HN: GitLog – Auto-generate changelogs from GitHub"
 URL: https://gitlog.app
 
 Description:
-GitLog connects to GitHub and automatically generates a public changelog 
-from merged PRs. Features AI-powered rewrites, embeddable widgets, social 
+GitLog connects to GitHub and automatically generates a public changelog
+from merged PRs. Features AI-powered rewrites, embeddable widgets, social
 post generation, email digests, analytics, and more.
 
 Tech stack: Next.js 15, Clerk, Vercel KV, Google Gemini
 ```
 
 **3. Discord/Slack Communities:**
+
 ```
 - Indie Hackers Discord
 - SaaS Founders Slack
@@ -375,12 +398,13 @@ Tech stack: Next.js 15, Clerk, Vercel KV, Google Gemini
 - Clerk Discord
 
 Message:
-"Hey everyone! 👋 Just launched GitLog, an auto-changelog generator. 
-Would love your feedback! Free tier: 50 entries/month. 
+"Hey everyone! 👋 Just launched GitLog, an auto-changelog generator.
+Would love your feedback! Free tier: 50 entries/month.
 https://gitlog.app"
 ```
 
 **Expected Results:**
+
 - Signups: 20-50
 - Paying users: 3-8
 - **Revenue:** $60-150 MRR
@@ -390,21 +414,23 @@ https://gitlog.app"
 ### **Day 5: LinkedIn Launch** 💼
 
 **Why:**
+
 - B2B customers
 - Higher willingness to pay
 - Professional network
 - Long-term traffic
 
 **Post:**
+
 ```
 🚀 Excited to announce GitLog!
 
-After launching 5 side projects and abandoning 5 changelogs, I finally 
+After launching 5 side projects and abandoning 5 changelogs, I finally
 solved the problem:
 
 Writing changelogs manually sucks.
 
-GitLog connects to GitHub once and auto-generates a public changelog from 
+GitLog connects to GitHub once and auto-generates a public changelog from
 merged PRs. Zero manual writing.
 
 **The Problem:**
@@ -437,6 +463,7 @@ Built with: Next.js 15, Clerk, Vercel KV, Google Gemini
 ```
 
 **Expected Results:**
+
 - Impressions: 5k-20k
 - Signups: 15-40
 - Paying users: 5-12
@@ -447,6 +474,7 @@ Built with: Next.js 15, Clerk, Vercel KV, Google Gemini
 ### **Day 6-7: Follow-Up + Email Outreach** 📧
 
 **1. Email Waitlist (If You Have One):**
+
 ```
 Subject: 🚀 GitLog is live!
 
@@ -457,7 +485,7 @@ Remember when you signed up for early access to GitLog?
 Great news - we're officially live! 🎉
 
 **What is GitLog?**
-GitLog connects to GitHub once and auto-generates a public changelog from 
+GitLog connects to GitHub once and auto-generates a public changelog from
 merged PRs. Zero manual writing.
 
 **Launch Offer:**
@@ -482,18 +510,19 @@ P.S. Follow me on Twitter [@handle] for daily #buildinpublic updates!
 ```
 
 **2. Cold Email (50 Founders):**
+
 ```
 Subject: Quick question about your changelog
 
 Hi [First Name],
 
-I noticed you're shipping features weekly at [Company]—awesome work on 
+I noticed you're shipping features weekly at [Company]—awesome work on
 [recent feature]!
 
 Quick question: Are you currently maintaining a public changelog for your users?
 
-I ask because most founders I talk to start writing changelogs manually, 
-then quit after 2-3 weeks (it's just another tedious task on top of 
+I ask because most founders I talk to start writing changelogs manually,
+then quit after 2-3 weeks (it's just another tedious task on top of
 everything else).
 
 That's why we built GitLog:
@@ -508,11 +537,12 @@ Worth a look? https://gitlog.app
 Cheers,
 [Your Name]
 
-P.S. We also auto-generate Twitter threads and LinkedIn posts from your 
+P.S. We also auto-generate Twitter threads and LinkedIn posts from your
 changelog entries. One merge = updates everywhere.
 ```
 
 **Expected Results:**
+
 - Email open rate: 40-60%
 - Click rate: 10-20%
 - Signups: 20-50
@@ -523,15 +553,15 @@ changelog entries. One merge = updates everywhere.
 
 ## 📊 WEEK 1 TOTALS
 
-| Channel | Signups | Paying Users | Revenue |
-| :---- | :---- | :---- | :---- |
-| **Product Hunt** | 50-150 | 5-15 | $100-300 |
-| **Twitter** | 30-80 | 3-10 | $60-200 |
-| **Reddit** | 40-100 | 5-15 | $100-300 |
-| **Indie Hackers** | 20-50 | 3-8 | $60-150 |
-| **LinkedIn** | 15-40 | 5-12 | $100-250 |
-| **Email** | 20-50 | 5-15 | $100-300 |
-| **Total Week 1** | **175-470** | **26-75** | **$520-1,500** |
+| Channel           | Signups     | Paying Users | Revenue        |
+| :---------------- | :---------- | :----------- | :------------- |
+| **Product Hunt**  | 50-150      | 5-15         | $100-300       |
+| **Twitter**       | 30-80       | 3-10         | $60-200        |
+| **Reddit**        | 40-100      | 5-15         | $100-300       |
+| **Indie Hackers** | 20-50       | 3-8          | $60-150        |
+| **LinkedIn**      | 15-40       | 5-12         | $100-250       |
+| **Email**         | 20-50       | 5-15         | $100-300       |
+| **Total Week 1**  | **175-470** | **26-75**    | **$520-1,500** |
 
 ---
 
@@ -540,6 +570,7 @@ changelog entries. One merge = updates everywhere.
 ### **Content Marketing** 📝
 
 **1. Blog Posts (2/week):**
+
 ```
 Week 2:
 - "How to Maintain a Changelog Without Losing Your Mind"
@@ -555,6 +586,7 @@ Week 4:
 ```
 
 **2. Guest Posts:**
+
 ```
 Pitch to:
 - CSS-Tricks
@@ -567,6 +599,7 @@ Topic: "Automating Changelogs with AI"
 ```
 
 **3. Expected Results:**
+
 - Organic traffic: 500-2,000/month
 - Signups: 20-50/month
 - **Revenue:** $400-1,000 MRR
@@ -576,6 +609,7 @@ Topic: "Automating Changelogs with AI"
 ### **Paid Ads (Optional)** 💰
 
 **1. Twitter Ads:**
+
 ```
 Budget: $100-500
 Target: #buildinpublic, #SaaS, #indiehackers
@@ -591,6 +625,7 @@ Expected:
 ```
 
 **2. Google Ads:**
+
 ```
 Keywords:
 - "changelog generator"
@@ -614,6 +649,7 @@ Expected:
 ### **Partnerships** 🤝
 
 **1. Integrations:**
+
 ```
 Partner with:
 - Vercel (feature in their newsletter)
@@ -625,6 +661,7 @@ Signups: 50-200
 ```
 
 **2. Affiliate Program:**
+
 ```
 Offer: 30% recurring commission
 Affiliates: 10-50
@@ -636,6 +673,7 @@ Revenue share: $100-500/month
 ## 📈 30-DAY PROJECTIONS
 
 ### **Conservative:**
+
 ```
 Week 1: 175 signups, 26 paying, $520 MRR
 Week 2: 100 signups, 15 paying, $300 MRR
@@ -646,6 +684,7 @@ Total: 400 signups, 59 paying, $1,170 MRR
 ```
 
 ### **Realistic:**
+
 ```
 Week 1: 300 signups, 50 paying, $1,000 MRR
 Week 2: 150 signups, 25 paying, $500 MRR
@@ -656,6 +695,7 @@ Total: 625 signups, 105 paying, $2,100 MRR
 ```
 
 ### **Optimistic:**
+
 ```
 Week 1: 470 signups, 75 paying, $1,500 MRR
 Week 2: 250 signups, 40 paying, $800 MRR
@@ -670,6 +710,7 @@ Total: 970 signups, 158 paying, $3,150 MRR
 ## 💰 MONETIZATION STRATEGY
 
 ### **Free Tier:**
+
 ```
 50 entries/month
 1 repo
@@ -681,6 +722,7 @@ Conversion target: 10-20%
 ```
 
 ### **Pro Tier ($19/mo):**
+
 ```
 Unlimited entries
 Unlimited repos
@@ -692,6 +734,7 @@ Goal: Main revenue driver
 ```
 
 ### **Enterprise Tier ($99/mo):**
+
 ```
 Everything in Pro +
 Custom domains
@@ -709,6 +752,7 @@ Target: 5-10% of Pro users
 ## 🎯 DAILY ACTION PLAN
 
 ### **Week 1:**
+
 ```
 Day 1: Product Hunt launch
 Day 2: Twitter thread + engagement
@@ -720,6 +764,7 @@ Day 7: Follow-ups + analytics review
 ```
 
 ### **Week 2:**
+
 ```
 Day 8: Write blog post #1
 Day 9: Guest post outreach (10 sites)
@@ -731,6 +776,7 @@ Day 14: Week 2 review + adjust
 ```
 
 ### **Week 3:**
+
 ```
 Day 15: Write blog post #2
 Day 16: Partnership outreach (5 companies)
@@ -742,6 +788,7 @@ Day 21: Week 3 review
 ```
 
 ### **Week 4:**
+
 ```
 Day 22: Write blog post #3
 Day 23: Affiliate program launch
@@ -757,6 +804,7 @@ Day 28-30: Plan Month 2
 ## ✅ SUCCESS METRICS
 
 ### **Week 1:**
+
 - [ ] 175+ signups
 - [ ] 26+ paying users
 - [ ] $520+ MRR
@@ -764,6 +812,7 @@ Day 28-30: Plan Month 2
 - [ ] 1,000+ Twitter followers
 
 ### **Month 1:**
+
 - [ ] 400+ signups
 - [ ] 60+ paying users
 - [ ] $1,200+ MRR
@@ -771,6 +820,7 @@ Day 28-30: Plan Month 2
 - [ ] <5% churn rate
 
 ### **Month 3:**
+
 - [ ] 1,000+ signups
 - [ ] 150+ paying users
 - [ ] $3,000+ MRR
@@ -782,6 +832,7 @@ Day 28-30: Plan Month 2
 ## 🚨 COMMON MISTAKES TO AVOID
 
 ### **❌ Don't:**
+
 - Build more features before launching
 - Spend money on ads before organic works
 - Ignore user feedback
@@ -789,6 +840,7 @@ Day 28-30: Plan Month 2
 - Try to be everywhere at once
 
 ### **✅ Do:**
+
 - LAUNCH FIRST (you're ready!)
 - Focus on 2-3 channels max
 - Talk to every user
@@ -800,18 +852,21 @@ Day 28-30: Plan Month 2
 ## 🎉 FINAL ADVICE
 
 **You have:**
+
 - ✅ 112+ features built
 - ✅ Production-ready product
 - ✅ Better than competitors
 - ✅ Clear value proposition
 
 **What you need:**
+
 - 🚀 LAUNCH (this week!)
 - 📊 TALK TO USERS (daily)
 - 💰 CONVERT (optimize pricing)
 - 🔄 ITERATE (build what they ask for)
 
 **Remember:**
+
 > "The best time to launch was yesterday. The second best time is NOW."
 
 **Stop building. Start selling.**
@@ -820,6 +875,6 @@ Day 28-30: Plan Month 2
 
 ---
 
-*Last Updated: 2026-03-10*  
-*Status: Ready to Execute*  
-*Goal: 100 users in 30 days, $1,000-3,000 MRR*
+_Last Updated: 2026-03-10_  
+_Status: Ready to Execute_  
+_Goal: 100 users in 30 days, $1,000-3,000 MRR_

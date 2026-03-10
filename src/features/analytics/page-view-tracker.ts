@@ -15,9 +15,9 @@ export async function trackPageView(
   try {
     const today = new Date().toISOString().split('T')[0];
     const viewKey = `analytics:views:${entryId}:${today}`;
-    
+
     // Get existing views
-    const existing = await kv.get<PageView>(viewKey) || {
+    const existing = (await kv.get<PageView>(viewKey)) || {
       entryId,
       date: today,
       views: 0,
@@ -51,10 +51,7 @@ export async function trackPageView(
   }
 }
 
-export async function getPageViews(
-  entryId: string,
-  days: number = 30
-): Promise<PageView[]> {
+export async function getPageViews(entryId: string, days: number = 30): Promise<PageView[]> {
   try {
     const views: PageView[] = [];
     const today = new Date();
@@ -63,10 +60,10 @@ export async function getPageViews(
       const date = new Date(today);
       date.setDate(date.getDate() - i);
       const dateStr = date.toISOString().split('T')[0];
-      
+
       const viewKey = `analytics:views:${entryId}:${dateStr}`;
       const view = await kv.get<PageView>(viewKey);
-      
+
       if (view) {
         views.push(view);
       } else {
@@ -87,11 +84,13 @@ export async function getPageViews(
   }
 }
 
-export async function getTotalViews(entryId: string): Promise<{ views: number; uniqueVisitors: number }> {
+export async function getTotalViews(
+  entryId: string
+): Promise<{ views: number; uniqueVisitors: number }> {
   try {
     const totalKey = `analytics:total:${entryId}`;
     const total = await kv.hgetall(totalKey);
-    
+
     return {
       views: Number(total?.views || 0),
       uniqueVisitors: Number(total?.uniqueVisitors || 0),

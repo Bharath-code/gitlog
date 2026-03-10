@@ -3,7 +3,7 @@
 import { Card } from '@/shared/components/ui/card';
 import { Button } from '@/shared/components/ui/button';
 import { cn } from '@/shared/lib/utils';
-import { FileText, Calendar, Users, BarChart3, Widget2, Map, Share2, Mail } from 'lucide-react';
+import { FileText, Calendar, Users, BarChart3, LayoutGrid, Map, Share2, Mail } from 'lucide-react';
 import Link from 'next/link';
 
 interface EmptyStateProps {
@@ -49,18 +49,20 @@ export function EmptyState({
         {(action || secondaryAction) && (
           <div className="flex gap-3 mt-4">
             {action && (
-              <Button asChild className="bg-accent hover:bg-accent/90">
-                <Link href={action.href} onClick={action.onClick}>
-                  {action.label}
-                </Link>
-              </Button>
+              <Link href={action.href} onClick={action.onClick} className="inline-block">
+                <Button className="bg-accent hover:bg-accent/90 w-full">{action.label}</Button>
+              </Link>
             )}
             {secondaryAction && (
-              <Button asChild variant="outline">
-                <Link href={secondaryAction.href} onClick={secondaryAction.onClick}>
+              <Link
+                href={secondaryAction.href}
+                onClick={secondaryAction.onClick}
+                className="inline-block"
+              >
+                <Button variant="outline" className="w-full">
                   {secondaryAction.label}
-                </Link>
-              </Button>
+                </Button>
+              </Link>
             )}
           </div>
         )}
@@ -122,7 +124,7 @@ export function NoAnalyticsEmpty() {
 export function NoWidgetsEmpty() {
   return (
     <EmptyState
-      icon={<Widget2 className="h-8 w-8 text-muted" />}
+      icon={<LayoutGrid className="h-8 w-8 text-muted" />}
       title="No widgets yet"
       description="Add a 'What's New' widget to your website in 1 line of code. Your users will love it!"
       action={{

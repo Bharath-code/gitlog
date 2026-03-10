@@ -7,17 +7,17 @@
 
 ## 🎯 Final Stack Decisions
 
-| Layer | Technology | Purpose | Cost (500 users) |
-| :---- | :---- | :---- | :---- |
-| **Framework** | Next.js 15 | App Router, Server Actions | Free |
-| **Hosting** | Vercel | Edge network + Mumbai region | Free |
-| **Auth** | Clerk | GitHub OAuth, sessions | Free (10K MAU) |
-| **Database** | Vercel KV | Redis key-value store | Free (20K/day) |
-| **AI** | Google Gemini Flash | PR rewrites, copy generation | ~$0.075/mo |
-| **Payments** | DodoPayment | India + Intl, UPI, INR payouts | 2-3% per transaction |
-| **Styling** | Tailwind + Shadcn/ui | Component library | Free |
-| **Analytics** | Vercel Analytics | Privacy-first tracking | Free |
-| **GitHub** | Octokit | Official GitHub SDK | Free |
+| Layer         | Technology           | Purpose                        | Cost (500 users)     |
+| :------------ | :------------------- | :----------------------------- | :------------------- |
+| **Framework** | Next.js 15           | App Router, Server Actions     | Free                 |
+| **Hosting**   | Vercel               | Edge network + Mumbai region   | Free                 |
+| **Auth**      | Clerk                | GitHub OAuth, sessions         | Free (10K MAU)       |
+| **Database**  | Vercel KV            | Redis key-value store          | Free (20K/day)       |
+| **AI**        | Google Gemini Flash  | PR rewrites, copy generation   | ~$0.075/mo           |
+| **Payments**  | DodoPayment          | India + Intl, UPI, INR payouts | 2-3% per transaction |
+| **Styling**   | Tailwind + Shadcn/ui | Component library              | Free                 |
+| **Analytics** | Vercel Analytics     | Privacy-first tracking         | Free                 |
+| **GitHub**    | Octokit              | Official GitHub SDK            | Free                 |
 
 ---
 
@@ -25,21 +25,21 @@
 
 ### Fixed Monthly Costs
 
-| Service | Free Tier | Paid Tier (500 users) |
-| :---- | :---- | :---- |
-| Vercel | Free | Free |
-| Vercel KV | 20K commands/day | Free |
-| Clerk | 10K MAU | Free |
-| Google Gemini | 1M tokens/min | ~$0.075 |
-| **Total Fixed** | **$0** | **~$0.075/mo** |
+| Service         | Free Tier        | Paid Tier (500 users) |
+| :-------------- | :--------------- | :-------------------- |
+| Vercel          | Free             | Free                  |
+| Vercel KV       | 20K commands/day | Free                  |
+| Clerk           | 10K MAU          | Free                  |
+| Google Gemini   | 1M tokens/min    | ~$0.075               |
+| **Total Fixed** | **$0**           | **~$0.075/mo**        |
 
 ### Variable Costs (Payment Processing)
 
-| Scenario | Revenue | DodoPayment Fee | You Receive |
-| :---- | :---- | :---- | :---- |
-| **50 India customers** | ₹24,950 | ~₹624 (2.5%) | ₹24,326 |
-| **50 US customers** | $950 | ~$33 (3.5%) | $917 |
-| **Mixed (50/50)** | ~₹1.2L | ~₹3,100 | ~₹1.17L |
+| Scenario               | Revenue | DodoPayment Fee | You Receive |
+| :--------------------- | :------ | :-------------- | :---------- |
+| **50 India customers** | ₹24,950 | ~₹624 (2.5%)    | ₹24,326     |
+| **50 US customers**    | $950    | ~$33 (3.5%)     | $917        |
+| **Mixed (50/50)**      | ~₹1.2L  | ~₹3,100         | ~₹1.17L     |
 
 ---
 
@@ -117,6 +117,7 @@ NEXT_PUBLIC_APP_URL=https://gitlog.app
    - Wait for verification (1-2 days)
 
 2. **Create Products**
+
    ```
    Free Plan:
    - Name: GitLog Free
@@ -191,25 +192,25 @@ export async function POST(req: Request) {
    - Copy to env vars
 
 2. **Install SDK**
+
    ```bash
    npm install @google/generative-ai
    ```
 
 3. **Create AI Helper**
+
    ```typescript
    // lib/gemini.ts
    import { GoogleGenerativeAI } from '@google/generative-ai';
 
-   const genAI = new GoogleGenerativeAI(
-     process.env.GOOGLE_GENERATIVE_AI_API_KEY
-   );
+   const genAI = new GoogleGenerativeAI(process.env.GOOGLE_GENERATIVE_AI_API_KEY);
 
    const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash' });
 
    export async function rewritePR(title: string, body: string, labels: string[]) {
      const prompt = `
        You are rewriting a GitHub PR description into plain English for a changelog.
-
+   
        Rules:
        - Use 2-3 sentences maximum
        - Write for non-technical users
@@ -217,11 +218,11 @@ export async function POST(req: Request) {
        - Use active voice: "Added X" not "X was added"
        - Omit technical details (dependencies, refactors, tests)
        - If PR body is empty, use title only
-
+   
        PR Title: ${title}
        PR Labels: ${labels.join(', ')}
        PR Body: ${body || 'No description'}
-
+   
        Rewrite:
      `;
 
@@ -233,6 +234,7 @@ export async function POST(req: Request) {
 ### Cost Calculation
 
 **Assumptions:**
+
 - 500 active users
 - 10 rewrites/user/month
 - 200 tokens/rewrite (input + output)
@@ -240,6 +242,7 @@ export async function POST(req: Request) {
 **Total:** 500 × 10 × 200 = 1,000,000 tokens/month
 
 **Gemini Flash Pricing:**
+
 - Input: $0.075 / 1M tokens
 - Output: $0.30 / 1M tokens
 - **Estimated:** ~$0.15/mo for 1M tokens
@@ -301,16 +304,16 @@ kv.set(`usage:${userId}:${YYYY-MM}`, {
 
 ## 🚀 API Endpoints
 
-| Endpoint | Method | Auth | Description |
-| :---- | :---- | :---- | :---- |
-| `/api/github/sync` | POST | GitHub webhook | Receives PR merge events |
-| `/api/github/repos` | GET | User session | Lists user's GitHub repos |
-| `/api/ai/rewrite` | POST | User session | Calls Gemini, returns rewrite |
-| `/api/entries/publish` | POST | User session | Publishes a draft entry |
-| `/api/entries/unpublish` | POST | User session | Reverts published to draft |
-| `/api/payment/checkout` | POST | User session | Creates DodoPayment session |
-| `/api/payment/webhook` | POST | Dodo signature | Handles payment events |
-| `/api/usage/check` | GET | User session | Checks monthly usage limits |
+| Endpoint                 | Method | Auth           | Description                   |
+| :----------------------- | :----- | :------------- | :---------------------------- |
+| `/api/github/sync`       | POST   | GitHub webhook | Receives PR merge events      |
+| `/api/github/repos`      | GET    | User session   | Lists user's GitHub repos     |
+| `/api/ai/rewrite`        | POST   | User session   | Calls Gemini, returns rewrite |
+| `/api/entries/publish`   | POST   | User session   | Publishes a draft entry       |
+| `/api/entries/unpublish` | POST   | User session   | Reverts published to draft    |
+| `/api/payment/checkout`  | POST   | User session   | Creates DodoPayment session   |
+| `/api/payment/webhook`   | POST   | Dodo signature | Handles payment events        |
+| `/api/usage/check`       | GET    | User session   | Checks monthly usage limits   |
 
 ---
 
@@ -318,46 +321,50 @@ kv.set(`usage:${userId}:${YYYY-MM}`, {
 
 ### Geo-Based Pricing
 
-| Country | Free Plan | Pro Plan |
-| :---- | :---- | :---- |
-| **India** | ₹0/mo | ₹499/mo |
-| **USA** | $0/mo | $19/mo |
-| **UK** | £0/mo | £15/mo |
-| **EU** | €0/mo | €17/mo |
-| **Others** | $0/mo | $19/mo |
+| Country    | Free Plan | Pro Plan |
+| :--------- | :-------- | :------- |
+| **India**  | ₹0/mo     | ₹499/mo  |
+| **USA**    | $0/mo     | $19/mo   |
+| **UK**     | £0/mo     | £15/mo   |
+| **EU**     | €0/mo     | €17/mo   |
+| **Others** | $0/mo     | $19/mo   |
 
 **Implementation:**
+
 - DodoPayment detects card country
 - Shows appropriate currency automatically
 - Store user location in KV for future checkouts
 
 ### Free Plan Limits
 
-| Feature | Free | Pro |
-| :---- | :---- | :---- |
-| Entries/month | 50 | Unlimited |
-| Connected repos | 1 | Unlimited |
-| AI rewrites/month | 50 | Unlimited |
-| Public changelog | ✅ | ✅ |
-| Remove branding | ❌ | ✅ |
-| Priority support | ❌ | ✅ |
+| Feature           | Free | Pro       |
+| :---------------- | :--- | :-------- |
+| Entries/month     | 50   | Unlimited |
+| Connected repos   | 1    | Unlimited |
+| AI rewrites/month | 50   | Unlimited |
+| Public changelog  | ✅   | ✅        |
+| Remove branding   | ❌   | ✅        |
+| Priority support  | ❌   | ✅        |
 
 ---
 
 ## 📈 Scaling Plan
 
 ### At 500 Users
+
 - **Vercel KV:** Still free (20K commands/day)
 - **Gemini:** ~$0.15/mo
 - **Total:** ~$0.15/mo fixed + payment fees
 
 ### At 2,000 Users
+
 - **Vercel KV:** Upgrade to paid ($15/mo)
 - **Clerk:** Still free (10K MAU)
 - **Gemini:** ~$0.60/mo
 - **Total:** ~$16/mo fixed + payment fees
 
 ### At 10,000 Users
+
 - **Migrate KV → Supabase** (better querying)
 - **Clerk:** Paid plan ($25/mo)
 - **Add caching layer** (Redis Cloud)
@@ -380,6 +387,7 @@ kv.set(`usage:${userId}:${YYYY-MM}`, {
 ## 🛠️ Development Workflow
 
 ### Local Setup
+
 ```bash
 # Clone repo
 git clone https://github.com/your-org/gitlog-app
@@ -398,6 +406,7 @@ dodo listen --forward localhost:3000/api/payment/webhook
 ```
 
 ### Deployment
+
 ```bash
 # Push to main
 git push origin main
@@ -410,15 +419,15 @@ git push origin main
 
 ## 📞 Support Resources
 
-| Service | Docs | Support |
-| :---- | :---- | :---- |
-| **Next.js** | nextjs.org/docs | GitHub Issues |
-| **Vercel** | vercel.com/docs | support@vercel.com |
-| **Clerk** | clerk.com/docs | Discord community |
+| Service         | Docs                 | Support                 |
+| :-------------- | :------------------- | :---------------------- |
+| **Next.js**     | nextjs.org/docs      | GitHub Issues           |
+| **Vercel**      | vercel.com/docs      | support@vercel.com      |
+| **Clerk**       | clerk.com/docs       | Discord community       |
 | **DodoPayment** | dodopayment.com/docs | support@dodopayment.com |
-| **Google AI** | ai.google.dev | Stack Overflow |
-| **Vercel KV** | vercel.com/docs/kv | GitHub Issues |
+| **Google AI**   | ai.google.dev        | Stack Overflow          |
+| **Vercel KV**   | vercel.com/docs/kv   | GitHub Issues           |
 
 ---
 
-*This document is living. Update as stack evolves.*
+_This document is living. Update as stack evolves._

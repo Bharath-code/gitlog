@@ -1,17 +1,16 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
 
-const genAI = new GoogleGenerativeAI(
-  process.env.GOOGLE_GENERATIVE_AI_API_KEY || ''
-);
+const genAI = new GoogleGenerativeAI(process.env.GOOGLE_GENERATIVE_AI_API_KEY || '');
 
 const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash' });
 
 export type Tone = 'casual' | 'professional' | 'technical' | 'exciting';
 
 const toneInstructions: Record<Tone, string> = {
-  casual: 'Use a friendly, conversational tone. Write like you\'re talking to a friend.',
+  casual: "Use a friendly, conversational tone. Write like you're talking to a friend.",
   professional: 'Use a professional, business-appropriate tone. Be clear and concise.',
-  technical: 'Include relevant technical details. Assume the audience has some technical knowledge.',
+  technical:
+    'Include relevant technical details. Assume the audience has some technical knowledge.',
   exciting: 'Use enthusiastic, energetic language. Highlight the impact and benefits.',
 };
 
@@ -120,9 +119,10 @@ export async function generateSocialPost(params: {
   platform?: 'twitter' | 'linkedin';
 }): Promise<string> {
   const platform = params.platform || 'twitter';
-  
-  const prompt = platform === 'twitter'
-    ? `
+
+  const prompt =
+    platform === 'twitter'
+      ? `
 Write a Twitter thread (2-3 tweets) announcing this feature.
 
 Feature: ${params.title}
@@ -137,7 +137,7 @@ Requirements:
 
 Twitter Thread:
     `
-    : `
+      : `
 Write a LinkedIn post announcing this feature.
 
 Feature: ${params.title}

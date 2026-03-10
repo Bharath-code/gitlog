@@ -27,7 +27,7 @@ interface WidgetConfig {
 export async function POST(request: NextRequest) {
   try {
     const { userId } = await auth();
-    
+
     if (!userId) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
@@ -36,10 +36,7 @@ export async function POST(request: NextRequest) {
     const { repoId } = body;
 
     if (!repoId) {
-      return NextResponse.json(
-        { error: 'Repository ID is required' },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: 'Repository ID is required' }, { status: 400 });
     }
 
     // Generate unique widget ID
@@ -78,17 +75,14 @@ export async function POST(request: NextRequest) {
     });
   } catch (error) {
     console.error('Error generating widget:', error);
-    return NextResponse.json(
-      { error: 'Failed to generate widget' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to generate widget' }, { status: 500 });
   }
 }
 
 export async function GET(request: NextRequest) {
   try {
     const { userId } = await auth();
-    
+
     if (!userId) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
@@ -97,20 +91,14 @@ export async function GET(request: NextRequest) {
     const repoId = searchParams.get('repoId');
 
     if (!repoId) {
-      return NextResponse.json(
-        { error: 'Repository ID is required' },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: 'Repository ID is required' }, { status: 400 });
     }
 
     // Get widget config from Vercel KV
     const widgetConfig = await kv.get<WidgetConfig>(`widget:${userId}:${repoId}`);
 
     if (!widgetConfig) {
-      return NextResponse.json(
-        { error: 'Widget not found for this repository' },
-        { status: 404 }
-      );
+      return NextResponse.json({ error: 'Widget not found for this repository' }, { status: 404 });
     }
 
     return NextResponse.json({
@@ -119,9 +107,6 @@ export async function GET(request: NextRequest) {
     });
   } catch (error) {
     console.error('Error getting widget:', error);
-    return NextResponse.json(
-      { error: 'Failed to get widget config' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to get widget config' }, { status: 500 });
   }
 }

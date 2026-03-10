@@ -12,14 +12,14 @@ export async function POST(req: Request) {
     }
 
     const { plan } = await req.json();
-    
+
     if (!plan || !['pro'].includes(plan)) {
       return NextResponse.json({ error: 'Invalid plan' }, { status: 400 });
     }
 
     // Get or create DodoPayment customer
     let dodoCustomerId = await kv.get<string>(`user:${user.id}:dodo_customer_id`);
-    
+
     if (!dodoCustomerId) {
       // Create new customer
       const customer = await createCustomer({
@@ -29,16 +29,15 @@ export async function POST(req: Request) {
           userId: user.id,
         },
       });
-      
+
       dodoCustomerId = customer.id;
       await kv.set(`user:${user.id}:dodo_customer_id`, dodoCustomerId);
     }
 
     // Determine plan ID based on user location (India vs International)
     // In production, you'd detect this from user's IP or billing address
-    const planId = process.env.DODOPAYMENT_PRO_PLAN_ID_IN || 
-                   process.env.DODOPAYMENT_PRO_PLAN_ID;
-    
+    const planId = process.env.DODOPAYMENT_PRO_PLAN_ID_IN || process.env.DODOPAYMENT_PRO_PLAN_ID;
+
     if (!planId) {
       throw new Error('DODOPAYMENT_PRO_PLAN_ID not configured');
     }
@@ -46,7 +45,7 @@ export async function POST(req: Request) {
     // Create checkout session
     const baseUrl = siteConfig.url;
     const session = await createCheckoutSession({
-      customerId: dodoCustomerId,
+      customerId: dodoCustomerId as string,
       planId,
       successUrl: `${baseUrl}/dashboard/payment/success?session_id={CHECKOUT_SESSION_ID}`,
       cancelUrl: `${baseUrl}/dashboard/payment/cancel`,
@@ -60,9 +59,9 @@ export async function POST(req: Request) {
   } catch (error) {
     console.error('Checkout error:', error);
     return NextResponse.json(
-      { 
+      {
         error: 'Failed to create checkout session',
-        message: error instanceof Error ? error.message : 'Unknown error'
+        message: error instanceof Error ? error.message : 'Unknown error',
       },
       { status: 500 }
     );

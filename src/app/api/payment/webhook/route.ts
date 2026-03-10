@@ -9,17 +9,11 @@ export async function POST(req: NextRequest) {
 
     // Verify webhook signature
     if (process.env.DODOPAYMENT_WEBHOOK_SECRET) {
-      const isValid = await verifyWebhookSignature(
-        payload,
-        signature
-      );
-      
+      const isValid = await verifyWebhookSignature(payload, signature);
+
       if (!isValid) {
         console.error('Invalid webhook signature');
-        return NextResponse.json(
-          { error: 'Invalid signature' },
-          { status: 401 }
-        );
+        return NextResponse.json({ error: 'Invalid signature' }, { status: 401 });
       }
     }
 
@@ -52,16 +46,13 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ received: true });
   } catch (error) {
     console.error('Webhook processing error:', error);
-    return NextResponse.json(
-      { error: 'Webhook processing failed' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Webhook processing failed' }, { status: 500 });
   }
 }
 
 async function handleSubscriptionSuccess(event: WebhookEvent) {
   const userId = event.data.metadata?.userId;
-  
+
   if (!userId) {
     console.error('No userId in webhook metadata');
     return;
@@ -70,13 +61,13 @@ async function handleSubscriptionSuccess(event: WebhookEvent) {
   // Upgrade user to Pro
   await kv.set(`user:${userId}:plan`, 'pro');
   await kv.set(`user:${userId}:dodo_subscription_id`, event.data.subscription_id);
-  
+
   console.log(`Upgraded user ${userId} to Pro plan`);
 }
 
 async function handleSubscriptionRenewal(event: WebhookEvent) {
   const userId = event.data.metadata?.userId;
-  
+
   if (!userId) {
     console.error('No userId in webhook metadata');
     return;
@@ -84,13 +75,13 @@ async function handleSubscriptionRenewal(event: WebhookEvent) {
 
   // Ensure user stays on Pro plan
   await kv.set(`user:${userId}:plan`, 'pro');
-  
+
   console.log(`Renewed Pro subscription for user ${userId}`);
 }
 
 async function handleSubscriptionCancelled(event: WebhookEvent) {
   const userId = event.data.metadata?.userId;
-  
+
   if (!userId) {
     console.error('No userId in webhook metadata');
     return;
@@ -100,13 +91,13 @@ async function handleSubscriptionCancelled(event: WebhookEvent) {
   // For now, we'll downgrade immediately
   await kv.set(`user:${userId}:plan`, 'free');
   await kv.del(`user:${userId}:dodo_subscription_id`);
-  
+
   console.log(`Downgraded user ${userId} to Free plan`);
 }
 
 async function handlePaymentFailed(event: WebhookEvent) {
   const userId = event.data.metadata?.userId;
-  
+
   if (!userId) {
     console.error('No userId in webhook metadata');
     return;
@@ -118,7 +109,7 @@ async function handlePaymentFailed(event: WebhookEvent) {
     timestamp: new Date().toISOString(),
     eventId: event.data.id,
   });
-  
+
   console.log(`Payment failed for user ${userId}`);
 }
 

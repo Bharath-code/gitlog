@@ -52,13 +52,14 @@ export default function GitHubSetupPage() {
             <div className="space-y-3">
               <h3 className="font-semibold">Step 4: Add Secret</h3>
               <p className="text-muted">
-                Use the webhook secret from your GitLog dashboard settings.
-                This ensures only legitimate webhooks from GitHub are processed.
+                Use the webhook secret from your GitLog dashboard settings. This ensures only
+                legitimate webhooks from GitHub are processed.
               </p>
               <div className="flex items-start gap-2 p-3 rounded-lg bg-amber-500/10 border border-amber-500/20">
                 <AlertCircle className="h-5 w-5 text-amber-500 flex-shrink-0 mt-0.5" />
                 <p className="text-sm text-amber-500">
-                  Keep your webhook secret secure. Never share it publicly or commit it to version control.
+                  Keep your webhook secret secure. Never share it publicly or commit it to version
+                  control.
                 </p>
               </div>
             </div>
@@ -76,8 +77,8 @@ export default function GitHubSetupPage() {
             <div className="space-y-3">
               <h3 className="font-semibold">Step 6: Save and Test</h3>
               <p className="text-muted">
-                Click "Add webhook" to save. GitHub will send a test ping to verify the webhook is working.
-                You should see a green checkmark if successful.
+                Click "Add webhook" to save. GitHub will send a test ping to verify the webhook is
+                working. You should see a green checkmark if successful.
               </p>
             </div>
           </div>
@@ -86,12 +87,12 @@ export default function GitHubSetupPage() {
         {/* Label Best Practices */}
         <Card className="p-6">
           <h2 className="text-2xl font-semibold mb-6">PR Label Best Practices</h2>
-          
+
           <p className="text-muted mb-6">
-            GitLog uses GitHub labels to automatically categorize your changelog entries.
-            Here are the recommended labels to use:
+            GitLog uses GitHub labels to automatically categorize your changelog entries. Here are
+            the recommended labels to use:
           </p>
-          
+
           <div className="space-y-4">
             <div className="p-4 rounded-lg border border-line bg-surface">
               <div className="flex items-center gap-2 mb-2">
@@ -100,7 +101,9 @@ export default function GitHubSetupPage() {
               </div>
               <p className="text-sm text-muted">
                 Use for new features. Will be categorized as <strong>"New"</strong> in changelog.
-                Examples: <code className="bg-surface-highlight px-1 rounded">feat</code>, <code className="bg-surface-highlight px-1 rounded">feature</code>, <code className="bg-surface-highlight px-1 rounded">enhancement</code>
+                Examples: <code className="bg-surface-highlight px-1 rounded">feat</code>,{' '}
+                <code className="bg-surface-highlight px-1 rounded">feature</code>,{' '}
+                <code className="bg-surface-highlight px-1 rounded">enhancement</code>
               </p>
             </div>
 
@@ -111,7 +114,10 @@ export default function GitHubSetupPage() {
               </div>
               <p className="text-sm text-muted">
                 Use for bug fixes. Will be categorized as <strong>"Fixed"</strong> in changelog.
-                Examples: <code className="bg-surface-highlight px-1 rounded">fix</code>, <code className="bg-surface-highlight px-1 rounded">bug</code>, <code className="bg-surface-highlight px-1 rounded">bugfix</code>, <code className="bg-surface-highlight px-1 rounded">hotfix</code>
+                Examples: <code className="bg-surface-highlight px-1 rounded">fix</code>,{' '}
+                <code className="bg-surface-highlight px-1 rounded">bug</code>,{' '}
+                <code className="bg-surface-highlight px-1 rounded">bugfix</code>,{' '}
+                <code className="bg-surface-highlight px-1 rounded">hotfix</code>
               </p>
             </div>
 
@@ -121,8 +127,12 @@ export default function GitHubSetupPage() {
                 <span className="font-semibold">Maintenance PRs</span>
               </div>
               <p className="text-sm text-muted">
-                Use for refactors, improvements, maintenance. Will be categorized as <strong>"Improved"</strong> in changelog.
-                Examples: <code className="bg-surface-highlight px-1 rounded">chore</code>, <code className="bg-surface-highlight px-1 rounded">refactor</code>, <code className="bg-surface-highlight px-1 rounded">perf</code>, <code className="bg-surface-highlight px-1 rounded">style</code>
+                Use for refactors, improvements, maintenance. Will be categorized as{' '}
+                <strong>"Improved"</strong> in changelog. Examples:{' '}
+                <code className="bg-surface-highlight px-1 rounded">chore</code>,{' '}
+                <code className="bg-surface-highlight px-1 rounded">refactor</code>,{' '}
+                <code className="bg-surface-highlight px-1 rounded">perf</code>,{' '}
+                <code className="bg-surface-highlight px-1 rounded">style</code>
               </p>
             </div>
           </div>
@@ -131,14 +141,17 @@ export default function GitHubSetupPage() {
         {/* Troubleshooting */}
         <Card className="p-6">
           <h2 className="text-2xl font-semibold mb-6">Troubleshooting</h2>
-          
+
           <div className="space-y-6">
             <div>
               <h3 className="font-semibold mb-3">Webhook not firing?</h3>
               <ul className="text-sm text-muted space-y-2 list-disc list-inside">
                 <li>Check that the Payload URL is correct (must be HTTPS)</li>
                 <li>Verify the secret matches in both GitHub and GitLog</li>
-                <li>Check GitHub's webhook delivery logs for errors (Settings → Webhooks → Recent Deliveries)</li>
+                <li>
+                  Check GitHub's webhook delivery logs for errors (Settings → Webhooks → Recent
+                  Deliveries)
+                </li>
                 <li>Make sure your firewall isn't blocking GitHub's webhook requests</li>
               </ul>
             </div>
@@ -173,7 +186,12 @@ export default function GitHubSetupPage() {
                   hello@gitlog.app
                 </a>{' '}
                 or open an issue on{' '}
-                <a href="https://github.com/gitlogapp/gitlog" className="text-accent hover:underline" target="_blank" rel="noopener noreferrer">
+                <a
+                  href="https://github.com/gitlogapp/gitlog"
+                  className="text-accent hover:underline"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   GitHub
                 </a>
               </p>

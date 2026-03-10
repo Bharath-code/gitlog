@@ -23,10 +23,7 @@ export async function POST(request: NextRequest) {
     const { repoId, entryIds, sendToSubscribers } = body;
 
     if (!repoId || !entryIds || !sendToSubscribers) {
-      return NextResponse.json(
-        { error: 'Missing required fields' },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
     }
 
     // Fetch entries
@@ -39,10 +36,7 @@ export async function POST(request: NextRequest) {
     }
 
     if (entries.length === 0) {
-      return NextResponse.json(
-        { error: 'No published entries found' },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: 'No published entries found' }, { status: 400 });
     }
 
     // Get repo name
@@ -62,10 +56,10 @@ export async function POST(request: NextRequest) {
 
     // Generate email HTML
     const changelogUrl = `${process.env.NEXT_PUBLIC_APP_URL}/changelog/${userId}/${repoId}`;
-    const emailHtml = render(
+    const emailHtml = await render(
       ReleaseEmailTemplate({
         repoName,
-        entries: entries.map(e => ({
+        entries: entries.map((e) => ({
           id: e.id,
           title: e.title,
           aiRewrite: e.aiRewrite || e.body,
@@ -105,9 +99,6 @@ export async function POST(request: NextRequest) {
     });
   } catch (error) {
     console.error('Error sending digest:', error);
-    return NextResponse.json(
-      { error: 'Failed to send digest email' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to send digest email' }, { status: 500 });
   }
 }

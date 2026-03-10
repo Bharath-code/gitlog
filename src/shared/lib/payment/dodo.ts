@@ -1,9 +1,9 @@
 /**
  * DodoPayment API Helper
- * 
+ *
  * Since @dodopayment/node is not published on npm,
  * we'll use their REST API directly.
- * 
+ *
  * Docs: https://docs.dodopayment.com
  */
 
@@ -34,7 +34,7 @@ export async function createCheckoutSession({
   const response = await fetch(`${DODO_API_BASE}/v1/checkouts`, {
     method: 'POST',
     headers: {
-      'Authorization': `Bearer ${DODO_API_KEY}`,
+      Authorization: `Bearer ${DODO_API_KEY}`,
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
@@ -62,7 +62,7 @@ export async function createCustomer(params: {
   const response = await fetch(`${DODO_API_BASE}/v1/customers`, {
     method: 'POST',
     headers: {
-      'Authorization': `Bearer ${DODO_API_KEY}`,
+      Authorization: `Bearer ${DODO_API_KEY}`,
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(params),
@@ -79,7 +79,7 @@ export async function createCustomer(params: {
 export async function getCustomer(customerId: string) {
   const response = await fetch(`${DODO_API_BASE}/v1/customers/${customerId}`, {
     headers: {
-      'Authorization': `Bearer ${DODO_API_KEY}`,
+      Authorization: `Bearer ${DODO_API_KEY}`,
     },
   });
 
@@ -97,11 +97,11 @@ export async function verifyWebhookSignature(payload: string, signature: string)
     'SHA-256',
     new TextEncoder().encode(payload + DODO_API_KEY)
   );
-  
+
   const hexSignature = Array.from(new Uint8Array(expectedSignature))
-    .map(b => b.toString(16).padStart(2, '0'))
+    .map((b) => b.toString(16).padStart(2, '0'))
     .join('');
-  
+
   return signature === `sha256=${hexSignature}`;
 }
 

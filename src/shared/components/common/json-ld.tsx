@@ -119,10 +119,7 @@ export function OrganizationJsonLd({ name, url, logo }: OrganizationJsonLdProps)
     name,
     url,
     logo,
-    sameAs: [
-      'https://twitter.com/gitlogapp',
-      'https://github.com/gitlogapp',
-    ],
+    sameAs: ['https://twitter.com/gitlogapp', 'https://github.com/gitlogapp'],
   };
 
   return (

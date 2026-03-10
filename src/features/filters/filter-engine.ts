@@ -14,14 +14,23 @@ export interface FilterRule {
 
 export interface FilterCondition {
   field: 'label' | 'author' | 'title' | 'files' | 'size';
-  operator: 'contains' | 'equals' | 'startsWith' | 'endsWith' | 'regex' | 'greaterThan' | 'lessThan';
+  operator:
+    | 'contains'
+    | 'equals'
+    | 'startsWith'
+    | 'endsWith'
+    | 'regex'
+    | 'greaterThan'
+    | 'lessThan';
   value: string | number;
 }
 
 /**
  * Create a new filter rule
  */
-export async function createFilterRule(rule: Omit<FilterRule, 'id' | 'createdAt'>): Promise<FilterRule> {
+export async function createFilterRule(
+  rule: Omit<FilterRule, 'id' | 'createdAt'>
+): Promise<FilterRule> {
   const filterRule: FilterRule = {
     ...rule,
     id: `filter:${rule.userId}:${rule.repoId || 'global'}:${Date.now()}`,
@@ -36,12 +45,10 @@ export async function createFilterRule(rule: Omit<FilterRule, 'id' | 'createdAt'
  * Get all filter rules for a user
  */
 export async function getFilterRules(userId: string, repoId?: string): Promise<FilterRule[]> {
-  const pattern = repoId 
-    ? `filter:${userId}:${repoId}:*`
-    : `filter:${userId}:*`;
-  
+  const pattern = repoId ? `filter:${userId}:${repoId}:*` : `filter:${userId}:*`;
+
   const keys = await kv.keys(pattern);
-  const rules = await Promise.all(keys.map(key => kv.get<FilterRule>(key)));
+  const rules = await Promise.all(keys.map((key) => kv.get<FilterRule>(key)));
   return rules.filter((r): r is FilterRule => r !== null && r.isActive);
 }
 
@@ -61,7 +68,7 @@ export async function shouldIncludePR(
   }
 ): Promise<{ include: boolean; matchedRule?: FilterRule }> {
   const rules = await getFilterRules(userId, repoId);
-  
+
   // Sort by priority (higher priority first)
   rules.sort((a, b) => b.priority - a.priority);
 
@@ -84,7 +91,7 @@ export async function shouldIncludePR(
  */
 function matchesRule(prData: any, conditions: FilterCondition[]): boolean {
   // All conditions must match (AND logic)
-  return conditions.every(condition => matchCondition(prData, condition));
+  return conditions.every((condition) => matchCondition(prData, condition));
 }
 
 /**
@@ -117,14 +124,12 @@ function matchCondition(prData: any, condition: FilterCondition): boolean {
   // Handle array fields (labels, files)
   if (Array.isArray(fieldValue)) {
     if (operator === 'contains') {
-      return fieldValue.some((item: string) => 
+      return fieldValue.some((item: string) =>
         item.toLowerCase().includes(String(value).toLowerCase())
       );
     }
     if (operator === 'equals') {
-      return fieldValue.some((item: string) => 
-        item.toLowerCase() === String(value).toLowerCase()
-      );
+      return fieldValue.some((item: string) => item.toLowerCase() === String(value).toLowerCase());
     }
     return false;
   }
@@ -144,7 +149,7 @@ function matchCondition(prData: any, condition: FilterCondition): boolean {
       return strValue.endsWith(strMatch);
     case 'regex':
       try {
-        const regex = new RegExp(value);
+        const regex = new RegExp(String(value));
         return regex.test(strValue);
       } catch {
         return false;
@@ -206,7 +211,7 @@ export async function applyPresetFilter(
   presetName: keyof typeof PRESET_FILTERS
 ): Promise<FilterRule> {
   const preset = PRESET_FILTERS[presetName];
-  
+
   return createFilterRule({
     userId,
     repoId,

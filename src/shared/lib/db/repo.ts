@@ -14,11 +14,9 @@ export interface ConnectedRepo {
 export async function getConnectedRepos(userId: string): Promise<ConnectedRepo[]> {
   const keys = await kv.keys(`repo:${userId}:*`);
   if (keys.length === 0) return [];
-  
-  const repos = await Promise.all(
-    keys.map(key => kv.get<ConnectedRepo>(key))
-  );
-  
+
+  const repos = await Promise.all(keys.map((key) => kv.get<ConnectedRepo>(key)));
+
   return repos.filter((repo): repo is ConnectedRepo => repo !== null);
 }
 
@@ -45,7 +43,7 @@ export async function getRepoBySlug(repoSlug: string): Promise<ConnectedRepo | n
     const exists = await kv.get(`repo:${repoSlug}:users:${userId}`);
     if (exists) {
       const repos = await getConnectedRepos(userId);
-      const repo = repos.find(r => r.name === repoSlug);
+      const repo = repos.find((r) => r.name === repoSlug);
       if (repo) return repo;
     }
   }

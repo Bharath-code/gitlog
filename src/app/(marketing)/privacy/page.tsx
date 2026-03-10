@@ -17,16 +17,20 @@ export default function PrivacyPage() {
           <section>
             <h2 className="text-2xl font-semibold text-foreground mb-3">1. Introduction</h2>
             <p>
-              GitLog ("we," "us," or "our") is committed to protecting your privacy. This Privacy 
-              Policy explains how we collect, use, disclose, and safeguard your information when 
-              you use our service.
+              GitLog ("we," "us," or "our") is committed to protecting your privacy. This Privacy
+              Policy explains how we collect, use, disclose, and safeguard your information when you
+              use our service.
             </p>
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold text-foreground mb-3">2. Information We Collect</h2>
-            
-            <h3 className="text-xl font-semibold text-foreground mt-4 mb-2">2.1 Information You Provide</h3>
+            <h2 className="text-2xl font-semibold text-foreground mb-3">
+              2. Information We Collect
+            </h2>
+
+            <h3 className="text-xl font-semibold text-foreground mt-4 mb-2">
+              2.1 Information You Provide
+            </h3>
             <ul className="list-disc list-inside space-y-1">
               <li>GitHub account information (username, email, public profile)</li>
               <li>Repository information you choose to connect</li>
@@ -34,7 +38,9 @@ export default function PrivacyPage() {
               <li>Communications with our support team</li>
             </ul>
 
-            <h3 className="text-xl font-semibold text-foreground mt-4 mb-2">2.2 Information Collected Automatically</h3>
+            <h3 className="text-xl font-semibold text-foreground mt-4 mb-2">
+              2.2 Information Collected Automatically
+            </h3>
             <ul className="list-disc list-inside space-y-1">
               <li>Usage data (pages visited, features used)</li>
               <li>Device information (browser type, operating system)</li>
@@ -44,7 +50,9 @@ export default function PrivacyPage() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold text-foreground mb-3">3. How We Use Your Information</h2>
+            <h2 className="text-2xl font-semibold text-foreground mb-3">
+              3. How We Use Your Information
+            </h2>
             <p>We use the information we collect to:</p>
             <ul className="list-disc list-inside space-y-1 mt-2">
               <li>Provide, maintain, and improve the Service</li>
@@ -59,62 +67,60 @@ export default function PrivacyPage() {
           <section>
             <h2 className="text-2xl font-semibold text-foreground mb-3">4. Information Sharing</h2>
             <p>
-              We do not sell, trade, or rent your personal information to third parties. We may 
+              We do not sell, trade, or rent your personal information to third parties. We may
               share your information in the following circumstances:
             </p>
             <ul className="list-disc list-inside space-y-1 mt-2">
               <li>
-                <strong>Service Providers:</strong> With third-party vendors who perform services 
-                on our behalf (hosting, payment processing, analytics)
+                <strong>Service Providers:</strong> With third-party vendors who perform services on
+                our behalf (hosting, payment processing, analytics)
               </li>
               <li>
                 <strong>Legal Requirements:</strong> When required by law or to protect our rights
               </li>
               <li>
-                <strong>Business Transfers:</strong> In connection with a merger, acquisition, or 
+                <strong>Business Transfers:</strong> In connection with a merger, acquisition, or
                 sale of assets
               </li>
             </ul>
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold text-foreground mb-3">5. Data Storage and Security</h2>
+            <h2 className="text-2xl font-semibold text-foreground mb-3">
+              5. Data Storage and Security
+            </h2>
             <p>
-              Your information is stored on secure servers hosted by Vercel and protected by 
-              industry-standard security measures. We use encryption for data in transit and 
-              at rest. However, no method of transmission over the Internet is 100% secure.
+              Your information is stored on secure servers hosted by Vercel and protected by
+              industry-standard security measures. We use encryption for data in transit and at
+              rest. However, no method of transmission over the Internet is 100% secure.
             </p>
           </section>
 
           <section>
             <h2 className="text-2xl font-semibold text-foreground mb-3">6. GitHub Integration</h2>
-            <p>
-              When you connect your GitHub account, we request permission to:
-            </p>
+            <p>When you connect your GitHub account, we request permission to:</p>
             <ul className="list-disc list-inside space-y-1 mt-2">
               <li>Read your public and private repositories</li>
               <li>Read pull request information</li>
               <li>Create webhooks in your repositories</li>
             </ul>
             <p className="mt-2">
-              We only access the minimum information necessary to provide the Service. We never 
+              We only access the minimum information necessary to provide the Service. We never
               modify your code or repositories.
             </p>
           </section>
 
           <section>
             <h2 className="text-2xl font-semibold text-foreground mb-3">7. Cookies and Tracking</h2>
-            <p>
-              We use cookies and similar tracking technologies to:
-            </p>
+            <p>We use cookies and similar tracking technologies to:</p>
             <ul className="list-disc list-inside space-y-1 mt-2">
               <li>Remember your preferences</li>
               <li>Understand how you use the Service</li>
               <li>Improve your experience</li>
             </ul>
             <p className="mt-2">
-              You can control cookies through your browser settings, but disabling cookies may 
-              limit your use of certain features.
+              You can control cookies through your browser settings, but disabling cookies may limit
+              your use of certain features.
             </p>
           </section>
 
@@ -139,26 +145,29 @@ export default function PrivacyPage() {
           <section>
             <h2 className="text-2xl font-semibold text-foreground mb-3">9. Children's Privacy</h2>
             <p>
-              The Service is not intended for children under 13 years of age. We do not knowingly 
+              The Service is not intended for children under 13 years of age. We do not knowingly
               collect personal information from children under 13.
             </p>
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold text-foreground mb-3">10. International Data Transfers</h2>
+            <h2 className="text-2xl font-semibold text-foreground mb-3">
+              10. International Data Transfers
+            </h2>
             <p>
-              Your information may be transferred to and processed in countries other than your 
-              country of residence. We ensure appropriate safeguards are in place to protect 
-              your information.
+              Your information may be transferred to and processed in countries other than your
+              country of residence. We ensure appropriate safeguards are in place to protect your
+              information.
             </p>
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold text-foreground mb-3">11. Changes to Privacy Policy</h2>
+            <h2 className="text-2xl font-semibold text-foreground mb-3">
+              11. Changes to Privacy Policy
+            </h2>
             <p>
-              We may update this Privacy Policy from time to time. We will notify you of any 
-              changes by posting the new Privacy Policy on this page and updating the "Last 
-              updated" date.
+              We may update this Privacy Policy from time to time. We will notify you of any changes
+              by posting the new Privacy Policy on this page and updating the "Last updated" date.
             </p>
           </section>
 

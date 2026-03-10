@@ -26,10 +26,7 @@ export async function GET(request: NextRequest) {
     });
   } catch (error) {
     console.error('Error fetching settings:', error);
-    return NextResponse.json(
-      { error: 'Failed to fetch settings' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to fetch settings' }, { status: 500 });
   }
 }
 
@@ -52,18 +49,16 @@ export async function PUT(request: NextRequest) {
       autoPublish: autoPublish ?? existingConfig?.autoPublish ?? false,
       publishSchedule: publishSchedule ?? existingConfig?.publishSchedule ?? 'immediate',
       scheduleDay: scheduleDay ?? existingConfig?.scheduleDay ?? 5,
-      filterLabels: filterLabels ?? existingConfig?.filterLabels ?? {
-        exclude: ['chore', 'test', 'refactor'],
-        include: [],
-      },
+      filterLabels: filterLabels ??
+        existingConfig?.filterLabels ?? {
+          exclude: ['chore', 'test', 'refactor'],
+          include: [],
+        },
     });
 
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error('Error saving settings:', error);
-    return NextResponse.json(
-      { error: 'Failed to save settings' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to save settings' }, { status: 500 });
   }
 }

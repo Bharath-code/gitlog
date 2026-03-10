@@ -19,8 +19,10 @@ export async function POST(req: Request) {
 
     // Check plan limits
     const month = new Date().toISOString().slice(0, 7);
-    const usage = await kv.get<{ entriesPublished: number }>(`usage:${user.id}:${month}`) || { entriesPublished: 0 };
-    const plan = await kv.get<'free' | 'pro'>(`user:${user.id}:plan`) || 'free';
+    const usage = (await kv.get<{ entriesPublished: number }>(`usage:${user.id}:${month}`)) || {
+      entriesPublished: 0,
+    };
+    const plan = (await kv.get<'free' | 'pro'>(`user:${user.id}:plan`)) || 'free';
     const limit = pricing[plan].entriesPerMonth;
 
     // Check if batch would exceed limit
@@ -57,23 +59,20 @@ export async function POST(req: Request) {
     }
 
     // Update usage
-    const successfulPublishes = results.filter(r => r.success).length;
+    const successfulPublishes = results.filter((r) => r.success).length;
     if (successfulPublishes > 0) {
       await kv.set(`usage:${user.id}:${month}`, {
         entriesPublished: usage.entriesPublished + successfulPublishes,
       });
     }
 
-    return NextResponse.json({ 
+    return NextResponse.json({
       results,
       published: successfulPublishes,
       failed: entryIds.length - successfulPublishes,
     });
   } catch (error) {
     console.error('Batch publish error:', error);
-    return NextResponse.json(
-      { error: 'Failed to publish entries' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to publish entries' }, { status: 500 });
   }
 }

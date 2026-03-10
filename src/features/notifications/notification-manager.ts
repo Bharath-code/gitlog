@@ -56,7 +56,7 @@ export async function createNotification(config: {
 export async function getUserNotifications(userId: string): Promise<NotificationConfig[]> {
   const notificationIds = await kv.smembers(`user:${userId}:notifications`);
   const notifications = await Promise.all(
-    notificationIds.map(id => kv.get<NotificationConfig>(id))
+    notificationIds.map((id) => kv.get<NotificationConfig>(id))
   );
   return notifications.filter((n): n is NotificationConfig => n !== null && n.isActive);
 }
@@ -78,14 +78,17 @@ export async function deleteNotification(userId: string, notificationId: string)
 /**
  * Send Slack message
  */
-export async function sendSlackMessage(webhookUrl: string, message: {
-  title: string;
-  text: string;
-  entries?: Array<{ title: string; category: string }>;
-  changelogUrl?: string;
-}): Promise<boolean> {
+export async function sendSlackMessage(
+  webhookUrl: string,
+  message: {
+    title: string;
+    text: string;
+    entries?: Array<{ title: string; category: string }>;
+    changelogUrl?: string;
+  }
+): Promise<boolean> {
   try {
-    const blocks = [
+    const blocks: any[] = [
       {
         type: 'header',
         text: {
@@ -108,7 +111,9 @@ export async function sendSlackMessage(webhookUrl: string, message: {
         type: 'section',
         text: {
           type: 'mrkdwn',
-          text: '*Recent Updates:*\n' + message.entries.map(e => `• ${e.title} (${e.category})`).join('\n'),
+          text:
+            '*Recent Updates:*\n' +
+            message.entries.map((e) => `• ${e.title} (${e.category})`).join('\n'),
         },
       });
     }
@@ -146,14 +151,17 @@ export async function sendSlackMessage(webhookUrl: string, message: {
 /**
  * Send Discord message
  */
-export async function sendDiscordMessage(webhookUrl: string, message: {
-  title: string;
-  text: string;
-  entries?: Array<{ title: string; category: string }>;
-  changelogUrl?: string;
-}): Promise<boolean> {
+export async function sendDiscordMessage(
+  webhookUrl: string,
+  message: {
+    title: string;
+    text: string;
+    entries?: Array<{ title: string; category: string }>;
+    changelogUrl?: string;
+  }
+): Promise<boolean> {
   try {
-    const embeds = [
+    const embeds: any[] = [
       {
         title: message.title,
         description: message.text,
@@ -163,7 +171,7 @@ export async function sendDiscordMessage(webhookUrl: string, message: {
     ];
 
     if (message.entries && message.entries.length > 0) {
-      embeds[0].fields = message.entries.map(e => ({
+      embeds[0].fields = message.entries.map((e) => ({
         name: e.category,
         value: e.title,
         inline: false,

@@ -3,7 +3,18 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Command } from 'cmdk';
-import { FileText, CheckCircle, LayoutDashboard, Settings, BarChart3, Globe, Map, Share2, Mail, X } from 'lucide-react';
+import {
+  FileText,
+  CheckCircle,
+  LayoutDashboard,
+  Settings,
+  BarChart3,
+  Globe,
+  Map,
+  Share2,
+  Mail,
+  X,
+} from 'lucide-react';
 import { cn } from '@/shared/lib/utils';
 
 const commands = [
@@ -45,7 +56,7 @@ export function CommandPalette() {
   };
 
   return (
-    <Command
+    <Command.Dialog
       open={open}
       onOpenChange={setOpen}
       className={cn(
@@ -109,10 +120,12 @@ export function CommandPalette() {
         {/* Footer */}
         <div className="border-t border-line px-4 py-2">
           <p className="text-xs text-muted">
-            <span className="font-medium">Pro tip:</span> Press <kbd className="rounded border border-line bg-surface px-1 py-0.5 text-xs">Cmd+K</kbd> to toggle
+            <span className="font-medium">Pro tip:</span> Press{' '}
+            <kbd className="rounded border border-line bg-surface px-1 py-0.5 text-xs">Cmd+K</kbd>{' '}
+            to toggle
           </p>
         </div>
       </div>
-    </Command>
+    </Command.Dialog>
   );
 }

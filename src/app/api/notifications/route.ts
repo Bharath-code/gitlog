@@ -20,7 +20,7 @@ export async function GET() {
     const notifications = await getUserNotifications(userId);
 
     // Don't expose webhook URLs
-    const safeNotifications = notifications.map(n => ({
+    const safeNotifications = notifications.map((n) => ({
       id: n.id,
       type: n.type,
       isActive: n.isActive,
@@ -32,10 +32,7 @@ export async function GET() {
     return NextResponse.json({ notifications: safeNotifications });
   } catch (error) {
     console.error('Error fetching notifications:', error);
-    return NextResponse.json(
-      { error: 'Failed to fetch notifications' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to fetch notifications' }, { status: 500 });
   }
 }
 
@@ -54,10 +51,7 @@ export async function POST(request: NextRequest) {
     const { type, webhookUrl, repoId, events } = body;
 
     if (!type || !['slack', 'discord'].includes(type)) {
-      return NextResponse.json(
-        { error: 'Type must be "slack" or "discord"' },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: 'Type must be "slack" or "discord"' }, { status: 400 });
     }
 
     if (!webhookUrl) {
@@ -68,10 +62,7 @@ export async function POST(request: NextRequest) {
     try {
       new URL(webhookUrl);
     } catch {
-      return NextResponse.json(
-        { error: 'Invalid webhook URL format' },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: 'Invalid webhook URL format' }, { status: 400 });
     }
 
     const notification = await createNotification({
@@ -93,10 +84,7 @@ export async function POST(request: NextRequest) {
     });
   } catch (error) {
     console.error('Error creating notification:', error);
-    return NextResponse.json(
-      { error: 'Failed to create notification' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to create notification' }, { status: 500 });
   }
 }
 
@@ -104,26 +92,25 @@ export async function POST(request: NextRequest) {
  * DELETE /api/notifications/[id]
  * Delete a notification integration
  */
-export async function DELETE(
-  request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
-) {
+export async function DELETE(request: NextRequest) {
   try {
     const { userId } = await auth();
     if (!userId) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const { id } = await params;
+    const { searchParams } = new URL(request.url);
+    const id = searchParams.get('id');
+
+    if (!id) {
+      return NextResponse.json({ error: 'ID is required' }, { status: 400 });
+    }
 
     await deleteNotification(userId, id);
 
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error('Error deleting notification:', error);
-    return NextResponse.json(
-      { error: 'Failed to delete notification' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to delete notification' }, { status: 500 });
   }
 }

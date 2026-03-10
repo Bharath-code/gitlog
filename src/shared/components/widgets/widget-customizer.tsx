@@ -84,7 +84,7 @@ export function WidgetCustomizer({ widgetId, repoId }: WidgetCustomizerProps) {
 
   const loadConfig = async () => {
     if (!widgetId || !repoId) return;
-    
+
     setLoading(true);
     try {
       const response = await fetch(`/api/widget/generate?repoId=${repoId}`);
@@ -104,7 +104,7 @@ export function WidgetCustomizer({ widgetId, repoId }: WidgetCustomizerProps) {
 
   const saveConfig = async () => {
     if (!config || !repoId) return;
-    
+
     setSaving(true);
     try {
       const response = await fetch('/api/widget/customize', {
@@ -204,12 +204,7 @@ export function WidgetCustomizer({ widgetId, repoId }: WidgetCustomizerProps) {
           </div>
         </div>
         <div className="flex gap-2">
-          <Button
-            onClick={resetToDefaults}
-            variant="outline"
-            size="sm"
-            className="gap-2"
-          >
+          <Button onClick={resetToDefaults} variant="outline" size="sm" className="gap-2">
             <RotateCcw className="h-4 w-4" />
             Reset
           </Button>
@@ -256,18 +251,12 @@ export function WidgetCustomizer({ widgetId, repoId }: WidgetCustomizerProps) {
                   )}
                 >
                   <div className="flex gap-1 mb-2">
-                    <div
-                      className="w-4 h-4 rounded"
-                      style={{ backgroundColor: preset.primary }}
-                    />
+                    <div className="w-4 h-4 rounded" style={{ backgroundColor: preset.primary }} />
                     <div
                       className="w-4 h-4 rounded"
                       style={{ backgroundColor: preset.background }}
                     />
-                    <div
-                      className="w-4 h-4 rounded"
-                      style={{ backgroundColor: preset.text }}
-                    />
+                    <div className="w-4 h-4 rounded" style={{ backgroundColor: preset.text }} />
                   </div>
                   <p className="text-xs font-medium">{preset.name}</p>
                 </button>
@@ -289,7 +278,11 @@ export function WidgetCustomizer({ widgetId, repoId }: WidgetCustomizerProps) {
                     type="color"
                     value={config?.colors.primary || '#ff6b35'}
                     onChange={(e) =>
-                      updateColors(e.target.value, config?.colors.background || '#1a1a1d', config?.colors.text || '#fafafa')
+                      updateColors(
+                        e.target.value,
+                        config?.colors.background || '#1a1a1d',
+                        config?.colors.text || '#fafafa'
+                      )
                     }
                     className="w-10 h-10 rounded border border-line cursor-pointer"
                   />
@@ -297,7 +290,11 @@ export function WidgetCustomizer({ widgetId, repoId }: WidgetCustomizerProps) {
                     type="text"
                     value={config?.colors.primary || '#ff6b35'}
                     onChange={(e) =>
-                      updateColors(e.target.value, config?.colors.background || '#1a1a1d', config?.colors.text || '#fafafa')
+                      updateColors(
+                        e.target.value,
+                        config?.colors.background || '#1a1a1d',
+                        config?.colors.text || '#fafafa'
+                      )
                     }
                     className="flex-1 px-3 py-2 rounded-md border border-line bg-surface font-mono text-sm"
                   />
@@ -310,7 +307,11 @@ export function WidgetCustomizer({ widgetId, repoId }: WidgetCustomizerProps) {
                     type="color"
                     value={config?.colors.background || '#1a1a1d'}
                     onChange={(e) =>
-                      updateColors(config?.colors.primary || '#ff6b35', e.target.value, config?.colors.text || '#fafafa')
+                      updateColors(
+                        config?.colors.primary || '#ff6b35',
+                        e.target.value,
+                        config?.colors.text || '#fafafa'
+                      )
                     }
                     className="w-10 h-10 rounded border border-line cursor-pointer"
                   />
@@ -318,7 +319,11 @@ export function WidgetCustomizer({ widgetId, repoId }: WidgetCustomizerProps) {
                     type="text"
                     value={config?.colors.background || '#1a1a1d'}
                     onChange={(e) =>
-                      updateColors(config?.colors.primary || '#ff6b35', e.target.value, config?.colors.text || '#fafafa')
+                      updateColors(
+                        config?.colors.primary || '#ff6b35',
+                        e.target.value,
+                        config?.colors.text || '#fafafa'
+                      )
                     }
                     className="flex-1 px-3 py-2 rounded-md border border-line bg-surface font-mono text-sm"
                   />
@@ -331,7 +336,11 @@ export function WidgetCustomizer({ widgetId, repoId }: WidgetCustomizerProps) {
                     type="color"
                     value={config?.colors.text || '#fafafa'}
                     onChange={(e) =>
-                      updateColors(config?.colors.primary || '#ff6b35', config?.colors.background || '#1a1a1d', e.target.value)
+                      updateColors(
+                        config?.colors.primary || '#ff6b35',
+                        config?.colors.background || '#1a1a1d',
+                        e.target.value
+                      )
                     }
                     className="w-10 h-10 rounded border border-line cursor-pointer"
                   />
@@ -339,7 +348,11 @@ export function WidgetCustomizer({ widgetId, repoId }: WidgetCustomizerProps) {
                     type="text"
                     value={config?.colors.text || '#fafafa'}
                     onChange={(e) =>
-                      updateColors(config?.colors.primary || '#ff6b35', config?.colors.background || '#1a1a1d', e.target.value)
+                      updateColors(
+                        config?.colors.primary || '#ff6b35',
+                        config?.colors.background || '#1a1a1d',
+                        e.target.value
+                      )
                     }
                     className="flex-1 px-3 py-2 rounded-md border border-line bg-surface font-mono text-sm"
                   />
@@ -442,13 +455,11 @@ export function WidgetCustomizer({ widgetId, repoId }: WidgetCustomizerProps) {
             <Eye className="h-4 w-4 text-accent" />
             <h3 className="font-semibold">Live Preview</h3>
           </div>
-          
+
           <div className="sticky top-4">
             <Card className="p-6">
-              <div className="text-sm text-muted mb-4">
-                This is how your widget will look:
-              </div>
-              
+              <div className="text-sm text-muted mb-4">This is how your widget will look:</div>
+
               {/* Preview Container */}
               <div className="relative h-[400px] rounded-lg border border-line bg-surface overflow-hidden">
                 {/* Preview Widget */}
@@ -562,7 +573,12 @@ function WidgetPreview({ config }: { config: WidgetConfig | null }) {
             >
               <div className="space-y-2">
                 {config.options.showCategory && (
-                  <span className={cn('inline-block px-2 py-0.5 rounded text-xs font-medium border', categoryColors[entry.category])}>
+                  <span
+                    className={cn(
+                      'inline-block px-2 py-0.5 rounded text-xs font-medium border',
+                      categoryColors[entry.category]
+                    )}
+                  >
                     {entry.category}
                   </span>
                 )}
@@ -580,7 +596,10 @@ function WidgetPreview({ config }: { config: WidgetConfig | null }) {
                   </p>
                 )}
 
-                <div className="flex items-center gap-1 text-xs" style={{ color: config.colors.primary }}>
+                <div
+                  className="flex items-center gap-1 text-xs"
+                  style={{ color: config.colors.primary }}
+                >
                   <span>View details</span>
                   <span>→</span>
                 </div>

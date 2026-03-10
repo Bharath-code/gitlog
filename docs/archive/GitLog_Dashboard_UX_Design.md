@@ -18,16 +18,16 @@
 
 ## 📱 Screen Inventory (MVP)
 
-| Screen | Route | Priority | Purpose |
-| :---- | :---- | :---- | :---- |
-| **Auth** | `/sign-in` | P0 | GitHub OAuth entry point |
-| **Onboarding** | `/onboarding` | P0 | First-time repo connection |
-| **Dashboard** | `/dashboard` | P0 | Main hub, draft management |
-| **Draft Detail** | `/dashboard/drafts/[id]` | P0 | Edit + AI rewrite |
-| **Published** | `/dashboard/published` | P0 | View published entries |
-| **Public Page** | `/changelog/[user]/[repo]` | P0 | User-facing changelog |
-| **Settings** | `/dashboard/settings` | P1 | Repo management, billing |
-| **Upgrade** | `/dashboard/upgrade` | P0 | Payment flow |
+| Screen           | Route                      | Priority | Purpose                    |
+| :--------------- | :------------------------- | :------- | :------------------------- |
+| **Auth**         | `/sign-in`                 | P0       | GitHub OAuth entry point   |
+| **Onboarding**   | `/onboarding`              | P0       | First-time repo connection |
+| **Dashboard**    | `/dashboard`               | P0       | Main hub, draft management |
+| **Draft Detail** | `/dashboard/drafts/[id]`   | P0       | Edit + AI rewrite          |
+| **Published**    | `/dashboard/published`     | P0       | View published entries     |
+| **Public Page**  | `/changelog/[user]/[repo]` | P0       | User-facing changelog      |
+| **Settings**     | `/dashboard/settings`      | P1       | Repo management, billing   |
+| **Upgrade**      | `/dashboard/upgrade`       | P0       | Payment flow               |
 
 ---
 
@@ -55,23 +55,18 @@
 ### Color Palette (Dark Theme)
 
 ```css
---background: #0a0a0b
---surface: #141416
---surface-elevated: #1a1a1d
---accent: #ff6b35
---success: #10b981
---muted: #8a8a92
---line: rgba(255, 255, 255, 0.06)
+--background: #0a0a0b --surface: #141416 --surface-elevated: #1a1a1d --accent: #ff6b35
+  --success: #10b981 --muted: #8a8a92 --line: rgba(255, 255, 255, 0.06);
 ```
 
 ### Typography
 
-| Element | Font | Size | Weight |
-| :---- | :---- | :---- | :---- |
-| Headings | Display | 24-32px | 600-700 |
-| Body | Sans | 14-16px | 400 |
-| Mono (metadata) | Mono | 12px | 500 |
-| Badges | Mono | 11px | 600 |
+| Element         | Font    | Size    | Weight  |
+| :-------------- | :------ | :------ | :------ |
+| Headings        | Display | 24-32px | 600-700 |
+| Body            | Sans    | 14-16px | 400     |
+| Mono (metadata) | Mono    | 12px    | 500     |
+| Badges          | Mono    | 11px    | 600     |
 
 ---
 
@@ -82,6 +77,7 @@
 **Goal:** Get user to authenticate with GitHub in <10 seconds
 
 **Layout:**
+
 ```
 ┌─────────────────────────────────────────────────────┐
 │                                                     │
@@ -103,12 +99,14 @@
 ```
 
 **Components:**
+
 - Centered card (max-width: 400px)
 - GitLog logo (gradient mark)
 - GitHub OAuth button (primary CTA)
 - 3 trust signals below button
 
 **User Flow:**
+
 1. Land on `/sign-in`
 2. Click "Sign in with GitHub"
 3. GitHub OAuth popup
@@ -116,6 +114,7 @@
 5. Redirect to `/onboarding` (first-time) or `/dashboard` (returning)
 
 **Edge Cases:**
+
 - User declines OAuth → Show "Come back anytime" message
 - OAuth error → Show friendly error + retry button
 
@@ -126,6 +125,7 @@
 **Goal:** Connect first repo in <60 seconds
 
 **Layout:**
+
 ```
 ┌─────────────────────────────────────────────────────┐
 │  GitLog                                      [Avatar]│
@@ -150,16 +150,19 @@
 ```
 
 **Steps:**
+
 1. **Step 1:** Select repo from GitHub list
 2. **Step 2:** Configure webhook (automatic)
 
 **Components:**
+
 - Progress indicator (Step 1 of 2)
 - Searchable repo list
 - Connect button per repo
 - Loading state during webhook setup
 
 **User Flow:**
+
 1. Land on `/onboarding` (first-time only)
 2. See GitHub repos (fetched via OAuth)
 3. Click "Connect" on desired repo
@@ -167,6 +170,7 @@
 5. Redirect to `/dashboard`
 
 **Microcopy:**
+
 - "This enables GitLog to watch for merged PRs"
 - "We'll create a webhook in your repo settings"
 
@@ -177,6 +181,7 @@
 **Goal:** Show drafts + enable one-click publish
 
 **Layout:**
+
 ```
 ┌─────────────────────────────────────────────────────┐
 │  GitLog    [Dashboard] [Drafts] [Published]   [Avatar]│
@@ -209,6 +214,7 @@
 ```
 
 **Components:**
+
 - **Top Nav:** Logo, section tabs, user avatar dropdown
 - **Sidebar:** Navigation + connected repos + upgrade CTA
 - **Usage Card:** Monthly limits (free: 50 entries)
@@ -216,11 +222,13 @@
 - **Sync Button:** Manual webhook trigger
 
 **States:**
+
 - **Empty (no drafts):** "No drafts yet! Merge a PR to get started."
 - **Loading:** Skeleton cards
 - **Error:** "Sync failed. [Retry]"
 
 **User Flow:**
+
 1. Land on `/dashboard`
 2. See recent drafts (auto-synced from GitHub)
 3. Click "Rewrite" → AI generates plain English
@@ -228,6 +236,7 @@
 5. Click "Publish" → Entry goes live
 
 **Keyboard Shortcuts:**
+
 - `g d` → Go to Drafts
 - `g p` → Go to Published
 - `g s` → Go to Settings
@@ -240,6 +249,7 @@
 **Goal:** Edit + rewrite + publish single draft
 
 **Layout:**
+
 ```
 ┌─────────────────────────────────────────────────────┐
 │  ← Back to Dashboard                                │
@@ -279,6 +289,7 @@
 ```
 
 **Components:**
+
 - **Title Field:** Editable, auto-filled from PR title
 - **Category Dropdown:** New / Fixed / Improved / Other
 - **Status Dropdown:** Draft / Published
@@ -287,6 +298,7 @@
 - **Action Buttons:** Discard / Save / Publish
 
 **User Flow:**
+
 1. Click draft from dashboard
 2. Review AI rewrite (if generated)
 3. Click "Regenerate" if not satisfied
@@ -295,6 +307,7 @@
 6. Click "Publish Now" → Confirmation toast
 
 **AI States:**
+
 - **Not generated:** "Click Rewrite to generate"
 - **Generating:** Spinner + "Writing..."
 - **Generated:** Show text + "Regenerate" button
@@ -307,6 +320,7 @@
 **Goal:** View + manage published changelog entries
 
 **Layout:**
+
 ```
 ┌─────────────────────────────────────────────────────┐
 │  GitLog    [Dashboard] [Drafts] [Published]   [Avatar]│
@@ -338,11 +352,13 @@
 ```
 
 **Components:**
+
 - **Month Grouping:** Entries grouped by publish month
 - **Entry Row:** Title, date, View + Unpublish actions
 - **Public Page Link:** Opens changelog in new tab
 
 **Actions:**
+
 - **View:** Opens public changelog page
 - **Unpublish:** Reverts to draft (with confirmation)
 
@@ -353,6 +369,7 @@
 **Goal:** Beautiful, shareable changelog for users
 
 **Layout:**
+
 ```
 ┌─────────────────────────────────────────────────────┐
 │                                                     │
@@ -397,17 +414,20 @@
 ```
 
 **Components:**
+
 - **Header:** Product name, description
 - **Entry Cards:** Grouped by month, categorized
 - **Footer:** "Powered by GitLog" (removed for Pro)
 
 **Design Notes:**
+
 - Clean, minimal, focused on content
 - Mobile responsive (stack on small screens)
 - SEO optimized (meta tags, structured data)
 - Fast loading (<2 seconds)
 
 **States:**
+
 - **No entries:** "No changelog entries yet. Check back soon!"
 - **Private repo:** 404 if not authorized
 
@@ -418,6 +438,7 @@
 **Goal:** Manage repos, billing, account
 
 **Layout:**
+
 ```
 ┌─────────────────────────────────────────────────────┐
 │  GitLog    [Dashboard] [Drafts] [Published]   [Avatar]│
@@ -462,6 +483,7 @@
 ```
 
 **Sections:**
+
 1. **Connected Repos:** List + disconnect + add new
 2. **Billing:** Current plan, usage, upgrade CTA
 3. **Account:** Email, member since, sign out
@@ -473,6 +495,7 @@
 **Goal:** Convert free user to paid
 
 **Layout:**
+
 ```
 ┌─────────────────────────────────────────────────────┐
 │                                                     │
@@ -506,6 +529,7 @@
 ```
 
 **Flow:**
+
 1. Click "Upgrade to Pro"
 2. See pricing comparison
 3. Click "Upgrade Now"
@@ -583,44 +607,47 @@
 
 ### Buttons
 
-| Type | Use Case | Style |
-| :---- | :---- | :---- |
-| Primary | Publish, Upgrade, Connect | Accent background |
-| Secondary | Edit, Save Draft, Sync | Surface highlight |
-| Tertiary | View, Cancel | Text only |
-| Danger | Discard, Disconnect | Red accent |
+| Type      | Use Case                  | Style             |
+| :-------- | :------------------------ | :---------------- |
+| Primary   | Publish, Upgrade, Connect | Accent background |
+| Secondary | Edit, Save Draft, Sync    | Surface highlight |
+| Tertiary  | View, Cancel              | Text only         |
+| Danger    | Discard, Disconnect       | Red accent        |
 
 ### Cards
 
-| Type | Use Case | Style |
-| :---- | :---- | :---- |
-| Draft Card | Dashboard list | Surface, hover lift |
-| Entry Card | Published list | Surface, static |
-| Settings Card | Grouped options | Surface, bordered |
+| Type          | Use Case        | Style               |
+| :------------ | :-------------- | :------------------ |
+| Draft Card    | Dashboard list  | Surface, hover lift |
+| Entry Card    | Published list  | Surface, static     |
+| Settings Card | Grouped options | Surface, bordered   |
 
 ### Badges
 
-| Type | Use Case | Color |
-| :---- | :---- | :---- |
-| Category | New/Fixed/Improved | Accent bg |
-| Status | Draft/Published | Green/Gray |
-| Plan | Free/Pro | Gray/Accent |
+| Type     | Use Case           | Color       |
+| :------- | :----------------- | :---------- |
+| Category | New/Fixed/Improved | Accent bg   |
+| Status   | Draft/Published    | Green/Gray  |
+| Plan     | Free/Pro           | Gray/Accent |
 
 ---
 
 ## 📱 Responsive Behavior
 
 ### Desktop (≥1024px)
+
 - Full sidebar navigation
 - 2-column layout
 - Hover states enabled
 
 ### Tablet (768-1023px)
+
 - Collapsible sidebar
 - 2-column layout
 - Touch-friendly buttons
 
 ### Mobile (<768px)
+
 - Bottom navigation bar
 - Single column layout
 - Larger touch targets
@@ -630,26 +657,26 @@
 
 ## ⚡ Micro-Interactions
 
-| Action | Feedback |
-| :---- | :---- |
-| Click "Rewrite" | Spinner → Text appears |
-| Click "Publish" | Success toast → Card fades |
-| Click "Disconnect" | Confirmation modal |
-| Upgrade success | Confetti animation |
-| Sync complete | "Updated!" badge |
+| Action             | Feedback                   |
+| :----------------- | :------------------------- |
+| Click "Rewrite"    | Spinner → Text appears     |
+| Click "Publish"    | Success toast → Card fades |
+| Click "Disconnect" | Confirmation modal         |
+| Upgrade success    | Confetti animation         |
+| Sync complete      | "Updated!" badge           |
 
 ---
 
 ## 🎯 Success Metrics (UX)
 
-| Metric | Target | Measurement |
-| :---- | :---- | :---- |
-| Time to first draft | <30s | Analytics |
-| Time to first publish | <2min | Analytics |
-| Draft → Publish rate | >80% | Analytics |
-| Free → Paid conversion | >10% | Analytics |
-| Weekly active users | >30% | Analytics |
+| Metric                 | Target | Measurement |
+| :--------------------- | :----- | :---------- |
+| Time to first draft    | <30s   | Analytics   |
+| Time to first publish  | <2min  | Analytics   |
+| Draft → Publish rate   | >80%   | Analytics   |
+| Free → Paid conversion | >10%   | Analytics   |
+| Weekly active users    | >30%   | Analytics   |
 
 ---
 
-*This document guides MVP dashboard development. Phase 2 features (analytics, social drafts, embeddable widget) will be added post-launch.*
+_This document guides MVP dashboard development. Phase 2 features (analytics, social drafts, embeddable widget) will be added post-launch._

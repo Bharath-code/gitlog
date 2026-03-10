@@ -20,30 +20,35 @@
 ### ✅ **20 New Features Shipped** (Month 2-3)
 
 #### **1. Embeddable Widget** (4 tasks) ✅
+
 - 🎨 Widget script generator with customization
 - 📱 Embeddable iframe component (CORS-enabled)
 - 🎯 Widget customization (colors, position, size)
 - 📊 Widget analytics (impressions, clicks, CTR)
 
 #### **2. Social Post Drafts** (4 tasks) ✅
+
 - 🐦 Twitter thread generator (AI-powered, 2-5 tweets)
 - 💼 LinkedIn post generator (AI-powered, 1000-1300 chars)
 - 👀 Social post preview (looks like real posts)
 - 📋 One-click copy to clipboard
 
 #### **3. Email Integrations** (4 tasks) ✅
+
 - 📧 Resend integration (transactional emails)
 - 📨 Email template builder (beautiful HTML templates)
 - 📬 Mailchimp integration (audience sync)
 - 📮 Email digest subscriptions (double opt-in)
 
 #### **4. Analytics Dashboard** (4 tasks) ✅
+
 - 📈 Page views tracking (per entry, daily stats)
 - 👥 Unique visitors tracking (new vs returning)
 - 🔥 Most viewed entries (leaderboard with trends)
 - 👍 Upvoting system (one vote per visitor)
 
 #### **5. Roadmap from Issues** (4 tasks) ✅
+
 - 🔄 GitHub Issues sync (auto-fetch roadmap items)
 - 📋 Roadmap cards (Kanban-style board)
 - 🗳️ Upvoting functionality (public roadmap)
@@ -56,28 +61,33 @@
 ### ✅ **Flexible Publishing System** (Month 4)
 
 #### **1. Auto-Publish Toggle** ✅
+
 - ⚡ Automatically publish merged PRs
 - 🔔 No manual review required
 - ⚙️ Configurable per user
 
 #### **2. Batch Publish** ✅
+
 - ✅ Select multiple drafts
 - 📦 Publish all at once
 - 🎯 Review before publishing
 
 #### **3. Scheduled Publishing** ✅
+
 - 📅 Weekly digest (choose day)
 - 📆 Monthly roundup (choose date)
 - ⏰ Auto-publish at 9 AM UTC
 - 📧 Email digest automation
 
 #### **4. Release Grouping** ✅
+
 - 🏷️ Versioned releases (v1.0.0, v1.1.0)
 - 📝 Release notes & highlights
 - 🔀 Semantic versioning support
 - 📊 Migration guides
 
 #### **5. Advanced Filtering** ✅
+
 - 🎯 Filter by label, author, title, files, size
 - 🔍 Regex support
 - ⚡ Priority-based rules
@@ -103,12 +113,14 @@
 ### ✅ **Developer-Friendly API** (Phase 4)
 
 #### **Public API with API Keys**
+
 - 🔑 Generate and manage API keys
 - 🔒 Secure authentication (hashed keys)
 - 📖 Full API documentation
 - ⚡ Rate limiting ready
 
 **API Endpoints:**
+
 ```
 GET    /api/public/v1/keys          - List API keys
 POST   /api/public/v1/keys          - Create API key
@@ -117,23 +129,27 @@ GET    /api/public/v1/changelog     - Get published entries
 ```
 
 **Example Usage:**
+
 ```bash
 curl https://gitlog.app/api/public/v1/changelog \
   -H "Authorization: Bearer YOUR_API_KEY"
 ```
 
 #### **Slack/Discord Notifications**
+
 - 🔔 Get notified when entries are published
 - ⏰ Scheduled publish notifications
 - 🏷️ Release notifications
 - 🎯 Configurable triggers
 
 **Triggers:**
+
 - ✅ On Publish
 - ✅ On Scheduled Publish
 - ✅ On Release
 
 **Setup:**
+
 1. Get webhook URL from Slack/Discord
 2. Add to GitLog Settings → Notifications
 3. Choose triggers
@@ -143,10 +159,10 @@ curl https://gitlog.app/api/public/v1/changelog \
 
 ## 💰 Pricing
 
-| Plan | Price | Entries/Mo | AI Rewrites | Repos | Features |
-| :---- | :---- | :---- | :---- | :---- | :---- |
-| **Free** | ₹0/$0 | 50 | 50 | 1 | All core features |
-| **Pro** | ₹499/$19 | ∞ | ∞ | ∞ | All features + Priority support |
+| Plan     | Price    | Entries/Mo | AI Rewrites | Repos | Features                        |
+| :------- | :------- | :--------- | :---------- | :---- | :------------------------------ |
+| **Free** | ₹0/$0    | 50         | 50          | 1     | All core features               |
+| **Pro**  | ₹499/$19 | ∞          | ∞           | ∞     | All features + Priority support |
 
 **Geo-Pricing:** India ₹499/mo | International $19/mo
 
@@ -232,12 +248,12 @@ NEXT_PUBLIC_GITLOG_ANALYTICS=true
 
 ### 5. Get API Keys
 
-| Service | Purpose | Get Key |
-| :---- | :---- | :---- |
-| **Google AI Studio** | AI rewrites | [Get Key](https://aistudio.google.com) |
-| **Resend** | Email digests | [Get Key](https://resend.com) |
-| **Mailchimp** | Audience sync | [Get Key](https://mailchimp.com) |
-| **DodoPayment** | Payments | [Get Key](https://dodopayment.com) |
+| Service              | Purpose       | Get Key                                |
+| :------------------- | :------------ | :------------------------------------- |
+| **Google AI Studio** | AI rewrites   | [Get Key](https://aistudio.google.com) |
+| **Resend**           | Email digests | [Get Key](https://resend.com)          |
+| **Mailchimp**        | Audience sync | [Get Key](https://mailchimp.com)       |
+| **DodoPayment**      | Payments      | [Get Key](https://dodopayment.com)     |
 
 ### 6. Run Development Server
 
@@ -328,17 +344,9 @@ gitlog/
 ### Colors (Dark Theme)
 
 ```css
---background: #0a0a0b
---foreground: #fafafa
---surface: #141416
---surface-elevated: #1a1a1d
---accent: #ff6b35
---accent-glow: rgba(255, 107, 53, 0.3)
---muted: #8a8a92
---line: rgba(255, 255, 255, 0.06)
---success: #22c55e
---blue: #3b82f6
---amber: #f59e0b
+--background: #0a0a0b --foreground: #fafafa --surface: #141416 --surface-elevated: #1a1a1d
+  --accent: #ff6b35 --accent-glow: rgba(255, 107, 53, 0.3) --muted: #8a8a92
+  --line: rgba(255, 255, 255, 0.06) --success: #22c55e --blue: #3b82f6 --amber: #f59e0b;
 ```
 
 ### Components
@@ -399,27 +407,49 @@ gitlog/
 ```typescript
 // User
 kv.set(`user:${userId}`, {
-  id, email, plan: 'free' | 'pro',
-  githubToken, dodoCustomerId,
-  location: 'in' | 'intl', createdAt
+  id,
+  email,
+  plan: 'free' | 'pro',
+  githubToken,
+  dodoCustomerId,
+  location: 'in' | 'intl',
+  createdAt,
 });
 
 // Repo
 kv.set(`repo:${userId}:${repoId}`, {
-  id, userId, githubRepoId, name,
-  slug, isPrivate, connectedAt, webhookId
+  id,
+  userId,
+  githubRepoId,
+  name,
+  slug,
+  isPrivate,
+  connectedAt,
+  webhookId,
 });
 
 // Entry
 kv.set(`entry:${userId}:${repoId}:${prId}`, {
-  id, userId, repoId, prId, title, body,
-  category, status, mergedAt, publishedAt,
-  prUrl, author, aiRewrite, labels
+  id,
+  userId,
+  repoId,
+  prId,
+  title,
+  body,
+  category,
+  status,
+  mergedAt,
+  publishedAt,
+  prUrl,
+  author,
+  aiRewrite,
+  labels,
 });
 
 // Usage
-kv.set(`usage:${userId}:${YYYY-MM}`, {
-  entriesPublished, aiRewrites
+kv.set(`usage:${userId}:${YYYY - MM}`, {
+  entriesPublished,
+  aiRewrites,
 });
 ```
 
@@ -428,36 +458,61 @@ kv.set(`usage:${userId}:${YYYY-MM}`, {
 ```typescript
 // Widget Config
 kv.set(`widget:${userId}:${repoId}`, {
-  id, colors, position, size, options,
-  impressions, clicks, createdAt, updatedAt
+  id,
+  colors,
+  position,
+  size,
+  options,
+  impressions,
+  clicks,
+  createdAt,
+  updatedAt,
 });
 
 // Social Posts
 kv.set(`social:${userId}:${entryId}:twitter`, {
-  tweets, hashtags, tone, createdAt
+  tweets,
+  hashtags,
+  tone,
+  createdAt,
 });
 kv.set(`social:${userId}:${entryId}:linkedin`, {
-  post, hashtags, cta, createdAt
+  post,
+  hashtags,
+  cta,
+  createdAt,
 });
 
 // Email Subscribers
 kv.set(`subscriber:${repoId}:${email}`, {
-  email, repoId, subscribedAt,
-  confirmed, confirmToken, preferences
+  email,
+  repoId,
+  subscribedAt,
+  confirmed,
+  confirmToken,
+  preferences,
 });
 
 // Analytics
 kv.set(`analytics:views:${entryId}:${date}`, {
-  views, uniqueVisitors, visitorIds
+  views,
+  uniqueVisitors,
+  visitorIds,
 });
 kv.set(`analytics:upvotes:${entryId}`, {
-  count, voterIds
+  count,
+  voterIds,
 });
 
 // Roadmap
 kv.set(`roadmap:${userId}:${repoId}:${issueId}`, {
-  issueId, title, body, status,
-  upvotes, voterIds, linkedEntryId
+  issueId,
+  title,
+  body,
+  status,
+  upvotes,
+  voterIds,
+  linkedEntryId,
 });
 ```
 
@@ -476,65 +531,65 @@ npm run lint     # ESLint check
 
 ### API Routes (40+ Endpoints)
 
-| Endpoint | Method | Auth | Purpose |
-| :---- | :---- | :---- | :---- |
-| **GitHub** |
-| `/api/github/repos` | GET | User | List GitHub repos |
-| `/api/github/sync` | POST | Webhook | Receive PR merges |
-| `/api/github/sync/manual` | POST | User | Manual sync |
-| `/api/github/repos/connect` | POST | User | Connect repo |
-| `/api/github/repo-details` | POST | None | Get repo details |
-| **AI** |
-| `/api/ai/rewrite` | POST | User | Generate AI rewrite |
-| **Entries** |
-| `/api/entries/publish` | POST | User | Publish draft |
-| `/api/entries/publish-batch` | POST | User | Batch publish |
-| `/api/entries/unpublish` | POST | User | Revert to draft |
-| `/api/entries/discard` | POST | User | Delete draft |
-| **Social (Phase 2)** |
-| `/api/social/generate` | POST/GET | User | Generate/get social posts |
-| **Email (Phase 2, 3)** |
-| `/api/email/subscribe` | POST/GET | None | Subscribe/unsubscribe |
-| `/api/email/send-digest` | POST | User | Send digest email |
-| `/api/email/send-digest-manual` | POST | User | Manual digest trigger |
-| **Analytics (Phase 2)** |
-| `/api/analytics/track` | POST | None | Track page views |
-| `/api/analytics/upvote` | POST/GET | None | Upvote entries |
-| `/api/analytics/widgets` | GET | User | Widget analytics |
-| `/api/analytics/most-viewed` | GET | User | Most viewed entries |
-| **Roadmap (Phase 2)** |
-| `/api/roadmap/sync` | POST/GET | User | Sync/get roadmap |
-| `/api/roadmap/upvote` | POST | None | Upvote roadmap item |
-| **Widget (Phase 2)** |
-| `/api/widget/generate` | POST/GET | User | Generate/get widget |
-| `/api/widget/customize` | PUT | User | Customize widget |
-| `/api/widget/[widgetId]` | GET | None | Public widget data |
-| `/api/widget/track` | POST | None | Track widget events |
-| **Releases (Phase 3)** |
-| `/api/releases` | GET/POST | User | List/create releases |
-| `/api/releases/[version]` | GET/PUT | User | Get/update release |
-| **Filters (Phase 3)** |
-| `/api/user/filters` | GET/POST | User | Manage filter rules |
-| **Settings (Phase 3)** |
-| `/api/user/settings` | GET/PUT | User | Publishing settings |
-| **Cron (Phase 3)** |
-| `/api/cron/scheduled-publish` | POST | Cron | Scheduled publishing |
-| **Public API (Phase 4)** |
-| `/api/public/v1/keys` | GET/POST | User | Manage API keys |
-| `/api/public/v1/keys/:id` | DELETE | User | Revoke API key |
-| `/api/public/v1/changelog` | GET | API Key | Get changelog entries |
-| **Notifications (Phase 4)** |
-| `/api/notifications` | GET/POST | User | Manage notifications |
-| `/api/notifications/:id` | DELETE | User | Delete notification |
-| **Payment** |
-| `/api/payment/checkout` | POST | User | Create checkout session |
-| `/api/payment/webhook` | POST | None | Handle webhook events |
-| **User** |
-| `/api/user/plan` | GET | User | Get user plan |
-| `/api/user/repos` | GET | User | Get connected repos |
-| `/api/user/usage` | GET | User | Get usage stats |
-| `/api/user/dodo-customer` | GET | User | Get Dodo customer ID |
-| `/api/user/changelogs` | GET | None | Get user's changelogs |
+| Endpoint                        | Method   | Auth    | Purpose                   |
+| :------------------------------ | :------- | :------ | :------------------------ |
+| **GitHub**                      |
+| `/api/github/repos`             | GET      | User    | List GitHub repos         |
+| `/api/github/sync`              | POST     | Webhook | Receive PR merges         |
+| `/api/github/sync/manual`       | POST     | User    | Manual sync               |
+| `/api/github/repos/connect`     | POST     | User    | Connect repo              |
+| `/api/github/repo-details`      | POST     | None    | Get repo details          |
+| **AI**                          |
+| `/api/ai/rewrite`               | POST     | User    | Generate AI rewrite       |
+| **Entries**                     |
+| `/api/entries/publish`          | POST     | User    | Publish draft             |
+| `/api/entries/publish-batch`    | POST     | User    | Batch publish             |
+| `/api/entries/unpublish`        | POST     | User    | Revert to draft           |
+| `/api/entries/discard`          | POST     | User    | Delete draft              |
+| **Social (Phase 2)**            |
+| `/api/social/generate`          | POST/GET | User    | Generate/get social posts |
+| **Email (Phase 2, 3)**          |
+| `/api/email/subscribe`          | POST/GET | None    | Subscribe/unsubscribe     |
+| `/api/email/send-digest`        | POST     | User    | Send digest email         |
+| `/api/email/send-digest-manual` | POST     | User    | Manual digest trigger     |
+| **Analytics (Phase 2)**         |
+| `/api/analytics/track`          | POST     | None    | Track page views          |
+| `/api/analytics/upvote`         | POST/GET | None    | Upvote entries            |
+| `/api/analytics/widgets`        | GET      | User    | Widget analytics          |
+| `/api/analytics/most-viewed`    | GET      | User    | Most viewed entries       |
+| **Roadmap (Phase 2)**           |
+| `/api/roadmap/sync`             | POST/GET | User    | Sync/get roadmap          |
+| `/api/roadmap/upvote`           | POST     | None    | Upvote roadmap item       |
+| **Widget (Phase 2)**            |
+| `/api/widget/generate`          | POST/GET | User    | Generate/get widget       |
+| `/api/widget/customize`         | PUT      | User    | Customize widget          |
+| `/api/widget/[widgetId]`        | GET      | None    | Public widget data        |
+| `/api/widget/track`             | POST     | None    | Track widget events       |
+| **Releases (Phase 3)**          |
+| `/api/releases`                 | GET/POST | User    | List/create releases      |
+| `/api/releases/[version]`       | GET/PUT  | User    | Get/update release        |
+| **Filters (Phase 3)**           |
+| `/api/user/filters`             | GET/POST | User    | Manage filter rules       |
+| **Settings (Phase 3)**          |
+| `/api/user/settings`            | GET/PUT  | User    | Publishing settings       |
+| **Cron (Phase 3)**              |
+| `/api/cron/scheduled-publish`   | POST     | Cron    | Scheduled publishing      |
+| **Public API (Phase 4)**        |
+| `/api/public/v1/keys`           | GET/POST | User    | Manage API keys           |
+| `/api/public/v1/keys/:id`       | DELETE   | User    | Revoke API key            |
+| `/api/public/v1/changelog`      | GET      | API Key | Get changelog entries     |
+| **Notifications (Phase 4)**     |
+| `/api/notifications`            | GET/POST | User    | Manage notifications      |
+| `/api/notifications/:id`        | DELETE   | User    | Delete notification       |
+| **Payment**                     |
+| `/api/payment/checkout`         | POST     | User    | Create checkout session   |
+| `/api/payment/webhook`          | POST     | None    | Handle webhook events     |
+| **User**                        |
+| `/api/user/plan`                | GET      | User    | Get user plan             |
+| `/api/user/repos`               | GET      | User    | Get connected repos       |
+| `/api/user/usage`               | GET      | User    | Get usage stats           |
+| `/api/user/dodo-customer`       | GET      | User    | Get Dodo customer ID      |
+| `/api/user/changelogs`          | GET      | None    | Get user's changelogs     |
 
 ---
 
@@ -542,22 +597,22 @@ npm run lint     # ESLint check
 
 ### Phase 2 Goals
 
-| Metric | Target | Status |
-| :---- | :---- | :---- |
-| **Features Shipped** | 20 | ✅ 20/20 (100%) |
-| **Files Created** | 40+ | ✅ 47+ files |
-| **Lines of Code** | 5,000+ | ✅ 8,000+ lines |
-| **API Endpoints** | 15+ | ✅ 20+ endpoints |
-| **UI Components** | 20+ | ✅ 25+ components |
+| Metric               | Target | Status            |
+| :------------------- | :----- | :---------------- |
+| **Features Shipped** | 20     | ✅ 20/20 (100%)   |
+| **Files Created**    | 40+    | ✅ 47+ files      |
+| **Lines of Code**    | 5,000+ | ✅ 8,000+ lines   |
+| **API Endpoints**    | 15+    | ✅ 20+ endpoints  |
+| **UI Components**    | 20+    | ✅ 25+ components |
 
 ### Launch Goals (Week 1)
 
-| Metric | Target | Current |
-| :---- | :---- | :---- |
-| Signups | 100+ | Ready |
-| Connected repos | 50+ | Ready |
-| Published entries | 200+ | Ready |
-| Paying users | 15+ | Ready |
+| Metric            | Target | Current         |
+| :---------------- | :----- | :-------------- |
+| Signups           | 100+   | Ready           |
+| Connected repos   | 50+    | Ready           |
+| Published entries | 200+   | Ready           |
+| Paying users      | 15+    | Ready           |
 | Twitter followers | 1,000+ | Ready to launch |
 
 ---
@@ -567,17 +622,20 @@ npm run lint     # ESLint check
 ### Launch Channels
 
 **Tier 1 (Primary):**
+
 - ✅ Twitter/X (#buildinpublic)
 - ✅ Reddit (r/SaaS, r/entrepreneur, r/webdev)
 - ✅ Product Hunt
 - ✅ Indie Hackers
 
 **Tier 2 (Secondary):**
+
 - ✅ LinkedIn
 - ✅ Hacker News (Show HN)
 - ✅ Dev.to / Hashnode
 
 **Tier 3 (Long-tail):**
+
 - ✅ Facebook Groups
 - ✅ Discord/Slack communities
 - ✅ Email outreach
@@ -586,6 +644,7 @@ npm run lint     # ESLint check
 ### Content Calendar
 
 **Week 1: Launch**
+
 - Day 1: Launch thread (Twitter, Reddit, PH)
 - Day 2: Feature deep-dive (Widget)
 - Day 3: Customer testimonial
@@ -604,15 +663,16 @@ npm run lint     # ESLint check
 
 **All documentation is organized in the `docs/` folder:**
 
-| Category | Files | Location |
-| :---- | :---- | :---- |
-| **Phase 2** | 19 files | [`docs/phase2/`](./docs/phase2/) |
-| **GTM** | 4 files | [`docs/gtm/`](./docs/gtm/) |
-| **Strategy** | 2 files | [`docs/strategy/`](./docs/strategy/) |
-| **Technical** | 2 files | [`docs/technical/`](./docs/technical/) |
-| **Updates** | 6 files | [`docs/updates/`](./docs/updates/) |
+| Category      | Files    | Location                               |
+| :------------ | :------- | :------------------------------------- |
+| **Phase 2**   | 19 files | [`docs/phase2/`](./docs/phase2/)       |
+| **GTM**       | 4 files  | [`docs/gtm/`](./docs/gtm/)             |
+| **Strategy**  | 2 files  | [`docs/strategy/`](./docs/strategy/)   |
+| **Technical** | 2 files  | [`docs/technical/`](./docs/technical/) |
+| **Updates**   | 6 files  | [`docs/updates/`](./docs/updates/)     |
 
 **Quick Links:**
+
 - [`docs/INDEX.md`](./docs/INDEX.md) - Complete documentation index
 - [`docs/phase2/PHASE2_IMPLEMENTATION_PLAN.md`](./docs/phase2/PHASE2_IMPLEMENTATION_PLAN.md) - Implementation plan
 - [`docs/gtm/GTM_STRATEGY.md`](./docs/gtm/GTM_STRATEGY.md) - GTM strategy
@@ -630,6 +690,7 @@ _None - Production Ready!_ ✅
 ## 📝 Roadmap
 
 ### ✅ Phase 1 (MVP) - Complete
+
 - GitHub OAuth + repo connection
 - PR auto-sync (webhook)
 - Auto-categorization
@@ -641,6 +702,7 @@ _None - Production Ready!_ ✅
 - Usage limits enforcement
 
 ### ✅ Phase 2 (Month 2-3) - Complete
+
 - Embeddable Widget (4 tasks)
 - Social Post Drafts (4 tasks)
 - Email Integrations (4 tasks)
@@ -650,6 +712,7 @@ _None - Production Ready!_ ✅
 - Payment fixes (5 critical fixes)
 
 ### ✅ Phase 3 (Month 4) - Complete
+
 - Auto-publish toggle
 - Batch publish functionality
 - Scheduled publishing (cron job)
@@ -660,6 +723,7 @@ _None - Production Ready!_ ✅
 - 10+ new API endpoints
 
 ### ✅ Phase 4 (Month 5) - Complete
+
 - Public API with API keys
 - Slack notifications
 - Discord notifications
@@ -667,6 +731,7 @@ _None - Production Ready!_ ✅
 - API documentation
 
 ### 🚀 Phase 5 (Month 6-7) - Planned
+
 - Team accounts (multi-user)
 - Custom domains
 - Advanced analytics (funnels)
@@ -690,6 +755,7 @@ MIT © 2026 GitLog
 ## 🙏 Acknowledgments
 
 **Built with:**
+
 - ⚛️ Next.js 15
 - 🔐 Clerk
 - 💾 Vercel KV
@@ -702,6 +768,7 @@ MIT © 2026 GitLog
 - 🐙 Octokit
 
 **Special Thanks:**
+
 - All beta testers
 - Early supporters
 - #buildinpublic community
@@ -719,5 +786,5 @@ MIT © 2026 GitLog
 
 **Ready to Launch!** 🚀
 
-*Last Updated: 2026-03-10*  
-*Status: Phase 4 Complete - API Ready*
+_Last Updated: 2026-03-10_  
+_Status: Phase 4 Complete - API Ready_

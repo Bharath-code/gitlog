@@ -11,7 +11,7 @@ export interface TwitterThread {
 
 const toneInstructions = {
   professional: 'Use a professional, authoritative tone. Focus on business value and impact.',
-  casual: 'Use a friendly, conversational tone. Like you\'re talking to a friend.',
+  casual: "Use a friendly, conversational tone. Like you're talking to a friend.",
   exciting: 'Use an enthusiastic, energetic tone. Build excitement and hype.',
 };
 
@@ -62,10 +62,10 @@ Generate a Twitter thread as JSON:
     }
 
     const parsed = JSON.parse(jsonMatch[0]);
-    
+
     // Validate tweets are under 280 characters
     const validTweets = parsed.tweets.filter((tweet: string) => tweet.length <= 280);
-    
+
     return {
       tweets: validTweets,
       hashtags: parsed.hashtags || [],

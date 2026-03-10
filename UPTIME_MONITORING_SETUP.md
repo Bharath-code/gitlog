@@ -1,7 +1,7 @@
 # Uptime Monitoring Setup Guide
 
 **Created:** 2026-03-10  
-**Status:** ✅ **CONFIGURED**  
+**Status:** ✅ **CONFIGURED**
 
 ---
 
@@ -10,6 +10,7 @@
 ### **1. Vercel Status Page** ✅ (Automatic)
 
 **What's monitored:**
+
 - ✅ Vercel platform status
 - ✅ Build times
 - ✅ Function execution
@@ -31,6 +32,7 @@
 2. **Add Monitors:**
 
    **Main Site:**
+
    ```
    Monitor Type: HTTP(s)
    Friendly Name: GitLog Homepage
@@ -39,6 +41,7 @@
    ```
 
    **API Endpoint:**
+
    ```
    Monitor Type: HTTP(s)
    Friendly Name: GitLog API
@@ -47,6 +50,7 @@
    ```
 
    **Dashboard:**
+
    ```
    Monitor Type: HTTP(s)
    Friendly Name: GitLog Dashboard
@@ -112,12 +116,14 @@ export async function GET() {
 ### **4. Pingdom** ⏳ (Alternative - Paid)
 
 **Features:**
+
 - 1-minute intervals
 - Advanced reporting
 - Custom status pages
 - Team collaboration
 
 **Pricing:**
+
 - Standard: $10/month (10 monitors)
 - Professional: $29/month (50 monitors)
 - Enterprise: Custom
@@ -127,16 +133,19 @@ export async function GET() {
 ## 📊 Monitoring Metrics
 
 ### **Availability:**
+
 - Uptime percentage
 - Downtime incidents
 - Response times
 
 ### **Performance:**
+
 - Page load times
 - API response times
 - Time to First Byte (TTFB)
 
 ### **Errors:**
+
 - HTTP errors (4xx, 5xx)
 - SSL certificate expiry
 - DNS resolution
@@ -148,15 +157,18 @@ export async function GET() {
 ### **UptimeRobot Alerts:**
 
 **Critical (Immediate):**
+
 - Site down (503/500 errors)
 - SSL certificate expiring (<7 days)
 - DNS failure
 
 **Warning (15 minutes):**
+
 - Slow response time (>3s)
 - High error rate (>5%)
 
 **Info (Email only):**
+
 - Maintenance windows
 - Scheduled downtime
 
@@ -179,6 +191,7 @@ export async function GET() {
 **URL:** https://status.gitlog.app
 
 **Components:**
+
 - ✅ Website
 - ✅ API
 - ✅ Dashboard
@@ -186,6 +199,7 @@ export async function GET() {
 - ✅ Email Service
 
 **Metrics Displayed:**
+
 - Uptime (last 90 days)
 - Response times
 - Current status
@@ -196,26 +210,31 @@ export async function GET() {
 ## 🎯 Incident Response Workflow
 
 ### **1. Alert Received:**
+
 ```
 Monitoring → Alert → On-call notified
 ```
 
 ### **2. Triage:**
+
 - Check status page
 - Review error logs
 - Assess impact
 
 ### **3. Communicate:**
+
 - Update status page
 - Notify affected users
 - ETA for fix
 
 ### **4. Fix:**
+
 - Deploy fix
 - Monitor recovery
 - Verify all systems
 
 ### **5. Post-Mortem:**
+
 - Document incident
 - Root cause analysis
 - Prevention measures
@@ -225,6 +244,7 @@ Monitoring → Alert → On-call notified
 ## 🔧 Maintenance Windows
 
 ### **Scheduled Maintenance:**
+
 1. Update status page 24h in advance
 2. Send email to users
 3. Post on Twitter
@@ -232,6 +252,7 @@ Monitoring → Alert → On-call notified
 5. Update when complete
 
 ### **Emergency Maintenance:**
+
 1. Update status page immediately
 2. Quick tweet
 3. Fix ASAP
@@ -241,5 +262,5 @@ Monitoring → Alert → On-call notified
 
 **Uptime monitoring setup complete!** ⏱️
 
-*Last Updated: 2026-03-10*  
-*Status: Ready to Monitor*
+_Last Updated: 2026-03-10_  
+_Status: Ready to Monitor_

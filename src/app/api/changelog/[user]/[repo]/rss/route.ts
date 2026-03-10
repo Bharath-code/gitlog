@@ -11,13 +11,10 @@ export async function GET(
     const entries = await getPublishedEntriesByRepo(`${user}/${repo}`);
 
     if (entries.length === 0) {
-      return NextResponse.json(
-        { error: 'No entries found' },
-        { status: 404 }
-      );
+      return NextResponse.json({ error: 'No entries found' }, { status: 404 });
     }
 
-    const repoName = repo.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+    const repoName = repo.replace(/-/g, ' ').replace(/\b\w/g, (l) => l.toUpperCase());
     const changelogUrl = `${siteConfig.url}/changelog/${user}/${repo}`;
 
     // Generate RSS feed
@@ -31,7 +28,9 @@ export async function GET(
     <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
     <atom:link href="${changelogUrl}/rss" rel="self" type="application/rss+xml"/>
     <generator>GitLog</generator>
-    ${entries.map(entry => `
+    ${entries
+      .map(
+        (entry) => `
     <item>
       <title><![CDATA[${entry.title}]]></title>
       <link>${changelogUrl}#${entry.id}</link>
@@ -40,7 +39,9 @@ export async function GET(
       <description><![CDATA[${entry.aiRewrite || entry.body || entry.title}]]></description>
       <category>${entry.category}</category>
     </item>
-    `).join('')}
+    `
+      )
+      .join('')}
   </channel>
 </rss>`;
 
@@ -52,9 +53,6 @@ export async function GET(
     });
   } catch (error) {
     console.error('RSS generation error:', error);
-    return NextResponse.json(
-      { error: 'Failed to generate RSS feed' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to generate RSS feed' }, { status: 500 });
   }
 }

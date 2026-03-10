@@ -35,14 +35,14 @@ export default function DraftsPage() {
         setLoading(false);
       }
     }
-    
+
     fetchDrafts();
   }, []);
 
   const handleBulkPublish = async (ids: string[]) => {
     try {
       const results = await Promise.all(
-        ids.map(id =>
+        ids.map((id) =>
           fetch('/api/entries/publish', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -50,9 +50,9 @@ export default function DraftsPage() {
           })
         )
       );
-      
+
       // Remove published drafts from list
-      setDrafts(drafts.filter(d => !ids.includes(d.id)));
+      setDrafts(drafts.filter((d) => !ids.includes(d.id)));
     } catch (error) {
       console.error('Bulk publish error:', error);
     }
@@ -61,27 +61,27 @@ export default function DraftsPage() {
   const handleBulkDelete = async (ids: string[]) => {
     try {
       const results = await Promise.all(
-        ids.map(id =>
+        ids.map((id) =>
           fetch(`/api/drafts/${id}`, {
             method: 'DELETE',
           })
         )
       );
-      
+
       // Remove deleted drafts from list
-      setDrafts(drafts.filter(d => !ids.includes(d.id)));
+      setDrafts(drafts.filter((d) => !ids.includes(d.id)));
     } catch (error) {
       console.error('Bulk delete error:', error);
     }
   };
 
-  const filteredDrafts = drafts.filter(draft => {
+  const filteredDrafts = drafts.filter((draft) => {
     const matchesSearch = draft.title.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchesFilter = 
+    const matchesFilter =
       filter === 'all' ||
       (filter === 'with-rewrite' && draft.aiRewrite) ||
       (filter === 'without-rewrite' && !draft.aiRewrite);
-    
+
     return matchesSearch && matchesFilter;
   });
 
@@ -137,7 +137,7 @@ export default function DraftsPage() {
                 className="w-full rounded-lg border border-line bg-surface pl-10 pr-4 py-2 text-sm text-foreground placeholder:text-muted focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
               />
             </div>
-            
+
             <div className="flex items-center gap-2">
               <Filter className="h-4 w-4 text-muted" />
               <select
@@ -156,7 +156,7 @@ export default function DraftsPage() {
         {/* Bulk Actions */}
         {drafts.length > 0 && (
           <BulkActions
-            entries={drafts.map(d => ({ ...d, status: 'draft' as const }))}
+            entries={drafts.map((d) => ({ ...d, status: 'draft' as const }))}
             onBulkPublish={handleBulkPublish}
             onBulkDelete={handleBulkDelete}
           />
@@ -171,13 +171,13 @@ export default function DraftsPage() {
             </Card>
             <Card className="p-4 text-center">
               <div className="text-2xl font-bold text-success">
-                {drafts.filter(d => d.aiRewrite).length}
+                {drafts.filter((d) => d.aiRewrite).length}
               </div>
               <div className="text-sm text-muted">With AI Rewrite</div>
             </Card>
             <Card className="p-4 text-center">
               <div className="text-2xl font-bold text-muted">
-                {drafts.filter(d => !d.aiRewrite).length}
+                {drafts.filter((d) => !d.aiRewrite).length}
               </div>
               <div className="text-sm text-muted">Needs Rewrite</div>
             </Card>

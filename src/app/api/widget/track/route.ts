@@ -7,16 +7,13 @@ export async function POST(request: NextRequest) {
     const { widgetId, action, entryId } = body;
 
     if (!widgetId || !action) {
-      return NextResponse.json(
-        { error: 'Missing required fields' },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
     }
 
     // Track impression or click
     if (action === 'impression') {
       await kv.incr(`widget:impressions:${widgetId}`);
-      
+
       // Also increment in widget config
       const keys = await kv.keys('widget:*');
       for (const key of keys) {
@@ -28,7 +25,7 @@ export async function POST(request: NextRequest) {
       }
     } else if (action === 'click') {
       await kv.incr(`widget:clicks:${widgetId}`);
-      
+
       // Also increment in widget config
       const keys = await kv.keys('widget:*');
       for (const key of keys) {
@@ -48,9 +45,6 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error('Error tracking widget event:', error);
-    return NextResponse.json(
-      { error: 'Failed to track event' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to track event' }, { status: 500 });
   }
 }

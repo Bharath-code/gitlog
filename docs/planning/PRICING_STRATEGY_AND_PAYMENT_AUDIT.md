@@ -1,16 +1,18 @@
 # GitLog Pricing Strategy & Payment Verification Report
 
 **Date:** 2026-03-09  
-**Status:** Pricing Analysis & Payment Audit  
+**Status:** Pricing Analysis & Payment Audit
 
 ---
 
 ## 💰 Current Pricing Strategy
 
 ### Free Plan
+
 **Price:** ₹0 / $0 per month
 
 **Features:**
+
 - ✅ 50 entries per month
 - ✅ 1 connected repository
 - ✅ 50 AI rewrites per month
@@ -18,6 +20,7 @@
 - ✅ GitLog branding
 
 **Limitations:**
+
 - ❌ No priority support
 - ❌ No custom domains
 - ❌ No analytics (Phase 2 features)
@@ -28,9 +31,11 @@
 ---
 
 ### Pro Plan
+
 **Price:** ₹499 / $19 per month (₹5,988 / $228 annually)
 
 **Features:**
+
 - ✅ Unlimited entries
 - ✅ Unlimited repositories
 - ✅ Unlimited AI rewrites
@@ -47,15 +52,16 @@
 
 ### Based on PRD Appendix A (GitLog_PRD_v3_Refined.md)
 
-| Competitor | Price | GitHub Sync | AI Rewrite | Social Drafts | Widget |
-| :---- | :---- | :---- | :---- | :---- | :---- |
-| **Canny** | $49/mo | ❌ Manual | ❌ | ❌ | ❌ |
-| **Featurebase** | $29/mo | ⚠️ Import | ❌ | ❌ | ❌ |
-| **Frill** | $49/mo | ❌ Manual | ❌ | ❌ | ❌ |
-| **Changelog.com** | $39/mo | ⚠️ Manual | ❌ | ❌ | ❌ |
-| **GitLog (Us)** | **$19/mo** | ✅ Auto | ✅ | ✅ | ✅ |
+| Competitor        | Price      | GitHub Sync | AI Rewrite | Social Drafts | Widget |
+| :---------------- | :--------- | :---------- | :--------- | :------------ | :----- |
+| **Canny**         | $49/mo     | ❌ Manual   | ❌         | ❌            | ❌     |
+| **Featurebase**   | $29/mo     | ⚠️ Import   | ❌         | ❌            | ❌     |
+| **Frill**         | $49/mo     | ❌ Manual   | ❌         | ❌            | ❌     |
+| **Changelog.com** | $39/mo     | ⚠️ Manual   | ❌         | ❌            | ❌     |
+| **GitLog (Us)**   | **$19/mo** | ✅ Auto     | ✅         | ✅            | ✅     |
 
 **Our Advantage:**
+
 - ✅ 60% cheaper than competitors
 - ✅ Only one with GitHub auto-sync
 - ✅ Only one with AI rewrite
@@ -69,11 +75,13 @@
 ### Geo-Pricing Analysis
 
 **Purchasing Power Parity (PPP):**
+
 - US $19 ≈ India ₹499 (correctly adjusted)
 - This is ~73% discount for Indian users
 - Aligns with local purchasing power
 
 **Competitor Pricing in India:**
+
 - Most SaaS tools don't offer India-specific pricing
 - We have a significant advantage with ₹499 pricing
 - Psychological pricing: Under ₹500/month is attractive
@@ -127,11 +135,13 @@
 **Current Status:** NOT SAVED
 
 **Issue:**
+
 - We're NOT storing customer payment details
 - DodoPayment handles recurring billing
 - We only store customer ID and subscription ID
 
 **What We Store:**
+
 ```typescript
 // ✅ Stored in KV
 user:{userId}:dodo_customer_id      // Customer ID
@@ -140,6 +150,7 @@ user:{userId}:plan                   // Current plan
 ```
 
 **What We DON'T Store:**
+
 ```typescript
 // ❌ NOT stored (and shouldn't be)
 - Credit card numbers
@@ -157,12 +168,14 @@ user:{userId}:plan                   // Current plan
 **Missing Feature:** Customer subscription management
 
 **What's Missing:**
+
 - No way for users to manage subscription
 - No upgrade/downgrade portal
 - No payment method update
 - No invoice access
 
 **Implementation Needed:**
+
 ```typescript
 // Need to add:
 - /dashboard/billing page
@@ -183,11 +196,13 @@ user:{userId}:plan                   // Current plan
 **Missing Feature:** Invoice/receipt access
 
 **What's Missing:**
+
 - Users can't access invoices
 - No payment history
 - No GST invoices for Indian users
 
 **Implementation Needed:**
+
 ```typescript
 // Need to add:
 - Fetch invoices from Dodo API
@@ -205,14 +220,17 @@ user:{userId}:plan                   // Current plan
 **Inconsistency Found:**
 
 **Upgrade Page Claims:**
+
 > "Yes! We offer a 14-day free trial for new Pro users."
 
 **Reality:**
+
 - ❌ No trial implementation in code
 - ❌ No trial tracking in database
 - ❌ No trial expiration logic
 
 **Implementation Needed:**
+
 ```typescript
 // Need to add:
 interface UserConfig {
@@ -237,26 +255,26 @@ interface UserConfig {
 **Current Status:** PARTIAL
 
 **What's Implemented:**
+
 - ✅ Usage tracking (`usage:{userId}:{YYYY-MM}`)
 - ✅ Plan check on publish
 - ✅ Upgrade prompts when near limit
 
 **What's Missing:**
+
 - ❌ Hard enforcement on 50 limit
 - ❌ AI rewrite limit enforcement
 - ❌ Repository limit enforcement
 
 **Implementation Needed:**
+
 ```typescript
 // In /api/entries/publish:
 const usage = await getUsage(userId);
 const plan = await getPlan(userId);
 
 if (plan === 'free' && usage.entriesPublished >= 50) {
-  return NextResponse.json(
-    { error: 'Free plan limit reached. Upgrade to Pro.' },
-    { status: 403 }
-  );
+  return NextResponse.json({ error: 'Free plan limit reached. Upgrade to Pro.' }, { status: 403 });
 }
 ```
 
@@ -269,17 +287,20 @@ if (plan === 'free' && usage.entriesPublished >= 50) {
 ### Option 1: Current (Recommended) ✅
 
 **Free:** ₹0 / $0
+
 - 50 entries/month
 - 1 repo
 - 50 AI rewrites
 - Basic features
 
 **Pro:** ₹499 / $19
+
 - Unlimited everything
 - All Phase 2 features
 - Priority support
 
 **Why This Works:**
+
 - ✅ Competitive pricing (60% cheaper than alternatives)
 - ✅ Generous free tier (attracts users)
 - ✅ Clear upgrade path
@@ -290,18 +311,21 @@ if (plan === 'free' && usage.entriesPublished >= 50) {
 ### Option 2: Three-Tier (Alternative)
 
 **Free:** ₹0 / $0
+
 - 25 entries/month (reduced from 50)
 - 1 repo
 - 10 AI rewrites (reduced from 50)
 - Basic features only
 
 **Pro:** ₹499 / $19
+
 - 200 entries/month
 - 3 repos
 - 100 AI rewrites
 - All Phase 2 features
 
 **Business:** ₹1,499 / $49
+
 - Unlimited entries
 - Unlimited repos
 - Unlimited AI
@@ -310,11 +334,13 @@ if (plan === 'free' && usage.entriesPublished >= 50) {
 - Team seats (3 users)
 
 **Why Consider:**
+
 - Better revenue from power users
 - Clearer segmentation
 - Business tier for teams
 
 **Risk:**
+
 - More complex
 - May confuse users
 - Requires team features
@@ -324,11 +350,13 @@ if (plan === 'free' && usage.entriesPublished >= 50) {
 ### Option 3: Usage-Based (Not Recommended)
 
 **Free:** ₹0 / $0
+
 - Pay-as-you-go beyond limits
 - ₹10 per extra entry
 - ₹5 per extra AI rewrite
 
 **Why NOT Recommended:**
+
 - ❌ Complex to implement
 - ❌ Users hate unpredictable costs
 - ❌ Requires billing infrastructure
@@ -438,6 +466,7 @@ payments:failed                       // List - Failed payment log
 ### Payment Implementation: ⚠️ **NEEDS WORK**
 
 **Done:**
+
 - ✅ Customer creation
 - ✅ Checkout flow
 - ✅ Webhook handling
@@ -445,6 +474,7 @@ payments:failed                       // List - Failed payment log
 - ✅ Security (not storing sensitive data)
 
 **Needs Implementation:**
+
 - ❌ Trial period (14 days)
 - ❌ Plan limits enforcement
 - ❌ Customer portal
@@ -466,9 +496,9 @@ payments:failed                       // List - Failed payment log
 
 **Ready for Beta:** ✅ Yes  
 **Ready for Production:** ⚠️ After critical items fixed  
-**Revenue Ready:** ⚠️ After limits enforcement  
+**Revenue Ready:** ⚠️ After limits enforcement
 
 ---
 
-*Last Updated: 2026-03-09*  
-*Status: Pricing OK, Payment Implementation Needs Critical Fixes*
+_Last Updated: 2026-03-09_  
+_Status: Pricing OK, Payment Implementation Needs Critical Fixes_

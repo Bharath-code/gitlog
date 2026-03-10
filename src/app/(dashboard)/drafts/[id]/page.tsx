@@ -61,9 +61,9 @@ export default function DraftDetailPage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ entryId: draft?.id }),
       });
-      
+
       if (!res.ok) throw new Error('Failed to rewrite');
-      
+
       const data = await res.json();
       setAiRewrite(data.aiRewrite);
     } catch (error) {
@@ -86,9 +86,9 @@ export default function DraftDetailPage() {
           aiRewrite,
         }),
       });
-      
+
       if (!res.ok) throw new Error('Failed to save');
-      
+
       alert('Draft saved successfully!');
       router.push('/dashboard');
     } catch (error) {
@@ -110,9 +110,9 @@ export default function DraftDetailPage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ entryId: draft?.id }),
       });
-      
+
       if (!res.ok) throw new Error('Failed to publish');
-      
+
       alert('Published successfully!');
       router.push('/dashboard/published');
     } catch (error) {
@@ -130,9 +130,9 @@ export default function DraftDetailPage() {
       const res = await fetch(`/api/drafts/${params.id}`, {
         method: 'DELETE',
       });
-      
+
       if (!res.ok) throw new Error('Failed to discard');
-      
+
       router.push('/dashboard');
     } catch (error) {
       console.error('Discard error:', error);
@@ -174,7 +174,10 @@ export default function DraftDetailPage() {
       <div className="max-w-4xl mx-auto space-y-6">
         {/* Header */}
         <div className="flex items-center justify-between">
-          <Link href="/dashboard" className="flex items-center gap-2 text-muted hover:text-foreground transition-colors">
+          <Link
+            href="/dashboard"
+            className="flex items-center gap-2 text-muted hover:text-foreground transition-colors"
+          >
             <ArrowLeft className="h-4 w-4" />
             Back to Dashboard
           </Link>
@@ -190,9 +193,7 @@ export default function DraftDetailPage() {
         <Card className="p-6 space-y-6">
           {/* Title */}
           <div>
-            <label className="block text-sm font-medium mb-2">
-              Title
-            </label>
+            <label className="block text-sm font-medium mb-2">Title</label>
             <input
               type="text"
               value={title}
@@ -204,9 +205,7 @@ export default function DraftDetailPage() {
 
           {/* Category */}
           <div>
-            <label className="block text-sm font-medium mb-2">
-              Category
-            </label>
+            <label className="block text-sm font-medium mb-2">Category</label>
             <select
               value={category}
               onChange={(e) => setCategory(e.target.value)}
@@ -222,31 +221,19 @@ export default function DraftDetailPage() {
           {/* AI Rewrite */}
           <div>
             <div className="flex items-center justify-between mb-2">
-              <label className="block text-sm font-medium">
-                AI Rewrite
-              </label>
+              <label className="block text-sm font-medium">AI Rewrite</label>
               <div className="flex items-center gap-2">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={handleCopy}
-                  disabled={!aiRewrite}
-                >
+                <Button variant="outline" size="sm" onClick={handleCopy} disabled={!aiRewrite}>
                   <Copy className="h-3.5 w-3.5 mr-1" />
                   Copy
                 </Button>
-                <Button
-                  variant="secondary"
-                  size="sm"
-                  onClick={handleRewrite}
-                  disabled={rewriting}
-                >
+                <Button variant="secondary" size="sm" onClick={handleRewrite} disabled={rewriting}>
                   <Sparkles className={`h-3.5 w-3.5 mr-1 ${rewriting && 'animate-spin'}`} />
                   {rewriting ? 'Writing...' : 'Regenerate'}
                 </Button>
               </div>
             </div>
-            
+
             {aiRewrite ? (
               <textarea
                 value={aiRewrite}
@@ -266,9 +253,7 @@ export default function DraftDetailPage() {
           {/* Original PR */}
           <div>
             <div className="flex items-center justify-between mb-2">
-              <label className="block text-sm font-medium">
-                Original PR
-              </label>
+              <label className="block text-sm font-medium">Original PR</label>
               <a
                 href={draft.prUrl}
                 target="_blank"
@@ -289,28 +274,18 @@ export default function DraftDetailPage() {
 
         {/* Actions */}
         <div className="flex items-center justify-between gap-4">
-          <Button
-            variant="destructive"
-            onClick={handleDiscard}
-          >
+          <Button variant="destructive" onClick={handleDiscard}>
             <Trash2 className="h-4 w-4 mr-2" />
             Discard
           </Button>
-          
+
           <div className="flex items-center gap-3">
-            <Button
-              variant="secondary"
-              onClick={handleSave}
-              disabled={saving}
-            >
+            <Button variant="secondary" onClick={handleSave} disabled={saving}>
               <Save className="h-4 w-4 mr-2" />
               {saving ? 'Saving...' : 'Save Draft'}
             </Button>
-            
-            <Button
-              onClick={handlePublish}
-              className="bg-accent hover:bg-accent/90"
-            >
+
+            <Button onClick={handlePublish} className="bg-accent hover:bg-accent/90">
               <Check className="h-4 w-4 mr-2" />
               Publish
             </Button>

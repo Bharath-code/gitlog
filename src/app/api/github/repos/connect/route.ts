@@ -15,19 +15,16 @@ export async function POST(req: Request) {
     const { repoId, name, private: isPrivate } = await req.json();
 
     if (!repoId || !name) {
-      return NextResponse.json(
-        { error: 'Repository ID and name are required' },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: 'Repository ID and name are required' }, { status: 400 });
     }
 
     // Check plan limits for connected repos
-    const plan = await kv.get<'free' | 'pro'>(`user:${user.id}:plan`) || 'free';
-    
+    const plan = (await kv.get<'free' | 'pro'>(`user:${user.id}:plan`)) || 'free';
+
     if (plan === 'free') {
       const connectedRepos = await getConnectedRepos(user.id);
       const currentRepoCount = connectedRepos.length;
-      
+
       if (currentRepoCount >= pricing.free.connectedRepos) {
         return NextResponse.json(
           {
@@ -67,13 +64,10 @@ export async function POST(req: Request) {
     return NextResponse.json({
       success: true,
       repo,
-      message: `Successfully connected ${name}`
+      message: `Successfully connected ${name}`,
     });
   } catch (error) {
     console.error('Repo connection error:', error);
-    return NextResponse.json(
-      { error: 'Failed to connect repository' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to connect repository' }, { status: 500 });
   }
 }

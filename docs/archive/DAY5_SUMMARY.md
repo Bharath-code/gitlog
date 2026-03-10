@@ -13,6 +13,7 @@
 **File:** `src/shared/components/common/publish-modal.tsx`
 
 **Features:**
+
 - Beautiful modal with backdrop blur
 - Draft preview (title, category, AI rewrite snippet)
 - Publishing state with loading indicator
@@ -20,6 +21,7 @@
 - Info box explaining what happens after publish
 
 **UI:**
+
 ```
 ┌─────────────────────────────────────┐
 │         [GitMerge Icon]             │
@@ -45,6 +47,7 @@
 **File:** `src/shared/components/common/toast.tsx`
 
 **Features:**
+
 - Context-based toast provider
 - 4 toast types: success, error, info, warning
 - Auto-dismiss after 5 seconds
@@ -53,6 +56,7 @@
 - Slide-in animation from right
 
 **Usage:**
+
 ```typescript
 const { success, error, info, warning } = useToast();
 
@@ -80,7 +84,9 @@ error('Failed to publish', 'Please try again.');
 **Components:**
 
 #### **SoftwareApplicationJsonLd**
+
 For the main GitLog landing page
+
 ```json
 {
   "@type": "SoftwareApplication",
@@ -93,7 +99,9 @@ For the main GitLog landing page
 ```
 
 #### **ChangelogJsonLd**
+
 For public changelog pages
+
 ```json
 {
   "@type": "WebPage",
@@ -112,7 +120,9 @@ For public changelog pages
 ```
 
 #### **BreadcrumbJsonLd**
+
 For breadcrumb navigation
+
 ```json
 {
   "@type": "BreadcrumbList",
@@ -124,7 +134,9 @@ For breadcrumb navigation
 ```
 
 #### **OrganizationJsonLd**
+
 For organization info
+
 ```json
 {
   "@type": "Organization",
@@ -142,12 +154,14 @@ For organization info
 **File:** `src/app/sitemap.ts`
 
 **Generated URLs:**
+
 - `/` (Homepage)
 - `/sign-in`
 - `/sign-up`
 - Dynamic changelog pages (in production)
 
 **Metadata:**
+
 ```typescript
 {
   url: 'https://gitlog.app',
@@ -164,6 +178,7 @@ For organization info
 **File:** `src/app/robots.ts`
 
 **Rules:**
+
 ```typescript
 {
   userAgent: '*',
@@ -180,6 +195,7 @@ For organization info
 ```
 
 **Sitemap reference:**
+
 ```
 Sitemap: https://gitlog.app/sitemap.xml
 ```
@@ -191,12 +207,14 @@ Sitemap: https://gitlog.app/sitemap.xml
 **File:** `src/app/(public)/changelog/[username]/[repo]/page.tsx`
 
 **Changes:**
+
 - Added `ChangelogJsonLd` component
 - Added `BreadcrumbJsonLd` component
 - Generates structured data for each entry
 - Improves SEO for Google Rich Results
 
 **Structured Data Output:**
+
 ```json
 {
   "@context": "https://schema.org",
@@ -221,6 +239,7 @@ Sitemap: https://gitlog.app/sitemap.xml
 ## 🎨 UI Components
 
 ### **Publish Modal**
+
 - Centered modal
 - Backdrop blur
 - Draft preview
@@ -228,6 +247,7 @@ Sitemap: https://gitlog.app/sitemap.xml
 - Clear actions
 
 ### **Toast Notifications**
+
 - Bottom-right positioning
 - Stacked display
 - Auto-dismiss (5s)
@@ -239,11 +259,13 @@ Sitemap: https://gitlog.app/sitemap.xml
 ## 🔍 SEO Improvements
 
 ### **Before Day 5:**
+
 - Basic meta tags
 - Title and description
 - Open Graph tags
 
 ### **After Day 5:**
+
 - ✅ JSON-LD structured data
 - ✅ Breadcrumb markup
 - ✅ Changelog entry markup
@@ -256,23 +278,24 @@ Sitemap: https://gitlog.app/sitemap.xml
 
 ## 📊 SEO Checklist
 
-| Feature | Status | Impact |
-| :---- | :---- | :---- |
-| **Meta Tags** | ✅ | High |
-| **Open Graph** | ✅ | High |
-| **Twitter Cards** | ✅ | Medium |
-| **JSON-LD** | ✅ | High |
-| **Breadcrumbs** | ✅ | Medium |
-| **Sitemap** | ✅ | High |
-| **Robots.txt** | ✅ | High |
+| Feature            | Status     | Impact |
+| :----------------- | :--------- | :----- |
+| **Meta Tags**      | ✅         | High   |
+| **Open Graph**     | ✅         | High   |
+| **Twitter Cards**  | ✅         | Medium |
+| **JSON-LD**        | ✅         | High   |
+| **Breadcrumbs**    | ✅         | Medium |
+| **Sitemap**        | ✅         | High   |
+| **Robots.txt**     | ✅         | High   |
 | **Canonical URLs** | ⏳ Pending | Medium |
-| **OG Images** | ⏳ Pending | Medium |
+| **OG Images**      | ⏳ Pending | Medium |
 
 ---
 
 ## 🧪 Testing Checklist
 
 ### **Publish Modal**
+
 - [ ] Click publish on draft
 - [ ] Verify modal appears
 - [ ] Check draft preview
@@ -282,6 +305,7 @@ Sitemap: https://gitlog.app/sitemap.xml
 - [ ] Check success toast
 
 ### **Toast Notifications**
+
 - [ ] Trigger success toast
 - [ ] Trigger error toast
 - [ ] Trigger info toast
@@ -291,6 +315,7 @@ Sitemap: https://gitlog.app/sitemap.xml
 - [ ] Test multiple toasts stacked
 
 ### **SEO**
+
 - [ ] View page source
 - [ ] Verify JSON-LD in `<head>`
 - [ ] Check sitemap.xml at `/sitemap.xml`
@@ -303,6 +328,7 @@ Sitemap: https://gitlog.app/sitemap.xml
 ## 📝 Integration Guide
 
 ### **Using Publish Modal**
+
 ```typescript
 import { PublishModal } from '@/shared/components/common/publish-modal';
 import { useToast } from '@/shared/components/common/toast';
@@ -315,7 +341,7 @@ const handlePublish = async () => {
     method: 'POST',
     body: JSON.stringify({ entryId }),
   });
-  
+
   if (res.ok) {
     success('Published!', 'Entry is now live on changelog.');
     router.push('/dashboard/published');
@@ -336,6 +362,7 @@ return (
 ```
 
 ### **Using Toast**
+
 ```typescript
 import { ToastProvider, useToast } from '@/shared/components/common/toast';
 
@@ -359,11 +386,11 @@ error('Failed', 'Something went wrong.');
 
 ## 📈 Progress Update
 
-| Phase | Progress | Status |
-| :---- | :---- | :---- |
-| **Foundation (Day 1-2)** | 100% | ✅ Complete |
-| **Core Features (Day 3-5)** | 100% | ✅ Complete |
-| **Payments + Polish (Day 6-8)** | 0% | ⏳ Pending |
+| Phase                           | Progress | Status      |
+| :------------------------------ | :------- | :---------- |
+| **Foundation (Day 1-2)**        | 100%     | ✅ Complete |
+| **Core Features (Day 3-5)**     | 100%     | ✅ Complete |
+| **Payments + Polish (Day 6-8)** | 0%       | ⏳ Pending  |
 
 **Overall Progress:** 75% (MVP core complete!)
 
@@ -372,6 +399,7 @@ error('Failed', 'Something went wrong.');
 ## 🎯 Next Steps (Day 6)
 
 ### **DodoPayment Integration**
+
 - [ ] Set up DodoPayment account
 - [ ] Create products (Free/Pro)
 - [ ] Implement checkout flow
@@ -390,11 +418,13 @@ _None yet (fresh implementation)_
 ## 📊 Performance
 
 ### **SEO Impact**
+
 - **Before:** Basic meta tags only
 - **After:** Full structured data + sitemaps
 - **Expected:** Better search rankings, rich results
 
 ### **Page Speed**
+
 - JSON-LD adds ~1-2KB per page
 - No impact on render performance
 - Async loading (non-blocking)
@@ -404,11 +434,13 @@ _None yet (fresh implementation)_
 ## 🎨 Design System Updates
 
 ### **New Components**
+
 - `PublishModal` - Confirmation dialog
 - `Toast` - Notification system
 - `JsonLd` - SEO structured data
 
 ### **New Hooks**
+
 - `useToast()` - Toast context hook
 
 ---
@@ -419,4 +451,4 @@ _None yet (fresh implementation)_
 
 ---
 
-*Last Updated: 2026-03-08*
+_Last Updated: 2026-03-08_

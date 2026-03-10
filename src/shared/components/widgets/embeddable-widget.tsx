@@ -18,6 +18,8 @@ interface WidgetConfig {
     showCategory: boolean;
     showNewBadge: boolean;
   };
+  userId?: string;
+  repoId?: string;
 }
 
 interface ChangelogEntry {
@@ -45,7 +47,7 @@ export function EmbeddableWidget({ widgetId, apiUrl = '/api/widget' }: Embeddabl
     async function fetchWidgetData() {
       try {
         const response = await fetch(`${apiUrl}/${widgetId}`);
-        
+
         if (!response.ok) {
           throw new Error('Failed to load widget');
         }
@@ -103,8 +105,12 @@ export function EmbeddableWidget({ widgetId, apiUrl = '/api/widget' }: Embeddabl
   return (
     <div className={cn('fixed z-50', positionClasses[config.position])}>
       {/* Widget Container */}
-      <div className={cn('bg-surface-elevated border border-line shadow-2xl rounded-lg overflow-hidden', sizeClasses[config.size])}>
-        
+      <div
+        className={cn(
+          'bg-surface-elevated border border-line shadow-2xl rounded-lg overflow-hidden',
+          sizeClasses[config.size]
+        )}
+      >
         {/* Widget Header */}
         <div
           className="flex items-center justify-between px-4 py-3 cursor-pointer border-b border-line"
@@ -123,11 +129,7 @@ export function EmbeddableWidget({ widgetId, apiUrl = '/api/widget' }: Embeddabl
             )}
           </div>
           <button className="text-muted hover:text-foreground transition-colors">
-            {isOpen ? (
-              <ChevronDown className="h-4 w-4" />
-            ) : (
-              <ChevronUp className="h-4 w-4" />
-            )}
+            {isOpen ? <ChevronDown className="h-4 w-4" /> : <ChevronUp className="h-4 w-4" />}
           </button>
         </div>
 
@@ -135,9 +137,7 @@ export function EmbeddableWidget({ widgetId, apiUrl = '/api/widget' }: Embeddabl
         {isOpen && (
           <div className="max-h-96 overflow-y-auto">
             {entries.length === 0 ? (
-              <div className="p-4 text-center text-muted text-sm">
-                No recent updates
-              </div>
+              <div className="p-4 text-center text-muted text-sm">No recent updates</div>
             ) : (
               <div className="divide-y divide-line">
                 {entries.map((entry) => (
@@ -159,7 +159,12 @@ export function EmbeddableWidget({ widgetId, apiUrl = '/api/widget' }: Embeddabl
                     <div className="space-y-2">
                       {/* Category Badge */}
                       {config.options.showCategory && (
-                        <span className={cn('inline-block px-2 py-0.5 rounded text-xs font-medium border', categoryColors[entry.category])}>
+                        <span
+                          className={cn(
+                            'inline-block px-2 py-0.5 rounded text-xs font-medium border',
+                            categoryColors[entry.category]
+                          )}
+                        >
                           {entry.category}
                         </span>
                       )}

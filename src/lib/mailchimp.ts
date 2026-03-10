@@ -48,24 +48,17 @@ export async function addSubscriber(subscriber: Subscriber) {
   }
 }
 
-export async function updateSubscriberStatus(
-  email: string,
-  status: 'subscribed' | 'unsubscribed'
-) {
+export async function updateSubscriberStatus(email: string, status: 'subscribed' | 'unsubscribed') {
   try {
     if (!apiKey || !audienceId) {
       throw new Error('Mailchimp not configured');
     }
 
     const subscriberHash = md5(email.toLowerCase());
-    
-    const response = await mailchimp.lists.updateListMember(
-      audienceId,
-      subscriberHash,
-      {
-        status,
-      }
-    );
+
+    const response = await mailchimp.lists.updateListMember(audienceId, subscriberHash, {
+      status,
+    });
 
     return {
       success: true,
@@ -88,7 +81,7 @@ export async function getSubscriberCount() {
     });
 
     return {
-      count: response.total_items,
+      count: (response as any).total_items,
     };
   } catch (error) {
     console.error('Error getting subscriber count:', error);
@@ -96,11 +89,7 @@ export async function getSubscriberCount() {
   }
 }
 
-export async function createCampaign(
-  subject: string,
-  htmlContent: string,
-  previewText?: string
-) {
+export async function createCampaign(subject: string, htmlContent: string, previewText?: string) {
   try {
     if (!apiKey || !audienceId) {
       throw new Error('Mailchimp not configured');
@@ -121,13 +110,13 @@ export async function createCampaign(
     });
 
     // Set content
-    await mailchimp.campaigns.setContent(campaign.id, {
+    await mailchimp.campaigns.setContent((campaign as any).id, {
       html: htmlContent,
     });
 
     return {
       success: true,
-      campaignId: campaign.id,
+      campaignId: (campaign as any).id,
     };
   } catch (error) {
     console.error('Error creating campaign:', error);

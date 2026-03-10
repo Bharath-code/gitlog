@@ -4,7 +4,7 @@ import { useState, ReactNode } from 'react';
 import { cn } from '@/shared/lib/utils';
 
 interface TooltipProps {
-  content: string;
+  content: ReactNode;
   children: ReactNode;
   side?: 'top' | 'bottom' | 'left' | 'right';
   className?: string;
@@ -27,7 +27,7 @@ export function Tooltip({ content, children, side = 'top', className }: TooltipP
       onMouseLeave={() => setIsVisible(false)}
     >
       {children}
-      
+
       {isVisible && (
         <div
           className={cn(
@@ -37,7 +37,7 @@ export function Tooltip({ content, children, side = 'top', className }: TooltipP
           )}
         >
           {content}
-          
+
           {/* Arrow */}
           {side === 'top' && (
             <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-1 border-4 border-transparent border-t-surface-dark" />

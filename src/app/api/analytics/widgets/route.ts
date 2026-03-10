@@ -32,8 +32,8 @@ export async function GET(request: NextRequest) {
       const config = await kv.get<any>(key);
       if (config) {
         // Get impressions and clicks from separate keys
-        const impressions = await kv.get<number>(`widget:impressions:${config.id}`) || 0;
-        const clicks = await kv.get<number>(`widget:clicks:${config.id}`) || 0;
+        const impressions = (await kv.get<number>(`widget:impressions:${config.id}`)) || 0;
+        const clicks = (await kv.get<number>(`widget:clicks:${config.id}`)) || 0;
 
         // Calculate CTR
         const ctr = impressions > 0 ? (clicks / impressions) * 100 : 0;
@@ -61,10 +61,7 @@ export async function GET(request: NextRequest) {
     });
   } catch (error) {
     console.error('Error fetching widget analytics:', error);
-    return NextResponse.json(
-      { error: 'Failed to fetch widget analytics' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to fetch widget analytics' }, { status: 500 });
   }
 }
 
@@ -79,8 +76,8 @@ async function getDailyStats(widgetId: string, period: string) {
     const dateStr = date.toISOString().split('T')[0];
 
     // Get stats for this date (in production, you'd store daily stats)
-    const impressions = await kv.get<number>(`widget:impressions:${widgetId}:${dateStr}`) || 0;
-    const clicks = await kv.get<number>(`widget:clicks:${widgetId}:${dateStr}`) || 0;
+    const impressions = (await kv.get<number>(`widget:impressions:${widgetId}:${dateStr}`)) || 0;
+    const clicks = (await kv.get<number>(`widget:clicks:${widgetId}:${dateStr}`)) || 0;
 
     stats.push({
       date: dateStr,

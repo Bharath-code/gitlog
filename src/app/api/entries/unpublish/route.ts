@@ -11,19 +11,16 @@ export async function POST(req: Request) {
     }
 
     const { entryId } = await req.json();
-    
+
     if (!entryId) {
       return NextResponse.json({ error: 'Entry ID required' }, { status: 400 });
     }
 
     await unpublishEntry(entryId);
-    
+
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error('Unpublish error:', error);
-    return NextResponse.json(
-      { error: 'Failed to unpublish entry' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to unpublish entry' }, { status: 500 });
   }
 }

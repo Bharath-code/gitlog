@@ -5,17 +5,17 @@ import { Card } from '@/shared/components/ui/card';
 import { Button } from '@/shared/components/ui/button';
 import { Badge } from '@/shared/components/ui/badge';
 import { SectionHeading } from '@/shared/components/ui/section-heading';
-import { 
-  BarChart3, 
-  TrendingUp, 
-  MousePointerClick, 
-  Eye, 
+import {
+  BarChart3,
+  TrendingUp,
+  MousePointerClick,
+  Eye,
   Calendar,
   ArrowUpRight,
   ArrowDownRight,
   ExternalLink,
   Copy,
-  Check
+  Check,
 } from 'lucide-react';
 import { useToast } from '@/shared/hooks/use-toast';
 import { cn } from '@/shared/lib/utils';
@@ -93,9 +93,10 @@ export default function WidgetAnalyticsPage() {
 
   const totalImpressions = widgets.reduce((sum, w) => sum + w.impressions, 0);
   const totalClicks = widgets.reduce((sum, w) => sum + w.clicks, 0);
-  const averageCTR = widgets.length > 0 
-    ? (widgets.reduce((sum, w) => sum + w.ctr, 0) / widgets.length).toFixed(1)
-    : '0';
+  const averageCTR =
+    widgets.length > 0
+      ? (widgets.reduce((sum, w) => sum + w.ctr, 0) / widgets.length).toFixed(1)
+      : '0';
 
   if (loading) {
     return (
@@ -117,7 +118,7 @@ export default function WidgetAnalyticsPage() {
             Track impressions, clicks, and engagement for your widgets
           </p>
         </div>
-        <Badge variant="accent">Phase 2</Badge>
+        <Badge variant="default">Phase 2</Badge>
       </div>
 
       {/* Overview Stats */}
@@ -244,9 +245,7 @@ export default function WidgetAnalyticsPage() {
       <Card className="p-6">
         <div className="mb-6">
           <h2 className="text-xl font-semibold">Top Performing Widgets</h2>
-          <p className="text-sm text-muted mt-1">
-            Ranked by click-through rate
-          </p>
+          <p className="text-sm text-muted mt-1">Ranked by click-through rate</p>
         </div>
 
         <div className="space-y-4">
@@ -261,16 +260,19 @@ export default function WidgetAnalyticsPage() {
                   index === 0 ? 'bg-accent/10 border-accent/20' : 'bg-surface-highlight border-line'
                 )}
               >
-                <div className={cn(
-                  'flex h-10 w-10 items-center justify-center rounded-full font-bold',
-                  index === 0 ? 'bg-accent text-white' : 'bg-muted text-muted-foreground'
-                )}>
+                <div
+                  className={cn(
+                    'flex h-10 w-10 items-center justify-center rounded-full font-bold',
+                    index === 0 ? 'bg-accent text-white' : 'bg-muted text-muted-foreground'
+                  )}
+                >
                   {index + 1}
                 </div>
                 <div className="flex-1">
                   <p className="font-medium">{widget.repoName}</p>
                   <p className="text-sm text-muted">
-                    {widget.impressions.toLocaleString()} impressions • {widget.clicks.toLocaleString()} clicks
+                    {widget.impressions.toLocaleString()} impressions •{' '}
+                    {widget.clicks.toLocaleString()} clicks
                   </p>
                 </div>
                 <div className="text-right">
@@ -326,21 +328,13 @@ function WidgetRow({
           <div>
             <div className="flex items-center gap-2">
               <h3 className="font-semibold">{widget.repoName}</h3>
-              <Button
-                onClick={onCopyWidgetId}
-                variant="ghost"
-                size="sm"
-                className="h-6 px-2"
-              >
-                {copied ? (
-                  <Check className="h-3 w-3 text-success" />
-                ) : (
-                  <Copy className="h-3 w-3" />
-                )}
+              <Button onClick={onCopyWidgetId} variant="ghost" size="sm" className="h-6 px-2">
+                {copied ? <Check className="h-3 w-3 text-success" /> : <Copy className="h-3 w-3" />}
               </Button>
             </div>
             <p className="text-sm text-muted mt-1">
-              Widget ID: <code className="text-xs bg-surface px-2 py-0.5 rounded">{widget.widgetId}</code>
+              Widget ID:{' '}
+              <code className="text-xs bg-surface px-2 py-0.5 rounded">{widget.widgetId}</code>
             </p>
           </div>
         </div>
@@ -356,10 +350,12 @@ function WidgetRow({
           </div>
           <div className="text-right">
             <p className="text-sm text-muted">CTR</p>
-            <p className={cn(
-              'text-xl font-bold',
-              widget.ctr >= 15 ? 'text-success' : widget.ctr >= 10 ? 'text-accent' : 'text-muted'
-            )}>
+            <p
+              className={cn(
+                'text-xl font-bold',
+                widget.ctr >= 15 ? 'text-success' : widget.ctr >= 10 ? 'text-accent' : 'text-muted'
+              )}
+            >
               {widget.ctr}%
             </p>
           </div>

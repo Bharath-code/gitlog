@@ -17,15 +17,19 @@ export async function POST(req: Request) {
     }
 
     // Check plan and usage limits
-    const plan = await kv.get<'free' | 'pro'>(`user:${user.id}:plan`) || 'free';
-    
+    const plan = (await kv.get<'free' | 'pro'>(`user:${user.id}:plan`)) || 'free';
+
     if (plan === 'free') {
       const month = new Date().toISOString().slice(0, 7);
-      const usage = await kv.get<{ aiRewrites: number }>(`usage:${user.id}:${month}`) || { aiRewrites: 0 };
-      
+      const usage = (await kv.get<{ aiRewrites: number }>(`usage:${user.id}:${month}`)) || {
+        aiRewrites: 0,
+      };
+
       if (usage.aiRewrites >= pricing.free.aiRewritesPerMonth) {
         return NextResponse.json(
-          { error: `Free plan limit reached (${pricing.free.aiRewritesPerMonth} rewrites/month). Upgrade to Pro for unlimited.` },
+          {
+            error: `Free plan limit reached (${pricing.free.aiRewritesPerMonth} rewrites/month). Upgrade to Pro for unlimited.`,
+          },
           { status: 403 }
         );
       }
@@ -47,7 +51,7 @@ export async function POST(req: Request) {
       title: entry.title,
       body: entry.body,
       labels: entry.labels || [],
-      tone: tone as Tone || 'casual',
+      tone: (tone as Tone) || 'casual',
     });
 
     // Update entry with rewrite
@@ -56,15 +60,12 @@ export async function POST(req: Request) {
     // Increment usage
     const month = new Date().toISOString().slice(0, 7);
     const usageKey = `usage:${user.id}:${month}`;
-    const currentUsage = await kv.get<{ aiRewrites: number }>(usageKey) || { aiRewrites: 0 };
+    const currentUsage = (await kv.get<{ aiRewrites: number }>(usageKey)) || { aiRewrites: 0 };
     await kv.set(usageKey, { aiRewrites: currentUsage.aiRewrites + 1 });
 
     return NextResponse.json({ aiRewrite });
   } catch (error) {
     console.error('AI rewrite error:', error);
-    return NextResponse.json(
-      { error: 'Failed to generate AI rewrite' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to generate AI rewrite' }, { status: 500 });
   }
 }

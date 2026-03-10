@@ -7,7 +7,7 @@ import { generateLinkedInPost } from '@/features/social/linkedin-post-generator'
 export async function POST(request: NextRequest) {
   try {
     const { userId } = await auth();
-    
+
     if (!userId) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
@@ -16,10 +16,7 @@ export async function POST(request: NextRequest) {
     const { entryId, title, description, category, platform, tone } = body;
 
     if (!entryId || !title || !platform) {
-      return NextResponse.json(
-        { error: 'Missing required fields' },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
     }
 
     let generatedContent;
@@ -32,16 +29,9 @@ export async function POST(request: NextRequest) {
         tone || 'professional'
       );
     } else if (platform === 'linkedin') {
-      generatedContent = await generateLinkedInPost(
-        title,
-        description || '',
-        category || 'Other'
-      );
+      generatedContent = await generateLinkedInPost(title, description || '', category || 'Other');
     } else {
-      return NextResponse.json(
-        { error: 'Invalid platform' },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: 'Invalid platform' }, { status: 400 });
     }
 
     // Save to KV
@@ -61,17 +51,14 @@ export async function POST(request: NextRequest) {
     });
   } catch (error) {
     console.error('Error generating social post:', error);
-    return NextResponse.json(
-      { error: 'Failed to generate social post' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to generate social post' }, { status: 500 });
   }
 }
 
 export async function GET(request: NextRequest) {
   try {
     const { userId } = await auth();
-    
+
     if (!userId) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
@@ -80,10 +67,7 @@ export async function GET(request: NextRequest) {
     const entryId = searchParams.get('entryId');
 
     if (!entryId) {
-      return NextResponse.json(
-        { error: 'Entry ID is required' },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: 'Entry ID is required' }, { status: 400 });
     }
 
     // Get Twitter draft
@@ -101,9 +85,6 @@ export async function GET(request: NextRequest) {
     });
   } catch (error) {
     console.error('Error fetching social posts:', error);
-    return NextResponse.json(
-      { error: 'Failed to fetch social posts' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to fetch social posts' }, { status: 500 });
   }
 }

@@ -14,9 +14,6 @@ export async function GET() {
     return NextResponse.json({ customerId: customerId || null });
   } catch (error) {
     console.error('Customer fetch error:', error);
-    return NextResponse.json(
-      { error: 'Failed to fetch customer info' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to fetch customer info' }, { status: 500 });
   }
 }

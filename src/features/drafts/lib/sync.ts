@@ -12,9 +12,12 @@ interface PullRequestPayload {
     user: {
       login: string;
     } | null;
-    labels: Array<{
-      name: string;
-    } | string>;
+    labels: Array<
+      | {
+          name: string;
+        }
+      | string
+    >;
     base: {
       repo: {
         full_name: string;
@@ -41,7 +44,7 @@ export async function handleMergedPR(data: PullRequestPayload) {
 
   // Find all users connected to this repo
   const userConnections = await findUsersForRepo(repoName);
-  
+
   if (userConnections.length === 0) {
     console.log('No users connected to repo:', repoName);
     return;
@@ -57,7 +60,7 @@ async function findUsersForRepo(repoName: string): Promise<string[]> {
   // Find all users who have this repo connected
   const pattern = `repo:${repoName}:users:*`;
   const keys = await kv.keys(pattern);
-  
+
   const users: string[] = [];
   for (const key of keys) {
     // Extract userId from key: repo:owner/repo:users:userId
@@ -67,7 +70,7 @@ async function findUsersForRepo(repoName: string): Promise<string[]> {
       users.push(userId);
     }
   }
-  
+
   return users;
 }
 
@@ -104,7 +107,7 @@ async function processPRForUser(
     prUrl: pr.html_url,
     author: pr.user?.login || 'unknown',
     aiRewrite: null,
-    labels: pr.labels.map(l => typeof l === 'string' ? l : l.name),
+    labels: pr.labels.map((l) => (typeof l === 'string' ? l : l.name)),
     createdAt: new Date().toISOString(),
   };
 
@@ -122,18 +125,15 @@ async function processPRForUser(
   console.log('Created draft entry:', entryId);
 }
 
-async function incrementMonthlyUsage(
-  userId: string,
-  type: 'entriesPublished' | 'aiRewrites'
-) {
+async function incrementMonthlyUsage(userId: string, type: 'entriesPublished' | 'aiRewrites') {
   const month = new Date().toISOString().slice(0, 7); // YYYY-MM
   const key = `usage:${userId}:${month}`;
-  
-  const current = await kv.get<{ entriesPublished: number; aiRewrites: number }>(key) || {
+
+  const current = (await kv.get<{ entriesPublished: number; aiRewrites: number }>(key)) || {
     entriesPublished: 0,
     aiRewrites: 0,
   };
-  
+
   await kv.set(key, {
     ...current,
     [type]: current[type] + 1,
@@ -144,14 +144,14 @@ export async function syncManualPRs(userId: string, repoName: string, githubToke
   // This will be called from the manual sync button
   // Fetch recent merged PRs from GitHub
   const [owner, repo] = repoName.split('/');
-  
+
   try {
     const response = await fetch(
       `https://api.github.com/repos/${owner}/${repo}/pulls?state=closed&per_page=50`,
       {
         headers: {
-          'Authorization': `token ${githubToken}`,
-          'Accept': 'application/vnd.github.v3+json',
+          Authorization: `token ${githubToken}`,
+          Accept: 'application/vnd.github.v3+json',
         },
       }
     );
@@ -168,7 +168,7 @@ export async function syncManualPRs(userId: string, repoName: string, githubToke
       // Check if already exists
       const entryId = `entry:${userId}:${repoName}:${pr.id}`;
       const exists = await kv.get(entryId);
-      
+
       if (!exists) {
         await processPRForUser(userId, repoName, {
           id: pr.id,
@@ -179,7 +179,7 @@ export async function syncManualPRs(userId: string, repoName: string, githubToke
           html_url: pr.html_url,
           user: { login: pr.user?.login || 'unknown' },
           labels: pr.labels || [],
-          base: { repo: { full_name: repoName } },
+          base: { repo: { full_name: repoName, owner: { login: owner } } },
           head: { sha: pr.head.sha },
         });
         synced++;

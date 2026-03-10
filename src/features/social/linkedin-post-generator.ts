@@ -58,13 +58,13 @@ Generate a LinkedIn post as JSON:
     }
 
     const parsed = JSON.parse(jsonMatch[0]);
-    
+
     // Validate post length
     const postLength = parsed.post?.length || 0;
     if (postLength < 800 || postLength > 1500) {
       console.warn(`LinkedIn post length (${postLength}) outside optimal range`);
     }
-    
+
     return {
       post: parsed.post || '',
       hashtags: parsed.hashtags || [],

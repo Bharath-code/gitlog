@@ -14,9 +14,9 @@ export default function BestPracticesPage() {
     {
       icon: Sparkles,
       title: 'Keep it concise',
-      description: '2-3 sentences maximum. Users scan changelogs, they don\'t read them.',
+      description: "2-3 sentences maximum. Users scan changelogs, they don't read them.",
       do: 'Users can now switch between light and dark themes with one click.',
-      dont: 'We\'ve added a comprehensive theming system that allows users to toggle...',
+      dont: "We've added a comprehensive theming system that allows users to toggle...",
     },
     {
       icon: Check,
@@ -59,7 +59,7 @@ export default function BestPracticesPage() {
                   <div className="flex-1 space-y-3">
                     <h3 className="text-xl font-semibold">{tip.title}</h3>
                     <p className="text-muted">{tip.description}</p>
-                    
+
                     <div className="grid gap-3 md:grid-cols-2">
                       <div className="p-4 rounded-lg bg-success/10 border border-success/20">
                         <div className="flex items-center gap-2 mb-2">
@@ -68,7 +68,7 @@ export default function BestPracticesPage() {
                         </div>
                         <p className="text-sm">{tip.do}</p>
                       </div>
-                      
+
                       <div className="p-4 rounded-lg bg-red-500/10 border border-red-500/20">
                         <div className="flex items-center gap-2 mb-2">
                           <X className="h-4 w-4 text-red-500" />
@@ -91,22 +91,23 @@ export default function BestPracticesPage() {
             <p className="text-muted">
               The best changelog is a consistent changelog. Here are our recommendations:
             </p>
-            
+
             <div className="grid gap-4 md:grid-cols-3">
               <div className="p-4 rounded-lg bg-surface-highlight">
                 <h3 className="font-semibold mb-2">Weekly</h3>
                 <p className="text-sm text-muted">
-                  Ideal for actively developed products. Keeps users informed without overwhelming them.
+                  Ideal for actively developed products. Keeps users informed without overwhelming
+                  them.
                 </p>
               </div>
-              
+
               <div className="p-4 rounded-lg bg-surface-highlight">
                 <h3 className="font-semibold mb-2">Bi-weekly</h3>
                 <p className="text-sm text-muted">
                   Good balance for most products. Batch smaller updates together.
                 </p>
               </div>
-              
+
               <div className="p-4 rounded-lg bg-surface-highlight">
                 <h3 className="font-semibold mb-2">Monthly</h3>
                 <p className="text-sm text-muted">
@@ -123,7 +124,7 @@ export default function BestPracticesPage() {
           <p className="text-muted mb-6">
             Categories help users quickly scan for changes that matter to them.
           </p>
-          
+
           <div className="space-y-3">
             <div className="flex items-start gap-3 p-4 rounded-lg border border-line bg-surface">
               <Badge className="bg-accent/10 text-accent">New</Badge>
@@ -132,7 +133,7 @@ export default function BestPracticesPage() {
                 <p className="text-sm text-muted">Major new functionality that users will notice</p>
               </div>
             </div>
-            
+
             <div className="flex items-start gap-3 p-4 rounded-lg border border-line bg-surface">
               <Badge className="bg-success/10 text-success">Fixed</Badge>
               <div>
@@ -140,7 +141,7 @@ export default function BestPracticesPage() {
                 <p className="text-sm text-muted">Issues that were resolved</p>
               </div>
             </div>
-            
+
             <div className="flex items-start gap-3 p-4 rounded-lg border border-line bg-surface">
               <Badge className="bg-blue/10 text-blue">Improved</Badge>
               <div>
@@ -148,7 +149,7 @@ export default function BestPracticesPage() {
                 <p className="text-sm text-muted">Enhancements to existing features</p>
               </div>
             </div>
-            
+
             <div className="flex items-start gap-3 p-4 rounded-lg border border-line bg-surface">
               <Badge>Other</Badge>
               <div>
@@ -162,24 +163,24 @@ export default function BestPracticesPage() {
         {/* Examples */}
         <Card className="p-6">
           <h2 className="text-2xl font-semibold mb-4">Good Changelog Examples</h2>
-          
+
           <div className="space-y-4">
             <div className="p-4 rounded-lg bg-surface-highlight">
               <h3 className="font-semibold mb-2">🎉 New: Added weekly digest controls</h3>
               <p className="text-sm text-muted">
-                Users can now choose to receive email digests daily, weekly, or pause them entirely. 
+                Users can now choose to receive email digests daily, weekly, or pause them entirely.
                 Settings are saved automatically and apply to all future emails.
               </p>
             </div>
-            
+
             <div className="p-4 rounded-lg bg-surface-highlight">
               <h3 className="font-semibold mb-2">🐛 Fixed: Email digest not sending</h3>
               <p className="text-sm text-muted">
-                Fixed a bug where users with daily digest preferences weren't receiving emails. 
-                All pending digests have been sent.
+                Fixed a bug where users with daily digest preferences weren't receiving emails. All
+                pending digests have been sent.
               </p>
             </div>
-            
+
             <div className="p-4 rounded-lg bg-surface-highlight">
               <h3 className="font-semibold mb-2">⚡ Improved: Faster dashboard loading</h3>
               <p className="text-sm text-muted">

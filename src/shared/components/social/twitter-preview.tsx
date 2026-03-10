@@ -106,7 +106,7 @@ export function TwitterPostPreview({
       })}
 
       {/* Character Count Warning */}
-      {tweets.some(tweet => getCharCount(tweet) > 280) && (
+      {tweets.some((tweet) => getCharCount(tweet) > 280) && (
         <div className="p-3 rounded-lg bg-red-500/10 border border-red-500/20 text-red-500 text-sm">
           ⚠️ Some tweets exceed 280 characters. Please edit to shorten.
         </div>

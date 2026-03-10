@@ -21,7 +21,7 @@ export default function WidgetPage() {
     try {
       // In production, you would get the actual repoId from connected repos
       const repoId = 'default-repo'; // Replace with actual repo selection
-      
+
       const response = await fetch('/api/widget/generate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -49,11 +49,11 @@ export default function WidgetPage() {
 
   const handleCopy = async () => {
     if (!scriptSnippet) return;
-    
+
     await navigator.clipboard.writeText(scriptSnippet);
     setCopied(true);
     toast.success('Script copied to clipboard!');
-    
+
     setTimeout(() => setCopied(false), 2000);
   };
 
@@ -67,7 +67,7 @@ export default function WidgetPage() {
             Add a "What's New" widget to your website. Shows your latest changelog entries.
           </p>
         </div>
-        <Badge variant="accent">Phase 2</Badge>
+        <Badge variant="default">Phase 2</Badge>
       </div>
 
       {/* Generate Widget */}
@@ -85,7 +85,11 @@ export default function WidgetPage() {
           </p>
 
           {!widgetId ? (
-            <Button onClick={generateWidgetId} disabled={loading} className="bg-accent hover:bg-accent/90">
+            <Button
+              onClick={generateWidgetId}
+              disabled={loading}
+              className="bg-accent hover:bg-accent/90"
+            >
               {loading ? 'Generating...' : 'Generate Widget ID'}
             </Button>
           ) : (
@@ -110,12 +114,7 @@ export default function WidgetPage() {
                 </div>
                 <h2 className="text-xl font-semibold">Embed Script</h2>
               </div>
-              <Button
-                onClick={handleCopy}
-                variant="outline"
-                size="sm"
-                className="gap-2"
-              >
+              <Button onClick={handleCopy} variant="outline" size="sm" className="gap-2">
                 {copied ? (
                   <>
                     <Check className="h-4 w-4" />
@@ -131,13 +130,12 @@ export default function WidgetPage() {
             </div>
 
             <p className="text-muted">
-              Add this script to your website's HTML, right before the closing <code>&lt;/body&gt;</code> tag.
+              Add this script to your website's HTML, right before the closing{' '}
+              <code>&lt;/body&gt;</code> tag.
             </p>
 
             <div className="p-4 rounded-lg bg-surface-highlight border border-line overflow-x-auto">
-              <pre className="text-sm font-mono text-foreground">
-                {scriptSnippet}
-              </pre>
+              <pre className="text-sm font-mono text-foreground">{scriptSnippet}</pre>
             </div>
 
             <div className="mt-4 p-4 rounded-lg bg-blue/10 border border-blue/20">
@@ -145,8 +143,8 @@ export default function WidgetPage() {
               <p className="text-sm text-muted mb-3">
                 Want to see how the widget looks before embedding on your site?
               </p>
-              <a 
-                href="/widget-test.html" 
+              <a
+                href="/widget-test.html"
                 target="_blank"
                 className="inline-flex items-center gap-2 text-sm text-accent hover:underline"
               >
@@ -169,9 +167,7 @@ export default function WidgetPage() {
               <h2 className="text-xl font-semibold">Preview</h2>
             </div>
 
-            <p className="text-muted">
-              See how the widget will look on your website.
-            </p>
+            <p className="text-muted">See how the widget will look on your website.</p>
 
             <div className="p-8 rounded-lg bg-surface-highlight border border-line flex items-center justify-center min-h-[200px]">
               <div className="text-center space-y-2">
@@ -179,9 +175,7 @@ export default function WidgetPage() {
                   <Sparkles className="h-4 w-4" />
                   What's New
                 </div>
-                <p className="text-sm text-muted">
-                  Widget preview will appear here once deployed
-                </p>
+                <p className="text-sm text-muted">Widget preview will appear here once deployed</p>
               </div>
             </div>
           </div>
@@ -189,9 +183,7 @@ export default function WidgetPage() {
       )}
 
       {/* Customization */}
-      {widgetId && (
-        <WidgetCustomizer widgetId={widgetId} repoId={repoId} />
-      )}
+      {widgetId && <WidgetCustomizer widgetId={widgetId} repoId={repoId} />}
 
       {/* Next Steps */}
       {widgetId && (

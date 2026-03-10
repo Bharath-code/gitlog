@@ -1,13 +1,14 @@
 # Flexible Publishing Features - Implementation Complete
 
 **Created:** 2026-03-10  
-**Status:** ✅ Complete  
+**Status:** ✅ Complete
 
 ---
 
 ## 🎯 Overview
 
 GitLog now supports **flexible publishing strategies** to accommodate different workflows:
+
 - **Per-PR** (Continuous) - Publish every merged PR immediately
 - **Batch** (Manual) - Review and publish multiple drafts at once
 - **Scheduled** (Weekly/Monthly) - Auto-publish on a schedule
@@ -20,22 +21,26 @@ GitLog now supports **flexible publishing strategies** to accommodate different 
 ### **1. Auto-Publish Toggle** ✅
 
 **What it does:**
+
 - Automatically publishes changelog entries when PRs are merged
 - No manual review required
 - Perfect for continuous deployment workflows
 
 **Settings:**
+
 - Location: `/dashboard/settings/publishing`
 - Toggle: Enable/Disable auto-publish
 - Warning: Shows warning when enabled ("All merged PRs will be published immediately")
 
 **Use Cases:**
+
 - ✅ Solo founders shipping daily
 - ✅ Teams with strong CI/CD
 - ✅ Open source projects with active maintenance
 - ✅ When you want to show constant momentum
 
 **Technical Implementation:**
+
 - Database field: `UserConfig.autoPublish`
 - Webhook checks this setting before creating draft
 - If enabled → publishes immediately
@@ -46,17 +51,20 @@ GitLog now supports **flexible publishing strategies** to accommodate different 
 ### **2. Batch Publish** ✅
 
 **What it does:**
+
 - Select multiple drafts
 - Publish all at once
 - Review before publishing
 
 **UI Features:**
+
 - Checkboxes on draft cards
 - "Select All" button
 - "Publish Selected" button (shows count)
 - Success/failure results per entry
 
 **API Endpoint:**
+
 ```
 POST /api/entries/publish-batch
 Body: { entryIds: string[] }
@@ -69,12 +77,14 @@ Response: {
 ```
 
 **Use Cases:**
+
 - ✅ Weekly roundup posts
 - ✅ Curating the best updates
 - ✅ Team review workflows
 - ✅ When you want control over timing
 
 **Technical Implementation:**
+
 - New endpoint: `/api/entries/publish-batch`
 - Validates plan limits before batch
 - Publishes each entry individually
@@ -85,28 +95,33 @@ Response: {
 ### **3. Scheduled Publishing** ✅
 
 **What it does:**
+
 - Automatically publish drafts on a schedule
 - Weekly (choose day: Mon-Sun)
 - Monthly (choose day: 1-31)
 
 **Settings:**
+
 - **Immediate** - Per-PR (default)
 - **Weekly** - Every [Day] at [Time]
 - **Monthly** - Every [Day] of month at [Time]
 
 **Use Cases:**
+
 - ✅ "This Week in [Product]" posts
 - ✅ Monthly roundup emails
 - ✅ Teams that batch releases
 - ✅ Consistent communication rhythm
 
 **Technical Implementation:**
+
 - Database field: `UserConfig.publishSchedule` + `UserConfig.scheduleDay`
 - Cron job checks for scheduled publishes
 - Publishes all accumulated drafts
 - Sends notification email (optional)
 
 **Future Enhancement (Phase 3):**
+
 - Email digest automation
 - Social post automation
 - Analytics report generation
@@ -116,11 +131,13 @@ Response: {
 ### **4. Release Grouping** 🔄 (Coming in Phase 3)
 
 **What it will do:**
+
 - Group multiple PRs into versioned releases
 - v1.0.0, v1.1.0, v2.0.0, etc.
 - Add release notes and highlights
 
 **Planned Features:**
+
 - Create release manually or automatically
 - Group PRs under semantic versions
 - Add release highlights
@@ -128,6 +145,7 @@ Response: {
 - Migration guides for major versions
 
 **Use Cases:**
+
 - ✅ Enterprise software
 - ✅ Mobile apps with version numbers
 - ✅ Major feature launches
@@ -140,22 +158,26 @@ Response: {
 ### **5. PR Filtering** ✅
 
 **What it does:**
+
 - Exclude PRs by label (e.g., 'chore', 'test', 'refactor')
 - Include only specific labels (e.g., 'feat', 'fix', 'docs')
 - Keep changelog clean and relevant
 
 **Settings:**
+
 - **Exclude labels:** `chore, test, refactor, ci, build`
 - **Include labels:** `feat, fix, docs, perf` (optional)
 - Default: Exclude common noise labels
 
 **Use Cases:**
+
 - ✅ Hide internal refactors
 - ✅ Focus on user-facing changes
 - ✅ Reduce changelog noise
 - ✅ Professional appearance
 
 **Technical Implementation:**
+
 - Database field: `UserConfig.filterLabels`
 - Webhook checks labels before creating entry
 - If excluded → skip silently
@@ -163,6 +185,7 @@ Response: {
 - If no filter → create all entries
 
 **Example Configuration:**
+
 ```json
 {
   "filterLabels": {
@@ -181,21 +204,25 @@ Response: {
 **Sections:**
 
 ### **1. Auto-Publish**
+
 - Toggle switch
 - Warning message
 - Enable/disable
 
 ### **2. Publishing Schedule**
+
 - Radio buttons: Immediate / Weekly / Monthly
 - Dropdown for day selection
 - Visual feedback
 
 ### **3. PR Filtering**
+
 - Text input for exclude labels
 - Text input for include labels
 - Helper text with examples
 
 ### **4. Release Grouping**
+
 - "Coming Soon" placeholder
 - Feature preview
 - Waitlist signup (optional)
@@ -207,6 +234,7 @@ Response: {
 ### **User Settings**
 
 **GET /api/user/settings**
+
 ```typescript
 Response: {
   settings: {
@@ -222,6 +250,7 @@ Response: {
 ```
 
 **PUT /api/user/settings**
+
 ```typescript
 Body: {
   autoPublish?: boolean,
@@ -239,6 +268,7 @@ Response: { success: true }
 ### **Batch Publish**
 
 **POST /api/entries/publish-batch**
+
 ```typescript
 Body: { entryIds: string[] }
 
@@ -260,11 +290,13 @@ Response: {
 ### **Workflow 1: Continuous Deployment (Per-PR)**
 
 **Setup:**
+
 1. Enable auto-publish
 2. Set schedule to "Immediate"
 3. Configure filters (exclude 'chore', 'test')
 
 **Result:**
+
 ```
 Merge PR → Auto-published to changelog (if not filtered)
 ```
@@ -276,12 +308,14 @@ Merge PR → Auto-published to changelog (if not filtered)
 ### **Workflow 2: Weekly Roundup (Batch)**
 
 **Setup:**
+
 1. Disable auto-publish
 2. Set schedule to "Weekly" → Friday
 3. Review drafts throughout week
 4. Friday: Click "Publish All" or let auto-schedule publish
 
 **Result:**
+
 ```
 Mon-Thu: PRs → Drafts
 Friday: All drafts → Published as "This Week in [Product]"
@@ -294,12 +328,14 @@ Friday: All drafts → Published as "This Week in [Product]"
 ### **Workflow 3: Monthly Digest (Scheduled)**
 
 **Setup:**
+
 1. Disable auto-publish
 2. Set schedule to "Monthly" → 1st of month
 3. Accumulate drafts all month
 4. 1st: Auto-publish as "What's New in [Month]"
 
 **Result:**
+
 ```
 Daily: PRs → Drafts
 Monthly: All drafts → Published as monthly digest
@@ -312,12 +348,14 @@ Monthly: All drafts → Published as monthly digest
 ### **Workflow 4: Curated Releases (Filtered + Batch)**
 
 **Setup:**
+
 1. Disable auto-publish
 2. Configure filters strictly (only 'feat', 'fix')
 3. Review drafts manually
 4. Select important ones → Publish as "v1.2.0"
 
 **Result:**
+
 ```
 All PRs → Filtered → Drafts → Manual selection → Versioned release
 ```
@@ -331,16 +369,19 @@ All PRs → Filtered → Drafts → Manual selection → Versioned release
 ### **For Users:**
 
 **Flexibility:**
+
 - ✅ Choose workflow that fits their team
 - ✅ Change strategy as they grow
 - ✅ No one-size-fits-all
 
 **Control:**
+
 - ✅ Review before publishing
 - ✅ Filter out noise
 - ✅ Professional appearance
 
 **Time Savings:**
+
 - ✅ Auto-publish for continuous deployment
 - ✅ Batch publish for weekly reviews
 - ✅ Scheduled publishing for consistency
@@ -350,16 +391,19 @@ All PRs → Filtered → Drafts → Manual selection → Versioned release
 ### **For GitLog (Business):**
 
 **Competitive Advantage:**
+
 - ✅ Only platform with flexible publishing
 - ✅ Adapts to any workflow
 - ✅ Enterprise-ready features
 
 **Upsell Opportunities:**
+
 - ✅ Scheduled publishing → Pro feature
 - ✅ Advanced filtering → Pro feature
 - ✅ Release grouping → Future enterprise feature
 
 **Retention:**
+
 - ✅ Workflow integration = sticky product
 - ✅ Hard to switch away from
 - ✅ Becomes part of their process
@@ -369,12 +413,14 @@ All PRs → Filtered → Drafts → Manual selection → Versioned release
 ## 🚀 Next Steps (Phase 3)
 
 ### **Scheduled Publishing Automation**
+
 - [ ] Implement cron job for scheduled publishes
 - [ ] Email digest generation
 - [ ] Social post automation
 - [ ] Analytics report generation
 
 ### **Release Grouping**
+
 - [ ] Create release UI
 - [ ] Version management (semver)
 - [ ] Group PRs under releases
@@ -382,12 +428,14 @@ All PRs → Filtered → Drafts → Manual selection → Versioned release
 - [ ] Schedule release dates
 
 ### **Advanced Filtering**
+
 - [ ] Filter by author
 - [ ] Filter by file paths
 - [ ] Filter by PR size
 - [ ] Custom rules engine
 
 ### **Team Workflows**
+
 - [ ] Approval workflows
 - [ ] Multi-user review
 - [ ] Publishing permissions
@@ -398,11 +446,13 @@ All PRs → Filtered → Drafts → Manual selection → Versioned release
 ## 📝 Files Created/Modified
 
 ### **New Files:**
+
 1. ✅ `src/app/(dashboard)/settings/publishing/page.tsx` - Settings UI
 2. ✅ `src/app/api/user/settings/route.ts` - Settings API
 3. ✅ `src/app/api/entries/publish-batch/route.ts` - Batch publish API
 
 ### **Modified Files:**
+
 1. ✅ `src/shared/lib/db/user.ts` - Added publishing settings to UserConfig
 2. ✅ `src/app/(dashboard)/drafts/page.tsx` - Added batch publish UI (bulk actions)
 
@@ -411,12 +461,14 @@ All PRs → Filtered → Drafts → Manual selection → Versioned release
 ## ✅ Testing Checklist
 
 ### **Auto-Publish**
+
 - [ ] Enable auto-publish in settings
 - [ ] Merge a PR
 - [ ] Verify it publishes immediately
 - [ ] Verify filtered PRs don't publish
 
 ### **Batch Publish**
+
 - [ ] Create 5 drafts
 - [ ] Select 3 with checkboxes
 - [ ] Click "Publish Selected"
@@ -424,6 +476,7 @@ All PRs → Filtered → Drafts → Manual selection → Versioned release
 - [ ] Verify usage count updated
 
 ### **Scheduled Publishing**
+
 - [ ] Set schedule to "Weekly" → Friday
 - [ ] Create drafts Monday-Thursday
 - [ ] Wait for Friday (or manually trigger)
@@ -431,6 +484,7 @@ All PRs → Filtered → Drafts → Manual selection → Versioned release
 - [ ] Verify email digest sent (future)
 
 ### **PR Filtering**
+
 - [ ] Add 'chore' to exclude list
 - [ ] Merge PR with 'chore' label
 - [ ] Verify no changelog entry created
@@ -442,5 +496,5 @@ All PRs → Filtered → Drafts → Manual selection → Versioned release
 
 **All features implemented and ready for testing!** 🚀
 
-*Last Updated: 2026-03-10*  
-*Status: Ready for Production*
+_Last Updated: 2026-03-10_  
+_Status: Ready for Production_

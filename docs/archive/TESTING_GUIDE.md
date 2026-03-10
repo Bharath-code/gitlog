@@ -87,31 +87,31 @@ npm install -D lighthouse        # Performance testing
 
 ### **Authentication**
 
-| Test ID | Test Case | Steps | Expected Result | Status |
-| :---- | :---- | :---- | :---- | :---- |
-| AUTH-01 | Sign in with GitHub | Click "Sign in" → Authorize GitHub | Redirected to dashboard | ⬜ |
-| AUTH-02 | Sign up flow | Click "Sign up" → Complete flow | Account created, redirected to onboarding | ⬜ |
-| AUTH-03 | Protected routes | Visit `/dashboard` without auth | Redirected to `/sign-in` | ⬜ |
-| AUTH-04 | Sign out | Click sign out → Confirm | Logged out, redirected to home | ⬜ |
-| AUTH-05 | Session persistence | Sign in → Refresh page | Still logged in | ⬜ |
+| Test ID | Test Case           | Steps                              | Expected Result                           | Status |
+| :------ | :------------------ | :--------------------------------- | :---------------------------------------- | :----- |
+| AUTH-01 | Sign in with GitHub | Click "Sign in" → Authorize GitHub | Redirected to dashboard                   | ⬜     |
+| AUTH-02 | Sign up flow        | Click "Sign up" → Complete flow    | Account created, redirected to onboarding | ⬜     |
+| AUTH-03 | Protected routes    | Visit `/dashboard` without auth    | Redirected to `/sign-in`                  | ⬜     |
+| AUTH-04 | Sign out            | Click sign out → Confirm           | Logged out, redirected to home            | ⬜     |
+| AUTH-05 | Session persistence | Sign in → Refresh page             | Still logged in                           | ⬜     |
 
 ### **Onboarding**
 
-| Test ID | Test Case | Steps | Expected Result | Status |
-| :---- | :---- | :---- | :---- | :---- |
-| ONBOARD-01 | First-time user flow | Sign in → See onboarding | Repo list displayed | ⬜ |
-| ONBOARD-02 | Connect repo | Click "Connect" on repo | Repo connected, redirected to dashboard | ⬜ |
-| ONBOARD-03 | Search repos | Type in search box | Filtered repo list | ⬜ |
-| ONBOARD-04 | No repos | User with no repos | "Create repository" CTA shown | ⬜ |
+| Test ID    | Test Case            | Steps                    | Expected Result                         | Status |
+| :--------- | :------------------- | :----------------------- | :-------------------------------------- | :----- |
+| ONBOARD-01 | First-time user flow | Sign in → See onboarding | Repo list displayed                     | ⬜     |
+| ONBOARD-02 | Connect repo         | Click "Connect" on repo  | Repo connected, redirected to dashboard | ⬜     |
+| ONBOARD-03 | Search repos         | Type in search box       | Filtered repo list                      | ⬜     |
+| ONBOARD-04 | No repos             | User with no repos       | "Create repository" CTA shown           | ⬜     |
 
 ### **Dashboard Layout**
 
-| Test ID | Test Case | Steps | Expected Result | Status |
-| :---- | :---- | :---- | :---- | :---- |
-| LAYOUT-01 | Sidebar navigation | Click each nav item | Correct page loads | ⬜ |
-| LAYOUT-02 | Responsive design | Resize browser to mobile | Sidebar collapses, bottom nav shows | ⬜ |
-| LAYOUT-03 | Header displays | Check header | Logo, nav, user avatar visible | ⬜ |
-| LAYOUT-04 | Upgrade CTA | Check sidebar | Upgrade CTA visible | ⬜ |
+| Test ID   | Test Case          | Steps                    | Expected Result                     | Status |
+| :-------- | :----------------- | :----------------------- | :---------------------------------- | :----- |
+| LAYOUT-01 | Sidebar navigation | Click each nav item      | Correct page loads                  | ⬜     |
+| LAYOUT-02 | Responsive design  | Resize browser to mobile | Sidebar collapses, bottom nav shows | ⬜     |
+| LAYOUT-03 | Header displays    | Check header             | Logo, nav, user avatar visible      | ⬜     |
+| LAYOUT-04 | Upgrade CTA        | Check sidebar            | Upgrade CTA visible                 | ⬜     |
 
 ---
 
@@ -119,41 +119,41 @@ npm install -D lighthouse        # Performance testing
 
 ### **GitHub Webhook**
 
-| Test ID | Test Case | Steps | Expected Result | Status |
-| :---- | :---- | :---- | :---- | :---- |
-| WEBHOOK-01 | Merged PR webhook | Merge PR on GitHub → Check dashboard | Draft appears in <30s | ⬜ |
-| WEBHOOK-02 | Non-merged PR | Close PR without merge | No draft created | ⬜ |
-| WEBHOOK-03 | Invalid signature | Send fake webhook | Rejected with 401 | ⬜ |
-| WEBHOOK-04 | Multiple users | Same repo, multiple users | Draft for each user | ⬜ |
+| Test ID    | Test Case         | Steps                                | Expected Result       | Status |
+| :--------- | :---------------- | :----------------------------------- | :-------------------- | :----- |
+| WEBHOOK-01 | Merged PR webhook | Merge PR on GitHub → Check dashboard | Draft appears in <30s | ⬜     |
+| WEBHOOK-02 | Non-merged PR     | Close PR without merge               | No draft created      | ⬜     |
+| WEBHOOK-03 | Invalid signature | Send fake webhook                    | Rejected with 401     | ⬜     |
+| WEBHOOK-04 | Multiple users    | Same repo, multiple users            | Draft for each user   | ⬜     |
 
 ### **Manual Sync**
 
-| Test ID | Test Case | Steps | Expected Result | Status |
-| :---- | :---- | :---- | :---- | :---- |
-| SYNC-01 | Manual sync button | Click "Sync Now" | Fetches last 50 merged PRs | ⬜ |
-| SYNC-02 | Sync with no token | No GitHub token connected | Error message shown | ⬜ |
-| SYNC-03 | Sync with connected repo | Click sync → Check drafts | New drafts appear | ⬜ |
+| Test ID | Test Case                | Steps                     | Expected Result            | Status |
+| :------ | :----------------------- | :------------------------ | :------------------------- | :----- |
+| SYNC-01 | Manual sync button       | Click "Sync Now"          | Fetches last 50 merged PRs | ⬜     |
+| SYNC-02 | Sync with no token       | No GitHub token connected | Error message shown        | ⬜     |
+| SYNC-03 | Sync with connected repo | Click sync → Check drafts | New drafts appear          | ⬜     |
 
 ### **Auto-Categorization**
 
-| Test ID | Test Case | Input Labels | Expected Category | Status |
-| :---- | :---- | :---- | :---- | :---- |
-| CAT-01 | Feature PR | `feat`, `feature` | New | ⬜ |
-| CAT-02 | Bug fix PR | `fix`, `bug` | Fixed | ⬜ |
-| CAT-03 | Chore PR | `chore`, `refactor` | Improved | ⬜ |
-| CAT-04 | No labels | (none) | Other | ⬜ |
-| CAT-05 | Mixed labels | `feat`, `fix` | New (first match) | ⬜ |
+| Test ID | Test Case    | Input Labels        | Expected Category | Status |
+| :------ | :----------- | :------------------ | :---------------- | :----- |
+| CAT-01  | Feature PR   | `feat`, `feature`   | New               | ⬜     |
+| CAT-02  | Bug fix PR   | `fix`, `bug`        | Fixed             | ⬜     |
+| CAT-03  | Chore PR     | `chore`, `refactor` | Improved          | ⬜     |
+| CAT-04  | No labels    | (none)              | Other             | ⬜     |
+| CAT-05  | Mixed labels | `feat`, `fix`       | New (first match) | ⬜     |
 
 ### **Public Changelog**
 
-| Test ID | Test Case | Steps | Expected Result | Status |
-| :---- | :---- | :---- | :---- | :---- |
-| PUB-01 | View published entries | Visit `/changelog/user/repo` | Entries grouped by month | ⬜ |
-| PUB-02 | No entries | Visit empty changelog | 404 page shown | ⬜ |
-| PUB-03 | SEO meta tags | View page source | Title, description, OG tags present | ⬜ |
-| PUB-04 | JSON-LD | View page source | Structured data present | ⬜ |
-| PUB-05 | Mobile responsive | View on mobile | Clean layout, readable | ⬜ |
-| PUB-06 | "Powered by GitLog" | Check footer | Badge with link visible | ⬜ |
+| Test ID | Test Case              | Steps                        | Expected Result                     | Status |
+| :------ | :--------------------- | :--------------------------- | :---------------------------------- | :----- |
+| PUB-01  | View published entries | Visit `/changelog/user/repo` | Entries grouped by month            | ⬜     |
+| PUB-02  | No entries             | Visit empty changelog        | 404 page shown                      | ⬜     |
+| PUB-03  | SEO meta tags          | View page source             | Title, description, OG tags present | ⬜     |
+| PUB-04  | JSON-LD                | View page source             | Structured data present             | ⬜     |
+| PUB-05  | Mobile responsive      | View on mobile               | Clean layout, readable              | ⬜     |
+| PUB-06  | "Powered by GitLog"    | Check footer                 | Badge with link visible             | ⬜     |
 
 ---
 
@@ -161,45 +161,45 @@ npm install -D lighthouse        # Performance testing
 
 ### **Draft Management**
 
-| Test ID | Test Case | Steps | Expected Result | Status |
-| :---- | :---- | :---- | :---- | :---- |
-| DRAFT-01 | View drafts list | Visit `/drafts` | All drafts shown | ⬜ |
-| DRAFT-02 | Search drafts | Type in search box | Filtered results | ⬜ |
-| DRAFT-03 | Filter by rewrite | Select "With AI Rewrite" | Only drafts with rewrite shown | ⬜ |
-| DRAFT-04 | Edit draft | Click draft → Edit → Save | Changes saved | ⬜ |
-| DRAFT-05 | Discard draft | Click discard → Confirm | Draft deleted | ⬜ |
+| Test ID  | Test Case         | Steps                     | Expected Result                | Status |
+| :------- | :---------------- | :------------------------ | :----------------------------- | :----- |
+| DRAFT-01 | View drafts list  | Visit `/drafts`           | All drafts shown               | ⬜     |
+| DRAFT-02 | Search drafts     | Type in search box        | Filtered results               | ⬜     |
+| DRAFT-03 | Filter by rewrite | Select "With AI Rewrite"  | Only drafts with rewrite shown | ⬜     |
+| DRAFT-04 | Edit draft        | Click draft → Edit → Save | Changes saved                  | ⬜     |
+| DRAFT-05 | Discard draft     | Click discard → Confirm   | Draft deleted                  | ⬜     |
 
 ### **AI Rewrite**
 
-| Test ID | Test Case | Steps | Expected Result | Status |
-| :---- | :---- | :---- | :---- | :---- |
-| AI-01 | Generate rewrite | Click "Rewrite" on draft | AI output appears in <5s | ⬜ |
-| AI-02 | Regenerate | Click "Regenerate" | New version generated | ⬜ |
-| AI-03 | Different tones | Select "professional" tone | Tone-appropriate output | ⬜ |
-| AI-04 | Copy to clipboard | Click copy button | Text copied, toast shown | ⬜ |
-| AI-05 | Free plan limit | 51st rewrite attempt | Error: limit reached | ⬜ |
-| AI-06 | Empty PR body | PR with no description | Uses title only | ⬜ |
+| Test ID | Test Case         | Steps                      | Expected Result          | Status |
+| :------ | :---------------- | :------------------------- | :----------------------- | :----- |
+| AI-01   | Generate rewrite  | Click "Rewrite" on draft   | AI output appears in <5s | ⬜     |
+| AI-02   | Regenerate        | Click "Regenerate"         | New version generated    | ⬜     |
+| AI-03   | Different tones   | Select "professional" tone | Tone-appropriate output  | ⬜     |
+| AI-04   | Copy to clipboard | Click copy button          | Text copied, toast shown | ⬜     |
+| AI-05   | Free plan limit   | 51st rewrite attempt       | Error: limit reached     | ⬜     |
+| AI-06   | Empty PR body     | PR with no description     | Uses title only          | ⬜     |
 
 ### **Publish Flow**
 
-| Test ID | Test Case | Steps | Expected Result | Status |
-| :---- | :---- | :---- | :---- | :---- |
-| PUB-01 | Publish draft | Click publish → Confirm | Entry published, toast shown | ⬜ |
-| PUB-02 | Publish modal | Click publish | Modal appears with preview | ⬜ |
-| PUB-03 | Cancel publish | Click cancel in modal | Modal closes, no action | ⬜ |
-| PUB-04 | Unpublish | Click unpublish → Confirm | Entry reverted to draft | ⬜ |
-| PUB-05 | Free plan limit | 51st publish attempt | Error: limit reached | ⬜ |
-| PUB-06 | Success toast | After publish | Green toast with message | ⬜ |
+| Test ID | Test Case       | Steps                     | Expected Result              | Status |
+| :------ | :-------------- | :------------------------ | :--------------------------- | :----- |
+| PUB-01  | Publish draft   | Click publish → Confirm   | Entry published, toast shown | ⬜     |
+| PUB-02  | Publish modal   | Click publish             | Modal appears with preview   | ⬜     |
+| PUB-03  | Cancel publish  | Click cancel in modal     | Modal closes, no action      | ⬜     |
+| PUB-04  | Unpublish       | Click unpublish → Confirm | Entry reverted to draft      | ⬜     |
+| PUB-05  | Free plan limit | 51st publish attempt      | Error: limit reached         | ⬜     |
+| PUB-06  | Success toast   | After publish             | Green toast with message     | ⬜     |
 
 ### **Toast Notifications**
 
-| Test ID | Test Case | Trigger | Expected Toast | Status |
-| :---- | :---- | :---- | :---- | :---- |
-| TOAST-01 | Success toast | Publish entry | Green, auto-dismiss 5s | ⬜ |
-| TOAST-02 | Error toast | Failed API call | Red, manual dismiss | ⬜ |
-| TOAST-03 | Info toast | Info action | Blue, auto-dismiss | ⬜ |
-| TOAST-04 | Warning toast | Limit warning | Amber, auto-dismiss | ⬜ |
-| TOAST-05 | Multiple toasts | Trigger 3 toasts | Stacked, all visible | ⬜ |
+| Test ID  | Test Case       | Trigger          | Expected Toast         | Status |
+| :------- | :-------------- | :--------------- | :--------------------- | :----- |
+| TOAST-01 | Success toast   | Publish entry    | Green, auto-dismiss 5s | ⬜     |
+| TOAST-02 | Error toast     | Failed API call  | Red, manual dismiss    | ⬜     |
+| TOAST-03 | Info toast      | Info action      | Blue, auto-dismiss     | ⬜     |
+| TOAST-04 | Warning toast   | Limit warning    | Amber, auto-dismiss    | ⬜     |
+| TOAST-05 | Multiple toasts | Trigger 3 toasts | Stacked, all visible   | ⬜     |
 
 ---
 
@@ -207,31 +207,31 @@ npm install -D lighthouse        # Performance testing
 
 ### **Checkout Flow**
 
-| Test ID | Test Case | Steps | Expected Result | Status |
-| :---- | :---- | :---- | :---- | :---- |
-| PAY-01 | View upgrade page | Visit `/upgrade` | Plan comparison shown | ⬜ |
-| PAY-02 | Start checkout | Click "Upgrade to Pro" | Redirected to DodoPayment | ⬜ |
-| PAY-03 | Complete payment | Enter test card → Pay | Success page shown | ⬜ |
-| PAY-04 | Cancel payment | Click cancel on Dodo | Cancel page shown | ⬜ |
-| PAY-05 | Free plan user | Check current plan | "Current Plan" badge shown | ⬜ |
+| Test ID | Test Case         | Steps                  | Expected Result            | Status |
+| :------ | :---------------- | :--------------------- | :------------------------- | :----- |
+| PAY-01  | View upgrade page | Visit `/upgrade`       | Plan comparison shown      | ⬜     |
+| PAY-02  | Start checkout    | Click "Upgrade to Pro" | Redirected to DodoPayment  | ⬜     |
+| PAY-03  | Complete payment  | Enter test card → Pay  | Success page shown         | ⬜     |
+| PAY-04  | Cancel payment    | Click cancel on Dodo   | Cancel page shown          | ⬜     |
+| PAY-05  | Free plan user    | Check current plan     | "Current Plan" badge shown | ⬜     |
 
 ### **Webhook Testing**
 
-| Test ID | Test Case | Steps | Expected Result | Status |
-| :---- | :---- | :---- | :---- | :---- |
-| WH-01 | Payment success webhook | Trigger via CLI | User upgraded to Pro | ⬜ |
-| WH-02 | Subscription cancelled | Trigger via CLI | User downgraded to Free | ⬜ |
-| WH-03 | Invalid signature | Send fake webhook | Rejected with 401 | ⬜ |
-| WH-04 | Missing userId | Webhook without metadata | Error logged | ⬜ |
+| Test ID | Test Case               | Steps                    | Expected Result         | Status |
+| :------ | :---------------------- | :----------------------- | :---------------------- | :----- |
+| WH-01   | Payment success webhook | Trigger via CLI          | User upgraded to Pro    | ⬜     |
+| WH-02   | Subscription cancelled  | Trigger via CLI          | User downgraded to Free | ⬜     |
+| WH-03   | Invalid signature       | Send fake webhook        | Rejected with 401       | ⬜     |
+| WH-04   | Missing userId          | Webhook without metadata | Error logged            | ⬜     |
 
 ### **Plan Limits**
 
-| Test ID | Test Case | Steps | Expected Result | Status |
-| :---- | :---- | :---- | :---- | :---- |
-| LIMIT-01 | Pro user unlimited | Publish 100 entries | No limit error | ⬜ |
-| LIMIT-02 | Free user limit | Publish 51st entry | Error: limit reached | ⬜ |
-| LIMIT-03 | Upgrade removes limits | Upgrade to Pro → Publish | No limit error | ⬜ |
-| LIMIT-04 | Downgrade restores limits | Cancel → Try to publish | Limit enforced | ⬜ |
+| Test ID  | Test Case                 | Steps                    | Expected Result      | Status |
+| :------- | :------------------------ | :----------------------- | :------------------- | :----- |
+| LIMIT-01 | Pro user unlimited        | Publish 100 entries      | No limit error       | ⬜     |
+| LIMIT-02 | Free user limit           | Publish 51st entry       | Error: limit reached | ⬜     |
+| LIMIT-03 | Upgrade removes limits    | Upgrade to Pro → Publish | No limit error       | ⬜     |
+| LIMIT-04 | Downgrade restores limits | Cancel → Try to publish  | Limit enforced       | ⬜     |
 
 ---
 
@@ -318,40 +318,40 @@ npm install -D lighthouse        # Performance testing
 
 ### **Page Load Times**
 
-| Page | Target | Acceptable | Critical |
-| :---- | :---- | :---- | :---- |
-| Homepage | <1s | <2s | <3s |
-| Dashboard | <1.5s | <2.5s | <4s |
-| Drafts list | <1s | <2s | <3s |
-| Public changelog | <2s | <3s | <5s |
-| Upgrade page | <1s | <2s | <3s |
+| Page             | Target | Acceptable | Critical |
+| :--------------- | :----- | :--------- | :------- |
+| Homepage         | <1s    | <2s        | <3s      |
+| Dashboard        | <1.5s  | <2.5s      | <4s      |
+| Drafts list      | <1s    | <2s        | <3s      |
+| Public changelog | <2s    | <3s        | <5s      |
+| Upgrade page     | <1s    | <2s        | <3s      |
 
 ### **API Response Times**
 
-| Endpoint | Target | Acceptable | Critical |
-| :---- | :---- | :---- | :---- |
-| POST /api/github/sync | <5s | <10s | <30s |
-| POST /api/ai/rewrite | <5s | <10s | <30s |
-| POST /api/entries/publish | <1s | <2s | <5s |
-| GET /api/drafts | <500ms | <1s | <2s |
+| Endpoint                  | Target | Acceptable | Critical |
+| :------------------------ | :----- | :--------- | :------- |
+| POST /api/github/sync     | <5s    | <10s       | <30s     |
+| POST /api/ai/rewrite      | <5s    | <10s       | <30s     |
+| POST /api/entries/publish | <1s    | <2s        | <5s      |
+| GET /api/drafts           | <500ms | <1s        | <2s      |
 
 ### **Lighthouse Targets**
 
-| Metric | Target | Pass |
-| :---- | :---- | :---- |
-| Performance | >90 | >80 |
-| Accessibility | >90 | >80 |
-| Best Practices | >90 | >80 |
-| SEO | >90 | >80 |
-| PWA | N/A | N/A |
+| Metric         | Target | Pass |
+| :------------- | :----- | :--- |
+| Performance    | >90    | >80  |
+| Accessibility  | >90    | >80  |
+| Best Practices | >90    | >80  |
+| SEO            | >90    | >80  |
+| PWA            | N/A    | N/A  |
 
 ### **Load Testing**
 
-| Test | Users | Duration | Target |
-| :---- | :---- | :---- | :---- |
-| Smoke test | 10 | 1 min | No errors |
-| Load test | 100 | 5 min | <2s response |
-| Stress test | 500 | 10 min | No crashes |
+| Test        | Users | Duration | Target       |
+| :---------- | :---- | :------- | :----------- |
+| Smoke test  | 10    | 1 min    | No errors    |
+| Load test   | 100   | 5 min    | <2s response |
+| Stress test | 500   | 10 min   | No crashes   |
 
 ---
 
@@ -359,30 +359,30 @@ npm install -D lighthouse        # Performance testing
 
 ### **Authentication**
 
-| Test ID | Test Case | Expected Result | Status |
-| :---- | :---- | :---- | :---- |
-| SEC-01 | Access protected route without auth | Redirect to sign-in | ⬜ |
-| SEC-02 | Access another user's draft | 403 Forbidden | ⬜ |
-| SEC-03 | CSRF attack attempt | Rejected | ⬜ |
-| SEC-04 | Session hijacking attempt | Invalid session | ⬜ |
+| Test ID | Test Case                           | Expected Result     | Status |
+| :------ | :---------------------------------- | :------------------ | :----- |
+| SEC-01  | Access protected route without auth | Redirect to sign-in | ⬜     |
+| SEC-02  | Access another user's draft         | 403 Forbidden       | ⬜     |
+| SEC-03  | CSRF attack attempt                 | Rejected            | ⬜     |
+| SEC-04  | Session hijacking attempt           | Invalid session     | ⬜     |
 
 ### **API Security**
 
-| Test ID | Test Case | Expected Result | Status |
-| :---- | :---- | :---- | :---- |
-| API-01 | SQL injection in API | Rejected, logged | ⬜ |
-| API-02 | XSS in draft title | Sanitized | ⬜ |
-| API-03 | Rate limit exceeded | 429 Too Many Requests | ⬜ |
-| API-04 | Invalid webhook signature | 401 Unauthorized | ⬜ |
+| Test ID | Test Case                 | Expected Result       | Status |
+| :------ | :------------------------ | :-------------------- | :----- |
+| API-01  | SQL injection in API      | Rejected, logged      | ⬜     |
+| API-02  | XSS in draft title        | Sanitized             | ⬜     |
+| API-03  | Rate limit exceeded       | 429 Too Many Requests | ⬜     |
+| API-04  | Invalid webhook signature | 401 Unauthorized      | ⬜     |
 
 ### **Data Protection**
 
-| Test ID | Test Case | Expected Result | Status |
-| :---- | :---- | :---- | :---- |
-| DATA-01 | GitHub token in logs | Not logged | ⬜ |
-| DATA-02 | Token in client code | Not exposed | ⬜ |
-| DATA-03 | Database encryption | Encrypted at rest | ⬜ |
-| DATA-04 | HTTPS enforced | All traffic HTTPS | ⬜ |
+| Test ID | Test Case            | Expected Result   | Status |
+| :------ | :------------------- | :---------------- | :----- |
+| DATA-01 | GitHub token in logs | Not logged        | ⬜     |
+| DATA-02 | Token in client code | Not exposed       | ⬜     |
+| DATA-03 | Database encryption  | Encrypted at rest | ⬜     |
+| DATA-04 | HTTPS enforced       | All traffic HTTPS | ⬜     |
 
 ---
 
@@ -395,42 +395,49 @@ npm install -D lighthouse        # Performance testing
 
 **ID:** BUG-001  
 **Severity:** Critical / High / Medium / Low  
-**Priority:** P0 / P1 / P2 / P3  
+**Priority:** P0 / P1 / P2 / P3
 
 ### Description
+
 Clear description of the bug
 
 ### Steps to Reproduce
+
 1. Step 1
 2. Step 2
 3. Step 3
 
 ### Expected Result
+
 What should happen
 
 ### Actual Result
+
 What actually happens
 
 ### Environment
+
 - OS: macOS / Windows / Linux
 - Browser: Chrome / Firefox / Safari
 - URL: https://...
 
 ### Screenshots/Logs
+
 Attach if applicable
 
 ### Proposed Fix
+
 If known
 ```
 
 ### **Bug Priority Definitions**
 
-| Priority | Definition | Response Time |
-| :---- | :---- | :---- |
-| **P0** | Critical, blocks launch | Immediate |
-| **P1** | High, major feature broken | 24 hours |
-| **P2** | Medium, minor feature broken | 1 week |
-| **P3** | Low, cosmetic/enhancement | Next sprint |
+| Priority | Definition                   | Response Time |
+| :------- | :--------------------------- | :------------ |
+| **P0**   | Critical, blocks launch      | Immediate     |
+| **P1**   | High, major feature broken   | 24 hours      |
+| **P2**   | Medium, minor feature broken | 1 week        |
+| **P3**   | Low, cosmetic/enhancement    | Next sprint   |
 
 ---
 
@@ -500,12 +507,14 @@ If known
 ## Testing Tools & Resources
 
 ### **Manual Testing**
+
 - Chrome DevTools
 - Firefox Developer Edition
 - Safari Web Inspector
 - Mobile devices (iPhone, Android)
 
 ### **Automated Testing**
+
 ```bash
 # Install Playwright for E2E
 npm install -D @playwright/test
@@ -518,11 +527,13 @@ npm install -D axe-core
 ```
 
 ### **Performance Testing**
+
 - [Google PageSpeed Insights](https://pagespeed.web.dev/)
 - [WebPageTest](https://www.webpagetest.org/)
 - [GTmetrix](https://gtmetrix.com/)
 
 ### **Security Testing**
+
 - [OWASP ZAP](https://www.zaproxy.org/)
 - [Security Headers](https://securityheaders.com/)
 - [SSL Labs](https://www.ssllabs.com/ssltest/)
@@ -533,11 +544,11 @@ npm install -D axe-core
 
 ### **Testing Completed By**
 
-| Role | Name | Date | Signature |
-| :---- | :---- | :---- | :---- |
-| **QA Lead** | | | |
-| **Developer** | | | |
-| **Product Owner** | | | |
+| Role              | Name | Date | Signature |
+| :---------------- | :--- | :--- | :-------- |
+| **QA Lead**       |      |      |           |
+| **Developer**     |      |      |           |
+| **Product Owner** |      |      |           |
 
 ### **Launch Approval**
 
@@ -547,10 +558,10 @@ npm install -D axe-core
 - [ ] Security review passed
 - [ ] Ready to launch
 
-**Launch Date:** _______________  
-**Approved By:** _______________
+**Launch Date:** **\*\***\_\_\_**\*\***  
+**Approved By:** **\*\***\_\_\_**\*\***
 
 ---
 
-*Last Updated: 2026-03-08*  
-*Version: 1.0*
+_Last Updated: 2026-03-08_  
+_Version: 1.0_

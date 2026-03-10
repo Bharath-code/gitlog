@@ -101,7 +101,7 @@ export default function NotificationsPage() {
       });
 
       if (res.ok) {
-        setNotifications(notifications.filter(n => n.id !== id));
+        setNotifications(notifications.filter((n) => n.id !== id));
         toast.success('Notification deleted');
       }
     } catch (error) {
@@ -171,16 +171,17 @@ export default function NotificationsPage() {
             </div>
 
             <div>
-              <label className="text-sm font-medium">
-                Webhook URL
-              </label>
+              <label className="text-sm font-medium">Webhook URL</label>
               <input
                 type="url"
                 value={newNotification.webhookUrl}
-                onChange={(e) => setNewNotification({ ...newNotification, webhookUrl: e.target.value })}
-                placeholder={newNotification.type === 'slack' 
-                  ? 'https://hooks.slack.com/services/...'
-                  : 'https://discord.com/api/webhooks/...'
+                onChange={(e) =>
+                  setNewNotification({ ...newNotification, webhookUrl: e.target.value })
+                }
+                placeholder={
+                  newNotification.type === 'slack'
+                    ? 'https://hooks.slack.com/services/...'
+                    : 'https://discord.com/api/webhooks/...'
                 }
                 className="mt-1 w-full rounded-md border border-line bg-surface px-3 py-2"
               />
@@ -196,7 +197,9 @@ export default function NotificationsPage() {
                   <input
                     type="checkbox"
                     checked={newNotification.onPublish}
-                    onChange={(e) => setNewNotification({ ...newNotification, onPublish: e.target.checked })}
+                    onChange={(e) =>
+                      setNewNotification({ ...newNotification, onPublish: e.target.checked })
+                    }
                     className="w-4 h-4 accent-accent"
                   />
                   <span className="text-sm">Entries are published</span>
@@ -205,7 +208,9 @@ export default function NotificationsPage() {
                   <input
                     type="checkbox"
                     checked={newNotification.onScheduled}
-                    onChange={(e) => setNewNotification({ ...newNotification, onScheduled: e.target.checked })}
+                    onChange={(e) =>
+                      setNewNotification({ ...newNotification, onScheduled: e.target.checked })
+                    }
                     className="w-4 h-4 accent-accent"
                   />
                   <span className="text-sm">Scheduled publish completes</span>
@@ -214,7 +219,9 @@ export default function NotificationsPage() {
                   <input
                     type="checkbox"
                     checked={newNotification.onRelease}
-                    onChange={(e) => setNewNotification({ ...newNotification, onRelease: e.target.checked })}
+                    onChange={(e) =>
+                      setNewNotification({ ...newNotification, onRelease: e.target.checked })
+                    }
                     className="w-4 h-4 accent-accent"
                   />
                   <span className="text-sm">New release is published</span>

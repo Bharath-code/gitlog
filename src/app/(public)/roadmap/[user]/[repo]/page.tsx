@@ -95,9 +95,10 @@ export default function PublicRoadmapPage({
   }
 
   const totalUpvotes = items.reduce((sum, item) => sum + item.upvotes, 0);
-  const topFeature = items.length > 0 ? items.reduce((prev, current) =>
-    current.upvotes > prev.upvotes ? current : prev
-  ) : null;
+  const topFeature =
+    items.length > 0
+      ? items.reduce((prev, current) => (current.upvotes > prev.upvotes ? current : prev))
+      : null;
 
   return (
     <div className="min-h-screen bg-background p-6">
@@ -126,7 +127,7 @@ export default function PublicRoadmapPage({
           </Card>
           <Card className="p-6 text-center">
             <div className="text-3xl font-bold text-accent">
-              {items.filter(i => i.status === 'completed').length}
+              {items.filter((i) => i.status === 'completed').length}
             </div>
             <div className="text-sm text-muted mt-1">Features Shipped</div>
           </Card>
@@ -167,7 +168,7 @@ export default function PublicRoadmapPage({
         <div className="text-center text-sm text-muted">
           <p>Want to suggest a feature?</p>
           <a
-            href={`https://github.com/${params.then(p => p.user)}/${params.then(p => p.repo)}/issues/new`}
+            href={`https://github.com/${params.then((p) => p.user)}/${params.then((p) => p.repo)}/issues/new`}
             target="_blank"
             rel="noopener noreferrer"
             className="text-accent hover:underline"

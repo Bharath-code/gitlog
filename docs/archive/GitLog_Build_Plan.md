@@ -73,18 +73,21 @@ gitlog-app/
 ### Day 1: Project Setup
 
 #### Task 1.1: Initialize Next.js Project
+
 ```bash
 npx create-next-app@latest gitlog-app --typescript --tailwind --app
 cd gitlog-app
 ```
 
 **Acceptance Criteria:**
+
 - [ ] Next.js 15 with App Router
 - [ ] TypeScript configured
 - [ ] Tailwind CSS setup
 - [ ] ESLint + Prettier configured
 
 **Files to Create:**
+
 - [ ] `tsconfig.json` (verify paths)
 - [ ] `tailwind.config.ts` (extend theme)
 - [ ] `.eslintrc.json`
@@ -93,17 +96,20 @@ cd gitlog-app
 ---
 
 #### Task 1.2: Install Shadcn/ui
+
 ```bash
 npx shadcn-ui@latest init
 npx shadcn-ui@latest add button card input dialog avatar dropdown-menu badge tabs separator skeleton toast
 ```
 
 **Acceptance Criteria:**
+
 - [ ] Shadcn components in `shared/components/ui/`
 - [ ] Theme configured (dark mode default)
 - [ ] Components exportable via `index.ts`
 
 **Files to Create:**
+
 - [ ] `shared/components/ui/index.ts` (barrel exports)
 - [ ] `shared/components/ui/button.tsx`
 - [ ] `shared/components/ui/card.tsx`
@@ -112,6 +118,7 @@ npx shadcn-ui@latest add button card input dialog avatar dropdown-menu badge tab
 ---
 
 #### Task 1.3: Install Core Dependencies
+
 ```bash
 # Auth
 npm install @clerk/nextjs
@@ -134,6 +141,7 @@ npm install -D @types/node
 ```
 
 **Acceptance Criteria:**
+
 - [ ] All packages installed
 - [ ] `package.json` updated
 - [ ] Dependencies documented in README
@@ -141,7 +149,9 @@ npm install -D @types/node
 ---
 
 #### Task 1.4: Set Up Project Structure
+
 **Folders to Create:**
+
 ```bash
 mkdir -p app/\(auth\)/sign-in
 mkdir -p app/\(auth\)/sign-up
@@ -176,6 +186,7 @@ mkdir -p types
 ```
 
 **Acceptance Criteria:**
+
 - [ ] All folders created
 - [ ] `.gitkeep` files added
 - [ ] Structure matches architecture doc
@@ -183,7 +194,9 @@ mkdir -p types
 ---
 
 #### Task 1.5: Configure Environment Variables
+
 **File:** `.env.example`
+
 ```env
 # Auth
 CLERK_SECRET_KEY=
@@ -210,6 +223,7 @@ NEXT_PUBLIC_APP_URL=http://localhost:3000
 ```
 
 **Acceptance Criteria:**
+
 - [ ] `.env.example` created
 - [ ] `.env.local` created (gitignored)
 - [ ] Vercel environment variables documented
@@ -217,14 +231,16 @@ NEXT_PUBLIC_APP_URL=http://localhost:3000
 ---
 
 #### Task 1.6: Create Base Layout Components
+
 **File:** `shared/components/layout/site-header.tsx`
+
 ```typescript
 import { currentUser } from '@clerk/nextjs/server';
 import Link from 'next/link';
 
 export async function SiteHeader() {
   const user = await currentUser();
-  
+
   return (
     <header className="sticky top-0 z-50 border-b border-line bg-background/80 backdrop-blur">
       {/* Header content */}
@@ -234,6 +250,7 @@ export async function SiteHeader() {
 ```
 
 **File:** `shared/components/layout/site-sidebar.tsx`
+
 ```typescript
 'use client';
 
@@ -249,7 +266,7 @@ const navItems = [
 
 export function SiteSidebar() {
   const pathname = usePathname();
-  
+
   return (
     <aside className="w-64 border-r border-line bg-surface">
       {/* Navigation */}
@@ -259,6 +276,7 @@ export function SiteSidebar() {
 ```
 
 **Acceptance Criteria:**
+
 - [ ] Components follow atomic design
 - [ ] TypeScript types defined
 - [ ] Responsive behavior documented
@@ -266,7 +284,9 @@ export function SiteSidebar() {
 ---
 
 #### Task 1.7: Create Utility Functions
+
 **File:** `shared/lib/utils/index.ts`
+
 ```typescript
 import { type ClassValue, clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
@@ -296,6 +316,7 @@ export function slugify(str: string): string {
 ```
 
 **Acceptance Criteria:**
+
 - [ ] All utility functions tested
 - [ ] JSDoc comments added
 - [ ] Exported via barrel file
@@ -305,7 +326,9 @@ export function slugify(str: string): string {
 ### Day 2: Authentication + Repo Connection
 
 #### Task 2.1: Configure Clerk Auth
+
 **File:** `middleware.ts`
+
 ```typescript
 import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server';
 
@@ -330,6 +353,7 @@ export const config = {
 ```
 
 **Acceptance Criteria:**
+
 - [ ] Middleware protects dashboard routes
 - [ ] Public routes accessible without auth
 - [ ] API webhooks bypass auth
@@ -337,14 +361,16 @@ export const config = {
 ---
 
 #### Task 2.2: Create Sign In Page
+
 **File:** `app/(auth)/sign-in/[[...sign-in]]/page.tsx`
+
 ```typescript
 import { SignIn } from '@clerk/nextjs';
 
 export default function SignInPage() {
   return (
     <div className="flex min-h-screen items-center justify-center">
-      <SignIn 
+      <SignIn
         appearance={{
           elements: {
             rootBox: 'mx-auto',
@@ -358,6 +384,7 @@ export default function SignInPage() {
 ```
 
 **Acceptance Criteria:**
+
 - [ ] GitHub OAuth button visible
 - [ ] Custom styling applied
 - [ ] Redirects to `/onboarding` after first sign-in
@@ -365,7 +392,9 @@ export default function SignInPage() {
 ---
 
 #### Task 2.3: Create Root Layout
+
 **File:** `app/layout.tsx`
+
 ```typescript
 import { ClerkProvider } from '@clerk/nextjs';
 import { Inter } from 'next/font/google';
@@ -394,6 +423,7 @@ export default function RootLayout({
 ```
 
 **Acceptance Criteria:**
+
 - [ ] Clerk provider wraps app
 - [ ] Global styles applied
 - [ ] Metadata configured
@@ -401,7 +431,9 @@ export default function RootLayout({
 ---
 
 #### Task 2.4: Create Dashboard Layout
+
 **File:** `app/(dashboard)/layout.tsx`
+
 ```typescript
 import { SiteHeader } from '@/shared/components/layout/site-header';
 import { SiteSidebar } from '@/shared/components/layout/site-sidebar';
@@ -424,6 +456,7 @@ export default function DashboardLayout({
 ```
 
 **Acceptance Criteria:**
+
 - [ ] Sidebar persistent
 - [ ] Header sticky
 - [ ] Content scrollable
@@ -431,7 +464,9 @@ export default function DashboardLayout({
 ---
 
 #### Task 2.5: Create GitHub API Helper
+
 **File:** `shared/lib/github/client.ts`
+
 ```typescript
 import { Octokit } from 'octokit';
 
@@ -444,15 +479,15 @@ export function createGitHubClient(token: string) {
 
 export async function getUserRepos(token: string) {
   const octokit = createGitHubClient(token);
-  
+
   const { data } = await octokit.rest.repos.listForAuthenticatedUser({
     visibility: 'all',
     affiliation: 'owner,collaborator',
     sort: 'updated',
     per_page: 100,
   });
-  
-  return data.map(repo => ({
+
+  return data.map((repo) => ({
     id: repo.id,
     name: repo.full_name!,
     private: repo.private,
@@ -463,6 +498,7 @@ export async function getUserRepos(token: string) {
 ```
 
 **Acceptance Criteria:**
+
 - [ ] TypeScript types defined
 - [ ] Error handling implemented
 - [ ] Rate limit handling included
@@ -470,7 +506,9 @@ export async function getUserRepos(token: string) {
 ---
 
 #### Task 2.6: Create Repo Connection API
+
 **File:** `app/api/github/repos/route.ts`
+
 ```typescript
 import { currentUser } from '@clerk/nextjs/server';
 import { NextResponse } from 'next/server';
@@ -493,15 +531,13 @@ export async function GET() {
     return NextResponse.json({ repos });
   } catch (error) {
     console.error('Error fetching repos:', error);
-    return NextResponse.json(
-      { error: 'Failed to fetch repos' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to fetch repos' }, { status: 500 });
   }
 }
 ```
 
 **Acceptance Criteria:**
+
 - [ ] Returns user's GitHub repos
 - [ ] Error handling for all cases
 - [ ] Response typed correctly
@@ -509,7 +545,9 @@ export async function GET() {
 ---
 
 #### Task 2.7: Create Onboarding Page
+
 **File:** `app/(dashboard)/onboarding/page.tsx`
+
 ```typescript
 'use client';
 
@@ -538,6 +576,7 @@ export default function OnboardingPage() {
 ```
 
 **Acceptance Criteria:**
+
 - [ ] Fetches repos on mount
 - [ ] Shows loading state
 - [ ] Handles connection success/error
@@ -550,7 +589,9 @@ export default function OnboardingPage() {
 ### Day 3: GitHub Webhook + PR Sync
 
 #### Task 3.1: Create Webhook Receiver
+
 **File:** `app/api/github/sync/route.ts`
+
 ```typescript
 import { NextRequest, NextResponse } from 'next/server';
 import { verifyWebhookSignature } from '@/shared/lib/github/webhooks';
@@ -560,7 +601,7 @@ export async function POST(req: NextRequest) {
   try {
     const payload = await req.text();
     const signature = req.headers.get('x-hub-signature-256') || '';
-    
+
     // Verify signature
     const isValid = await verifyWebhookSignature(payload, signature);
     if (!isValid) {
@@ -573,7 +614,7 @@ export async function POST(req: NextRequest) {
     }
 
     const data = JSON.parse(payload);
-    
+
     // Only handle merged PRs
     if (data.action !== 'closed' || !data.pull_request.merged) {
       return NextResponse.json({ skipped: 'Not a merged PR' });
@@ -585,15 +626,13 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error('Webhook error:', error);
-    return NextResponse.json(
-      { error: 'Webhook processing failed' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Webhook processing failed' }, { status: 500 });
   }
 }
 ```
 
 **Acceptance Criteria:**
+
 - [ ] Signature verification works
 - [ ] Only merged PRs processed
 - [ ] Response within 5 seconds
@@ -602,22 +641,19 @@ export async function POST(req: NextRequest) {
 ---
 
 #### Task 3.2: Create Webhook Signature Verification
+
 **File:** `shared/lib/github/webhooks.ts`
+
 ```typescript
 import { createHmac } from 'crypto';
 
-export async function verifyWebhookSignature(
-  payload: string,
-  signature: string
-): Promise<boolean> {
+export async function verifyWebhookSignature(payload: string, signature: string): Promise<boolean> {
   const secret = process.env.GITHUB_WEBHOOK_SECRET;
   if (!secret) {
     throw new Error('GITHUB_WEBHOOK_SECRET not configured');
   }
 
-  const expected = createHmac('sha256', secret)
-    .update(payload)
-    .digest('hex');
+  const expected = createHmac('sha256', secret).update(payload).digest('hex');
 
   const expectedSignature = `sha256=${expected}`;
 
@@ -637,6 +673,7 @@ function timingSafeEqual(a: string, b: string): boolean {
 ```
 
 **Acceptance Criteria:**
+
 - [ ] Constant-time comparison
 - [ ] Handles missing secret
 - [ ] Returns boolean
@@ -644,7 +681,9 @@ function timingSafeEqual(a: string, b: string): boolean {
 ---
 
 #### Task 3.3: Create PR Sync Handler
+
 **File:** `features/drafts/lib/sync.ts`
+
 ```typescript
 import { kv } from '@vercel/kv';
 import { categorizePR } from './categorization';
@@ -662,7 +701,7 @@ interface PullRequest {
 
 export async function handleMergedPR(pr: PullRequest) {
   const repoName = pr.base.repo.full_name;
-  
+
   // Find user by repo connection
   const userConnections = await kv.get<Record<string, string>>(`repo:${repoName}:users`);
   if (!userConnections) {
@@ -671,10 +710,10 @@ export async function handleMergedPR(pr: PullRequest) {
   }
 
   const userId = Object.values(userConnections)[0];
-  
+
   // Categorize PR
   const category = categorizePR(pr.labels);
-  
+
   // Create draft entry
   const entry = {
     id: `entry:${userId}:${repoName}:${pr.id}`,
@@ -688,12 +727,12 @@ export async function handleMergedPR(pr: PullRequest) {
     mergedAt: pr.merged_at,
     prUrl: pr.html_url,
     author: pr.user.login,
-    labels: pr.labels.map(l => l.name),
+    labels: pr.labels.map((l) => l.name),
     aiRewrite: null,
   };
 
   await kv.set(entry.id, entry);
-  
+
   // Update user's draft count
   await incrementMonthlyUsage(userId, 'entriesPublished');
 }
@@ -704,12 +743,12 @@ export async function incrementMonthlyUsage(
 ) {
   const month = new Date().toISOString().slice(0, 7); // YYYY-MM
   const key = `usage:${userId}:${month}`;
-  
-  const current = await kv.get<{ entriesPublished: number; aiRewrites: number }>(key) || {
+
+  const current = (await kv.get<{ entriesPublished: number; aiRewrites: number }>(key)) || {
     entriesPublished: 0,
     aiRewrites: 0,
   };
-  
+
   await kv.set(key, {
     ...current,
     [type]: current[type] + 1,
@@ -718,6 +757,7 @@ export async function incrementMonthlyUsage(
 ```
 
 **Acceptance Criteria:**
+
 - [ ] Stores entry in KV
 - [ ] Auto-categorizes by labels
 - [ ] Updates usage counter
@@ -726,30 +766,33 @@ export async function incrementMonthlyUsage(
 ---
 
 #### Task 3.4: Create PR Categorization Logic
+
 **File:** `features/drafts/lib/categorization.ts`
+
 ```typescript
 type Category = 'New' | 'Fixed' | 'Improved' | 'Other';
 
 export function categorizePR(labels: { name: string }[]): Category {
-  const labelNames = labels.map(l => l.name.toLowerCase());
-  
-  if (labelNames.some(l => l.includes('feat') || l.includes('feature'))) {
+  const labelNames = labels.map((l) => l.name.toLowerCase());
+
+  if (labelNames.some((l) => l.includes('feat') || l.includes('feature'))) {
     return 'New';
   }
-  
-  if (labelNames.some(l => l.includes('fix') || l.includes('bug'))) {
+
+  if (labelNames.some((l) => l.includes('fix') || l.includes('bug'))) {
     return 'Fixed';
   }
-  
-  if (labelNames.some(l => l.includes('chore') || l.includes('enhancement'))) {
+
+  if (labelNames.some((l) => l.includes('chore') || l.includes('enhancement'))) {
     return 'Improved';
   }
-  
+
   return 'Other';
 }
 ```
 
 **Acceptance Criteria:**
+
 - [ ] Maps labels to categories
 - [ ] Falls back to 'Other'
 - [ ] Case-insensitive matching
@@ -757,7 +800,9 @@ export function categorizePR(labels: { name: string }[]): Category {
 ---
 
 #### Task 3.5: Create Manual Sync Button
+
 **File:** `features/dashboard/components/sync-button.tsx`
+
 ```typescript
 'use client';
 
@@ -791,6 +836,7 @@ export function SyncButton() {
 ```
 
 **Acceptance Criteria:**
+
 - [ ] Shows loading state
 - [ ] Triggers manual sync
 - [ ] Shows success/error feedback
@@ -800,13 +846,13 @@ export function SyncButton() {
 ### Day 4: AI Rewrite + Dashboard UI
 
 #### Task 4.1: Create AI Rewrite Helper
+
 **File:** `shared/lib/ai/gemini.ts`
+
 ```typescript
 import { GoogleGenerativeAI } from '@google/generative-ai';
 
-const genAI = new GoogleGenerativeAI(
-  process.env.GOOGLE_GENERATIVE_AI_API_KEY!
-);
+const genAI = new GoogleGenerativeAI(process.env.GOOGLE_GENERATIVE_AI_API_KEY!);
 
 const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash' });
 
@@ -839,6 +885,7 @@ Rewrite:
 ```
 
 **Acceptance Criteria:**
+
 - [ ] Returns 2-3 sentences
 - [ ] Handles empty PR body
 - [ ] Error handling included
@@ -846,7 +893,9 @@ Rewrite:
 ---
 
 #### Task 4.2: Create AI Rewrite API
+
 **File:** `app/api/ai/rewrite/route.ts`
+
 ```typescript
 import { currentUser } from '@clerk/nextjs/server';
 import { NextResponse } from 'next/server';
@@ -867,14 +916,11 @@ export async function POST(req: Request) {
     }
 
     // Check usage limits
-    const plan = await kv.get<string>(`user:${user.id}:plan`) || 'free';
+    const plan = (await kv.get<string>(`user:${user.id}:plan`)) || 'free';
     if (plan === 'free') {
       const withinLimit = await checkUsageLimit(user.id, 'aiRewrites');
       if (!withinLimit) {
-        return NextResponse.json(
-          { error: 'Free plan limit reached (50/month)' },
-          { status: 403 }
-        );
+        return NextResponse.json({ error: 'Free plan limit reached (50/month)' }, { status: 403 });
       }
     }
 
@@ -901,15 +947,13 @@ export async function POST(req: Request) {
     return NextResponse.json({ aiRewrite });
   } catch (error) {
     console.error('AI rewrite error:', error);
-    return NextResponse.json(
-      { error: 'Failed to generate rewrite' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to generate rewrite' }, { status: 500 });
   }
 }
 ```
 
 **Acceptance Criteria:**
+
 - [ ] Checks usage limits
 - [ ] Stores rewrite in KV
 - [ ] Returns generated text
@@ -917,7 +961,9 @@ export async function POST(req: Request) {
 ---
 
 #### Task 4.3: Create Dashboard Overview Page
+
 **File:** `app/(dashboard)/dashboard/page.tsx`
+
 ```typescript
 import { currentUser } from '@clerk/nextjs/server';
 import { kv } from '@vercel/kv';
@@ -956,6 +1002,7 @@ export default async function DashboardPage() {
 ```
 
 **Acceptance Criteria:**
+
 - [ ] Shows welcome message
 - [ ] Displays usage card
 - [ ] Lists recent drafts
@@ -964,7 +1011,9 @@ export default async function DashboardPage() {
 ---
 
 #### Task 4.4: Create Draft Card Component
+
 **File:** `features/drafts/components/draft-card.tsx`
+
 ```typescript
 'use client';
 
@@ -1041,6 +1090,7 @@ export function DraftCard({ draft }: DraftCardProps) {
 ```
 
 **Acceptance Criteria:**
+
 - [ ] Shows draft info
 - [ ] Rewrite button works
 - [ ] Edit button present
@@ -1052,7 +1102,9 @@ export function DraftCard({ draft }: DraftCardProps) {
 ### Day 5: Publish Flow + Public Page
 
 #### Task 5.1: Create Publish Endpoint
+
 **File:** `app/api/entries/publish/route.ts`
+
 ```typescript
 import { currentUser } from '@clerk/nextjs/server';
 import { NextResponse } from 'next/server';
@@ -1066,7 +1118,7 @@ export async function POST(req: Request) {
     }
 
     const { entryId } = await req.json();
-    
+
     const entry = await kv.get<any>(entryId);
     if (!entry || entry.userId !== user.id) {
       return NextResponse.json({ error: 'Not found' }, { status: 404 });
@@ -1080,15 +1132,13 @@ export async function POST(req: Request) {
 
     return NextResponse.json({ success: true });
   } catch (error) {
-    return NextResponse.json(
-      { error: 'Failed to publish' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to publish' }, { status: 500 });
   }
 }
 ```
 
 **Acceptance Criteria:**
+
 - [ ] Updates entry status
 - [ ] Sets published timestamp
 - [ ] Validates ownership
@@ -1096,7 +1146,9 @@ export async function POST(req: Request) {
 ---
 
 #### Task 5.2: Create Public Changelog Page
+
 **File:** `app/(public)/changelog/[username]/[repo]/page.tsx`
+
 ```typescript
 import { kv } from '@vercel/kv';
 import { notFound } from 'next/navigation';
@@ -1115,10 +1167,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function ChangelogPage({ params }: PageProps) {
   const repoSlug = `${params.username}/${params.repo}`;
-  
+
   // Fetch published entries
   const entries = await kv.get<any[]>(`repo:${repoSlug}:published`) || [];
-  
+
   if (entries.length === 0) {
     notFound();
   }
@@ -1177,6 +1229,7 @@ function groupByMonth(entries: any[]) {
 ```
 
 **Acceptance Criteria:**
+
 - [ ] Groups by month
 - [ ] Shows published entries
 - [ ] SEO metadata set
@@ -1190,69 +1243,79 @@ function groupByMonth(entries: any[]) {
 ### Day 6: DodoPayment Integration
 
 #### Task 6.1: Create Checkout API
+
 #### Task 6.2: Create Webhook Handler
+
 #### Task 6.3: Create Upgrade Modal
+
 #### Task 6.4: Implement Usage Limits
 
 ### Day 7: Polish + SEO
 
 #### Task 7.1: Add SEO Meta Tags
+
 #### Task 7.2: Optimize Performance
+
 #### Task 7.3: Add Error Boundaries
+
 #### Task 7.4: Create 404/500 Pages
 
 ### Day 8: Dogfood + Launch
 
 #### Task 8.1: Connect GitLog Repo
+
 #### Task 8.2: Test All Flows
+
 #### Task 8.3: Fix Critical Bugs
+
 #### Task 8.4: Prepare Launch Assets
 
 ---
 
 ## ✅ Task Status Tracker
 
-| Task ID | Task Name | Priority | Status | Assigned | Due |
-| :---- | :---- | :---- | :---- | :---- | :---- |
-| 1.1 | Initialize Next.js Project | P0 | ⬜ Pending | | Day 1 |
-| 1.2 | Install Shadcn/ui | P0 | ⬜ Pending | | Day 1 |
-| 1.3 | Install Dependencies | P0 | ⬜ Pending | | Day 1 |
-| 1.4 | Project Structure | P0 | ⬜ Pending | | Day 1 |
-| 1.5 | Environment Variables | P0 | ⬜ Pending | | Day 1 |
-| 1.6 | Base Layout Components | P0 | ⬜ Pending | | Day 1 |
-| 1.7 | Utility Functions | P1 | ⬜ Pending | | Day 1 |
-| 2.1 | Configure Clerk Auth | P0 | ⬜ Pending | | Day 2 |
-| 2.2 | Sign In Page | P0 | ⬜ Pending | | Day 2 |
-| 2.3 | Root Layout | P0 | ⬜ Pending | | Day 2 |
-| 2.4 | Dashboard Layout | P0 | ⬜ Pending | | Day 2 |
-| 2.5 | GitHub API Helper | P0 | ⬜ Pending | | Day 2 |
-| 2.6 | Repo Connection API | P0 | ⬜ Pending | | Day 2 |
-| 2.7 | Onboarding Page | P0 | ⬜ Pending | | Day 2 |
-| 3.1 | Webhook Receiver | P0 | ⬜ Pending | | Day 3 |
-| 3.2 | Webhook Verification | P0 | ⬜ Pending | | Day 3 |
-| 3.3 | PR Sync Handler | P0 | ⬜ Pending | | Day 3 |
-| 3.4 | Categorization Logic | P0 | ⬜ Pending | | Day 3 |
-| 3.5 | Manual Sync Button | P1 | ⬜ Pending | | Day 3 |
-| 4.1 | AI Rewrite Helper | P0 | ⬜ Pending | | Day 4 |
-| 4.2 | AI Rewrite API | P0 | ⬜ Pending | | Day 4 |
-| 4.3 | Dashboard Page | P0 | ⬜ Pending | | Day 4 |
-| 4.4 | Draft Card Component | P0 | ⬜ Pending | | Day 4 |
-| 5.1 | Publish Endpoint | P0 | ⬜ Pending | | Day 5 |
-| 5.2 | Public Changelog Page | P0 | ⬜ Pending | | Day 5 |
-| 6.1 | Checkout API | P0 | ⬜ Pending | | Day 6 |
-| 6.2 | Payment Webhook | P0 | ⬜ Pending | | Day 6 |
-| 6.3 | Upgrade Modal | P0 | ⬜ Pending | | Day 6 |
-| 6.4 | Usage Limits | P0 | ⬜ Pending | | Day 6 |
-| 7.1 | SEO Meta Tags | P1 | ⬜ Pending | | Day 7 |
-| 7.2 | Performance Optimize | P1 | ⬜ Pending | | Day 7 |
-| 7.3 | Error Boundaries | P1 | ⬜ Pending | | Day 7 |
-| 7.4 | 404/500 Pages | P1 | ⬜ Pending | | Day 7 |
-| 8.1 | Dogfood Setup | P0 | ⬜ Pending | | Day 8 |
-| 8.2 | Full Flow Testing | P0 | ⬜ Pending | | Day 8 |
-| 8.3 | Bug Fixes | P0 | ⬜ Pending | | Day 8 |
-| 8.4 | Launch Assets | P1 | ⬜ Pending | | Day 8 |
+| Task ID | Task Name                  | Priority | Status     | Assigned | Due   |
+| :------ | :------------------------- | :------- | :--------- | :------- | :---- |
+| 1.1     | Initialize Next.js Project | P0       | ⬜ Pending |          | Day 1 |
+| 1.2     | Install Shadcn/ui          | P0       | ⬜ Pending |          | Day 1 |
+| 1.3     | Install Dependencies       | P0       | ⬜ Pending |          | Day 1 |
+| 1.4     | Project Structure          | P0       | ⬜ Pending |          | Day 1 |
+| 1.5     | Environment Variables      | P0       | ⬜ Pending |          | Day 1 |
+| 1.6     | Base Layout Components     | P0       | ⬜ Pending |          | Day 1 |
+| 1.7     | Utility Functions          | P1       | ⬜ Pending |          | Day 1 |
+| 2.1     | Configure Clerk Auth       | P0       | ⬜ Pending |          | Day 2 |
+| 2.2     | Sign In Page               | P0       | ⬜ Pending |          | Day 2 |
+| 2.3     | Root Layout                | P0       | ⬜ Pending |          | Day 2 |
+| 2.4     | Dashboard Layout           | P0       | ⬜ Pending |          | Day 2 |
+| 2.5     | GitHub API Helper          | P0       | ⬜ Pending |          | Day 2 |
+| 2.6     | Repo Connection API        | P0       | ⬜ Pending |          | Day 2 |
+| 2.7     | Onboarding Page            | P0       | ⬜ Pending |          | Day 2 |
+| 3.1     | Webhook Receiver           | P0       | ⬜ Pending |          | Day 3 |
+| 3.2     | Webhook Verification       | P0       | ⬜ Pending |          | Day 3 |
+| 3.3     | PR Sync Handler            | P0       | ⬜ Pending |          | Day 3 |
+| 3.4     | Categorization Logic       | P0       | ⬜ Pending |          | Day 3 |
+| 3.5     | Manual Sync Button         | P1       | ⬜ Pending |          | Day 3 |
+| 4.1     | AI Rewrite Helper          | P0       | ⬜ Pending |          | Day 4 |
+| 4.2     | AI Rewrite API             | P0       | ⬜ Pending |          | Day 4 |
+| 4.3     | Dashboard Page             | P0       | ⬜ Pending |          | Day 4 |
+| 4.4     | Draft Card Component       | P0       | ⬜ Pending |          | Day 4 |
+| 5.1     | Publish Endpoint           | P0       | ⬜ Pending |          | Day 5 |
+| 5.2     | Public Changelog Page      | P0       | ⬜ Pending |          | Day 5 |
+| 6.1     | Checkout API               | P0       | ⬜ Pending |          | Day 6 |
+| 6.2     | Payment Webhook            | P0       | ⬜ Pending |          | Day 6 |
+| 6.3     | Upgrade Modal              | P0       | ⬜ Pending |          | Day 6 |
+| 6.4     | Usage Limits               | P0       | ⬜ Pending |          | Day 6 |
+| 7.1     | SEO Meta Tags              | P1       | ⬜ Pending |          | Day 7 |
+| 7.2     | Performance Optimize       | P1       | ⬜ Pending |          | Day 7 |
+| 7.3     | Error Boundaries           | P1       | ⬜ Pending |          | Day 7 |
+| 7.4     | 404/500 Pages              | P1       | ⬜ Pending |          | Day 7 |
+| 8.1     | Dogfood Setup              | P0       | ⬜ Pending |          | Day 8 |
+| 8.2     | Full Flow Testing          | P0       | ⬜ Pending |          | Day 8 |
+| 8.3     | Bug Fixes                  | P0       | ⬜ Pending |          | Day 8 |
+| 8.4     | Launch Assets              | P1       | ⬜ Pending |          | Day 8 |
 
 **Status Legend:**
+
 - ⬜ Pending
 - 🔄 In Progress
 - ✅ Completed
@@ -1263,24 +1326,26 @@ function groupByMonth(entries: any[]) {
 ## 📐 Code Standards
 
 ### File Naming
+
 ```typescript
 // Components: PascalCase
-DraftCard.tsx
-SiteHeader.tsx
+DraftCard.tsx;
+SiteHeader.tsx;
 
 // Utilities: camelCase
-cn.ts
-formatDate.ts
+cn.ts;
+formatDate.ts;
 
 // API routes: kebab-case in folder, route.ts file
-api/github/sync/route.ts
+api / github / sync / route.ts;
 
 // Hooks: use prefix
-useDrafts.ts
-useUsage.ts
+useDrafts.ts;
+useUsage.ts;
 ```
 
 ### Component Structure
+
 ```typescript
 'use client'; // If client component
 
@@ -1293,7 +1358,7 @@ interface Props {
 
 export function Component({ }: Props) {
   // Component logic
-  
+
   return (
     // JSX
   );
@@ -1301,6 +1366,7 @@ export function Component({ }: Props) {
 ```
 
 ### Error Handling
+
 ```typescript
 try {
   // Operation
@@ -1312,6 +1378,7 @@ try {
 ```
 
 ### TypeScript
+
 - No `any` types (use `unknown` if needed)
 - All props typed
 - All API responses typed

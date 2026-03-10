@@ -9,6 +9,7 @@
 ## ✅ What's Been Built
 
 ### 1. **Project Structure** ✅
+
 ```
 src/
 ├── app/
@@ -72,11 +73,13 @@ src/
 ### 3. **Core Components Created** ✅
 
 #### **Layout Components**
+
 - `SiteHeader` - Top navigation with Clerk sign-out
 - `SiteSidebar` - Dashboard navigation with upgrade CTA
 - `DashboardLayout` - Wraps all dashboard pages
 
 #### **Dashboard Components**
+
 - `DashboardPage` - Overview with drafts + usage
 - `DraftCard` - Interactive draft with AI rewrite + publish
 - `UsageCard` - Shows monthly usage + plan info
@@ -84,6 +87,7 @@ src/
 - `SyncButton` - Manual GitHub sync trigger
 
 #### **UI Components**
+
 - `Button` - 5 variants (primary, secondary, outline, ghost, destructive)
 - `Card` - Full card component family
 - `Badge` - 4 variants (default, secondary, outline, success)
@@ -95,12 +99,12 @@ src/
 **File:** `src/shared/lib/utils/index.ts`
 
 ```typescript
-cn()           // Tailwind class merger
-formatDate()   // "January 15, 2026"
-formatDateShort() // "Jan 15"
-truncate()     // Truncate text
-slugify()      // URL-safe slugs
-timeAgo()      // "2 hours ago"
+cn(); // Tailwind class merger
+formatDate(); // "January 15, 2026"
+formatDateShort(); // "Jan 15"
+truncate(); // Truncate text
+slugify(); // URL-safe slugs
+timeAgo(); // "2 hours ago"
 ```
 
 ---
@@ -108,33 +112,36 @@ timeAgo()      // "2 hours ago"
 ### 5. **Database Helpers** ✅
 
 #### **User Management** (`src/shared/lib/db/user.ts`)
+
 ```typescript
-getUserConfig(userId)
-setUserConfig(userId, config)
-getUserPlan(userId)
-upgradeToPro(userId)
-downgradeToFree(userId)
+getUserConfig(userId);
+setUserConfig(userId, config);
+getUserPlan(userId);
+upgradeToPro(userId);
+downgradeToFree(userId);
 ```
 
 #### **Repo Management** (`src/shared/lib/db/repo.ts`)
+
 ```typescript
-getConnectedRepos(userId)
-connectRepo(repo)
-disconnectRepo(userId, repoId)
-getRepoBySlug(repoSlug)
+getConnectedRepos(userId);
+connectRepo(repo);
+disconnectRepo(userId, repoId);
+getRepoBySlug(repoSlug);
 ```
 
 #### **Entry Management** (`src/shared/lib/db/entry.ts`)
+
 ```typescript
-getDrafts(userId)
-getPublishedEntries(userId)
-getEntry(entryId)
-createEntry(entry)
-updateEntry(entryId, updates)
-publishEntry(entryId)
-unpublishEntry(entryId)
-deleteEntry(entryId)
-getEntriesByRepo(repoId)
+getDrafts(userId);
+getPublishedEntries(userId);
+getEntry(entryId);
+createEntry(entry);
+updateEntry(entryId, updates);
+publishEntry(entryId);
+unpublishEntry(entryId);
+deleteEntry(entryId);
+getEntriesByRepo(repoId);
 ```
 
 ---
@@ -142,15 +149,17 @@ getEntriesByRepo(repoId)
 ### 6. **GitHub Integration** ✅
 
 #### **Client** (`src/shared/lib/github/client.ts`)
+
 ```typescript
-createGitHubClient(token)
-getUserRepos(token)
-getPRDetails(token, owner, repo, prNumber)
+createGitHubClient(token);
+getUserRepos(token);
+getPRDetails(token, owner, repo, prNumber);
 ```
 
 #### **Webhook Verification** (`src/shared/lib/github/webhook.ts`)
+
 ```typescript
-verifyWebhookSignature(payload, signature)
+verifyWebhookSignature(payload, signature);
 ```
 
 ---
@@ -158,12 +167,14 @@ verifyWebhookSignature(payload, signature)
 ### 7. **AI Integration** ✅
 
 #### **Gemini Helper** (`src/shared/lib/ai/gemini.ts`)
+
 ```typescript
-rewritePR({ title, body, labels })
-generateSEODescription({ title, rewrite, repo })
+rewritePR({ title, body, labels });
+generateSEODescription({ title, rewrite, repo });
 ```
 
 **Features:**
+
 - 2-3 sentence rewrites
 - User-focused language
 - Handles empty PR bodies
@@ -174,11 +185,13 @@ generateSEODescription({ title, rewrite, repo })
 ### 8. **API Routes** ✅
 
 #### **GitHub Repos** (`/api/github/repos`)
+
 - GET user's GitHub repositories
 - Requires GitHub token in KV
 - Returns typed repo list
 
 #### **AI Rewrite** (`/api/ai/rewrite`)
+
 - POST with entryId
 - Checks usage limits (50/month free)
 - Calls Gemini API
@@ -186,6 +199,7 @@ generateSEODescription({ title, rewrite, repo })
 - Increments usage counter
 
 #### **Publish Entry** (`/api/entries/publish`)
+
 - POST with entryId
 - Checks ownership
 - Checks plan limits (50 entries free)
@@ -197,28 +211,31 @@ generateSEODescription({ title, rewrite, repo })
 ### 9. **Authentication** ✅
 
 #### **Middleware** (`src/middleware.ts`)
+
 ```typescript
 // Protected routes:
-- /dashboard/*
-- /settings/*
-- /drafts/*
-- /published/*
-
-// Public routes:
-- /sign-in/*
-- /sign-up/*
-- /changelog/*
-- /api/github/sync
-- /api/payment/webhook
+(-/dashboard/ *
+  -/settings/ *
+  -/drafts/ *
+  -/published/ *
+  // Public routes:
+  -/sign-in/ *
+  -/sign-up/ *
+  -/changelog/ *
+  -/api/bghitu) /
+  sync -
+  /api/aemnpty / webhook;
 ```
 
 #### **Sign In Page** (`/sign-in`)
+
 - Custom Clerk styling
 - Matches GitLog theme
 - Trust signals below form
 - Redirects to `/onboarding`
 
 #### **Sign Up Page** (`/sign-up`)
+
 - Same styling as sign-in
 - Redirects to `/onboarding`
 
@@ -227,6 +244,7 @@ generateSEODescription({ title, rewrite, repo })
 ### 10. **Configuration** ✅
 
 #### **Environment Variables** (`.env.example`)
+
 ```env
 CLERK_SECRET_KEY=
 CLERK_PUBLISHABLE_KEY=
@@ -238,9 +256,10 @@ NEXT_PUBLIC_APP_URL=
 ```
 
 #### **App Config** (`src/shared/config/index.ts`)
+
 ```typescript
-pricing.free  // 50 entries, 50 rewrites, 1 repo
-pricing.pro   // Unlimited everything
+pricing.free; // 50 entries, 50 rewrites, 1 repo
+pricing.pro; // Unlimited everything
 ```
 
 ---
@@ -248,22 +267,20 @@ pricing.pro   // Unlimited everything
 ## 🎨 Design System
 
 ### **Colors** (Premium Dark Theme)
+
 ```css
---background: #0a0a0b
---foreground: #fafafa
---surface: #141416
---surface-elevated: #1a1a1d
---accent: #ff6b35
---muted: #8a8a92
---line: rgba(255, 255, 255, 0.06)
+--background: #0a0a0b --foreground: #fafafa --surface: #141416 --surface-elevated: #1a1a1d
+  --accent: #ff6b35 --muted: #8a8a92 --line: rgba(255, 255, 255, 0.06);
 ```
 
 ### **Typography**
+
 - Display: Cormorant Garamond
 - Sans: IBM Plex Sans
 - Mono: IBM Plex Mono
 
 ### **Components**
+
 - Buttons: Rounded, subtle hover effects
 - Cards: Border + shadow, hover lift
 - Badges: Pill-shaped, color-coded
@@ -273,6 +290,7 @@ pricing.pro   // Unlimited everything
 ## 📊 Dashboard Preview
 
 ### **Overview Page** (`/dashboard`)
+
 ```
 ┌─────────────────────────────────────────────────────┐
 │  Welcome back, [User]!                  [Sync Now]  │
@@ -307,6 +325,7 @@ pricing.pro   // Unlimited everything
 ## 🚀 Next Steps (Day 2-3)
 
 ### **Day 2: GitHub Webhook + Sync**
+
 - [ ] Create webhook receiver (`/api/github/sync`)
 - [ ] Implement signature verification
 - [ ] Handle merged PR events
@@ -315,6 +334,7 @@ pricing.pro   // Unlimited everything
 - [ ] Create manual sync endpoint
 
 ### **Day 3: Onboarding + Public Page**
+
 - [ ] Create onboarding flow (`/onboarding`)
 - [ ] Repo connection UI
 - [ ] Webhook auto-configuration
@@ -327,6 +347,7 @@ pricing.pro   // Unlimited everything
 ## 📝 Testing Checklist
 
 ### **Before Next Session**
+
 - [ ] Set up Clerk account
 - [ ] Create Vercel KV store
 - [ ] Get Google AI API key
@@ -338,16 +359,16 @@ pricing.pro   // Unlimited everything
 
 ## 🎯 Success Criteria Met
 
-| Criterion | Status |
-| :---- | :---- |
-| Project structure created | ✅ |
-| Dependencies installed | ✅ |
-| Auth configured | ✅ |
-| Dashboard layout built | ✅ |
-| Core components created | ✅ |
-| Database helpers written | ✅ |
-| API routes implemented | ✅ |
-| Design system established | ✅ |
+| Criterion                 | Status |
+| :------------------------ | :----- |
+| Project structure created | ✅     |
+| Dependencies installed    | ✅     |
+| Auth configured           | ✅     |
+| Dashboard layout built    | ✅     |
+| Core components created   | ✅     |
+| Database helpers written  | ✅     |
+| API routes implemented    | ✅     |
+| Design system established | ✅     |
 
 ---
 
@@ -357,4 +378,4 @@ pricing.pro   // Unlimited everything
 
 ---
 
-*Last Updated: 2026-03-08*
+_Last Updated: 2026-03-08_

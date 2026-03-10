@@ -1,7 +1,7 @@
 # GitLog Sales Playbook
 
 **Created:** 2026-03-09  
-**Status:** Ready to Use  
+**Status:** Ready to Use
 
 ---
 
@@ -117,6 +117,7 @@ Best,
 **You:** "Thanks for making time! Before I show you GitLog, can you tell me a bit about how you currently handle release communication?"
 
 **Listen for:**
+
 - Manual changelog writing
 - Inconsistent updates
 - User complaints about not knowing what's new
@@ -131,6 +132,7 @@ Best,
 ### Problem Agitation (3 minutes)
 
 **You:** "So if I'm hearing you correctly:
+
 - You're shipping [X features/week]
 - But users don't know what's changed
 - And writing changelogs manually takes [Y hours/week]
@@ -195,6 +197,7 @@ Total time per release: 2 minutes max. Usually less."
 **Objection:** "$19/month is steep for a changelog"
 
 **Response:** "Fair question. Let's break it down:
+
 - Canny: $49/month (no auto-sync)
 - Featurebase: $29/month (no auto-sync)
 - Frill: $49/month (no auto-sync)
@@ -228,10 +231,12 @@ Plus, if GitLog saves you 2 hours/month of manual writing, that's $9.50/hour. Mo
 "GitLog connects to GitHub once and auto-generates a public changelog from merged PRs. Zero manual writing. Merge a PR → see it on your public changelog in under 60 seconds."
 
 **CTA Buttons:**
+
 - Primary: "Start Free - No Credit Card"
 - Secondary: "Watch 2-min Demo"
 
 **Trust Signals:**
+
 - "Built for SaaS founders shipping weekly"
 - "Private and public GitHub repos"
 - "Review before publish, always"
@@ -271,6 +276,7 @@ All in under 60 seconds. All on autopilot."
 
 **Free Plan:**
 "Best for side projects and testing"
+
 - 50 entries/month
 - 1 connected repo
 - 50 AI rewrites
@@ -279,6 +285,7 @@ All in under 60 seconds. All on autopilot."
 
 **Pro Plan:**
 "For products shipping weekly"
+
 - Unlimited entries
 - Unlimited repos
 - Unlimited AI rewrites
@@ -460,6 +467,7 @@ P.S. Happy to answer any questions about building, launching, or growing a SaaS 
 ### Step 5: Bonus Features (1 minute)
 
 **You:** "But wait, there's more. GitLog also:
+
 - Generates Twitter threads and LinkedIn posts
 - Sends email digests to subscribers
 - Provides an embeddable widget for your website
@@ -486,6 +494,7 @@ Want to try it? I can set you up right now."
 
 **Response 1: Competitor Comparison**
 "Totally fair question. Let's compare:
+
 - Canny: $49/month (no auto-sync, no AI)
 - Featurebase: $29/month (no auto-sync, no AI)
 - Frill: $49/month (no auto-sync, no AI)
@@ -496,6 +505,7 @@ We're 60% cheaper, and we're the only ones with GitHub auto-sync + AI rewrites +
 
 **Response 2: Time Savings**
 "Let's do the math:
+
 - Manual changelog: 30 minutes per release
 - You ship 4 times/month = 2 hours
 - Your time is worth at least $50/hour
@@ -507,6 +517,7 @@ GitLog costs $19/month. You're saving $81/month."
 
 **Response 3: ROI**
 "What's the cost of NOT communicating releases?
+
 - Users don't know what's new
 - Features go unnoticed
 - Churn increases
@@ -523,24 +534,26 @@ GitLog solves all of that for $19/month. What's that worth to you?"
 
 ## 🎯 Objection Handling Cheat Sheet
 
-| Objection | Response |
-| :---- | :---- |
-| **"We use GitHub Releases"** | "GitHub Releases is technical and stays on GitHub. GitLog creates a user-facing changelog + social posts + emails." |
-| **"We're too small"** | "Perfect time to start! Shows users you're shipping. Way harder to add later." |
-| **"We tried before, didn't stick"** | "That's why we built GitLog—automatic updates from PRs. No manual writing." |
-| **"$19/month is steep"** | "Cheaper than competitors. Saves 2+ hours/month. ROI is clear." |
-| **"No budget right now"** | "Start with free tier (50 entries/month). Upgrade when ready." |
-| **"Need to talk to team"** | "Totally get it. Want a 14-day Pro trial to test with the team?" |
-| **"Not a priority"** | "Fair. Can I follow up in [X weeks]? In the meantime, free tier is always available." |
+| Objection                           | Response                                                                                                            |
+| :---------------------------------- | :------------------------------------------------------------------------------------------------------------------ |
+| **"We use GitHub Releases"**        | "GitHub Releases is technical and stays on GitHub. GitLog creates a user-facing changelog + social posts + emails." |
+| **"We're too small"**               | "Perfect time to start! Shows users you're shipping. Way harder to add later."                                      |
+| **"We tried before, didn't stick"** | "That's why we built GitLog—automatic updates from PRs. No manual writing."                                         |
+| **"$19/month is steep"**            | "Cheaper than competitors. Saves 2+ hours/month. ROI is clear."                                                     |
+| **"No budget right now"**           | "Start with free tier (50 entries/month). Upgrade when ready."                                                      |
+| **"Need to talk to team"**          | "Totally get it. Want a 14-day Pro trial to test with the team?"                                                    |
+| **"Not a priority"**                | "Fair. Can I follow up in [X weeks]? In the meantime, free tier is always available."                               |
 
 ---
 
 ## 📞 Follow-Up Sequence
 
 ### Day 1: Initial Contact
+
 - Send cold email (see templates above)
 
 ### Day 3: Follow-Up #1
+
 **Subject:** Re: [Original subject]
 
 ```
@@ -558,6 +571,7 @@ Best,
 ```
 
 ### Day 7: Follow-Up #2 (Value Add)
+
 **Subject:** One idea for [Company]
 
 ```
@@ -579,6 +593,7 @@ Best,
 ```
 
 ### Day 14: Break-Up Email
+
 **Subject:** Last try
 
 ```
@@ -603,17 +618,20 @@ P.S. Free tier is always available if you change your mind: https://gitlog.app
 ## 🎯 Success Metrics
 
 ### For Sales Calls:
+
 - **Demo-to-Trial Conversion:** Target 40%+
 - **Trial-to-Paid Conversion:** Target 20%+
 - **Average Deal Size:** $19/month (Pro plan)
 - **Sales Cycle:** 1-7 days (self-serve)
 
 ### For Email Outreach:
+
 - **Open Rate:** Target 40%+
 - **Reply Rate:** Target 10%+
 - **Demo Booked:** Target 5%+
 
 ### For Landing Page:
+
 - **Visitor-to-Signup:** Target 5%+
 - **Signup-to-Active:** Target 50%+
 - **Free-to-Pro:** Target 10%+
@@ -622,5 +640,5 @@ P.S. Free tier is always available if you change your mind: https://gitlog.app
 
 **Ready to sell!** 🚀
 
-*Last Updated: 2026-03-09*  
-*Status: Ready to Use*
+_Last Updated: 2026-03-09_  
+_Status: Ready to Use_

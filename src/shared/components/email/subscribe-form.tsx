@@ -17,7 +17,7 @@ export function SubscribeForm({ repoId, repoName }: SubscribeFormProps) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!email || !email.includes('@')) {
       toast.error('Please enter a valid email address');
       return;
@@ -70,7 +70,7 @@ export function SubscribeForm({ repoId, repoName }: SubscribeFormProps) {
           Be the first to know when new features are released. No spam, unsubscribe anytime.
         </p>
       </div>
-      
+
       <div className="flex gap-2">
         <input
           type="email"
@@ -80,16 +80,11 @@ export function SubscribeForm({ repoId, repoName }: SubscribeFormProps) {
           disabled={loading}
           className="flex-1 px-3 py-2 rounded-md border border-line bg-surface text-sm focus:outline-none focus:ring-2 focus:ring-accent"
         />
-        <Button
-          type="submit"
-          disabled={loading}
-          size="sm"
-          className="bg-accent hover:bg-accent/90"
-        >
+        <Button type="submit" disabled={loading} size="sm" className="bg-accent hover:bg-accent/90">
           {loading ? 'Subscribing...' : 'Subscribe'}
         </Button>
       </div>
-      
+
       <p className="text-xs text-muted">
         By subscribing, you agree to receive email updates from {repoName || 'this project'}.
       </p>

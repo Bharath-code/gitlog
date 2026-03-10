@@ -12,7 +12,7 @@ interface Entry {
   id: string;
   title: string;
   category: string;
-  mergedAt: string;
+  mergedAt?: string;
   publishedAt?: string;
   aiRewrite?: string | null;
   repoId?: string;
@@ -29,9 +29,9 @@ export function BulkActions({ entries, onBulkPublish, onBulkDelete }: BulkAction
   const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
   const [processing, setProcessing] = useState(false);
 
-  const selectedEntries = entries.filter(e => selectedIds.has(e.id));
-  const draftSelected = selectedEntries.filter(e => e.status === 'draft');
-  const publishedSelected = selectedEntries.filter(e => e.status === 'published');
+  const selectedEntries = entries.filter((e) => selectedIds.has(e.id));
+  const draftSelected = selectedEntries.filter((e) => e.status === 'draft');
+  const publishedSelected = selectedEntries.filter((e) => e.status === 'published');
 
   const toggleSelect = (id: string) => {
     const newSelected = new Set(selectedIds);
@@ -47,20 +47,24 @@ export function BulkActions({ entries, onBulkPublish, onBulkDelete }: BulkAction
     if (selectedIds.size === entries.length) {
       setSelectedIds(new Set());
     } else {
-      setSelectedIds(new Set(entries.map(e => e.id)));
+      setSelectedIds(new Set(entries.map((e) => e.id)));
     }
   };
 
   const handleBulkPublish = async () => {
     if (!onBulkPublish || draftSelected.length === 0) return;
-    
-    if (!confirm(`Publish ${draftSelected.length} selected draft${draftSelected.length !== 1 ? 's' : ''}?`)) {
+
+    if (
+      !confirm(
+        `Publish ${draftSelected.length} selected draft${draftSelected.length !== 1 ? 's' : ''}?`
+      )
+    ) {
       return;
     }
 
     setProcessing(true);
     try {
-      await onBulkPublish(draftSelected.map(e => e.id));
+      await onBulkPublish(draftSelected.map((e) => e.id));
       setSelectedIds(new Set());
     } catch (error) {
       console.error('Bulk publish error:', error);
@@ -72,14 +76,18 @@ export function BulkActions({ entries, onBulkPublish, onBulkDelete }: BulkAction
 
   const handleBulkDelete = async () => {
     if (!onBulkDelete || selectedEntries.length === 0) return;
-    
-    if (!confirm(`Delete ${selectedEntries.length} selected entrie${selectedEntries.length !== 1 ? 's' : ''}? This action cannot be undone.`)) {
+
+    if (
+      !confirm(
+        `Delete ${selectedEntries.length} selected entrie${selectedEntries.length !== 1 ? 's' : ''}? This action cannot be undone.`
+      )
+    ) {
       return;
     }
 
     setProcessing(true);
     try {
-      await onBulkDelete(selectedEntries.map(e => e.id));
+      await onBulkDelete(selectedEntries.map((e) => e.id));
       setSelectedIds(new Set());
     } catch (error) {
       console.error('Bulk delete error:', error);
@@ -96,14 +104,13 @@ export function BulkActions({ entries, onBulkPublish, onBulkDelete }: BulkAction
         <Card className="p-4 sticky top-4 z-10 bg-surface/95 backdrop-blur border-accent/50">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <Badge variant="accent">
-                {selectedIds.size} selected
-              </Badge>
+              <Badge variant="default">{selectedIds.size} selected</Badge>
               <span className="text-sm text-muted">
-                {draftSelected.length} draft{draftSelected.length !== 1 ? 's' : ''}, {publishedSelected.length} published
+                {draftSelected.length} draft{draftSelected.length !== 1 ? 's' : ''},{' '}
+                {publishedSelected.length} published
               </span>
             </div>
-            
+
             <div className="flex items-center gap-2">
               {draftSelected.length > 0 && onBulkPublish && (
                 <Button
@@ -116,7 +123,7 @@ export function BulkActions({ entries, onBulkPublish, onBulkDelete }: BulkAction
                   Publish {draftSelected.length}
                 </Button>
               )}
-              
+
               <Button
                 size="sm"
                 variant="destructive"
@@ -126,12 +133,8 @@ export function BulkActions({ entries, onBulkPublish, onBulkDelete }: BulkAction
                 <Trash2 className="h-3.5 w-3.5 mr-1" />
                 Delete
               </Button>
-              
-              <Button
-                size="sm"
-                variant="ghost"
-                onClick={() => setSelectedIds(new Set())}
-              >
+
+              <Button size="sm" variant="ghost" onClick={() => setSelectedIds(new Set())}>
                 <X className="h-3.5 w-3.5 mr-1" />
                 Cancel
               </Button>
@@ -146,9 +149,7 @@ export function BulkActions({ entries, onBulkPublish, onBulkDelete }: BulkAction
           <Card
             key={entry.id}
             className={`p-4 transition-all ${
-              selectedIds.has(entry.id)
-                ? 'border-accent bg-accent/5'
-                : 'hover:border-accent/50'
+              selectedIds.has(entry.id) ? 'border-accent bg-accent/5' : 'hover:border-accent/50'
             }`}
           >
             <div className="flex items-start gap-4">
@@ -176,17 +177,19 @@ export function BulkActions({ entries, onBulkPublish, onBulkDelete }: BulkAction
                     {entry.title}
                   </Link>
                 </div>
-                
+
                 {entry.aiRewrite ? (
-                  <p className="text-muted text-sm line-clamp-2">
-                    {entry.aiRewrite}
-                  </p>
+                  <p className="text-muted text-sm line-clamp-2">{entry.aiRewrite}</p>
                 ) : (
                   <p className="text-sm text-muted">No AI rewrite yet</p>
                 )}
-                
+
                 <div className="flex items-center gap-4 text-xs text-muted">
-                  <span>{formatDate(entry.publishedAt || entry.mergedAt)}</span>
+                  <span>
+                    {entry.publishedAt || entry.mergedAt
+                      ? formatDate(entry.publishedAt || (entry.mergedAt as string))
+                      : 'N/A'}
+                  </span>
                   {entry.repoId && (
                     <span className="flex items-center gap-1">
                       <ExternalLink className="h-3 w-3" />
@@ -195,7 +198,7 @@ export function BulkActions({ entries, onBulkPublish, onBulkDelete }: BulkAction
                   )}
                 </div>
               </div>
-              
+
               {/* Actions */}
               <div className="flex flex-col gap-2">
                 <Link href={`/drafts/${entry.id}`}>
@@ -204,18 +207,14 @@ export function BulkActions({ entries, onBulkPublish, onBulkDelete }: BulkAction
                     Edit
                   </Button>
                 </Link>
-                
+
                 {entry.status === 'draft' ? (
                   <Button size="sm" className="bg-accent hover:bg-accent/90">
                     <Check className="h-3.5 w-3.5 mr-1" />
                     Publish
                   </Button>
                 ) : (
-                  <a
-                    href={`/changelog/${entry.repoId}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
+                  <a href={`/changelog/${entry.repoId}`} target="_blank" rel="noopener noreferrer">
                     <Button variant="outline" size="sm">
                       <ExternalLink className="h-3.5 w-3.5 mr-1" />
                       View
@@ -242,10 +241,8 @@ export function BulkActions({ entries, onBulkPublish, onBulkDelete }: BulkAction
               Select all {entries.length} entrie{entries.length !== 1 ? 's' : ''}
             </span>
           </div>
-          
-          <div className="text-sm text-muted">
-            {selectedIds.size} selected
-          </div>
+
+          <div className="text-sm text-muted">{selectedIds.size} selected</div>
         </div>
       )}
     </div>

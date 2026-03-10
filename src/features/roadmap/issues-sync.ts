@@ -60,9 +60,9 @@ export async function syncGitHubIssues(
         upvotes: 0,
         voterIds: [],
         githubIssueUrl: issue.html_url,
-        labels: issue.labels.map((l) => 
-          typeof l === 'string' ? l : l.name
-        ).filter(Boolean),
+        labels: issue.labels
+          .map((l) => (typeof l === 'string' ? l : l.name))
+          .filter(Boolean) as string[],
         createdAt: issue.created_at,
         updatedAt: issue.updated_at,
       };
@@ -75,18 +75,15 @@ export async function syncGitHubIssues(
     return { success: true, count };
   } catch (error) {
     console.error('Error syncing GitHub issues:', error);
-    return { 
-      success: false, 
-      count: 0, 
-      error: error instanceof Error ? error.message : 'Failed to sync' 
+    return {
+      success: false,
+      count: 0,
+      error: error instanceof Error ? error.message : 'Failed to sync',
     };
   }
 }
 
-export async function getRoadmapItems(
-  userId: string,
-  repoId: string
-): Promise<RoadmapItem[]> {
+export async function getRoadmapItems(userId: string, repoId: string): Promise<RoadmapIssue[]> {
   try {
     const keys = await kv.keys(`roadmap:${userId}:${repoId}:*`);
     const items: RoadmapIssue[] = [];

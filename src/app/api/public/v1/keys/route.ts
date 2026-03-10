@@ -1,6 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { kv } from '@vercel/kv';
-import { createApiKey, getUserApiKeys, revokeApiKey, validateApiKey } from '@/features/api/api-key-manager';
+import {
+  createApiKey,
+  getUserApiKeys,
+  revokeApiKey,
+  validateApiKey,
+} from '@/features/api/api-key-manager';
 
 /**
  * GET /api/public/v1/keys
@@ -17,7 +22,7 @@ export async function GET(request: NextRequest) {
     const keys = await getUserApiKeys(userId);
 
     // Don't return the hashed key, just the prefix and metadata
-    const safeKeys = keys.map(k => ({
+    const safeKeys = keys.map((k) => ({
       id: k.id,
       name: k.name,
       keyPrefix: k.keyPrefix,
@@ -30,10 +35,7 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ keys: safeKeys });
   } catch (error) {
     console.error('Error listing API keys:', error);
-    return NextResponse.json(
-      { error: 'Failed to list API keys' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to list API keys' }, { status: 500 });
   }
 }
 
@@ -76,10 +78,7 @@ export async function POST(request: NextRequest) {
     });
   } catch (error) {
     console.error('Error creating API key:', error);
-    return NextResponse.json(
-      { error: 'Failed to create API key' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to create API key' }, { status: 500 });
   }
 }
 
@@ -87,26 +86,25 @@ export async function POST(request: NextRequest) {
  * DELETE /api/public/v1/keys/[keyId]
  * Revoke an API key
  */
-export async function DELETE(
-  request: NextRequest,
-  { params }: { params: Promise<{ keyId: string }> }
-) {
+export async function DELETE(request: NextRequest) {
   try {
     const userId = request.headers.get('x-user-id');
     if (!userId) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const { keyId } = await params;
+    const { searchParams } = new URL(request.url);
+    const keyId = searchParams.get('keyId');
+
+    if (!keyId) {
+      return NextResponse.json({ error: 'Key ID is required' }, { status: 400 });
+    }
 
     await revokeApiKey(userId, keyId);
 
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error('Error revoking API key:', error);
-    return NextResponse.json(
-      { error: 'Failed to revoke API key' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to revoke API key' }, { status: 500 });
   }
 }

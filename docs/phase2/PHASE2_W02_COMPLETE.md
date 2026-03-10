@@ -3,7 +3,7 @@
 **Date:** 2026-03-09  
 **Sprint:** Sprint 1 - Embeddable Widget  
 **Task:** W-02 - Embeddable iframe Component  
-**Status:** ✅ Complete  
+**Status:** ✅ Complete
 
 ---
 
@@ -16,14 +16,14 @@
 
 ## 📁 Files Created (5 files)
 
-| File | Purpose | Lines |
-| :---- | :---- | :---- |
-| `src/app/api/widget/[widgetId]/route.ts` | Public widget API with CORS | ~130 |
-| `src/shared/components/widgets/embeddable-widget.tsx` | React widget component | ~200 |
-| `public/widget.js` | Embeddable widget script | ~350 |
-| `src/app/api/widget/track/route.ts` | Analytics tracking endpoint | ~60 |
-| `public/widget-test.html` | Test page for widget | ~200 |
-| `src/app/(public)/widget/[widgetId]/page.tsx` | Public widget page | ~40 |
+| File                                                  | Purpose                     | Lines |
+| :---------------------------------------------------- | :-------------------------- | :---- |
+| `src/app/api/widget/[widgetId]/route.ts`              | Public widget API with CORS | ~130  |
+| `src/shared/components/widgets/embeddable-widget.tsx` | React widget component      | ~200  |
+| `public/widget.js`                                    | Embeddable widget script    | ~350  |
+| `src/app/api/widget/track/route.ts`                   | Analytics tracking endpoint | ~60   |
+| `public/widget-test.html`                             | Test page for widget        | ~200  |
+| `src/app/(public)/widget/[widgetId]/page.tsx`         | Public widget page          | ~40   |
 
 **Total code written:** ~980 lines
 
@@ -31,14 +31,14 @@
 
 ## 🎯 Acceptance Criteria - Status
 
-| Criteria | Status | Notes |
-| :---- | :---- | :---- |
+| Criteria                   | Status   | Notes                              |
+| :------------------------- | :------- | :--------------------------------- |
 | ✅ Widget endpoint created | Complete | `/api/widget/[widgetId]` with CORS |
-| ✅ Embeddable component | Complete | Vanilla JS for max compatibility |
-| ✅ Multiple widget styles | Complete | Badge + dropdown styles |
-| ✅ CORS headers configured | Complete | Works on any website |
-| ✅ Mobile responsive | Complete | Responsive design |
-| ✅ Test page created | Complete | `/widget-test.html` |
+| ✅ Embeddable component    | Complete | Vanilla JS for max compatibility   |
+| ✅ Multiple widget styles  | Complete | Badge + dropdown styles            |
+| ✅ CORS headers configured | Complete | Works on any website               |
+| ✅ Mobile responsive       | Complete | Responsive design                  |
+| ✅ Test page created       | Complete | `/widget-test.html`                |
 
 **Status:** All acceptance criteria met ✅
 
@@ -49,6 +49,7 @@
 ### 1. Public Widget API (`/api/widget/[widgetId]`)
 
 **Features:**
+
 - ✅ CORS headers for cross-origin embedding
 - ✅ Fetches widget config from Vercel KV
 - ✅ Returns latest 5 changelog entries
@@ -56,10 +57,11 @@
 - ✅ OPTIONS endpoint for preflight requests
 
 **Endpoints:**
+
 ```typescript
-GET  /api/widget/[widgetId]     // Get widget data
-OPTIONS /api/widget/[widgetId]  // CORS preflight
-POST /api/widget/track          // Track events
+GET / api / widget / [widgetId]; // Get widget data
+OPTIONS / api / widget / [widgetId]; // CORS preflight
+POST / api / widget / track; // Track events
 ```
 
 ---
@@ -69,12 +71,14 @@ POST /api/widget/track          // Track events
 **Two Versions Created:**
 
 #### React Component (`embeddable-widget.tsx`)
+
 - For use within GitLog app
 - Full React features
 - Client-side rendering
 - Uses Tailwind CSS
 
 #### Vanilla JS Script (`widget.js`)
+
 - For external websites
 - Zero dependencies
 - Lightweight (~350 lines)
@@ -86,6 +90,7 @@ POST /api/widget/track          // Track events
 ### 3. Widget Features
 
 **Display Options:**
+
 - 📍 4 positions: bottom-right, bottom-left, top-right, top-left
 - 📏 3 sizes: small (16rem), medium (20rem), large (24rem)
 - 🎨 Custom colors (primary, background, text)
@@ -94,6 +99,7 @@ POST /api/widget/track          // Track events
 - ✨ Toggle "New" badge with count
 
 **Widget UI:**
+
 ```
 ┌─────────────────────────────┐
 │ ⭐ What's New        [3]  │  ← Header (collapsible)
@@ -119,15 +125,15 @@ POST /api/widget/track          // Track events
 ### 4. Analytics Tracking
 
 **Tracked Events:**
+
 - **Impressions:** Widget loads (counted per widget)
 - **Clicks:** Entry clicks (counted per entry)
 - **Storage:** Vercel KV
 
 **Tracking Keys:**
+
 ```typescript
-`widget:impressions:${widgetId}`
-`widget:clicks:${widgetId}`
-`widget:entry:${widgetId}:${entryId}:clicks`
+`widget:impressions:${widgetId}``widget:clicks:${widgetId}``widget:entry:${widgetId}:${entryId}:clicks`;
 ```
 
 ---
@@ -135,6 +141,7 @@ POST /api/widget/track          // Track events
 ### 5. CORS Configuration
 
 **Headers:**
+
 ```typescript
 {
   'Access-Control-Allow-Origin': '*',
@@ -153,6 +160,7 @@ POST /api/widget/track          // Track events
 ### Test the Widget
 
 1. **Start Dev Server:**
+
    ```bash
    npm run dev
    ```
@@ -196,6 +204,7 @@ POST /api/widget/track          // Track events
 ## 🎨 Design Features
 
 **Visual Design:**
+
 - Matches GitLog design system
 - Dark theme by default
 - Smooth transitions
@@ -203,6 +212,7 @@ POST /api/widget/track          // Track events
 - Clean, modern aesthetic
 
 **Animations:**
+
 - Fade in on load
 - Smooth collapse/expand
 - Hover state transitions
@@ -213,6 +223,7 @@ POST /api/widget/track          // Track events
 ## 🚀 Performance
 
 **Metrics:**
+
 - Widget script size: ~15KB (uncompressed)
 - Load time: <500ms on 3G
 - No blocking resources
@@ -220,6 +231,7 @@ POST /api/widget/track          // Track events
 - Minimal DOM manipulation
 
 **Optimization:**
+
 - Single script file
 - No external dependencies
 - Inline styles (no CSS request)
@@ -232,18 +244,14 @@ POST /api/widget/track          // Track events
 ### Basic Embed
 
 ```html
-<script 
-  src="https://gitlog.app/widget.js" 
-  data-widget-id="widget_abc123"
-  async
-></script>
+<script src="https://gitlog.app/widget.js" data-widget-id="widget_abc123" async></script>
 ```
 
 ### With Custom Position
 
 ```html
-<script 
-  src="https://gitlog.app/widget.js" 
+<script
+  src="https://gitlog.app/widget.js"
   data-widget-id="widget_abc123"
   data-position="top-left"
   async
@@ -253,8 +261,8 @@ POST /api/widget/track          // Track events
 ### With All Options
 
 ```html
-<script 
-  src="https://gitlog.app/widget.js" 
+<script
+  src="https://gitlog.app/widget.js"
   data-widget-id="widget_abc123"
   data-position="bottom-right"
   data-size="medium"
@@ -273,9 +281,9 @@ POST /api/widget/track          // Track events
 interface WidgetConfig {
   id: string;
   colors: {
-    primary: string;      // '#ff6b35'
-    background: string;   // '#1a1a1d'
-    text: string;         // '#fafafa'
+    primary: string; // '#ff6b35'
+    background: string; // '#1a1a1d'
+    text: string; // '#fafafa'
   };
   position: 'bottom-right' | 'bottom-left' | 'top-right' | 'top-left';
   size: 'small' | 'medium' | 'large';
@@ -294,6 +302,7 @@ interface WidgetConfig {
 ### W-03: Widget Customization
 
 **To Build:**
+
 - Color picker UI
 - Position selector
 - Size options
@@ -301,6 +310,7 @@ interface WidgetConfig {
 - Save to Vercel KV
 
 **Files:**
+
 - `src/shared/components/widgets/widget-customizer.tsx`
 
 ---
@@ -322,6 +332,7 @@ Widget Feature: 2/4 tasks complete (50%)
 ## 🔗 Related Files
 
 ### Created Today
+
 - `src/app/api/widget/[widgetId]/route.ts`
 - `src/shared/components/widgets/embeddable-widget.tsx`
 - `public/widget.js`
@@ -330,6 +341,7 @@ Widget Feature: 2/4 tasks complete (50%)
 - `src/app/(public)/widget/[widgetId]/page.tsx`
 
 ### Documentation
+
 - `PHASE2_PROGRESS.md` - Updated with W-02 status
 - `PHASE2_DAY1_PROGRESS.md` - Daily report
 
@@ -357,4 +369,4 @@ Widget Feature: 2/4 tasks complete (50%)
 
 ---
 
-*End of W-02 Report - 2026-03-09*
+_End of W-02 Report - 2026-03-09_

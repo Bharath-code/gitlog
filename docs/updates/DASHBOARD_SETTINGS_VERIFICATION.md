@@ -1,7 +1,7 @@
 # Dashboard & Settings - Connections Verification Report
 
 **Date:** 2026-03-09  
-**Status:** ✅ All Connections Verified  
+**Status:** ✅ All Connections Verified
 
 ---
 
@@ -12,6 +12,7 @@
 **Status:** ✅ Fully Connected
 
 **Components Used:**
+
 - ✅ `UsageCard` - Displays plan limits and usage
 - ✅ `DraftCard` - Shows recent drafts
 - ✅ `EmptyState` - Shows when no drafts
@@ -19,22 +20,26 @@
 - ✅ `Tooltip` - Help text
 
 **Data Sources:**
+
 - ✅ Clerk auth - `currentUser()`
 - ✅ Vercel KV - User plan & usage
 - ✅ Database - Draft entries via `getDrafts()`
 
 **API Calls:**
+
 - ✅ Server-side data fetch on load
 - ✅ `/api/github/sync/manual` - Manual sync (client-side)
 - ✅ `/api/ai/rewrite` - AI rewrite (from DraftCard)
 - ✅ `/api/entries/publish` - Publish (from DraftCard)
 
 **Navigation Links:**
+
 - ✅ `/dashboard/drafts` - View all drafts
 - ✅ `/dashboard/settings` - Connect repository
 - ✅ `/dashboard/upgrade` - Upgrade plan
 
 **Data Flow:**
+
 ```
 Page Load → Auth Check → Fetch Drafts → Fetch Usage → Render
                                                     ↓
@@ -50,20 +55,24 @@ Page Load → Auth Check → Fetch Drafts → Fetch Usage → Render
 **Status:** ✅ Fully Connected
 
 **Components:**
+
 - ✅ Custom settings page (no external components)
 - ✅ Card, Button, Badge from UI library
 - ✅ Icons from lucide-react
 
 **Data Sources:**
+
 - ✅ Clerk - `useUser()` hook
 - ✅ API endpoints for plan & repos
 
 **API Endpoints:**
+
 - ✅ `GET /api/user/plan` - Fetch user plan
 - ✅ `GET /api/user/repos` - Fetch connected repos
 - ✅ `DELETE /api/user/repos/[id]` - Disconnect repo
 
 **Features:**
+
 - ✅ Display connected repositories
 - ✅ Disconnect repositories
 - ✅ Connect new repository (via `/onboarding`)
@@ -72,6 +81,7 @@ Page Load → Auth Check → Fetch Drafts → Fetch Usage → Render
 - ✅ Link to upgrade page
 
 **Data Flow:**
+
 ```
 Page Load → Fetch Plan & Repos → Display Settings
                                       ↓
@@ -86,13 +96,16 @@ Page Load → Fetch Plan & Repos → Display Settings
 ## 🔗 Dashboard Components Verification
 
 ### 1. UsageCard ✅
+
 **File:** `src/features/dashboard/components/usage-card.tsx`
 
 **Props:**
+
 - `plan: 'free' | 'pro'`
 - `usage: { entriesPublished, aiRewrites }`
 
 **Features:**
+
 - ✅ Displays current plan
 - ✅ Shows usage progress bar
 - ✅ Calculates remaining entries
@@ -104,9 +117,11 @@ Page Load → Fetch Plan & Repos → Display Settings
 ---
 
 ### 2. SyncButton ✅
+
 **File:** `src/features/dashboard/components/sync-button.tsx`
 
 **Features:**
+
 - ✅ Manual GitHub sync trigger
 - ✅ Loading state with spinner
 - ✅ Success/error handling
@@ -117,9 +132,11 @@ Page Load → Fetch Plan & Repos → Display Settings
 ---
 
 ### 3. EmptyState ✅
+
 **File:** `src/features/dashboard/components/empty-state.tsx`
 
 **Features:**
+
 - ✅ Shows when no drafts
 - ✅ CTA to connect repository
 - ✅ Helpful message
@@ -129,12 +146,15 @@ Page Load → Fetch Plan & Repos → Display Settings
 ---
 
 ### 4. DraftCard ✅
+
 **File:** `src/features/drafts/components/draft-card.tsx`
 
 **Props:**
+
 - `draft: { id, title, category, mergedAt, aiRewrite, repoId }`
 
 **Features:**
+
 - ✅ Display draft info
 - ✅ AI rewrite button
 - ✅ Edit functionality
@@ -144,6 +164,7 @@ Page Load → Fetch Plan & Repos → Display Settings
 - ✅ Time display
 
 **API Connections:**
+
 - ✅ `/api/ai/rewrite` - Generate AI rewrite
 - ✅ `/api/entries/publish` - Publish draft
 - ✅ `/api/entries/discard` - Discard draft
@@ -157,6 +178,7 @@ Page Load → Fetch Plan & Repos → Display Settings
 ### Settings Page Structure ✅
 
 **Sections:**
+
 1. **Connected Repositories**
    - List repos with cards
    - Show connect date
@@ -175,6 +197,7 @@ Page Load → Fetch Plan & Repos → Display Settings
    - Manage subscription (Pro users)
 
 **API Integration:** ✅ All endpoints exist
+
 - `/api/user/plan` - GET
 - `/api/user/repos` - GET
 - `/api/user/repos/[id]` - DELETE
@@ -185,15 +208,15 @@ Page Load → Fetch Plan & Repos → Display Settings
 
 ### Required Endpoints for Dashboard
 
-| Endpoint | Method | Status | Purpose |
-| :---- | :---- | :---- | :---- |
-| `/api/github/sync/manual` | POST | ✅ Exists | Manual GitHub sync |
-| `/api/ai/rewrite` | POST | ✅ Exists | AI rewrite generation |
-| `/api/entries/publish` | POST | ✅ Exists | Publish draft |
-| `/api/entries/discard` | POST | ✅ Exists | Discard draft |
-| `/api/user/plan` | GET | ✅ Exists | Get user plan |
-| `/api/user/repos` | GET | ✅ Exists | Get connected repos |
-| `/api/user/repos/[id]` | DELETE | ✅ Exists | Disconnect repo |
+| Endpoint                  | Method | Status    | Purpose               |
+| :------------------------ | :----- | :-------- | :-------------------- |
+| `/api/github/sync/manual` | POST   | ✅ Exists | Manual GitHub sync    |
+| `/api/ai/rewrite`         | POST   | ✅ Exists | AI rewrite generation |
+| `/api/entries/publish`    | POST   | ✅ Exists | Publish draft         |
+| `/api/entries/discard`    | POST   | ✅ Exists | Discard draft         |
+| `/api/user/plan`          | GET    | ✅ Exists | Get user plan         |
+| `/api/user/repos`         | GET    | ✅ Exists | Get connected repos   |
+| `/api/user/repos/[id]`    | DELETE | ✅ Exists | Disconnect repo       |
 
 **All Required Endpoints:** ✅ Present and Connected
 
@@ -256,16 +279,19 @@ Render sections
 ### Dashboard Navigation Links
 
 **From Dashboard (`/dashboard`):**
+
 - ✅ `/dashboard/drafts` - "View all →" link
 - ✅ `/dashboard/settings` - "Connect Repository" button (empty state)
 - ✅ `/dashboard/upgrade` - "Upgrade to Pro" button (usage card)
 
 **From Settings (`/settings`):**
+
 - ✅ `/dashboard` - "Back to Dashboard" button
 - ✅ `/onboarding` - "Connect New" button
 - ✅ `/upgrade` - "Upgrade to Pro" button
 
 **From DraftCard:**
+
 - ✅ `/drafts/[id]` - Edit draft
 
 **Status:** ✅ All navigation links working
@@ -275,6 +301,7 @@ Render sections
 ## ✅ Verification Checklist
 
 ### Dashboard Page
+
 - [x] Auth check implemented
 - [x] Data fetching on load
 - [x] UsageCard displays correctly
@@ -285,6 +312,7 @@ Render sections
 - [x] Error handling in place
 
 ### Settings Page
+
 - [x] Auth check implemented
 - [x] Data fetching on load
 - [x] Repositories section works
@@ -295,18 +323,21 @@ Render sections
 - [x] Upgrade link present
 
 ### Components
+
 - [x] UsageCard - Props, display, logic
 - [x] SyncButton - API call, loading state
 - [x] DraftCard - All actions working
 - [x] EmptyState - CTA links
 
 ### API Endpoints
+
 - [x] All required endpoints exist
 - [x] Correct HTTP methods
 - [x] Request/response format
 - [x] Error handling
 
 ### Data Sources
+
 - [x] Clerk authentication
 - [x] Vercel KV storage
 - [x] Database queries
@@ -321,7 +352,7 @@ Render sections
 **Components:** ✅ All 4 components verified  
 **API Endpoints:** ✅ All 7 endpoints working  
 **Data Flows:** ✅ All flows mapped and working  
-**Navigation:** ✅ All links present  
+**Navigation:** ✅ All links present
 
 **Issues Found:** None ✅
 
@@ -329,5 +360,5 @@ Render sections
 
 ---
 
-*Last Updated: 2026-03-09*  
-*Status: All Dashboard & Settings connections verified ✅*
+_Last Updated: 2026-03-09_  
+_Status: All Dashboard & Settings connections verified ✅_

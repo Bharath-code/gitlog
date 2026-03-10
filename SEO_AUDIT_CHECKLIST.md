@@ -1,13 +1,14 @@
 # GitLog SEO Audit Checklist
 
 **Created:** 2026-03-10  
-**Status:** ✅ **COMPLETE**  
+**Status:** ✅ **COMPLETE**
 
 ---
 
 ## 🔍 Technical SEO
 
 ### **Meta Tags** ✅
+
 - [x] Title tags (unique, 50-60 chars)
 - [x] Meta descriptions (unique, 150-160 chars)
 - [x] Open Graph tags
@@ -16,12 +17,14 @@
 - [x] Robots meta tags
 
 ### **Structured Data** ✅
+
 - [x] JSON-LD for changelog entries
 - [x] Breadcrumb schema
 - [x] Organization schema
 - [x] SoftwareApplication schema
 
 ### **Performance** ✅
+
 - [x] Image optimization (Next.js Image)
 - [x] Lazy loading
 - [x] Code splitting
@@ -29,12 +32,14 @@
 - [x] Gzip/Brotli compression
 
 ### **Mobile** ✅
+
 - [x] Responsive design
 - [x] Mobile-friendly viewport
 - [x] Touch-friendly buttons
 - [x] Readable font sizes
 
 ### **Indexing** ✅
+
 - [x] robots.txt configured
 - [x] sitemap.xml generated
 - [x] Noindex on private pages
@@ -45,6 +50,7 @@
 ## 📝 On-Page SEO
 
 ### **Homepage** ✅
+
 - [x] Primary keyword: "auto changelog generator"
 - [x] Secondary: "GitHub changelog automation"
 - [x] H1: Clear value proposition
@@ -53,12 +59,14 @@
 - [x] CTA above the fold
 
 ### **Feature Pages** ✅
+
 - [x] Unique titles per feature
 - [x] Benefit-focused descriptions
 - [x] Use case examples
 - [x] Internal linking
 
 ### **Public Changelogs** ✅
+
 - [x] Dynamic meta titles
 - [x] Auto-generated descriptions
 - [x] Structured data per entry
@@ -69,6 +77,7 @@
 ## 🔗 Off-Page SEO
 
 ### **Backlinks** ⏳
+
 - [ ] Submit to Product Hunt
 - [ ] Submit to Hacker News
 - [ ] Guest posts on dev blogs
@@ -76,6 +85,7 @@
 - [ ] Social media profiles
 
 ### **Social Signals** ⏳
+
 - [ ] Twitter profile optimized
 - [ ] LinkedIn company page
 - [ ] GitHub README links
@@ -91,7 +101,7 @@
 
 ```typescript
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const repoName = params.repo.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+  const repoName = params.repo.replace(/-/g, ' ').replace(/\b\w/g, (l) => l.toUpperCase());
 
   return {
     title: `What's New in ${repoName} | GitLog`,
@@ -186,13 +196,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: '*',
       allow: '/',
-      disallow: [
-        '/dashboard/',
-        '/settings/',
-        '/api/',
-        '/sign-in/',
-        '/sign-up/',
-      ],
+      disallow: ['/dashboard/', '/settings/', '/api/', '/sign-in/', '/sign-up/'],
     },
     sitemap: `${siteConfig.url}/sitemap.xml`,
   };
@@ -203,19 +207,20 @@ export default function robots(): MetadataRoute.Robots {
 
 ## 📊 SEO Performance Targets
 
-| Metric | Target | Current | Status |
-| :---- | :---- | :---- | :---- |
-| **Lighthouse Score** | >90 | TBD | ⏳ Test |
-| **Page Load Time** | <2s | TBD | ⏳ Test |
-| **First Contentful Paint** | <1.5s | TBD | ⏳ Test |
-| **Time to Interactive** | <3.5s | TBD | ⏳ Test |
-| **Cumulative Layout Shift** | <0.1 | TBD | ⏳ Test |
+| Metric                      | Target | Current | Status  |
+| :-------------------------- | :----- | :------ | :------ |
+| **Lighthouse Score**        | >90    | TBD     | ⏳ Test |
+| **Page Load Time**          | <2s    | TBD     | ⏳ Test |
+| **First Contentful Paint**  | <1.5s  | TBD     | ⏳ Test |
+| **Time to Interactive**     | <3.5s  | TBD     | ⏳ Test |
+| **Cumulative Layout Shift** | <0.1   | TBD     | ⏳ Test |
 
 ---
 
 ## 🧪 SEO Testing Tools
 
 ### **Free Tools:**
+
 - [Google Lighthouse](https://developers.google.com/web/tools/lighthouse)
 - [Google Search Console](https://search.google.com/search-console)
 - [Google PageSpeed Insights](https://pagespeed.web.dev/)
@@ -223,6 +228,7 @@ export default function robots(): MetadataRoute.Robots {
 - [Rich Results Test](https://search.google.com/test/rich-results)
 
 ### **Paid Tools (Optional):**
+
 - Ahrefs
 - SEMrush
 - Moz Pro
@@ -232,6 +238,7 @@ export default function robots(): MetadataRoute.Robots {
 ## ✅ SEO Checklist Summary
 
 ### **Technical SEO:** ✅ Complete
+
 - Meta tags configured
 - Structured data implemented
 - Performance optimized
@@ -239,11 +246,13 @@ export default function robots(): MetadataRoute.Robots {
 - Indexing configured
 
 ### **On-Page SEO:** ✅ Complete
+
 - Homepage optimized
 - Feature pages optimized
 - Public changelogs optimized
 
 ### **Off-Page SEO:** ⏳ Post-Launch
+
 - Backlink building
 - Social signals
 
@@ -251,5 +260,5 @@ export default function robots(): MetadataRoute.Robots {
 
 **SEO audit complete! Ready for launch!** 🚀
 
-*Last Updated: 2026-03-10*  
-*Status: Ready for Testing*
+_Last Updated: 2026-03-10_  
+_Status: Ready for Testing_

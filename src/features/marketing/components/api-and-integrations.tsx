@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import { useLayoutEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Key, Bell, Code, Slack, Globe, Zap } from "lucide-react";
+import { useLayoutEffect, useRef } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { Key, Bell, Code, Slack, Globe, Zap } from 'lucide-react';
 
-import { SectionHeading } from "@/shared/components/ui/section-heading";
+import { SectionHeading } from '@/shared/components/ui/section-heading';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -17,10 +17,10 @@ export function ApiAndIntegrationsSection() {
       return;
     }
 
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduceMotion) {
-      document.querySelectorAll(".reveal-on-scroll").forEach((el) => {
-        el.classList.add("revealed");
+      document.querySelectorAll('.reveal-on-scroll').forEach((el) => {
+        el.classList.add('revealed');
       });
       return;
     }
@@ -28,17 +28,17 @@ export function ApiAndIntegrationsSection() {
     const ctx = gsap.context(() => {
       // Stagger animation for feature cards
       gsap.fromTo(
-        ".api-feature-card",
+        '.api-feature-card',
         { opacity: 0, y: 60 },
         {
           opacity: 1,
           y: 0,
           duration: 0.8,
           stagger: 0.15,
-          ease: "power3.out",
+          ease: 'power3.out',
           scrollTrigger: {
-            trigger: ".api-features-grid",
-            start: "top 80%",
+            trigger: '.api-features-grid',
+            start: 'top 80%',
           },
         }
       );
@@ -50,58 +50,62 @@ export function ApiAndIntegrationsSection() {
   const features = [
     {
       icon: Key,
-      title: "Public API",
-      description: "Access your changelog programmatically with secure API keys.",
-      useCase: "Perfect for: External websites, Mobile apps, Integrations",
-      color: "accent",
+      title: 'Public API',
+      description: 'Access your changelog programmatically with secure API keys.',
+      useCase: 'Perfect for: External websites, Mobile apps, Integrations',
+      color: 'accent',
     },
     {
       icon: Code,
-      title: "API Keys",
-      description: "Generate and manage API keys with fine-grained permissions.",
-      useCase: "Perfect for: Production apps, CI/CD pipelines, Automation",
-      color: "blue",
+      title: 'API Keys',
+      description: 'Generate and manage API keys with fine-grained permissions.',
+      useCase: 'Perfect for: Production apps, CI/CD pipelines, Automation',
+      color: 'blue',
     },
     {
       icon: Slack,
-      title: "Slack Notifications",
-      description: "Get notified in Slack when changelog entries are published.",
-      useCase: "Perfect for: Team updates, Customer success, DevOps",
-      color: "purple",
+      title: 'Slack Notifications',
+      description: 'Get notified in Slack when changelog entries are published.',
+      useCase: 'Perfect for: Team updates, Customer success, DevOps',
+      color: 'purple',
     },
     {
       icon: Bell,
-      title: "Discord Notifications",
-      description: "Send updates to Discord channels automatically.",
-      useCase: "Perfect for: Community updates, Open source projects",
-      color: "success",
+      title: 'Discord Notifications',
+      description: 'Send updates to Discord channels automatically.',
+      useCase: 'Perfect for: Community updates, Open source projects',
+      color: 'success',
     },
     {
       icon: Globe,
-      title: "Webhooks Ready",
-      description: "Extend with custom webhooks for any platform.",
-      useCase: "Perfect for: Custom integrations, Enterprise workflows",
-      color: "amber",
+      title: 'Webhooks Ready',
+      description: 'Extend with custom webhooks for any platform.',
+      useCase: 'Perfect for: Custom integrations, Enterprise workflows',
+      color: 'amber',
     },
     {
       icon: Zap,
-      title: "Real-time Triggers",
-      description: "Instant notifications on publish, schedule, or release.",
-      useCase: "Perfect for: Time-sensitive updates, Team coordination",
-      color: "accent",
+      title: 'Real-time Triggers',
+      description: 'Instant notifications on publish, schedule, or release.',
+      useCase: 'Perfect for: Time-sensitive updates, Team coordination',
+      color: 'accent',
     },
   ];
 
   const colorClasses = {
-    accent: "from-accent to-accent/80 bg-accent/10 text-accent",
-    blue: "from-blue to-blue/80 bg-blue/10 text-blue",
-    purple: "from-purple to-purple/80 bg-purple/10 text-purple",
-    success: "from-success to-success/80 bg-success/10 text-success",
-    amber: "from-amber to-amber/80 bg-amber/10 text-amber",
+    accent: 'from-accent to-accent/80 bg-accent/10 text-accent',
+    blue: 'from-blue to-blue/80 bg-blue/10 text-blue',
+    purple: 'from-purple to-purple/80 bg-purple/10 text-purple',
+    success: 'from-success to-success/80 bg-success/10 text-success',
+    amber: 'from-amber to-amber/80 bg-amber/10 text-amber',
   };
 
   return (
-    <section ref={rootRef} className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24" id="api-integrations">
+    <section
+      ref={rootRef}
+      className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24"
+      id="api-integrations"
+    >
       <div className="max-w-2xl">
         <span className="eyebrow eyebrow-accent">Phase 4: API & Integrations</span>
         <h2 className="display-balance mt-5 font-display text-4xl leading-[0.95] tracking-[-0.04em] sm:text-5xl text-foreground">
@@ -139,7 +143,8 @@ export function ApiAndIntegrationsSection() {
           <div className="flex-1">
             <h3 className="text-2xl font-semibold text-foreground">📖 API Documentation</h3>
             <p className="mt-3 text-base leading-relaxed text-muted">
-              Full REST API with comprehensive documentation. Authenticate with API keys and access your changelog from anywhere.
+              Full REST API with comprehensive documentation. Authenticate with API keys and access
+              your changelog from anywhere.
             </p>
             <div className="mt-4 grid gap-4 md:grid-cols-2">
               <div className="rounded-lg border border-line bg-surface-highlight p-4">
@@ -151,7 +156,7 @@ export function ApiAndIntegrationsSection() {
               <div className="rounded-lg border border-line bg-surface-highlight p-4">
                 <h4 className="font-medium mb-2">Example Request</h4>
                 <pre className="text-xs font-mono text-muted overflow-x-auto">
-{`curl -X GET https://gitlog.app/api/public/v1/changelog \\
+                  {`curl -X GET https://gitlog.app/api/public/v1/changelog \\
   -H "Authorization: Bearer YOUR_API_KEY"`}
                 </pre>
               </div>

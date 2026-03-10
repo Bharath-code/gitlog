@@ -1,13 +1,14 @@
 # GitLog Launch Posts - Copy & Paste Ready
 
 **Created:** 2026-03-09  
-**Status:** Ready to Post  
+**Status:** Ready to Post
 
 ---
 
 ## 🐦 Twitter/X Launch Thread
 
 **Post 1 (Main Thread):**
+
 ```
 🚀 Introducing GitLog - Auto-generate changelogs from GitHub
 
@@ -22,6 +23,7 @@ Here's how it works 🧵
 ```
 
 **Post 2:**
+
 ```
 1/ Connect GitHub (30 seconds)
 
@@ -33,6 +35,7 @@ GitLog requests read-only access to your repos. You can revoke anytime.
 ```
 
 **Post 3:**
+
 ```
 2/ Merge PRs as usual
 
@@ -44,6 +47,7 @@ GitLog listens for merge events via webhooks.
 ```
 
 **Post 4:**
+
 ```
 3/ Drafts appear automatically
 
@@ -55,6 +59,7 @@ Auto-categorized by PR labels (feat → New, fix → Fixed, etc.)
 ```
 
 **Post 5:**
+
 ```
 4/ AI rewrites in plain English
 
@@ -66,6 +71,7 @@ Tone options: Professional, Casual, Exciting
 ```
 
 **Post 6:**
+
 ```
 5/ Publish to public changelog
 
@@ -77,6 +83,7 @@ Clean, modern design. Mobile responsive. SEO optimized.
 ```
 
 **Post 7:**
+
 ```
 But wait, there's more! 🎁
 
@@ -84,7 +91,7 @@ GitLog includes:
 
 ✅ Embeddable "What's New" widget
 ✅ Auto-generate Twitter threads
-✅ Auto-generate LinkedIn posts  
+✅ Auto-generate LinkedIn posts
 ✅ Email digest subscriptions
 ✅ Analytics (views, upvotes)
 ✅ Public roadmap from Issues
@@ -93,6 +100,7 @@ GitLog includes:
 ```
 
 **Post 8:**
+
 ```
 
 Pricing:
@@ -111,6 +119,7 @@ No credit card required for free tier.
 ```
 
 **Post 9:**
+
 ```
 Built with:
 
@@ -128,6 +137,7 @@ Total code: ~8,000 lines
 ```
 
 **Post 10:**
+
 ```
 Huge thanks to:
 @clerk @vercel @googledevs for amazing tools
@@ -138,6 +148,7 @@ This wouldn't exist without you! 🙏
 ```
 
 **Post 11 (CTA):**
+
 ```
 Try GitLog free:
 
@@ -692,6 +703,7 @@ No pressure at all - just wanted to share! 🙏
 ## 📊 Launch Day Checklist
 
 ### Pre-Launch (Day -1)
+
 - [ ] All launch posts written and scheduled
 - [ ] Demo video recorded (Loom, 2 min)
 - [ ] Screenshots/GIFs ready (10+)
@@ -702,6 +714,7 @@ No pressure at all - just wanted to share! 🙏
 - [ ] Uptime monitoring enabled
 
 ### Launch Day (Day 1)
+
 - [ ] 6 AM: Product Hunt goes live
 - [ ] 6 AM: Twitter thread posted
 - [ ] 7 AM: Reddit posts published
@@ -715,6 +728,7 @@ No pressure at all - just wanted to share! 🙏
 - [ ] 8 PM: Thank you thread
 
 ### Day 2-7
+
 - [ ] Daily: 3-5 tweets
 - [ ] Daily: Respond to all comments
 - [ ] Daily: Share user wins
@@ -728,5 +742,5 @@ No pressure at all - just wanted to share! 🙏
 
 **All templates ready to use!** 🚀
 
-*Last Updated: 2026-03-09*  
-*Status: Ready to Launch*
+_Last Updated: 2026-03-09_  
+_Status: Ready to Launch_

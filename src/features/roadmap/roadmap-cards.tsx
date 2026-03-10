@@ -28,14 +28,12 @@ interface RoadmapCardsProps {
 export function RoadmapCards({ items, onStatusChange }: RoadmapCardsProps) {
   const [filter, setFilter] = useState<'all' | 'planned' | 'in-progress' | 'completed'>('all');
 
-  const filteredItems = filter === 'all' 
-    ? items 
-    : items.filter(item => item.status === filter);
+  const filteredItems = filter === 'all' ? items : items.filter((item) => item.status === filter);
 
   const groupedItems = {
-    planned: filteredItems.filter(item => item.status === 'planned'),
-    'in-progress': filteredItems.filter(item => item.status === 'in-progress'),
-    completed: filteredItems.filter(item => item.status === 'completed'),
+    planned: filteredItems.filter((item) => item.status === 'planned'),
+    'in-progress': filteredItems.filter((item) => item.status === 'in-progress'),
+    completed: filteredItems.filter((item) => item.status === 'completed'),
   };
 
   return (
@@ -136,11 +134,7 @@ function RoadmapCard({ item }: { item: RoadmapItem }) {
         )}
 
         {/* Description */}
-        {item.body && (
-          <p className="text-xs text-muted line-clamp-3">
-            {item.body}
-          </p>
-        )}
+        {item.body && <p className="text-xs text-muted line-clamp-3">{item.body}</p>}
 
         {/* Footer */}
         <div className="flex items-center justify-between pt-3 border-t border-line">

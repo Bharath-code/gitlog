@@ -5,14 +5,7 @@ interface SkeletonProps {
 }
 
 export function Skeleton({ className }: SkeletonProps) {
-  return (
-    <div
-      className={cn(
-        'animate-pulse rounded-md bg-surface-highlight',
-        className
-      )}
-    />
-  );
+  return <div className={cn('animate-pulse rounded-md bg-surface-highlight', className)} />;
 }
 
 // Pre-built skeleton components for common patterns
@@ -96,7 +89,7 @@ export function SkeletonTable({ rows = 5, columns = 4 }: { rows?: number; column
           <Skeleton key={i} className="h-4 w-32" />
         ))}
       </div>
-      
+
       {/* Rows */}
       {Array.from({ length: rows }).map((_, rowIndex) => (
         <div key={rowIndex} className="flex gap-4">
@@ -137,7 +130,7 @@ export function SkeletonPage({ className }: SkeletonProps) {
         </div>
         <Skeleton className="h-10 w-32" />
       </div>
-      
+
       {/* Content */}
       <div className="space-y-4">
         {Array.from({ length: 3 }).map((_, i) => (
@@ -149,10 +142,10 @@ export function SkeletonPage({ className }: SkeletonProps) {
 }
 
 // Loading spinner with text
-export function LoadingState({ 
-  message = 'Loading...', 
-  className 
-}: { 
+export function LoadingState({
+  message = 'Loading...',
+  className,
+}: {
   message?: string;
   className?: string;
 }) {
@@ -170,11 +163,11 @@ export function LoadingState({
 }
 
 // Progress bar for sync operations
-export function SyncProgress({ 
-  progress, 
+export function SyncProgress({
+  progress,
   message,
-  className 
-}: { 
+  className,
+}: {
   progress: number;
   message?: string;
   className?: string;
@@ -191,9 +184,7 @@ export function SyncProgress({
           style={{ width: `${Math.min(100, Math.max(0, progress))}%` }}
         />
       </div>
-      {progress > 0 && (
-        <p className="text-xs text-muted text-right">{Math.round(progress)}%</p>
-      )}
+      {progress > 0 && <p className="text-xs text-muted text-right">{Math.round(progress)}%</p>}
     </div>
   );
 }

@@ -24,7 +24,7 @@ export async function sendEmail(options: SendEmailOptions) {
   }
 
   try {
-    const data = await resend.emails.send({
+    const { data, error } = await resend.emails.send({
       from: options.from || 'GitLog <updates@gitlog.app>',
       to: options.to,
       subject: options.subject,
@@ -34,9 +34,14 @@ export async function sendEmail(options: SendEmailOptions) {
       bcc: options.bcc,
     });
 
+    if (error) {
+      console.error('Resend error:', error);
+      throw new Error(error.message);
+    }
+
     return {
       success: true,
-      emailId: data.id,
+      emailId: data?.id,
     };
   } catch (error) {
     console.error('Error sending email:', error);
@@ -44,13 +49,9 @@ export async function sendEmail(options: SendEmailOptions) {
   }
 }
 
-export async function sendBulkEmails(
-  emails: string[],
-  subject: string,
-  html: string
-) {
+export async function sendBulkEmails(emails: string[], subject: string, html: string) {
   const results = [];
-  
+
   for (const email of emails) {
     try {
       const result = await sendEmail({
@@ -58,7 +59,7 @@ export async function sendBulkEmails(
         subject,
         html,
       });
-      results.push({ email, success: true, ...result });
+      results.push({ email, ...result });
     } catch (error) {
       results.push({ email, success: false, error: 'Failed to send' });
     }

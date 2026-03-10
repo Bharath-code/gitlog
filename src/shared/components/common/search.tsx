@@ -30,9 +30,7 @@ export function SearchResults({ entries, query }: SearchResultsProps) {
       <Card className="p-12 text-center">
         <SearchIcon className="h-12 w-12 mx-auto text-muted mb-4 opacity-50" />
         <h3 className="text-lg font-semibold">No results found</h3>
-        <p className="text-muted mt-2">
-          No entries match &quot;{query}&quot;
-        </p>
+        <p className="text-muted mt-2">No entries match &quot;{query}&quot;</p>
       </Card>
     );
   }
@@ -55,15 +53,13 @@ export function SearchResults({ entries, query }: SearchResultsProps) {
                   {entry.title}
                 </Link>
               </div>
-              
+
               {entry.aiRewrite ? (
-                <p className="text-muted text-sm line-clamp-2">
-                  {entry.aiRewrite}
-                </p>
+                <p className="text-muted text-sm line-clamp-2">{entry.aiRewrite}</p>
               ) : (
                 <p className="text-sm text-muted">No AI rewrite yet</p>
               )}
-              
+
               <div className="flex items-center gap-4 text-xs text-muted">
                 <span>{formatDate(entry.publishedAt || entry.mergedAt)}</span>
                 {entry.repoId && (
@@ -74,7 +70,7 @@ export function SearchResults({ entries, query }: SearchResultsProps) {
                 )}
               </div>
             </div>
-            
+
             <div className="flex flex-col gap-2">
               <Link href={`/drafts/${entry.id}`}>
                 <Button variant="outline" size="sm">
@@ -82,18 +78,14 @@ export function SearchResults({ entries, query }: SearchResultsProps) {
                   Edit
                 </Button>
               </Link>
-              
+
               {entry.status === 'draft' ? (
                 <Button size="sm" className="bg-accent hover:bg-accent/90">
                   <Check className="h-3.5 w-3.5 mr-1" />
                   Publish
                 </Button>
               ) : (
-                <a
-                  href={`/changelog/${entry.repoId}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+                <a href={`/changelog/${entry.repoId}`} target="_blank" rel="noopener noreferrer">
                   <Button variant="outline" size="sm">
                     <ExternalLink className="h-3.5 w-3.5 mr-1" />
                     View
@@ -119,22 +111,24 @@ export function DashboardSearch({ drafts, published }: DashboardSearchProps) {
 
   const allEntries = useMemo(() => {
     return [
-      ...drafts.map(d => ({ ...d, status: 'draft' as const })),
-      ...published.map(p => ({ ...p, status: 'published' as const })),
+      ...drafts.map((d) => ({ ...d, status: 'draft' as const })),
+      ...published.map((p) => ({ ...p, status: 'published' as const })),
     ];
   }, [drafts, published]);
 
   const filteredEntries = useMemo(() => {
-    return allEntries.filter(entry => {
-      const matchesQuery = query === '' || 
+    return allEntries.filter((entry) => {
+      const matchesQuery =
+        query === '' ||
         entry.title.toLowerCase().includes(query.toLowerCase()) ||
         entry.aiRewrite?.toLowerCase().includes(query.toLowerCase()) ||
         entry.category.toLowerCase().includes(query.toLowerCase());
-      
-      const matchesFilter = filter === 'all' ||
+
+      const matchesFilter =
+        filter === 'all' ||
         (filter === 'drafts' && entry.status === 'draft') ||
         (filter === 'published' && entry.status === 'published');
-      
+
       return matchesQuery && matchesFilter;
     });
   }, [allEntries, query, filter]);
@@ -153,7 +147,7 @@ export function DashboardSearch({ drafts, published }: DashboardSearchProps) {
             className="w-full rounded-lg border border-line bg-surface pl-10 pr-4 py-2.5 text-sm text-foreground placeholder:text-muted focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
           />
         </div>
-        
+
         <div className="flex items-center gap-2">
           <Filter className="h-4 w-4 text-muted" />
           <select
@@ -174,11 +168,9 @@ export function DashboardSearch({ drafts, published }: DashboardSearchProps) {
           <div className="flex items-center justify-between">
             <p className="text-sm text-muted">
               Found {filteredEntries.length} result{filteredEntries.length !== 1 ? 's' : ''}
-              {query && (
-                <span> for &quot;{query}&quot;</span>
-              )}
+              {query && <span> for &quot;{query}&quot;</span>}
             </p>
-            
+
             {(query || filter !== 'all') && (
               <Button
                 variant="ghost"
@@ -192,7 +184,7 @@ export function DashboardSearch({ drafts, published }: DashboardSearchProps) {
               </Button>
             )}
           </div>
-          
+
           <SearchResults entries={filteredEntries} query={query} />
         </div>
       ) : null}

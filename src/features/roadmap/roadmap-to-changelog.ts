@@ -1,7 +1,7 @@
 import { kv } from '@vercel/kv';
 import { sendEmail } from '@/lib/resend';
 import { ReleaseEmailTemplate } from '@/features/email/templates/release-email';
-import { render } from '@react-email/html';
+import { render } from '@react-email/render';
 import { getRepoSubscribers } from '@/features/email/subscription-manager';
 
 export async function moveRoadmapToChangelog(
@@ -40,7 +40,7 @@ export async function moveRoadmapToChangelog(
     // Update roadmap item
     const roadmapKey = `roadmap:${userId}:${repoId}:${issueId}`;
     const roadmapItem = await kv.get<any>(roadmapKey);
-    
+
     if (roadmapItem) {
       roadmapItem.status = 'completed';
       roadmapItem.linkedEntryId = entryId;
@@ -58,22 +58,18 @@ export async function moveRoadmapToChangelog(
   }
 }
 
-async function notifySubscribers(
-  userId: string,
-  repoId: string,
-  entry: any
-) {
+async function notifySubscribers(userId: string, repoId: string, entry: any) {
   try {
     // Get subscribers
     const subscribers = await getRepoSubscribers(repoId);
-    
+
     if (subscribers.length === 0) return;
 
     // Generate email
     const viewOnlineLink = `${process.env.NEXT_PUBLIC_APP_URL}/changelog/${userId}/${repoId}`;
     const unsubscribeLink = `${process.env.NEXT_PUBLIC_APP_URL}/api/email/unsubscribe?repoId=${repoId}`;
 
-    const emailHtml = render(
+    const emailHtml = await render(
       ReleaseEmailTemplate({
         repoName: repoId.split('/').pop() || 'Product',
         entries: [entry],

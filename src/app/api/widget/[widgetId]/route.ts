@@ -28,6 +28,7 @@ interface ChangelogEntry {
   title: string;
   aiRewrite?: string;
   category: 'New' | 'Fixed' | 'Improved' | 'Other';
+  status: 'published' | 'draft';
   mergedAt: Date;
   prUrl: string;
 }
@@ -46,11 +47,14 @@ function getCorsHeaders(origin: string | null) {
 
 export async function OPTIONS(request: NextRequest) {
   const origin = request.headers.get('origin');
-  
-  return NextResponse.json({}, {
-    status: 200,
-    headers: getCorsHeaders(origin),
-  });
+
+  return NextResponse.json(
+    {},
+    {
+      status: 200,
+      headers: getCorsHeaders(origin),
+    }
+  );
 }
 
 export async function GET(
@@ -78,7 +82,7 @@ export async function GET(
     if (!widgetConfig) {
       return NextResponse.json(
         { error: 'Widget not found' },
-        { 
+        {
           status: 404,
           headers: getCorsHeaders(origin),
         }
@@ -106,7 +110,7 @@ export async function GET(
     console.error('Error fetching widget data:', error);
     return NextResponse.json(
       { error: 'Failed to fetch widget data' },
-      { 
+      {
         status: 500,
         headers: getCorsHeaders(origin),
       }

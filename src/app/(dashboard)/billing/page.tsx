@@ -99,9 +99,7 @@ export default function BillingPage() {
         <div className="flex items-center justify-between">
           <div>
             <SectionHeading title="Billing & Subscription" />
-            <p className="text-muted mt-1">
-              Manage your plan, usage, and payment details
-            </p>
+            <p className="text-muted mt-1">Manage your plan, usage, and payment details</p>
           </div>
           <Link href="/dashboard">
             <Button variant="outline">Back to Dashboard</Button>
@@ -133,9 +131,7 @@ export default function BillingPage() {
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="font-semibold mb-1">Free Plan</p>
-                    <p className="text-sm text-muted">
-                      50 entries/month • 1 repo • 50 AI rewrites
-                    </p>
+                    <p className="text-sm text-muted">50 entries/month • 1 repo • 50 AI rewrites</p>
                   </div>
                   <Button onClick={handleUpgrade} className="bg-accent hover:bg-accent/90">
                     Upgrade to Pro
@@ -182,14 +178,14 @@ export default function BillingPage() {
                   {plan === 'free' ? `/${limits.free.entries}` : '/∞'}
                 </span>
               </div>
-              <p className="text-2xl font-bold">
-                {usage.entriesPublished}
-              </p>
+              <p className="text-2xl font-bold">{usage.entriesPublished}</p>
               {plan === 'free' && (
                 <div className="mt-2 h-2 bg-surface rounded-full overflow-hidden">
                   <div
                     className="h-full bg-blue transition-all duration-500"
-                    style={{ width: `${Math.min((usage.entriesPublished / limits.free.entries) * 100, 100)}%` }}
+                    style={{
+                      width: `${Math.min((usage.entriesPublished / limits.free.entries) * 100, 100)}%`,
+                    }}
                   />
                 </div>
               )}
@@ -203,14 +199,14 @@ export default function BillingPage() {
                   {plan === 'free' ? `/${limits.free.aiRewrites}` : '/∞'}
                 </span>
               </div>
-              <p className="text-2xl font-bold">
-                {usage.aiRewrites}
-              </p>
+              <p className="text-2xl font-bold">{usage.aiRewrites}</p>
               {plan === 'free' && (
                 <div className="mt-2 h-2 bg-surface rounded-full overflow-hidden">
                   <div
                     className="h-full bg-purple transition-all duration-500"
-                    style={{ width: `${Math.min((usage.aiRewrites / limits.free.aiRewrites) * 100, 100)}%` }}
+                    style={{
+                      width: `${Math.min((usage.aiRewrites / limits.free.aiRewrites) * 100, 100)}%`,
+                    }}
                   />
                 </div>
               )}
@@ -224,9 +220,7 @@ export default function BillingPage() {
                   {plan === 'free' ? `/${limits.free.repos}` : '/∞'}
                 </span>
               </div>
-              <p className="text-2xl font-bold">
-                1
-              </p>
+              <p className="text-2xl font-bold">1</p>
               {plan === 'free' && (
                 <div className="mt-2 h-2 bg-surface rounded-full overflow-hidden">
                   <div
@@ -275,9 +269,7 @@ export default function BillingPage() {
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="font-semibold">DodoPayment</p>
-                    <p className="text-sm text-muted">
-                      Secure payment processing
-                    </p>
+                    <p className="text-sm text-muted">Secure payment processing</p>
                   </div>
                   <Button onClick={handleManageSubscription} variant="outline">
                     Manage Payment Method
@@ -286,15 +278,13 @@ export default function BillingPage() {
                 </div>
               </div>
               <p className="text-xs text-muted">
-                Your payment information is securely stored and processed by DodoPayment.
-                We never store your credit card details on our servers.
+                Your payment information is securely stored and processed by DodoPayment. We never
+                store your credit card details on our servers.
               </p>
             </div>
           ) : (
             <div className="p-4 rounded-lg bg-surface-highlight">
-              <p className="text-muted mb-3">
-                No payment method required for Free plan
-              </p>
+              <p className="text-muted mb-3">No payment method required for Free plan</p>
               <Button onClick={handleUpgrade} className="bg-accent hover:bg-accent/90">
                 Upgrade to Pro
               </Button>
@@ -311,9 +301,7 @@ export default function BillingPage() {
               </div>
               <div>
                 <h2 className="text-xl font-semibold">Invoices</h2>
-                <p className="text-sm text-muted">
-                  Download your payment invoices
-                </p>
+                <p className="text-sm text-muted">Download your payment invoices</p>
               </div>
             </div>
             {plan === 'pro' && (
@@ -344,7 +332,8 @@ export default function BillingPage() {
                           })}
                         </p>
                         <p className="text-sm text-muted">
-                          {invoice.currency === 'INR' ? '₹' : '$'}{invoice.amount / 100}
+                          {invoice.currency === 'INR' ? '₹' : '$'}
+                          {invoice.amount / 100}
                         </p>
                       </div>
                     </div>
@@ -353,11 +342,11 @@ export default function BillingPage() {
                         {invoice.status}
                       </Badge>
                       {invoice.url && (
-                        <Button variant="ghost" size="sm" asChild>
-                          <a href={invoice.url} target="_blank" rel="noopener noreferrer">
+                        <a href={invoice.url} target="_blank" rel="noopener noreferrer">
+                          <Button variant="ghost" size="sm">
                             <Download className="h-4 w-4" />
-                          </a>
-                        </Button>
+                          </Button>
+                        </a>
                       )}
                     </div>
                   </div>
@@ -384,7 +373,8 @@ export default function BillingPage() {
           <h2 className="text-xl font-semibold mb-4">Need Help?</h2>
           <div className="space-y-3 text-sm text-muted">
             <p>
-              For billing inquiries, subscription management, or refund requests, please contact our support team:
+              For billing inquiries, subscription management, or refund requests, please contact our
+              support team:
             </p>
             <div className="flex gap-4">
               <a href="mailto:billing@gitlog.app" className="text-accent hover:underline">

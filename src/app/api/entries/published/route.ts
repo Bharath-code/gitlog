@@ -14,9 +14,6 @@ export async function GET() {
     return NextResponse.json({ entries });
   } catch (error) {
     console.error('Fetch published error:', error);
-    return NextResponse.json(
-      { error: 'Failed to fetch published entries' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to fetch published entries' }, { status: 500 });
   }
 }

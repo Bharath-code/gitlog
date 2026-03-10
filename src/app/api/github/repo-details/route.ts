@@ -4,14 +4,15 @@ import { Octokit } from 'octokit';
 const githubToken = process.env.GITHUB_TOKEN || process.env.GITHUB_WEBHOOK_SECRET;
 
 export async function POST(request: NextRequest) {
+  let username: string = '';
+  let repo: string = '';
   try {
-    const { username, repo } = await request.json();
+    const body = await request.json();
+    username = body.username;
+    repo = body.repo;
 
     if (!username || !repo) {
-      return NextResponse.json(
-        { error: 'Username and repo are required' },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: 'Username and repo are required' }, { status: 400 });
     }
 
     if (!githubToken) {

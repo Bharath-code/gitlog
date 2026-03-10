@@ -43,13 +43,16 @@ export function ReleaseEmailTemplate({
   const primaryColor = branding?.primaryColor || '#ff6b35';
 
   // Group entries by category
-  const grouped = entries.reduce((acc, entry) => {
-    if (!acc[entry.category]) {
-      acc[entry.category] = [];
-    }
-    acc[entry.category].push(entry);
-    return acc;
-  }, {} as Record<string, ChangelogEntry[]>);
+  const grouped = entries.reduce(
+    (acc, entry) => {
+      if (!acc[entry.category]) {
+        acc[entry.category] = [];
+      }
+      acc[entry.category].push(entry);
+      return acc;
+    },
+    {} as Record<string, ChangelogEntry[]>
+  );
 
   const categoryOrder = ['New', 'Fixed', 'Improved', 'Other'];
 
@@ -60,19 +63,13 @@ export function ReleaseEmailTemplate({
         <Container style={styles.container}>
           {/* Header */}
           {branding?.logo ? (
-            <Img
-              src={branding.logo}
-              alt={repoName}
-              style={styles.logo}
-            />
+            <Img src={branding.logo} alt={repoName} style={styles.logo} />
           ) : (
             <Text style={styles.header}>{repoName} Updates</Text>
           )}
 
           {/* Introduction */}
-          <Text style={styles.intro}>
-            Hi there! 👋
-          </Text>
+          <Text style={styles.intro}>Hi there! 👋</Text>
           <Text style={styles.text}>
             We've just shipped some exciting updates to {repoName}. Here's what's new:
           </Text>
@@ -84,21 +81,14 @@ export function ReleaseEmailTemplate({
 
             return (
               <Section key={category} style={styles.categorySection}>
-                <Text style={{ ...styles.categoryTitle, color: primaryColor }}>
-                  {category}
-                </Text>
+                <Text style={{ ...styles.categoryTitle, color: primaryColor }}>{category}</Text>
                 {categoryEntries.map((entry) => (
                   <Section key={entry.id} style={styles.entry}>
                     <Text style={styles.entryTitle}>{entry.title}</Text>
                     {entry.aiRewrite && (
-                      <Text style={styles.entryDescription}>
-                        {entry.aiRewrite}
-                      </Text>
+                      <Text style={styles.entryDescription}>{entry.aiRewrite}</Text>
                     )}
-                    <Link
-                      href={entry.prUrl}
-                      style={{ ...styles.link, color: primaryColor }}
-                    >
+                    <Link href={entry.prUrl} style={{ ...styles.link, color: primaryColor }}>
                       View details →
                     </Link>
                   </Section>

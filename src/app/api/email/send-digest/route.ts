@@ -9,7 +9,7 @@ import { render } from '@react-email/render';
 export async function POST(request: NextRequest) {
   try {
     const { userId } = await auth();
-    
+
     if (!userId) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
@@ -18,15 +18,12 @@ export async function POST(request: NextRequest) {
     const { repoId, entries, repoName } = body;
 
     if (!repoId || !entries || !repoName) {
-      return NextResponse.json(
-        { error: 'Missing required fields' },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
     }
 
     // Get subscribers for this repo
     const subscribers = await getRepoSubscribers(repoId);
-    
+
     if (subscribers.length === 0) {
       return NextResponse.json({
         success: true,
@@ -39,7 +36,7 @@ export async function POST(request: NextRequest) {
     const viewOnlineLink = `${process.env.NEXT_PUBLIC_APP_URL}/changelog/${userId}/${repoId}`;
     const unsubscribeLink = `${process.env.NEXT_PUBLIC_APP_URL}/api/email/unsubscribe?repoId=${repoId}`;
 
-    const emailHtml = render(
+    const emailHtml = await render(
       ReleaseEmailTemplate({
         repoName,
         entries,
@@ -65,7 +62,7 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    const successCount = results.filter(r => r.success).length;
+    const successCount = results.filter((r) => r.success).length;
 
     return NextResponse.json({
       success: true,
@@ -75,9 +72,6 @@ export async function POST(request: NextRequest) {
     });
   } catch (error) {
     console.error('Error sending digest email:', error);
-    return NextResponse.json(
-      { error: 'Failed to send digest emails' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to send digest emails' }, { status: 500 });
   }
 }

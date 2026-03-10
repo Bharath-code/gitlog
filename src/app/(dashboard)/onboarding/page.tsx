@@ -82,7 +82,7 @@ export default function OnboardingPage() {
       });
 
       toast.success(`${repo.name} connected! You're all set! 🎉`);
-      
+
       // Redirect to dashboard with celebration flag
       setTimeout(() => {
         router.push('/dashboard?onboarding=complete&connected=true');
@@ -96,7 +96,7 @@ export default function OnboardingPage() {
     }
   };
 
-  const filteredRepos = repos.filter(repo =>
+  const filteredRepos = repos.filter((repo) =>
     repo.full_name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
@@ -185,12 +185,16 @@ export default function OnboardingPage() {
             <GitMerge className="mx-auto h-12 w-12 text-muted mb-4" />
             <h3 className="text-lg font-semibold">No repositories found</h3>
             <p className="text-muted mt-2">
-              {searchQuery 
+              {searchQuery
                 ? 'No repositories match your search. Try a different query.'
-                : 'You don\'t have any repositories yet. Create one on GitHub!'}
+                : "You don't have any repositories yet. Create one on GitHub!"}
             </p>
             {!searchQuery && (
-              <Button className="mt-4" variant="outline" onClick={() => window.open('https://github.com/new', '_blank')}>
+              <Button
+                className="mt-4"
+                variant="outline"
+                onClick={() => window.open('https://github.com/new', '_blank')}
+              >
                 <ExternalLink className="h-4 w-4 mr-2" />
                 Create Repository
               </Button>
@@ -208,14 +212,15 @@ export default function OnboardingPage() {
               >
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <div className={cn(
-                      'flex h-10 w-10 items-center justify-center rounded-lg',
-                      repo.private ? 'bg-amber-500/10' : 'bg-accent/10'
-                    )}>
-                      <GitMerge className={cn(
-                        'h-5 w-5',
-                        repo.private ? 'text-amber-500' : 'text-accent'
-                      )} />
+                    <div
+                      className={cn(
+                        'flex h-10 w-10 items-center justify-center rounded-lg',
+                        repo.private ? 'bg-amber-500/10' : 'bg-accent/10'
+                      )}
+                    >
+                      <GitMerge
+                        className={cn('h-5 w-5', repo.private ? 'text-amber-500' : 'text-accent')}
+                      />
                     </div>
                     <div>
                       <div className="flex items-center gap-2">
@@ -271,10 +276,10 @@ export default function OnboardingPage() {
               <Check className="h-5 w-5 text-accent" />
             </div>
             <div>
-              <h4 className="font-semibold text-base">You're 1 click away from automated changelogs! 🚀</h4>
-              <p className="text-sm text-muted mt-2 mb-3">
-                After connecting, here's what happens:
-              </p>
+              <h4 className="font-semibold text-base">
+                You're 1 click away from automated changelogs! 🚀
+              </h4>
+              <p className="text-sm text-muted mt-2 mb-3">After connecting, here's what happens:</p>
               <ul className="text-sm text-muted space-y-2">
                 <li className="flex items-start gap-2">
                   <span className="text-accent mt-0.5">✓</span>
@@ -294,9 +299,7 @@ export default function OnboardingPage() {
                 </li>
               </ul>
               <div className="mt-4 p-3 rounded-lg bg-accent/5 border border-accent/10">
-                <p className="text-xs text-accent font-medium">
-                  ⏱️ Total setup time: ~30 seconds
-                </p>
+                <p className="text-xs text-accent font-medium">⏱️ Total setup time: ~30 seconds</p>
               </div>
             </div>
           </div>

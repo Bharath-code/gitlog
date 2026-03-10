@@ -1,17 +1,12 @@
 import { createHmac, timingSafeEqual } from 'crypto';
 
-export async function verifyWebhookSignature(
-  payload: string,
-  signature: string
-): Promise<boolean> {
+export async function verifyWebhookSignature(payload: string, signature: string): Promise<boolean> {
   const secret = process.env.GITHUB_WEBHOOK_SECRET;
   if (!secret) {
     throw new Error('GITHUB_WEBHOOK_SECRET not configured');
   }
 
-  const expected = createHmac('sha256', secret)
-    .update(payload)
-    .digest('hex');
+  const expected = createHmac('sha256', secret).update(payload).digest('hex');
 
   const expectedSignature = `sha256=${expected}`;
 
@@ -24,6 +19,6 @@ export async function verifyWebhookSignature(
   for (let i = 0; i < signature.length; i++) {
     result |= signature.charCodeAt(i) ^ expectedSignature.charCodeAt(i);
   }
-  
+
   return result === 0;
 }

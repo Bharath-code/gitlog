@@ -9,16 +9,16 @@
 
 ## 📊 P1 Task Summary
 
-| Category | Count | Estimated Time | Status |
-| :---- | :---- | :---- | :---- |
-| Missing Pages | 3 | 6 hours | ⬜ 0% |
-| Analytics & Monitoring | 4 | 3 hours | ⬜ 0% |
-| Performance Optimization | 5 | 8 hours | ⬜ 0% |
-| SEO Completion | 5 | 5 hours | ⬜ 0% |
-| Documentation | 3 | 6 hours | ⬜ 0% |
-| Legal & Compliance | 3 | 3 hours | ⬜ 0% |
-| Email Configuration | 3 | 3 hours | ⬜ 0% |
-| Polish & UX | 3 | 4 hours | ⬜ 0% |
+| Category                 | Count | Estimated Time | Status |
+| :----------------------- | :---- | :------------- | :----- |
+| Missing Pages            | 3     | 6 hours        | ⬜ 0%  |
+| Analytics & Monitoring   | 4     | 3 hours        | ⬜ 0%  |
+| Performance Optimization | 5     | 8 hours        | ⬜ 0%  |
+| SEO Completion           | 5     | 5 hours        | ⬜ 0%  |
+| Documentation            | 3     | 6 hours        | ⬜ 0%  |
+| Legal & Compliance       | 3     | 3 hours        | ⬜ 0%  |
+| Email Configuration      | 3     | 3 hours        | ⬜ 0%  |
+| Polish & UX              | 3     | 4 hours        | ⬜ 0%  |
 
 **Total:** 20 tasks, ~38 hours of work
 
@@ -28,12 +28,12 @@
 
 ### **Morning: Settings Page (3 hours)**
 
-| ID | Task | Details | Time | Status |
-| :---- | :---- | :---- | :---- | :---- |
-| PAGE-01 | Create settings page layout | Sidebar + main content area | 1 hour | ⬜ |
-| PAGE-02 | Connected repos management | List, disconnect, add new | 1 hour | ⬜ |
-| PAGE-03 | Account settings | Email, password, GitHub connection | 30 min | ⬜ |
-| PAGE-04 | Billing/subscription | Current plan, usage, upgrade/cancel | 30 min | ⬜ |
+| ID      | Task                        | Details                             | Time   | Status |
+| :------ | :-------------------------- | :---------------------------------- | :----- | :----- |
+| PAGE-01 | Create settings page layout | Sidebar + main content area         | 1 hour | ⬜     |
+| PAGE-02 | Connected repos management  | List, disconnect, add new           | 1 hour | ⬜     |
+| PAGE-03 | Account settings            | Email, password, GitHub connection  | 30 min | ⬜     |
+| PAGE-04 | Billing/subscription        | Current plan, usage, upgrade/cancel | 30 min | ⬜     |
 
 **Implementation:**
 
@@ -62,10 +62,10 @@ export default function SettingsPage() {
           fetch('/api/user/plan'),
           fetch('/api/user/repos'),
         ]);
-        
+
         const planData = await planRes.json();
         const reposData = await reposRes.json();
-        
+
         setPlan(planData.plan);
         setRepos(reposData.repos);
       } catch (error) {
@@ -74,18 +74,18 @@ export default function SettingsPage() {
         setLoading(false);
       }
     }
-    
+
     fetchData();
   }, []);
 
   const handleDisconnect = async (repoId: string) => {
     if (!confirm('Disconnect this repository?')) return;
-    
+
     try {
       const res = await fetch(`/api/user/repos/${repoId}`, {
         method: 'DELETE',
       });
-      
+
       if (res.ok) {
         setRepos(repos.filter(r => r.id !== repoId));
       }
@@ -158,7 +158,7 @@ export default function SettingsPage() {
                       </span>
                     </div>
                   </div>
-                  
+
                   <Button
                     variant="outline"
                     size="sm"
@@ -176,7 +176,7 @@ export default function SettingsPage() {
         {/* Account Settings */}
         <Card className="p-6">
           <h2 className="text-xl font-semibold mb-4">Account</h2>
-          
+
           <div className="space-y-4">
             <div>
               <label className="block text-sm font-medium mb-2">Email</label>
@@ -187,7 +187,7 @@ export default function SettingsPage() {
                 className="w-full rounded-lg border border-line bg-surface px-4 py-2.5 text-foreground"
               />
             </div>
-            
+
             <div>
               <label className="block text-sm font-medium mb-2">GitHub Account</label>
               <div className="flex items-center justify-between p-3 rounded-lg border border-line bg-surface">
@@ -205,12 +205,12 @@ export default function SettingsPage() {
               <CreditCard className="h-5 w-5 text-muted" />
               <h2 className="text-xl font-semibold">Billing & Subscription</h2>
             </div>
-            
+
             <Badge className={plan === 'pro' ? 'bg-accent text-white' : ''}>
               {plan === 'free' ? 'Free' : 'Pro'}
             </Badge>
           </div>
-          
+
           <div className="space-y-4">
             <div className="p-4 rounded-lg bg-surface-highlight">
               <div className="flex items-center justify-between">
@@ -220,7 +220,7 @@ export default function SettingsPage() {
                     {plan === 'free' ? '50 entries/month, 1 repo' : 'Unlimited everything'}
                   </p>
                 </div>
-                
+
                 {plan === 'free' ? (
                   <a href="/upgrade">
                     <Button className="bg-accent hover:bg-accent/90">
@@ -246,11 +246,11 @@ export default function SettingsPage() {
 
 ### **Late Morning: Published Page (2 hours)**
 
-| ID | Task | Details | Time | Status |
-| :---- | :---- | :---- | :---- | :---- |
-| PAGE-05 | Create published page layout | List with month grouping | 1 hour | ⬜ |
-| PAGE-06 | Unpublish functionality | Revert to draft | 30 min | ⬜ |
-| PAGE-07 | View public page link | External link button | 30 min | ⬜ |
+| ID      | Task                         | Details                  | Time   | Status |
+| :------ | :--------------------------- | :----------------------- | :----- | :----- |
+| PAGE-05 | Create published page layout | List with month grouping | 1 hour | ⬜     |
+| PAGE-06 | Unpublish functionality      | Revert to draft          | 30 min | ⬜     |
+| PAGE-07 | View public page link        | External link button     | 30 min | ⬜     |
 
 **Implementation:**
 
@@ -291,20 +291,20 @@ export default function PublishedPage() {
         setLoading(false);
       }
     }
-    
+
     fetchEntries();
   }, []);
 
   const handleUnpublish = async (entryId: string) => {
     if (!confirm('Unpublish this entry? It will revert to draft.')) return;
-    
+
     try {
       const res = await fetch('/api/entries/unpublish', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ entryId }),
       });
-      
+
       if (res.ok) {
         setEntries(entries.filter(e => e.id !== entryId));
       }
@@ -319,11 +319,11 @@ export default function PublishedPage() {
       month: 'long',
       year: 'numeric',
     });
-    
+
     if (!acc[month]) {
       acc[month] = [];
     }
-    
+
     acc[month].push(entry);
     return acc;
   }, {} as Record<string, PublishedEntry[]>);
@@ -354,7 +354,7 @@ export default function PublishedPage() {
               Manage your published changelog entries
             </p>
           </div>
-          
+
           <Link href="/dashboard">
             <Button variant="outline">Back to Dashboard</Button>
           </Link>
@@ -379,7 +379,7 @@ export default function PublishedPage() {
                 <h2 className="text-2xl font-semibold mb-4 sticky top-4 bg-background py-2">
                   {month}
                 </h2>
-                
+
                 <div className="space-y-3">
                   {monthEntries.map((entry) => (
                     <Card key={entry.id} className="p-4">
@@ -389,7 +389,7 @@ export default function PublishedPage() {
                             <Badge>{entry.category}</Badge>
                             <h3 className="font-semibold">{entry.title}</h3>
                           </div>
-                          
+
                           {entry.aiRewrite ? (
                             <p className="text-muted text-sm">
                               {entry.aiRewrite}
@@ -397,7 +397,7 @@ export default function PublishedPage() {
                           ) : (
                             <p className="text-muted text-sm">{entry.title}</p>
                           )}
-                          
+
                           <div className="flex items-center gap-4 text-xs text-muted">
                             <span>Published {formatDate(entry.publishedAt)}</span>
                             {entry.repoId && (
@@ -408,7 +408,7 @@ export default function PublishedPage() {
                             )}
                           </div>
                         </div>
-                        
+
                         <div className="flex flex-col gap-2">
                           <a
                             href={`/changelog/${entry.repoId}`}
@@ -420,7 +420,7 @@ export default function PublishedPage() {
                               View
                             </Button>
                           </a>
-                          
+
                           <Button
                             variant="outline"
                             size="sm"
@@ -468,9 +468,9 @@ export default function PublishedPage() {
 
 ### **Afternoon: Drafts Page (1 hour)**
 
-| ID | Task | Details | Time | Status |
-| :---- | :---- | :---- | :---- | :---- |
-| PAGE-08 | Complete drafts list with real data | Fetch from API, display | 1 hour | ⬜ |
+| ID      | Task                                | Details                 | Time   | Status |
+| :------ | :---------------------------------- | :---------------------- | :----- | :----- |
+| PAGE-08 | Complete drafts list with real data | Fetch from API, display | 1 hour | ⬜     |
 
 **Implementation:**
 
@@ -512,17 +512,17 @@ export default function DraftsPage() {
         setLoading(false);
       }
     }
-    
+
     fetchDrafts();
   }, []);
 
   const filteredDrafts = drafts.filter(draft => {
     const matchesSearch = draft.title.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchesFilter = 
+    const matchesFilter =
       filter === 'all' ||
       (filter === 'with-rewrite' && draft.aiRewrite) ||
       (filter === 'without-rewrite' && !draft.aiRewrite);
-    
+
     return matchesSearch && matchesFilter;
   });
 
@@ -570,7 +570,7 @@ export default function DraftsPage() {
                 className="w-full rounded-lg border border-line bg-surface pl-10 pr-4 py-2 text-sm text-foreground placeholder:text-muted focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
               />
             </div>
-            
+
             <div className="flex items-center gap-2">
               <Filter className="h-4 w-4 text-muted" />
               <select
@@ -636,7 +636,7 @@ export default function DraftsPage() {
                       {draft.repoId && <span>{draft.repoId}</span>}
                     </div>
                   </div>
-                  
+
                   <div className="flex items-center gap-2">
                     <Link href={`/drafts/${draft.id}`}>
                       <Button variant="outline" size="sm">
@@ -686,12 +686,12 @@ export default function DraftsPage() {
 
 ### **Late Afternoon: Analytics Setup (3 hours)**
 
-| ID | Task | Details | Time | Status |
-| :---- | :---- | :---- | :---- | :---- |
-| ANALYTICS-01 | Configure Vercel Analytics | Add to app, verify tracking | 30 min | ⬜ |
-| ANALYTICS-02 | Set up error logging | Axiom or Sentry integration | 1 hour | ⬜ |
-| ANALYTICS-03 | Add conversion tracking | Track signups, upgrades | 1 hour | ⬜ |
-| ANALYTICS-04 | Set up uptime monitoring | UptimeRobot or similar | 30 min | ⬜ |
+| ID           | Task                       | Details                     | Time   | Status |
+| :----------- | :------------------------- | :-------------------------- | :----- | :----- |
+| ANALYTICS-01 | Configure Vercel Analytics | Add to app, verify tracking | 30 min | ⬜     |
+| ANALYTICS-02 | Set up error logging       | Axiom or Sentry integration | 1 hour | ⬜     |
+| ANALYTICS-03 | Add conversion tracking    | Track signups, upgrades     | 1 hour | ⬜     |
+| ANALYTICS-04 | Set up uptime monitoring   | UptimeRobot or similar      | 30 min | ⬜     |
 
 **Implementation:**
 
@@ -730,75 +730,78 @@ export default function RootLayout({ children }) {
 
 ### **Morning: Performance Optimization (3 hours)**
 
-| ID | Task | Details | Time | Status |
-| :---- | :---- | :---- | :---- | :---- |
-| OPT-01 | Run Lighthouse audit | Full audit, document issues | 1 hour | ⬜ |
-| OPT-02 | Optimize images | Use Next.js Image component | 1 hour | ⬜ |
-| OPT-03 | Add loading states | Skeleton screens for all pages | 2 hours | ⬜ |
-| OPT-04 | Implement code splitting | Dynamic imports for heavy components | 1 hour | ⬜ |
-| OPT-05 | Target >90 Performance | Fix all issues found | 1 hour | ⬜ |
+| ID     | Task                     | Details                              | Time    | Status |
+| :----- | :----------------------- | :----------------------------------- | :------ | :----- |
+| OPT-01 | Run Lighthouse audit     | Full audit, document issues          | 1 hour  | ⬜     |
+| OPT-02 | Optimize images          | Use Next.js Image component          | 1 hour  | ⬜     |
+| OPT-03 | Add loading states       | Skeleton screens for all pages       | 2 hours | ⬜     |
+| OPT-04 | Implement code splitting | Dynamic imports for heavy components | 1 hour  | ⬜     |
+| OPT-05 | Target >90 Performance   | Fix all issues found                 | 1 hour  | ⬜     |
 
 ---
 
 ### **Late Morning: SEO Completion (2 hours)**
 
-| ID | Task | Details | Time | Status |
-| :---- | :---- | :---- | :---- | :---- |
-| SEO-01 | Add canonical URLs | All pages | 30 min | ⬜ |
-| SEO-02 | Generate OG images | Dynamic OG images | 2 hours | ⬜ |
-| SEO-03 | Add robots meta tags | Noindex for private pages | 30 min | ⬜ |
-| SEO-04 | Verify sitemap.xml | Submit to Google Search Console | 30 min | ⬜ |
-| SEO-05 | Submit to GSC | Verify ownership, submit sitemap | 1 hour | ⬜ |
+| ID     | Task                 | Details                          | Time    | Status |
+| :----- | :------------------- | :------------------------------- | :------ | :----- |
+| SEO-01 | Add canonical URLs   | All pages                        | 30 min  | ⬜     |
+| SEO-02 | Generate OG images   | Dynamic OG images                | 2 hours | ⬜     |
+| SEO-03 | Add robots meta tags | Noindex for private pages        | 30 min  | ⬜     |
+| SEO-04 | Verify sitemap.xml   | Submit to Google Search Console  | 30 min  | ⬜     |
+| SEO-05 | Submit to GSC        | Verify ownership, submit sitemap | 1 hour  | ⬜     |
 
 ---
 
 ### **Afternoon: Documentation (3 hours)**
 
-| ID | Task | Details | Time | Status |
-| :---- | :---- | :---- | :---- | :---- |
-| DOC-01 | Create user docs | Getting started, GitHub setup | 2 hours | ⬜ |
-| DOC-02 | Create API docs | Document all API endpoints | 2 hours | ⬜ |
-| DOC-03 | Create billing docs | Plans, payment, FAQs | 1 hour | ⬜ |
+| ID     | Task                | Details                       | Time    | Status |
+| :----- | :------------------ | :---------------------------- | :------ | :----- |
+| DOC-01 | Create user docs    | Getting started, GitHub setup | 2 hours | ⬜     |
+| DOC-02 | Create API docs     | Document all API endpoints    | 2 hours | ⬜     |
+| DOC-03 | Create billing docs | Plans, payment, FAQs          | 1 hour  | ⬜     |
 
 ---
 
 ### **Late Afternoon: Legal + Email (3 hours)**
 
-| ID | Task | Details | Time | Status |
-| :---- | :---- | :---- | :---- | :---- |
-| LEGAL-01 | Generate Terms of Service | Use Termly.io | 1 hour | ⬜ |
-| LEGAL-02 | Generate Privacy Policy | Use Termly.io | 1 hour | ⬜ |
-| LEGAL-03 | Add cookie consent banner | If required | 1 hour | ⬜ |
-| EMAIL-01 | Set up Resend account | Create account, get API key | 30 min | ⬜ |
-| EMAIL-02 | Configure welcome email | Template, trigger on signup | 1 hour | ⬜ |
-| EMAIL-03 | Configure transactional emails | Payment receipts, etc. | 2 hours | ⬜ |
+| ID       | Task                           | Details                     | Time    | Status |
+| :------- | :----------------------------- | :-------------------------- | :------ | :----- |
+| LEGAL-01 | Generate Terms of Service      | Use Termly.io               | 1 hour  | ⬜     |
+| LEGAL-02 | Generate Privacy Policy        | Use Termly.io               | 1 hour  | ⬜     |
+| LEGAL-03 | Add cookie consent banner      | If required                 | 1 hour  | ⬜     |
+| EMAIL-01 | Set up Resend account          | Create account, get API key | 30 min  | ⬜     |
+| EMAIL-02 | Configure welcome email        | Template, trigger on signup | 1 hour  | ⬜     |
+| EMAIL-03 | Configure transactional emails | Payment receipts, etc.      | 2 hours | ⬜     |
 
 ---
 
 ### **Evening: Polish & UX (2 hours)**
 
-| ID | Task | Details | Time | Status |
-| :---- | :---- | :---- | :---- | :---- |
-| UX-01 | Add more loading skeletons | All async operations | 1 hour | ⬜ |
-| UX-02 | Improve error messages | User-friendly, actionable | 1 hour | ⬜ |
-| UX-03 | Add keyboard shortcuts | `g d` → Drafts, `g p` → Published | 2 hours | ⬜ |
+| ID    | Task                       | Details                           | Time    | Status |
+| :---- | :------------------------- | :-------------------------------- | :------ | :----- |
+| UX-01 | Add more loading skeletons | All async operations              | 1 hour  | ⬜     |
+| UX-02 | Improve error messages     | User-friendly, actionable         | 1 hour  | ⬜     |
+| UX-03 | Add keyboard shortcuts     | `g d` → Drafts, `g p` → Published | 2 hours | ⬜     |
 
 ---
 
 ## ✅ P1 Completion Checklist
 
 ### **Missing Pages (3/3)**
+
 - [ ] PAGE-01: Settings page created
 - [ ] PAGE-02: Published page created
 - [ ] PAGE-03: Drafts page completed
 
 ### **Analytics (4/4)**
+
 - [ ] ANALYTICS-01: Vercel Analytics configured
 - [ ] ANALYTICS-02: Error logging set up
 - [ ] ANALYTICS-03: Conversion tracking added
 - [ ] ANALYTICS-04: Uptime monitoring active
 
 ### **Performance (5/5)**
+
 - [ ] OPT-01: Lighthouse audit completed
 - [ ] OPT-02: Images optimized
 - [ ] OPT-03: Loading states added
@@ -806,6 +809,7 @@ export default function RootLayout({ children }) {
 - [ ] OPT-05: Performance >90
 
 ### **SEO (5/5)**
+
 - [ ] SEO-01: Canonical URLs added
 - [ ] SEO-02: OG images generated
 - [ ] SEO-03: Robots meta tags added
@@ -813,21 +817,25 @@ export default function RootLayout({ children }) {
 - [ ] SEO-05: Submitted to Google Search Console
 
 ### **Documentation (3/3)**
+
 - [ ] DOC-01: User docs created
 - [ ] DOC-02: API docs created
 - [ ] DOC-03: Billing docs created
 
 ### **Legal (3/3)**
+
 - [ ] LEGAL-01: Terms of Service generated
 - [ ] LEGAL-02: Privacy Policy generated
 - [ ] LEGAL-03: Cookie banner added
 
 ### **Email (3/3)**
+
 - [ ] EMAIL-01: Resend account set up
 - [ ] EMAIL-02: Welcome email configured
 - [ ] EMAIL-03: Transactional emails configured
 
 ### **Polish (3/3)**
+
 - [ ] UX-01: Loading skeletons added
 - [ ] UX-02: Error messages improved
 - [ ] UX-03: Keyboard shortcuts added
@@ -838,27 +846,28 @@ export default function RootLayout({ children }) {
 
 ### **Day 9 Progress**
 
-| Time | Task | Status |
-| :---- | :---- | :---- |
-| 9:00 AM - 12:00 PM | Settings Page (PAGE-01 to PAGE-04) | ⬜ |
-| 1:00 PM - 3:00 PM | Published Page (PAGE-05 to PAGE-07) | ⬜ |
-| 3:00 PM - 4:00 PM | Drafts Page (PAGE-08) | ⬜ |
-| 4:00 PM - 7:00 PM | Analytics Setup (ANALYTICS-01 to 04) | ⬜ |
+| Time               | Task                                 | Status |
+| :----------------- | :----------------------------------- | :----- |
+| 9:00 AM - 12:00 PM | Settings Page (PAGE-01 to PAGE-04)   | ⬜     |
+| 1:00 PM - 3:00 PM  | Published Page (PAGE-05 to PAGE-07)  | ⬜     |
+| 3:00 PM - 4:00 PM  | Drafts Page (PAGE-08)                | ⬜     |
+| 4:00 PM - 7:00 PM  | Analytics Setup (ANALYTICS-01 to 04) | ⬜     |
 
 ### **Day 10 Progress**
 
-| Time | Task | Status |
-| :---- | :---- | :---- |
-| 9:00 AM - 12:00 PM | Performance Optimization (OPT-01 to 05) | ⬜ |
-| 1:00 PM - 3:00 PM | SEO Completion (SEO-01 to 05) | ⬜ |
-| 3:00 PM - 6:00 PM | Documentation (DOC-01 to 03) | ⬜ |
-| 6:00 PM - 9:00 PM | Legal + Email + Polish | ⬜ |
+| Time               | Task                                    | Status |
+| :----------------- | :-------------------------------------- | :----- |
+| 9:00 AM - 12:00 PM | Performance Optimization (OPT-01 to 05) | ⬜     |
+| 1:00 PM - 3:00 PM  | SEO Completion (SEO-01 to 05)           | ⬜     |
+| 3:00 PM - 6:00 PM  | Documentation (DOC-01 to 03)            | ⬜     |
+| 6:00 PM - 9:00 PM  | Legal + Email + Polish                  | ⬜     |
 
 ---
 
 ## 🎯 Success Criteria
 
 **P1 Complete When:**
+
 - [ ] All 20 P1 tasks completed
 - [ ] Settings, Published, Drafts pages working
 - [ ] Analytics tracking conversions
@@ -869,18 +878,19 @@ export default function RootLayout({ children }) {
 - [ ] Email system working
 
 **After P1 Complete:**
+
 - ✅ Production-ready
 - ✅ Ready for public launch
 - ✅ Can proceed to P2 features
 
 ---
 
-**Start Date:** ___________  
+**Start Date:** \***\*\_\_\_\*\***  
 **Target End Date:** 2 days from start  
-**Actual End Date:** ___________
+**Actual End Date:** \***\*\_\_\_\*\***
 
 **Status:** ⬜ Not Started → 🔄 In Progress → ✅ Complete
 
 ---
 
-*Complete all P1 tasks before moving to P2!*
+_Complete all P1 tasks before moving to P2!_

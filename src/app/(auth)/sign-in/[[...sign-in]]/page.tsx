@@ -10,9 +10,7 @@ export default function SignInPage() {
             <GitMerge className="h-6 w-6 text-white" />
           </div>
           <h1 className="text-2xl font-bold">Welcome to GitLog</h1>
-          <p className="mt-2 text-muted">
-            Auto-generate changelogs from your GitHub PRs
-          </p>
+          <p className="mt-2 text-muted">Auto-generate changelogs from your GitHub PRs</p>
         </div>
 
         <SignIn
@@ -22,7 +20,8 @@ export default function SignInPage() {
               card: 'bg-surface border border-line shadow-xl',
               headerTitle: 'text-foreground',
               headerSubtitle: 'text-muted',
-              socialButtonsBlockButton: 'bg-surface-highlight hover:bg-surface-elevated border-line',
+              socialButtonsBlockButton:
+                'bg-surface-highlight hover:bg-surface-elevated border-line',
               socialButtonsBlockButtonText: 'text-foreground',
               dividerLine: 'bg-line',
               dividerText: 'text-muted',

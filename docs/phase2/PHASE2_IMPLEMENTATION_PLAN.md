@@ -3,7 +3,7 @@
 **Created:** 2026-03-09  
 **Duration:** Month 2-3 (8 weeks)  
 **Total Tasks:** 20  
-**Total Estimated Time:** 40 hours  
+**Total Estimated Time:** 40 hours
 
 ---
 
@@ -13,13 +13,13 @@ Phase 2 focuses on expanding GitLog's value proposition beyond basic changelog g
 
 ### Feature Areas
 
-| Area | Tasks | Time | Priority |
-| :---- | :---- | :---- | :---- |
-| **1. Embeddable Widget** | 4 tasks | 8h | High |
-| **2. Social Post Drafts** | 4 tasks | 6h | High |
-| **3. Email Integrations** | 4 tasks | 10h | Medium |
-| **4. Analytics Dashboard** | 4 tasks | 8h | High |
-| **5. Roadmap from Issues** | 4 tasks | 8h | Medium |
+| Area                       | Tasks   | Time | Priority |
+| :------------------------- | :------ | :--- | :------- |
+| **1. Embeddable Widget**   | 4 tasks | 8h   | High     |
+| **2. Social Post Drafts**  | 4 tasks | 6h   | High     |
+| **3. Email Integrations**  | 4 tasks | 10h  | Medium   |
+| **4. Analytics Dashboard** | 4 tasks | 8h   | High     |
+| **5. Roadmap from Issues** | 4 tasks | 8h   | Medium   |
 
 **Total:** 20 tasks, 40 hours
 
@@ -42,6 +42,7 @@ Phase 2 focuses on expanding GitLog's value proposition beyond basic changelog g
 **Goal:** Allow users to embed a "What's New" widget on their website/app
 
 #### 1.1 Widget Script Generator (2h)
+
 - **File:** `src/app/(dashboard)/widget/page.tsx`
 - **File:** `src/app/(dashboard)/widget/generator.tsx`
 - **Tasks:**
@@ -60,6 +61,7 @@ Phase 2 focuses on expanding GitLog's value proposition beyond basic changelog g
   - ✅ Widget ID is unique per repo
 
 #### 1.2 Embeddable iframe Component (2h)
+
 - **File:** `src/app/(public)/widget/[widgetId]/page.tsx`
 - **File:** `src/shared/components/widgets/embeddable-widget.tsx`
 - **Tasks:**
@@ -75,6 +77,7 @@ Phase 2 focuses on expanding GitLog's value proposition beyond basic changelog g
   - ✅ Shows latest 3-5 entries
 
 #### 1.3 Widget Customization (2.5h)
+
 - **File:** `src/shared/components/widgets/widget-customizer.tsx`
 - **Tasks:**
   - Color customization (primary, background, text)
@@ -90,6 +93,7 @@ Phase 2 focuses on expanding GitLog's value proposition beyond basic changelog g
   - ✅ Settings persist across embeds
 
 #### 1.4 Widget Analytics (1.5h)
+
 - **File:** `src/app/(dashboard)/analytics/widgets/page.tsx`
 - **File:** `src/features/analytics/widget-tracker.ts`
 - **Tasks:**
@@ -111,6 +115,7 @@ Phase 2 focuses on expanding GitLog's value proposition beyond basic changelog g
 **Goal:** Auto-generate social media posts for each published changelog entry
 
 #### 2.1 Twitter Thread Generator (2h)
+
 - **File:** `src/features/social/twitter-thread-generator.ts`
 - **File:** `src/app/(dashboard)/social/twitter/page.tsx`
 - **Tasks:**
@@ -126,6 +131,7 @@ Phase 2 focuses on expanding GitLog's value proposition beyond basic changelog g
   - ✅ 3 tone options
 
 #### 2.2 LinkedIn Post Generator (1.5h)
+
 - **File:** `src/features/social/linkedin-post-generator.ts`
 - **File:** `src/app/(dashboard)/social/linkedin/page.tsx`
 - **Tasks:**
@@ -141,6 +147,7 @@ Phase 2 focuses on expanding GitLog's value proposition beyond basic changelog g
   - ✅ Clear CTA
 
 #### 2.3 Social Post Preview (1.5h)
+
 - **File:** `src/shared/components/social/post-preview.tsx`
 - **Tasks:**
   - Create Twitter preview card (looks like actual tweet)
@@ -155,6 +162,7 @@ Phase 2 focuses on expanding GitLog's value proposition beyond basic changelog g
   - ✅ Link preview shown
 
 #### 2.4 One-click Copy (1h)
+
 - **File:** `src/shared/components/social/copy-button.tsx`
 - **Tasks:**
   - Add copy button to each post
@@ -175,6 +183,7 @@ Phase 2 focuses on expanding GitLog's value proposition beyond basic changelog g
 **Goal:** Enable email-based release communication
 
 #### 3.1 Resend Integration (3h)
+
 - **File:** `src/lib/resend.ts`
 - **File:** `src/app/api/email/send/route.ts`
 - **Tasks:**
@@ -191,6 +200,7 @@ Phase 2 focuses on expanding GitLog's value proposition beyond basic changelog g
   - ✅ Error handling in place
 
 #### 3.2 Email Template Builder (3h)
+
 - **File:** `src/features/email/template-builder.tsx`
 - **File:** `src/features/email/templates/release-email.tsx`
 - **Tasks:**
@@ -207,6 +217,7 @@ Phase 2 focuses on expanding GitLog's value proposition beyond basic changelog g
   - ✅ "View Online" link included
 
 #### 3.3 Mailchimp Integration (2.5h)
+
 - **File:** `src/lib/mailchimp.ts`
 - **File:** `src/app/api/integrations/mailchimp/sync/route.ts`
 - **Tasks:**
@@ -223,6 +234,7 @@ Phase 2 focuses on expanding GitLog's value proposition beyond basic changelog g
   - ✅ Errors logged
 
 #### 3.4 Email Digest Subscriptions (1.5h)
+
 - **File:** `src/app/(public)/changelog/[user]/[repo]/subscribe/page.tsx`
 - **File:** `src/features/email/subscription-manager.ts`
 - **Tasks:**
@@ -245,6 +257,7 @@ Phase 2 focuses on expanding GitLog's value proposition beyond basic changelog g
 **Goal:** Provide insights into changelog performance
 
 #### 4.1 Page Views Tracking (2h)
+
 - **File:** `src/features/analytics/page-view-tracker.ts`
 - **File:** `src/app/api/analytics/track/route.ts`
 - **Tasks:**
@@ -261,6 +274,7 @@ Phase 2 focuses on expanding GitLog's value proposition beyond basic changelog g
   - ✅ Low latency (<100ms)
 
 #### 4.2 Unique Visitors Tracking (2h)
+
 - **File:** `src/features/analytics/visitor-tracker.ts`
 - **Tasks:**
   - Generate anonymous visitor ID (fingerprint or cookie)
@@ -275,6 +289,7 @@ Phase 2 focuses on expanding GitLog's value proposition beyond basic changelog g
   - ✅ Privacy-compliant
 
 #### 4.3 Most Viewed Entries (2h)
+
 - **File:** `src/app/(dashboard)/analytics/most-viewed/page.tsx`
 - **Tasks:**
   - Create "Most Viewed" leaderboard
@@ -289,6 +304,7 @@ Phase 2 focuses on expanding GitLog's value proposition beyond basic changelog g
   - ✅ Sorted correctly
 
 #### 4.4 Upvoting System (2h)
+
 - **File:** `src/features/analytics/upvote-system.ts`
 - **File:** `src/shared/components/analytics/upvote-button.tsx`
 - **Tasks:**
@@ -311,6 +327,7 @@ Phase 2 focuses on expanding GitLog's value proposition beyond basic changelog g
 **Goal:** Transform GitHub Issues into public roadmap
 
 #### 5.1 GitHub Issues Sync (2.5h)
+
 - **File:** `src/features/roadmap/issues-sync.ts`
 - **File:** `src/app/api/github/issues/sync/route.ts`
 - **Tasks:**
@@ -327,6 +344,7 @@ Phase 2 focuses on expanding GitLog's value proposition beyond basic changelog g
   - ✅ Manual + auto sync work
 
 #### 5.2 Roadmap Cards (2.5h)
+
 - **File:** `src/app/(dashboard)/roadmap/page.tsx`
 - **File:** `src/features/roadmap/roadmap-cards.tsx`
 - **Tasks:**
@@ -343,6 +361,7 @@ Phase 2 focuses on expanding GitLog's value proposition beyond basic changelog g
   - ✅ Mobile responsive
 
 #### 5.3 Upvoting Functionality (1.5h)
+
 - **File:** `src/features/roadmap/roadmap-upvotes.ts`
 - **File:** `src/app/(public)/roadmap/[user]/[repo]/page.tsx`
 - **Tasks:**
@@ -359,6 +378,7 @@ Phase 2 focuses on expanding GitLog's value proposition beyond basic changelog g
   - ✅ One vote per visitor
 
 #### 5.4 Auto-move to Changelog (1.5h)
+
 - **File:** `src/features/roadmap/roadmap-to-changelog.ts`
 - **Tasks:**
   - Detect when roadmap item completed (issue closed)
@@ -379,15 +399,15 @@ Phase 2 focuses on expanding GitLog's value proposition beyond basic changelog g
 
 ### **Week 1-2: Embeddable Widget + Social Post Drafts (14h)**
 
-| Day | Task | Hours | Deliverable |
-| :---- | :---- | :---- | :---- |
-| Day 1 | Widget Script Generator | 2h | Widget settings page |
-| Day 2 | Embeddable iframe Component | 2h | Widget endpoint + UI |
-| Day 3 | Widget Customization | 2.5h | Customization options |
-| Day 4 | Widget Analytics | 1.5h | Analytics tracking |
-| Day 5 | Twitter Thread Generator | 2h | Twitter drafts |
-| Day 6 | LinkedIn Post Generator | 1.5h | LinkedIn drafts |
-| Day 7 | Social Post Preview + Copy | 2.5h | Preview + one-click copy |
+| Day   | Task                        | Hours | Deliverable              |
+| :---- | :-------------------------- | :---- | :----------------------- |
+| Day 1 | Widget Script Generator     | 2h    | Widget settings page     |
+| Day 2 | Embeddable iframe Component | 2h    | Widget endpoint + UI     |
+| Day 3 | Widget Customization        | 2.5h  | Customization options    |
+| Day 4 | Widget Analytics            | 1.5h  | Analytics tracking       |
+| Day 5 | Twitter Thread Generator    | 2h    | Twitter drafts           |
+| Day 6 | LinkedIn Post Generator     | 1.5h  | LinkedIn drafts          |
+| Day 7 | Social Post Preview + Copy  | 2.5h  | Preview + one-click copy |
 
 **Milestone:** Widget + Social features live
 
@@ -395,12 +415,12 @@ Phase 2 focuses on expanding GitLog's value proposition beyond basic changelog g
 
 ### **Week 3-4: Email Integrations (10h)**
 
-| Day | Task | Hours | Deliverable |
-| :---- | :---- | :---- | :---- |
-| Day 8 | Resend Integration | 3h | Email infrastructure |
-| Day 9 | Email Template Builder | 3h | Release email template |
-| Day 10 | Mailchimp Integration | 2.5h | Audience sync |
-| Day 11 | Email Digest Subscriptions | 1.5h | Subscription system |
+| Day    | Task                       | Hours | Deliverable            |
+| :----- | :------------------------- | :---- | :--------------------- |
+| Day 8  | Resend Integration         | 3h    | Email infrastructure   |
+| Day 9  | Email Template Builder     | 3h    | Release email template |
+| Day 10 | Mailchimp Integration      | 2.5h  | Audience sync          |
+| Day 11 | Email Digest Subscriptions | 1.5h  | Subscription system    |
 
 **Milestone:** Email digests working
 
@@ -408,12 +428,12 @@ Phase 2 focuses on expanding GitLog's value proposition beyond basic changelog g
 
 ### **Week 5-6: Analytics Dashboard (8h)**
 
-| Day | Task | Hours | Deliverable |
-| :---- | :---- | :---- | :---- |
-| Day 12 | Page Views Tracking | 2h | View tracking |
-| Day 13 | Unique Visitors Tracking | 2h | Visitor analytics |
-| Day 14 | Most Viewed Entries | 2h | Leaderboard |
-| Day 15 | Upvoting System | 2h | Upvote functionality |
+| Day    | Task                     | Hours | Deliverable          |
+| :----- | :----------------------- | :---- | :------------------- |
+| Day 12 | Page Views Tracking      | 2h    | View tracking        |
+| Day 13 | Unique Visitors Tracking | 2h    | Visitor analytics    |
+| Day 14 | Most Viewed Entries      | 2h    | Leaderboard          |
+| Day 15 | Upvoting System          | 2h    | Upvote functionality |
 
 **Milestone:** Analytics dashboard complete
 
@@ -421,12 +441,12 @@ Phase 2 focuses on expanding GitLog's value proposition beyond basic changelog g
 
 ### **Week 7-8: Roadmap from Issues (8h)**
 
-| Day | Task | Hours | Deliverable |
-| :---- | :---- | :---- | :---- |
-| Day 16 | GitHub Issues Sync | 2.5h | Issues → GitLog |
-| Day 17 | Roadmap Cards | 2.5h | Roadmap UI |
-| Day 18 | Roadmap Upvoting | 1.5h | Public upvotes |
-| Day 19 | Auto-move to Changelog | 1.5h | Roadmap → changelog |
+| Day    | Task                   | Hours | Deliverable         |
+| :----- | :--------------------- | :---- | :------------------ |
+| Day 16 | GitHub Issues Sync     | 2.5h  | Issues → GitLog     |
+| Day 17 | Roadmap Cards          | 2.5h  | Roadmap UI          |
+| Day 18 | Roadmap Upvoting       | 1.5h  | Public upvotes      |
+| Day 19 | Auto-move to Changelog | 1.5h  | Roadmap → changelog |
 
 **Milestone:** Phase 2 complete
 
@@ -539,6 +559,7 @@ kv.set(`roadmap:${userId}:${repoId}:${issueId}`, {
 ## 🧪 Testing Plan
 
 ### Widget Testing
+
 - [ ] Embed widget on test website
 - [ ] Verify widget loads correctly
 - [ ] Test all customization options
@@ -547,6 +568,7 @@ kv.set(`roadmap:${userId}:${repoId}:${issueId}`, {
 - [ ] Verify CORS headers
 
 ### Social Posts Testing
+
 - [ ] Generate Twitter threads for 5 entries
 - [ ] Generate LinkedIn posts for 5 entries
 - [ ] Verify character limits
@@ -554,6 +576,7 @@ kv.set(`roadmap:${userId}:${repoId}:${issueId}`, {
 - [ ] Check preview accuracy
 
 ### Email Testing
+
 - [ ] Send test email via Resend
 - [ ] Verify email renders in Gmail, Outlook, Apple Mail
 - [ ] Test Mailchimp sync
@@ -561,6 +584,7 @@ kv.set(`roadmap:${userId}:${repoId}:${issueId}`, {
 - [ ] Digest email on publish
 
 ### Analytics Testing
+
 - [ ] Verify page views tracked
 - [ ] Check unique visitor counting
 - [ ] Test upvote functionality
@@ -568,6 +592,7 @@ kv.set(`roadmap:${userId}:${repoId}:${issueId}`, {
 - [ ] Check privacy compliance
 
 ### Roadmap Testing
+
 - [ ] Sync GitHub Issues
 - [ ] Verify roadmap cards display
 - [ ] Test upvoting on public roadmap
@@ -578,26 +603,26 @@ kv.set(`roadmap:${userId}:${repoId}:${issueId}`, {
 
 ## 📊 Success Metrics
 
-| Metric | Target | Measurement |
-| :---- | :---- | :---- |
-| Widget embeds | 50+ sites | Widget analytics |
-| Social posts generated | 100+ | Social draft count |
-| Email subscribers | 200+ | Subscription count |
-| Changelog views tracked | 1000+/month | Analytics dashboard |
-| Roadmap upvotes | 500+ | Roadmap engagement |
-| Phase 2 adoption rate | 40% of Pro users | Feature usage |
+| Metric                  | Target           | Measurement         |
+| :---------------------- | :--------------- | :------------------ |
+| Widget embeds           | 50+ sites        | Widget analytics    |
+| Social posts generated  | 100+             | Social draft count  |
+| Email subscribers       | 200+             | Subscription count  |
+| Changelog views tracked | 1000+/month      | Analytics dashboard |
+| Roadmap upvotes         | 500+             | Roadmap engagement  |
+| Phase 2 adoption rate   | 40% of Pro users | Feature usage       |
 
 ---
 
 ## 🚨 Risks & Mitigation
 
-| Risk | Severity | Mitigation |
-| :---- | :---- | :---- |
-| Email deliverability issues | High | Use Resend (trusted provider), add SPF/DKIM |
-| Widget slows down host sites | Medium | Lightweight script, async loading |
-| Analytics privacy concerns | High | No PII, anonymous IDs, GDPR-compliant |
-| Mailchimp API rate limits | Low | Batch sync, cache data |
-| Roadmap spam via Issues | Medium | Filter by label, manual approval option |
+| Risk                         | Severity | Mitigation                                  |
+| :--------------------------- | :------- | :------------------------------------------ |
+| Email deliverability issues  | High     | Use Resend (trusted provider), add SPF/DKIM |
+| Widget slows down host sites | Medium   | Lightweight script, async loading           |
+| Analytics privacy concerns   | High     | No PII, anonymous IDs, GDPR-compliant       |
+| Mailchimp API rate limits    | Low      | Batch sync, cache data                      |
+| Roadmap spam via Issues      | Medium   | Filter by label, manual approval option     |
 
 ---
 
@@ -615,6 +640,7 @@ kv.set(`roadmap:${userId}:${repoId}:${issueId}`, {
 ---
 
 **Next Steps:**
+
 1. Review and approve this plan
 2. Set up new API keys (Resend, Mailchimp)
 3. Begin Week 1 implementation (Widget features)
@@ -622,5 +648,5 @@ kv.set(`roadmap:${userId}:${repoId}:${issueId}`, {
 
 ---
 
-*Last Updated: 2026-03-09*  
-*Status: Ready to Start*
+_Last Updated: 2026-03-09_  
+_Status: Ready to Start_

@@ -38,7 +38,9 @@ export default function SocialPostsPage() {
   const [selectedEntry, setSelectedEntry] = useState<string | null>(null);
   const [twitterDraft, setTwitterDraft] = useState<TwitterDraft | null>(null);
   const [linkedinDraft, setLinkedInDraft] = useState<LinkedInDraft | null>(null);
-  const [selectedTone, setSelectedTone] = useState<'professional' | 'casual' | 'exciting'>('professional');
+  const [selectedTone, setSelectedTone] = useState<'professional' | 'casual' | 'exciting'>(
+    'professional'
+  );
   const [copied, setCopied] = useState<'twitter' | 'linkedin' | null>(null);
 
   useEffect(() => {
@@ -60,14 +62,16 @@ export default function SocialPostsPage() {
         {
           id: '1',
           title: 'Added dark mode toggle',
-          aiRewrite: 'Users can now switch between light and dark themes with a single click. The preference is saved automatically and persists across sessions.',
+          aiRewrite:
+            'Users can now switch between light and dark themes with a single click. The preference is saved automatically and persists across sessions.',
           category: 'New',
           mergedAt: new Date().toISOString(),
         },
         {
           id: '2',
           title: 'Fixed login issue on mobile',
-          aiRewrite: 'Resolved authentication problems that prevented mobile users from logging in. All mobile users can now access their accounts seamlessly.',
+          aiRewrite:
+            'Resolved authentication problems that prevented mobile users from logging in. All mobile users can now access their accounts seamlessly.',
           category: 'Fixed',
           mergedAt: new Date().toISOString(),
         },
@@ -102,7 +106,7 @@ export default function SocialPostsPage() {
 
     setGenerating(platform);
     try {
-      const entry = entries.find(e => e.id === selectedEntry);
+      const entry = entries.find((e) => e.id === selectedEntry);
       if (!entry) return;
 
       const response = await fetch('/api/social/generate', {
@@ -123,7 +127,7 @@ export default function SocialPostsPage() {
       }
 
       const data = await response.json();
-      
+
       if (platform === 'twitter') {
         setTwitterDraft(data.data);
         toast.success('Twitter thread generated!');
@@ -164,7 +168,7 @@ export default function SocialPostsPage() {
             Auto-generate Twitter threads and LinkedIn posts for your changelogs
           </p>
         </div>
-        <Badge variant="accent">Phase 2</Badge>
+        <Badge variant="default">Phase 2</Badge>
       </div>
 
       <div className="grid gap-6 lg:grid-cols-3">

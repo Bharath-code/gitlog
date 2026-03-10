@@ -33,8 +33,7 @@ export default function PaymentCancelPage() {
               50 changelog entries per month
             </li>
             <li className="flex items-center gap-2">
-              <span className="h-1.5 w-1.5 rounded-full bg-success" />
-              1 connected repository
+              <span className="h-1.5 w-1.5 rounded-full bg-success" />1 connected repository
             </li>
             <li className="flex items-center gap-2">
               <span className="h-1.5 w-1.5 rounded-full bg-success" />
@@ -55,11 +54,9 @@ export default function PaymentCancelPage() {
               Back to Dashboard
             </Button>
           </Link>
-          
+
           <Link href="/upgrade">
-            <Button className="w-full bg-accent hover:bg-accent/90">
-              Try Again
-            </Button>
+            <Button className="w-full bg-accent hover:bg-accent/90">Try Again</Button>
           </Link>
         </div>
 

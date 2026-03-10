@@ -1,14 +1,14 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import { useLayoutEffect, useRef, useState } from "react";
-import { ArrowRight, Check, ChevronRight, GitMerge, Sparkles, Moon, Sun } from "lucide-react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Link from 'next/link';
+import { useLayoutEffect, useRef, useState } from 'react';
+import { ArrowRight, Check, ChevronRight, GitMerge, Sparkles, Moon, Sun } from 'lucide-react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-import { Button } from "@/shared/components/ui/button";
-import { SectionHeading } from "@/shared/components/ui/section-heading";
-import { siteConfig } from "@/shared/config/site";
+import { Button } from '@/shared/components/ui/button';
+import { SectionHeading } from '@/shared/components/ui/section-heading';
+import { siteConfig } from '@/shared/config/site';
 
 import {
   faqs,
@@ -21,7 +21,7 @@ import {
   proofStrip,
   steps,
   trustSignals,
-} from "../content/site-content";
+} from '../content/site-content';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -31,7 +31,7 @@ export function SiteHeader() {
   const toggleTheme = () => {
     const newTheme = !isDark;
     setIsDark(newTheme);
-    document.documentElement.setAttribute("data-theme", newTheme ? "dark" : "light");
+    document.documentElement.setAttribute('data-theme', newTheme ? 'dark' : 'light');
   };
 
   return (
@@ -62,7 +62,7 @@ export function SiteHeader() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <button 
+          <button
             className="theme-toggle hidden sm:flex"
             onClick={toggleTheme}
             aria-label="Toggle theme"
@@ -87,69 +87,69 @@ export function HeroSection() {
   useLayoutEffect(() => {
     if (!heroRef.current) return;
 
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduceMotion) return;
 
     const ctx = gsap.context(() => {
       // Hero copy animation
       gsap.fromTo(
-        "[data-hero-copy] > *",
+        '[data-hero-copy] > *',
         { opacity: 0, y: 40 },
-        { 
-          opacity: 1, 
-          y: 0, 
-          duration: 1, 
-          stagger: 0.15, 
-          ease: "power3.out" 
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          stagger: 0.15,
+          ease: 'power3.out',
         }
       );
 
       // Hero card animation
       gsap.fromTo(
-        "[data-hero-card]",
+        '[data-hero-card]',
         { opacity: 0, y: 60, scale: 0.95, rotateX: 10 },
-        { 
-          opacity: 1, 
-          y: 0, 
-          scale: 1, 
-          rotateX: 0, 
-          duration: 1.2, 
-          ease: "power3.out", 
-          delay: 0.3 
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          rotateX: 0,
+          duration: 1.2,
+          ease: 'power3.out',
+          delay: 0.3,
         }
       );
 
       // Proof strip animation
       gsap.fromTo(
-        "[data-proof-item]",
+        '[data-proof-item]',
         { opacity: 0, y: 20 },
         {
           opacity: 1,
           y: 0,
           duration: 0.8,
           stagger: 0.12,
-          ease: "power2.out",
-          delay: 0.8
+          ease: 'power2.out',
+          delay: 0.8,
         }
       );
 
       // Floating elements
-      gsap.to(".hero-glow-1", {
+      gsap.to('.hero-glow-1', {
         x: 20,
         y: -20,
         duration: 8,
         repeat: -1,
         yoyo: true,
-        ease: "sine.inOut",
+        ease: 'sine.inOut',
       });
 
-      gsap.to(".hero-glow-2", {
+      gsap.to('.hero-glow-2', {
         x: -20,
         y: 20,
         duration: 10,
         repeat: -1,
         yoyo: true,
-        ease: "sine.inOut",
+        ease: 'sine.inOut',
       });
     }, heroRef);
 
@@ -162,12 +162,12 @@ export function HeroSection() {
     const rect = card.getBoundingClientRect();
     const x = ((e.clientX - rect.left) / rect.width) * 100;
     const y = ((e.clientY - rect.top) / rect.height) * 100;
-    card.style.setProperty("--mouse-x", `${x}%`);
-    card.style.setProperty("--mouse-y", `${y}%`);
+    card.style.setProperty('--mouse-x', `${x}%`);
+    card.style.setProperty('--mouse-y', `${y}%`);
   };
 
   return (
-    <section 
+    <section
       ref={heroRef}
       className="relative mx-auto max-w-7xl px-4 pb-12 pt-16 sm:px-6 lg:px-8 lg:pb-20 lg:pt-24"
     >
@@ -189,9 +189,8 @@ export function HeroSection() {
             </h1>
 
             <p className="body-balance max-w-xl text-lg leading-relaxed text-muted">
-              Merge a PR. GitLog handles the rest.
-              Auto-generate changelogs, social posts, email digests, and roadmap updates.
-              Save 5 hours every week.
+              Merge a PR. GitLog handles the rest. Auto-generate changelogs, social posts, email
+              digests, and roadmap updates. Save 5 hours every week.
             </p>
           </div>
 
@@ -200,11 +199,15 @@ export function HeroSection() {
               <Link href={cta.href} key={cta.label}>
                 <Button
                   className="w-full sm:w-auto hover-lift"
-                  size="large"
-                  variant={cta.label.includes("Join") || cta.label.includes("beta") ? "primary" : "secondary"}
+                  size="lg"
+                  variant={
+                    cta.label.includes('Join') || cta.label.includes('beta')
+                      ? 'primary'
+                      : 'secondary'
+                  }
                 >
                   {cta.label}
-                  {"icon" in cta && cta.icon ? <cta.icon className="h-4 w-4" /> : null}
+                  {'icon' in cta && cta.icon ? <cta.icon className="h-4 w-4" /> : null}
                 </Button>
               </Link>
             ))}
@@ -220,8 +223,8 @@ export function HeroSection() {
 
           <dl className="grid grid-cols-3 gap-4">
             {heroStats.map((stat) => (
-              <div 
-                key={stat.label} 
+              <div
+                key={stat.label}
                 className="group rounded-xl bg-surface p-4 border border-line transition-all duration-300 hover:border-accent/50 hover:shadow-lg hover:shadow-accent-glow/10 hover:-translate-y-1"
               >
                 <dt className="font-mono text-[10px] uppercase tracking-widest text-muted">
@@ -236,13 +239,9 @@ export function HeroSection() {
         </div>
 
         {/* Hero Visual */}
-        <div 
-          className="relative" 
-          data-hero-card
-          onMouseMove={handleMouseMove}
-        >
+        <div className="relative" data-hero-card onMouseMove={handleMouseMove}>
           {/* Main card */}
-          <div 
+          <div
             className="feature-card glow-on-hover"
             style={{ padding: 0, border: '1px solid var(--line-strong)' }}
           >
@@ -302,8 +301,8 @@ export function HeroSection() {
                 </div>
 
                 <p className="mt-4 text-sm leading-relaxed text-muted">
-                  Users can now switch digest delivery to daily, weekly, or paused from
-                  settings. Preferences save instantly and apply to future updates.
+                  Users can now switch digest delivery to daily, weekly, or paused from settings.
+                  Preferences save instantly and apply to future updates.
                 </p>
 
                 <div className="mt-4 flex flex-wrap gap-2">
@@ -344,9 +343,9 @@ export function HeroSection() {
       {/* Proof strip */}
       <div className="mt-12 grid gap-3 md:grid-cols-3" data-proof-row>
         {proofStrip.map((item, index) => (
-          <div 
-            className="flex items-start gap-3 rounded-xl border border-line bg-surface p-4 hover:border-accent/50 hover:bg-surface-elevated transition-all duration-300 hover:-translate-y-1" 
-            data-proof-item 
+          <div
+            className="flex items-start gap-3 rounded-xl border border-line bg-surface p-4 hover:border-accent/50 hover:bg-surface-elevated transition-all duration-300 hover:-translate-y-1"
+            data-proof-item
             key={item}
           >
             <ArrowRight className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
@@ -364,23 +363,23 @@ export function WorkflowSection() {
   useLayoutEffect(() => {
     if (!sectionRef.current) return;
 
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduceMotion) return;
 
     const ctx = gsap.context(() => {
       gsap.fromTo(
-        ".workflow-step",
+        '.workflow-step',
         { opacity: 0, x: -40 },
         {
           opacity: 1,
           x: 0,
           duration: 0.8,
           stagger: 0.15,
-          ease: "power3.out",
+          ease: 'power3.out',
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: "top 75%",
-          }
+            start: 'top 75%',
+          },
         }
       );
     }, sectionRef);
@@ -389,7 +388,11 @@ export function WorkflowSection() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24" id="workflow">
+    <section
+      ref={sectionRef}
+      className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24"
+      id="workflow"
+    >
       <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
         <div className="space-y-6">
           <SectionHeading
@@ -414,9 +417,7 @@ export function WorkflowSection() {
             >
               <div className="workflow-number">{step.number}</div>
               <div>
-                <h3 className="text-xl font-semibold text-foreground">
-                  {step.title}
-                </h3>
+                <h3 className="text-xl font-semibold text-foreground">{step.title}</h3>
                 <p className="mt-2 text-base leading-relaxed text-muted">{step.description}</p>
               </div>
             </article>
@@ -433,23 +434,23 @@ export function FeatureSection() {
   useLayoutEffect(() => {
     if (!sectionRef.current) return;
 
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduceMotion) return;
 
     const ctx = gsap.context(() => {
       gsap.fromTo(
-        ".feature-card",
+        '.feature-card',
         { opacity: 0, y: 40 },
         {
           opacity: 1,
           y: 0,
           duration: 0.8,
           stagger: 0.15,
-          ease: "power3.out",
+          ease: 'power3.out',
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: "top 75%",
-          }
+            start: 'top 75%',
+          },
         }
       );
     }, sectionRef);
@@ -462,12 +463,16 @@ export function FeatureSection() {
     const rect = card.getBoundingClientRect();
     const x = ((e.clientX - rect.left) / rect.width) * 100;
     const y = ((e.clientY - rect.top) / rect.height) * 100;
-    card.style.setProperty("--mouse-x", `${x}%`);
-    card.style.setProperty("--mouse-y", `${y}%`);
+    card.style.setProperty('--mouse-x', `${x}%`);
+    card.style.setProperty('--mouse-y', `${y}%`);
   };
 
   return (
-    <section ref={sectionRef} className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24" id="features">
+    <section
+      ref={sectionRef}
+      className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24"
+      id="features"
+    >
       <SectionHeading
         eyebrow="Features"
         title="Everything needed for high-quality changelog workflow."
@@ -477,26 +482,29 @@ export function FeatureSection() {
       <div className="mt-12 grid gap-4 lg:grid-cols-2">
         {featureCards.map((feature, index) => (
           <article
-            className={`feature-card ${index === 0 ? "feature-card-primary" : ""}`}
+            className={`feature-card ${index === 0 ? 'feature-card-primary' : ''}`}
             data-card
             key={feature.title}
             onMouseMove={handleMouseMove}
             style={{ transitionDelay: `${index * 0.1}s` }}
           >
-            <div className={`feature-icon ${index === 0 ? "" : 
-              feature.title.includes("GitHub") ? "" :
-              feature.title.includes("Plain") ? "feature-icon-purple" :
-              feature.title.includes("Public") ? "feature-icon-blue" :
-              "feature-icon-success"
-            }`}>
+            <div
+              className={`feature-icon ${
+                index === 0
+                  ? ''
+                  : feature.title.includes('GitHub')
+                    ? ''
+                    : feature.title.includes('Plain')
+                      ? 'feature-icon-purple'
+                      : feature.title.includes('Public')
+                        ? 'feature-icon-blue'
+                        : 'feature-icon-success'
+              }`}
+            >
               <feature.icon className="h-5 w-5" />
             </div>
-            <h3 className="mt-6 text-2xl font-semibold text-foreground">
-              {feature.title}
-            </h3>
-            <p className="mt-3 text-base leading-relaxed text-muted">
-              {feature.description}
-            </p>
+            <h3 className="mt-6 text-2xl font-semibold text-foreground">{feature.title}</h3>
+            <p className="mt-3 text-base leading-relaxed text-muted">{feature.description}</p>
           </article>
         ))}
       </div>
@@ -510,23 +518,23 @@ export function PricingSection() {
   useLayoutEffect(() => {
     if (!sectionRef.current) return;
 
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduceMotion) return;
 
     const ctx = gsap.context(() => {
       gsap.fromTo(
-        ".pricing-card",
+        '.pricing-card',
         { opacity: 0, scale: 0.9 },
         {
           opacity: 1,
           scale: 1,
           duration: 0.8,
           stagger: 0.2,
-          ease: "power3.out",
+          ease: 'power3.out',
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: "top 75%",
-          }
+            start: 'top 75%',
+          },
         }
       );
     }, sectionRef);
@@ -535,7 +543,11 @@ export function PricingSection() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24" id="pricing">
+    <section
+      ref={sectionRef}
+      className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24"
+      id="pricing"
+    >
       <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
         <div className="space-y-6">
           <SectionHeading
@@ -548,7 +560,8 @@ export function PricingSection() {
               Positioning
             </div>
             <p className="mt-3 text-base leading-relaxed text-foreground">
-              No enterprise tier, no sales call, no complicated seat model. Built for small product teams and indie founders.
+              No enterprise tier, no sales call, no complicated seat model. Built for small product
+              teams and indie founders.
             </p>
           </div>
         </div>
@@ -556,23 +569,19 @@ export function PricingSection() {
         <div className="grid gap-4 md:grid-cols-2">
           {pricingPlans.map((plan, index) => (
             <article
-              className={`pricing-card ${plan.emphasis ? "pricing-card-pro" : ""}`}
+              className={`pricing-card ${plan.emphasis ? 'pricing-card-pro' : ''}`}
               data-card
               key={plan.name}
               style={{ transitionDelay: `${index * 0.15}s` }}
             >
-              {plan.emphasis && (
-                <span className="pricing-badge">Recommended</span>
-              )}
+              {plan.emphasis && <span className="pricing-badge">Recommended</span>}
 
               <div className="flex items-start justify-between gap-4">
                 <div>
                   <div className="font-mono text-[10px] uppercase tracking-widest text-muted">
-                    {plan.emphasis ? "Best Value" : "Plan"}
+                    {plan.emphasis ? 'Best Value' : 'Plan'}
                   </div>
-                  <h3 className="mt-3 text-3xl font-semibold text-foreground">
-                    {plan.name}
-                  </h3>
+                  <h3 className="mt-3 text-3xl font-semibold text-foreground">{plan.name}</h3>
                 </div>
                 {plan.emphasis && (
                   <span className="pill pill-accent hover-lift">For weekly shippers</span>
@@ -586,18 +595,18 @@ export function PricingSection() {
                 <span className="text-muted pb-2 text-sm">{plan.cadence}</span>
               </div>
 
-              <p className="mt-4 text-sm leading-relaxed text-muted">
-                {plan.description}
-              </p>
+              <p className="mt-4 text-sm leading-relaxed text-muted">{plan.description}</p>
 
               <ul className="mt-6 space-y-3">
                 {plan.features.map((feature, i) => (
                   <li
                     className="flex items-start gap-3 text-sm leading-relaxed text-muted"
                     key={feature}
-                    style={{ transitionDelay: `${(index * 0.1) + (i * 0.05)}s` }}
+                    style={{ transitionDelay: `${index * 0.1 + i * 0.05}s` }}
                   >
-                    <Check className={`mt-0.5 h-4 w-4 shrink-0 ${plan.emphasis ? "text-accent" : "text-success"}`} />
+                    <Check
+                      className={`mt-0.5 h-4 w-4 shrink-0 ${plan.emphasis ? 'text-accent' : 'text-success'}`}
+                    />
                     <span>{feature}</span>
                   </li>
                 ))}
@@ -606,9 +615,9 @@ export function PricingSection() {
               <div className="mt-8">
                 <Link href="#waitlist">
                   <Button
-                    className={`w-full hover-lift ${plan.emphasis ? "" : "bg-surface-highlight hover:bg-surface-elevated"}`}
-                    size="large"
-                    variant={plan.emphasis ? "primary" : "secondary"}
+                    className={`w-full hover-lift ${plan.emphasis ? '' : 'bg-surface-highlight hover:bg-surface-elevated'}`}
+                    size="lg"
+                    variant={plan.emphasis ? 'primary' : 'secondary'}
                   >
                     {plan.cta}
                     <ChevronRight className="h-4 w-4" />
@@ -629,23 +638,23 @@ export function FaqSection() {
   useLayoutEffect(() => {
     if (!sectionRef.current) return;
 
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduceMotion) return;
 
     const ctx = gsap.context(() => {
       gsap.fromTo(
-        ".faq-item",
+        '.faq-item',
         { opacity: 0, y: 20 },
         {
           opacity: 1,
           y: 0,
           duration: 0.6,
           stagger: 0.1,
-          ease: "power2.out",
+          ease: 'power2.out',
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: "top 75%",
-          }
+            start: 'top 75%',
+          },
         }
       );
     }, sectionRef);
@@ -654,14 +663,18 @@ export function FaqSection() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24" id="faq">
+    <section
+      ref={sectionRef}
+      className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24"
+      id="faq"
+    >
       <SectionHeading
         align="center"
         eyebrow="FAQ"
         title="A few answers before you try it."
         description="Private repos work. Drafts stay under your control. Built for users, not just devs."
       />
-      
+
       <div className="mx-auto mt-12 grid max-w-3xl gap-3">
         {faqs.map((item, index) => (
           <details
@@ -674,7 +687,12 @@ export function FaqSection() {
               {item.question}
               <span className="faq-icon">
                 <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M12 4v16m8-8H4"
+                  />
                 </svg>
               </span>
             </summary>
@@ -692,26 +710,26 @@ export function FinalCtaSection() {
   useLayoutEffect(() => {
     if (!sectionRef.current) return;
 
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduceMotion) {
       // Show immediately if motion reduced
-      gsap.set(".cta-shell", { opacity: 1, scale: 1 });
+      gsap.set('.cta-shell', { opacity: 1, scale: 1 });
       return;
     }
 
     const ctx = gsap.context(() => {
       gsap.fromTo(
-        ".cta-shell",
+        '.cta-shell',
         { opacity: 0, scale: 0.95 },
         {
           opacity: 1,
           scale: 1,
           duration: 1,
-          ease: "power3.out",
+          ease: 'power3.out',
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: "top 75%",
-          }
+            start: 'top 75%',
+          },
         }
       );
     }, sectionRef);
@@ -720,7 +738,11 @@ export function FinalCtaSection() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24" id="waitlist">
+    <section
+      ref={sectionRef}
+      className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24"
+      id="waitlist"
+    >
       <div className="cta-shell opacity-100">
         <div className="grid gap-8 lg:grid-cols-[1fr_0.9fr] lg:items-center">
           <div className="space-y-6">
@@ -732,8 +754,8 @@ export function FinalCtaSection() {
               Stop writing the same release twice.
             </h2>
             <p className="body-balance max-w-xl text-lg leading-relaxed text-muted">
-              Join the first group of founders using GitLog to turn merged PRs into a
-              public changelog that stays current without extra work.
+              Join the first group of founders using GitLog to turn merged PRs into a public
+              changelog that stays current without extra work.
             </p>
           </div>
 
@@ -745,18 +767,23 @@ export function FinalCtaSection() {
               Get invited before launch.
             </h3>
             <p className="mt-3 text-sm leading-relaxed text-muted">
-              The current CTA uses email. Replace with Clerk, a waitlist form, or full onboarding later.
+              The current CTA uses email. Replace with Clerk, a waitlist form, or full onboarding
+              later.
             </p>
 
             <div className="mt-6 flex flex-col gap-3">
               <Link href={siteConfig.links.waitlist}>
-                <Button className="w-full hover-lift" size="large">
+                <Button className="w-full hover-lift" size="lg">
                   Email for beta access
                   <ArrowRight className="h-4 w-4" />
                 </Button>
               </Link>
               <Link href={siteConfig.links.contact}>
-                <Button className="w-full bg-surface-highlight text-foreground hover:bg-surface-elevated hover-lift" size="large" variant="secondary">
+                <Button
+                  className="w-full bg-surface-highlight text-foreground hover:bg-surface-elevated hover-lift"
+                  size="lg"
+                  variant="secondary"
+                >
                   Ask a question
                 </Button>
               </Link>
@@ -779,7 +806,10 @@ export function SiteFooter({ email }: { email: string }) {
           <p className="mt-3 max-w-md text-base leading-relaxed text-muted">
             Auto-changelog infrastructure for teams shipping through GitHub.
           </p>
-          <Link className="mt-4 inline-flex text-sm font-semibold text-foreground underline decoration-accent/40 underline-offset-4 hover:text-accent transition-colors" href={email}>
+          <Link
+            className="mt-4 inline-flex text-sm font-semibold text-foreground underline decoration-accent/40 underline-offset-4 hover:text-accent transition-colors"
+            href={email}
+          >
             hello@gitlog.app
           </Link>
         </div>
@@ -792,7 +822,10 @@ export function SiteFooter({ email }: { email: string }) {
             <ul className="mt-4 space-y-3 text-sm text-foreground">
               {footerLinks.product.map((link) => (
                 <li key={link.label}>
-                  <Link className="hover:text-accent transition-colors hover:translate-x-1 inline-block transform" href={link.href}>
+                  <Link
+                    className="hover:text-accent transition-colors hover:translate-x-1 inline-block transform"
+                    href={link.href}
+                  >
                     {link.label}
                   </Link>
                 </li>
@@ -806,7 +839,10 @@ export function SiteFooter({ email }: { email: string }) {
             <ul className="mt-4 space-y-3 text-sm text-foreground">
               {footerLinks.company.map((link) => (
                 <li key={link.label}>
-                  <Link className="hover:text-accent transition-colors hover:translate-x-1 inline-block transform" href={link.href}>
+                  <Link
+                    className="hover:text-accent transition-colors hover:translate-x-1 inline-block transform"
+                    href={link.href}
+                  >
                     {link.label}
                   </Link>
                 </li>

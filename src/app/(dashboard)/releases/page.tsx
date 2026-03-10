@@ -21,7 +21,7 @@ interface Release {
 }
 
 export default function ReleasesPage() {
-  const toast = useToast();
+  const { info } = useToast();
   const [loading, setLoading] = useState(true);
   const [releases, setReleases] = useState<Release[]>([]);
   const [showCreateModal, setShowCreateModal] = useState(false);
@@ -42,6 +42,10 @@ export default function ReleasesPage() {
     }
   };
 
+  const publishRelease = async (id: string) => {
+    info('Not implemented', 'Release publishing is coming in Phase 3.');
+  };
+
   if (loading) {
     return (
       <div className="flex items-center justify-center py-20">
@@ -55,9 +59,7 @@ export default function ReleasesPage() {
       <div className="flex items-center justify-between">
         <div>
           <SectionHeading title="Releases" />
-          <p className="text-muted mt-2">
-            Group changelog entries into versioned releases
-          </p>
+          <p className="text-muted mt-2">Group changelog entries into versioned releases</p>
         </div>
         <Button onClick={() => setShowCreateModal(true)} className="bg-accent hover:bg-accent/90">
           <Plus className="h-4 w-4 mr-2" />
@@ -88,14 +90,10 @@ export default function ReleasesPage() {
                       {release.isPublished ? 'Published' : 'Draft'}
                     </Badge>
                     <h3 className="text-2xl font-bold font-mono">{release.version}</h3>
-                    {release.title && (
-                      <span className="text-lg text-muted">— {release.title}</span>
-                    )}
+                    {release.title && <span className="text-lg text-muted">— {release.title}</span>}
                   </div>
 
-                  {release.description && (
-                    <p className="text-muted mb-4">{release.description}</p>
-                  )}
+                  {release.description && <p className="text-muted mb-4">{release.description}</p>}
 
                   {release.highlights && release.highlights.length > 0 && (
                     <div className="mb-4">
@@ -149,15 +147,14 @@ export default function ReleasesPage() {
           <Card className="w-full max-w-2xl p-6">
             <h2 className="text-2xl font-bold mb-4">Create New Release</h2>
             <p className="text-muted mb-4">
-              Release grouping is coming in Phase 3. This is a placeholder for the full implementation.
+              Release grouping is coming in Phase 3. This is a placeholder for the full
+              implementation.
             </p>
             <div className="flex justify-end gap-2">
               <Button variant="outline" onClick={() => setShowCreateModal(false)}>
                 Close
               </Button>
-              <Button className="bg-accent hover:bg-accent/90">
-                Create Release (Coming Soon)
-              </Button>
+              <Button className="bg-accent hover:bg-accent/90">Create Release (Coming Soon)</Button>
             </div>
           </Card>
         </div>

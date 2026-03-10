@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import Link from 'next/link';
 import { GitMerge, ArrowLeft, Home } from 'lucide-react';
@@ -17,7 +17,8 @@ export default function NotFound() {
         <h1 className="text-6xl font-bold mb-3">404</h1>
         <h2 className="text-2xl font-semibold mb-4">Page not found</h2>
         <p className="text-muted mb-8">
-          Sorry, we couldn't find the page you're looking for. It might have been moved or doesn't exist.
+          Sorry, we couldn't find the page you're looking for. It might have been moved or doesn't
+          exist.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-3 justify-center">

@@ -18,7 +18,7 @@ export interface GitHubRepo {
 
 export async function getUserRepos(token: string): Promise<GitHubRepo[]> {
   const octokit = createGitHubClient(token);
-  
+
   try {
     const { data } = await octokit.rest.repos.listForAuthenticatedUser({
       visibility: 'all',
@@ -26,8 +26,8 @@ export async function getUserRepos(token: string): Promise<GitHubRepo[]> {
       sort: 'updated',
       per_page: 100,
     });
-    
-    return data.map(repo => ({
+
+    return data.map((repo) => ({
       id: repo.id,
       name: repo.name,
       full_name: repo.full_name!,
@@ -43,19 +43,19 @@ export async function getUserRepos(token: string): Promise<GitHubRepo[]> {
 
 export async function getPRDetails(token: string, owner: string, repo: string, prNumber: number) {
   const octokit = createGitHubClient(token);
-  
+
   const { data: pr } = await octokit.rest.pulls.get({
     owner,
     repo,
     pull_number: prNumber,
   });
-  
+
   return {
     id: pr.id,
     number: pr.number,
     title: pr.title,
     body: pr.body || '',
-    labels: pr.labels.map(label => ({ name: typeof label === 'string' ? label : label.name })),
+    labels: pr.labels.map((label) => ({ name: typeof label === 'string' ? label : label.name })),
     merged_at: pr.merged_at,
     html_url: pr.html_url,
     user: { login: pr.user?.login || 'unknown' },

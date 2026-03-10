@@ -1,39 +1,46 @@
 type Category = 'New' | 'Fixed' | 'Improved' | 'Other';
 
 export function categorizePR(labels: Array<{ name: string } | string>): Category {
-  const labelNames = labels.map(l => typeof l === 'string' ? l.toLowerCase() : l.name.toLowerCase());
-  
+  const labelNames = labels.map((l) =>
+    typeof l === 'string' ? l.toLowerCase() : l.name.toLowerCase()
+  );
+
   // Check for feature/new labels
-  if (labelNames.some(l => 
-    l.includes('feat') || 
-    l.includes('feature') || 
-    l.includes('new') ||
-    l.includes('enhancement')
-  )) {
+  if (
+    labelNames.some(
+      (l) =>
+        l.includes('feat') ||
+        l.includes('feature') ||
+        l.includes('new') ||
+        l.includes('enhancement')
+    )
+  ) {
     return 'New';
   }
-  
+
   // Check for fix/bug labels
-  if (labelNames.some(l => 
-    l.includes('fix') || 
-    l.includes('bug') ||
-    l.includes('bugfix') ||
-    l.includes('hotfix')
-  )) {
+  if (
+    labelNames.some(
+      (l) => l.includes('fix') || l.includes('bug') || l.includes('bugfix') || l.includes('hotfix')
+    )
+  ) {
     return 'Fixed';
   }
-  
+
   // Check for chore/improvement labels
-  if (labelNames.some(l => 
-    l.includes('chore') || 
-    l.includes('improvement') ||
-    l.includes('refactor') ||
-    l.includes('perf') ||
-    l.includes('style')
-  )) {
+  if (
+    labelNames.some(
+      (l) =>
+        l.includes('chore') ||
+        l.includes('improvement') ||
+        l.includes('refactor') ||
+        l.includes('perf') ||
+        l.includes('style')
+    )
+  ) {
     return 'Improved';
   }
-  
+
   // Default category
   return 'Other';
 }

@@ -37,22 +37,22 @@ export default function PublishedPage() {
         setLoading(false);
       }
     }
-    
+
     fetchEntries();
   }, []);
 
   const handleUnpublish = async (entryId: string) => {
     if (!confirm('Unpublish this entry? It will revert to draft.')) return;
-    
+
     try {
       const res = await fetch('/api/entries/unpublish', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ entryId }),
       });
-      
+
       if (res.ok) {
-        setEntries(entries.filter(e => e.id !== entryId));
+        setEntries(entries.filter((e) => e.id !== entryId));
       }
     } catch (error) {
       console.error('Unpublish error:', error);
@@ -60,11 +60,16 @@ export default function PublishedPage() {
   };
 
   const handleBulkDelete = async (ids: string[]) => {
-    if (!confirm(`Delete ${ids.length} selected entrie${ids.length !== 1 ? 's' : ''}? This action cannot be undone.`)) return;
-    
+    if (
+      !confirm(
+        `Delete ${ids.length} selected entrie${ids.length !== 1 ? 's' : ''}? This action cannot be undone.`
+      )
+    )
+      return;
+
     try {
       await Promise.all(
-        ids.map(id =>
+        ids.map((id) =>
           fetch('/api/entries/unpublish', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -72,26 +77,29 @@ export default function PublishedPage() {
           })
         )
       );
-      setEntries(entries.filter(e => !ids.includes(e.id)));
+      setEntries(entries.filter((e) => !ids.includes(e.id)));
     } catch (error) {
       console.error('Bulk delete error:', error);
     }
   };
 
   // Group by month
-  const grouped = entries.reduce((acc, entry) => {
-    const month = new Date(entry.publishedAt).toLocaleDateString('en-US', {
-      month: 'long',
-      year: 'numeric',
-    });
-    
-    if (!acc[month]) {
-      acc[month] = [];
-    }
-    
-    acc[month].push(entry);
-    return acc;
-  }, {} as Record<string, PublishedEntry[]>);
+  const grouped = entries.reduce(
+    (acc, entry) => {
+      const month = new Date(entry.publishedAt).toLocaleDateString('en-US', {
+        month: 'long',
+        year: 'numeric',
+      });
+
+      if (!acc[month]) {
+        acc[month] = [];
+      }
+
+      acc[month].push(entry);
+      return acc;
+    },
+    {} as Record<string, PublishedEntry[]>
+  );
 
   if (loading) {
     return (
@@ -122,7 +130,7 @@ export default function PublishedPage() {
               </Tooltip>
             </p>
           </div>
-          
+
           <div className="flex gap-2">
             <Link href="/search">
               <Button variant="outline" size="sm">
@@ -140,13 +148,9 @@ export default function PublishedPage() {
           <Card className="p-12 text-center">
             <FileText className="h-12 w-12 mx-auto text-muted mb-4" />
             <h3 className="text-lg font-semibold">No published entries yet</h3>
-            <p className="text-muted mt-2">
-              Publish your first draft to see it here
-            </p>
+            <p className="text-muted mt-2">Publish your first draft to see it here</p>
             <Link href="/dashboard">
-              <Button className="mt-4 bg-accent hover:bg-accent/90">
-                Go to Dashboard
-              </Button>
+              <Button className="mt-4 bg-accent hover:bg-accent/90">Go to Dashboard</Button>
             </Link>
           </Card>
         ) : (
@@ -154,7 +158,7 @@ export default function PublishedPage() {
             {/* Bulk Actions */}
             {entries.length > 0 && (
               <BulkActions
-                entries={entries.map(e => ({ ...e, status: 'published' as const }))}
+                entries={entries.map((e) => ({ ...e, status: 'published' as const }))}
                 onBulkDelete={handleBulkDelete}
               />
             )}
@@ -164,7 +168,7 @@ export default function PublishedPage() {
                 <h2 className="text-2xl font-semibold mb-4 sticky top-4 bg-background py-2">
                   {month}
                 </h2>
-                
+
                 <div className="space-y-3">
                   {monthEntries.map((entry) => (
                     <Card key={entry.id} className="p-4">
@@ -174,15 +178,13 @@ export default function PublishedPage() {
                             <Badge>{entry.category}</Badge>
                             <h3 className="font-semibold">{entry.title}</h3>
                           </div>
-                          
+
                           {entry.aiRewrite ? (
-                            <p className="text-muted text-sm">
-                              {entry.aiRewrite}
-                            </p>
+                            <p className="text-muted text-sm">{entry.aiRewrite}</p>
                           ) : (
                             <p className="text-muted text-sm">{entry.title}</p>
                           )}
-                          
+
                           <div className="flex items-center gap-4 text-xs text-muted">
                             <span>Published {formatDate(entry.publishedAt)}</span>
                             {entry.repoId && (
@@ -193,7 +195,7 @@ export default function PublishedPage() {
                             )}
                           </div>
                         </div>
-                        
+
                         <div className="flex flex-col gap-2">
                           {entry.repoId && (
                             <a
@@ -207,7 +209,7 @@ export default function PublishedPage() {
                               </Button>
                             </a>
                           )}
-                          
+
                           <Button
                             variant="outline"
                             size="sm"
@@ -233,15 +235,11 @@ export default function PublishedPage() {
             <div className="text-sm text-muted">Total Published</div>
           </Card>
           <Card className="p-4 text-center">
-            <div className="text-2xl font-bold">
-              {Object.keys(grouped).length}
-            </div>
+            <div className="text-2xl font-bold">{Object.keys(grouped).length}</div>
             <div className="text-sm text-muted">Months Active</div>
           </Card>
           <Card className="p-4 text-center">
-            <div className="text-2xl font-bold">
-              {entries.filter(e => e.aiRewrite).length}
-            </div>
+            <div className="text-2xl font-bold">{entries.filter((e) => e.aiRewrite).length}</div>
             <div className="text-sm text-muted">With AI Rewrite</div>
           </Card>
         </div>

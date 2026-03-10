@@ -8,16 +8,16 @@
 
 ## 📊 Current DX Assessment
 
-| Area | Score | Issues |
-| :---- | :---- | :---- |
-| **Onboarding** | 7/10 | GitHub setup can be confusing |
-| **Integration** | 8/10 | Webhook setup requires manual steps |
-| **Daily Use** | 9/10 | Clean UI, fast workflows |
-| **Documentation** | 9/10 | Comprehensive guides |
-| **Error Handling** | 7/10 | Could be more actionable |
-| **Performance** | 9/10 | Fast load times |
-| **API** | 8/10 | Well-documented but limited |
-| **Support** | 8/10 | Responsive but could be proactive |
+| Area               | Score | Issues                              |
+| :----------------- | :---- | :---------------------------------- |
+| **Onboarding**     | 7/10  | GitHub setup can be confusing       |
+| **Integration**    | 8/10  | Webhook setup requires manual steps |
+| **Daily Use**      | 9/10  | Clean UI, fast workflows            |
+| **Documentation**  | 9/10  | Comprehensive guides                |
+| **Error Handling** | 7/10  | Could be more actionable            |
+| **Performance**    | 9/10  | Fast load times                     |
+| **API**            | 8/10  | Well-documented but limited         |
+| **Support**        | 8/10  | Responsive but could be proactive   |
 
 **Overall DX Score:** 8.1/10 - **Good, but room for excellence**
 
@@ -28,6 +28,7 @@
 ### **1. Streamline GitHub Onboarding** ⏱️ 2 hours
 
 **Current Problem:**
+
 - Users need to manually configure webhooks
 - Multiple steps outside GitLog
 - Confusing for non-technical founders
@@ -35,6 +36,7 @@
 **Solutions:**
 
 #### **A. One-Click GitHub App Installation**
+
 ```typescript
 // Instead of manual webhook setup, create a GitHub App
 // Users install with one click, webhooks auto-configured
@@ -47,6 +49,7 @@
 ```
 
 **Implementation:**
+
 1. Create GitHub App in GitHub Developer Settings
 2. Configure webhook endpoint: `https://gitlog.app/api/github/webhook`
 3. Add "Install GitHub App" button in onboarding
@@ -57,39 +60,41 @@
 ---
 
 #### **B. Interactive Onboarding Checklist**
+
 ```typescript
 // File: src/app/(dashboard)/onboarding/page.tsx
 
 const steps = [
-  { 
-    id: 'github', 
-    title: 'Connect GitHub', 
+  {
+    id: 'github',
+    title: 'Connect GitHub',
     description: 'Link your GitHub account',
-    icon: GitHubIcon 
+    icon: GitHubIcon,
   },
-  { 
-    id: 'repo', 
-    title: 'Select Repository', 
+  {
+    id: 'repo',
+    title: 'Select Repository',
     description: 'Choose a repo to start with',
-    icon: RepoIcon 
+    icon: RepoIcon,
   },
-  { 
-    id: 'webhook', 
-    title: 'Configure Webhook', 
+  {
+    id: 'webhook',
+    title: 'Configure Webhook',
     description: 'Auto-setup or manual',
     icon: WebhookIcon,
-    status: 'auto' // or 'manual'
+    status: 'auto', // or 'manual'
   },
-  { 
-    id: 'test', 
-    title: 'Test Integration', 
+  {
+    id: 'test',
+    title: 'Test Integration',
     description: 'Merge a test PR',
-    icon: TestIcon 
+    icon: TestIcon,
   },
 ];
 ```
 
 **Features:**
+
 - Progress indicator
 - Auto-detect webhook status
 - Test webhook button
@@ -100,6 +105,7 @@ const steps = [
 ---
 
 #### **C. Webhook Setup Wizard**
+
 ```typescript
 // If auto-setup fails, show interactive manual guide
 
@@ -109,13 +115,13 @@ const steps = [
       https://gitlog.app/api/github/sync
     </CodeBlock>
   </Step>
-  
+
   <Step title="Add this secret">
     <CodeBlock copyable>
       {generatedSecret}
     </CodeBlock>
   </Step>
-  
+
   <Step title="Verify connection">
     <TestWebhookButton />
   </Step>
@@ -129,16 +135,19 @@ const steps = [
 ### **2. Improve Error Messages** ⏱️ 1 hour
 
 **Current Problem:**
+
 - Generic error messages
 - No actionable next steps
 - Developers frustrated
 
 **Before:**
+
 ```
 Error: Failed to sync repository
 ```
 
 **After:**
+
 ```typescript
 // File: src/shared/components/common/error-message.tsx
 
@@ -151,33 +160,37 @@ interface ErrorConfig {
 }
 
 const errorConfigs: Record<string, ErrorConfig> = {
-  'WEBHOOK_FAILED': {
+  WEBHOOK_FAILED: {
     code: 'WEBHOOK_FAILED',
     message: 'GitHub webhook delivery failed',
     cause: 'Your server might be unreachable or the secret is incorrect',
-    solution: '1. Check that your webhook URL is publicly accessible\n2. Verify the webhook secret matches\n3. Check GitHub webhook delivery logs',
-    docsLink: '/docs/github-setup#troubleshooting'
+    solution:
+      '1. Check that your webhook URL is publicly accessible\n2. Verify the webhook secret matches\n3. Check GitHub webhook delivery logs',
+    docsLink: '/docs/github-setup#troubleshooting',
   },
-  
-  'SYNC_TIMEOUT': {
+
+  SYNC_TIMEOUT: {
     code: 'SYNC_TIMEOUT',
     message: 'Repository sync timed out',
     cause: 'Large repository or network issues',
-    solution: '1. Try syncing again\n2. For large repos, use manual sync\n3. Contact support if issue persists',
-    docsLink: '/docs/troubleshooting'
+    solution:
+      '1. Try syncing again\n2. For large repos, use manual sync\n3. Contact support if issue persists',
+    docsLink: '/docs/troubleshooting',
   },
-  
-  'AI_RATE_LIMIT': {
+
+  AI_RATE_LIMIT: {
     code: 'AI_RATE_LIMIT',
     message: 'AI rewrite limit reached',
     cause: `You've used ${usage.aiRewrites}/${limit} AI rewrites this month`,
-    solution: '1. Upgrade to Pro for unlimited rewrites\n2. Write manually for now\n3. Limit resets on next billing cycle',
-    docsLink: '/docs/billing'
+    solution:
+      '1. Upgrade to Pro for unlimited rewrites\n2. Write manually for now\n3. Limit resets on next billing cycle',
+    docsLink: '/docs/billing',
   },
 };
 ```
 
 **UI Component:**
+
 ```typescript
 <ErrorDisplay error={error}>
   <ErrorIcon />
@@ -201,6 +214,7 @@ const errorConfigs: Record<string, ErrorConfig> = {
 ### **3. Add Real-Time Status Indicators** ⏱️ 2 hours
 
 **Current Problem:**
+
 - Users don't know if webhook is working
 - No visibility into sync status
 - Unclear when drafts will appear
@@ -208,6 +222,7 @@ const errorConfigs: Record<string, ErrorConfig> = {
 **Solutions:**
 
 #### **A. Webhook Status Badge**
+
 ```typescript
 // File: src/features/dashboard/components/webhook-status.tsx
 
@@ -229,7 +244,7 @@ interface WebhookStatus {
       </Tooltip>
     </>
   )}
-  
+
   {webhook.status === 'error' && (
     <>
       <AlertCircle className="text-red-500" />
@@ -246,6 +261,7 @@ interface WebhookStatus {
 ---
 
 #### **B. Sync Progress Indicator**
+
 ```typescript
 // File: src/features/dashboard/components/sync-progress.tsx
 
@@ -258,7 +274,7 @@ interface WebhookStatus {
       <span>{sync.found} PRs found</span>
     </>
   )}
-  
+
   {sync.status === 'complete' && (
     <>
       <CheckCircle className="text-success" />
@@ -276,10 +292,12 @@ interface WebhookStatus {
 ### **4. Add Keyboard Shortcuts** ⏱️ 1 hour
 
 **Current Problem:**
+
 - Power users want faster workflows
 - Mouse-heavy interface slows down frequent users
 
 **Implementation:**
+
 ```typescript
 // File: src/shared/hooks/use-keyboard-shortcuts.ts
 
@@ -291,7 +309,7 @@ export function useKeyboardShortcuts() {
         e.preventDefault();
         openSearch();
       }
-      
+
       // G + D: Go to Drafts
       if (e.key === 'g') {
         setWaitingForSecondKey(true);
@@ -299,23 +317,23 @@ export function useKeyboardShortcuts() {
       if (waitingForSecondKey && e.key === 'd') {
         router.push('/dashboard/drafts');
       }
-      
+
       // G + P: Go to Published
       if (waitingForSecondKey && e.key === 'p') {
         router.push('/dashboard/published');
       }
-      
+
       // N: New draft (manual)
       if (e.key === 'n' && !isInputFocused) {
         createNewDraft();
       }
-      
+
       // ?: Show keyboard shortcuts
       if (e.key === '?' && !isInputFocused) {
         toggleShortcutsModal();
       }
     };
-    
+
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
@@ -323,6 +341,7 @@ export function useKeyboardShortcuts() {
 ```
 
 **Shortcut Cheat Sheet Modal:**
+
 ```typescript
 <KeyboardShortcutsModal>
   <ShortcutGroup title="Navigation">
@@ -330,13 +349,13 @@ export function useKeyboardShortcuts() {
     <Shortcut keys={['G', 'P']} description="Go to Published" />
     <Shortcut keys={['G', 'S']} description="Go to Settings" />
   </ShortcutGroup>
-  
+
   <ShortcutGroup title="Actions">
     <Shortcut keys={['Cmd', 'K']} description="Search" />
     <Shortcut keys={['N']} description="New Draft" />
     <Shortcut keys={['P']} description="Publish Selected" />
   </ShortcutGroup>
-  
+
   <ShortcutGroup title="General">
     <Shortcut keys={['?']} description="Show Shortcuts" />
     <Shortcut keys={['Esc']} description="Close Modal" />
@@ -351,6 +370,7 @@ export function useKeyboardShortcuts() {
 ### **5. Improve Loading States** ⏱️ 2 hours
 
 **Current Problem:**
+
 - Generic spinners
 - No context about what's loading
 - Feels slower than it is
@@ -358,6 +378,7 @@ export function useKeyboardShortcuts() {
 **Solutions:**
 
 #### **A. Skeleton Screens with Context**
+
 ```typescript
 // File: src/shared/components/common/skeleton.tsx
 
@@ -377,20 +398,21 @@ export function useKeyboardShortcuts() {
 ---
 
 #### **B. Optimistic UI Updates**
+
 ```typescript
 // File: src/features/drafts/components/draft-card.tsx
 
 const handlePublish = async () => {
   // Optimistically update UI
-  setDrafts(drafts.map(d => 
-    d.id === draft.id 
+  setDrafts(drafts.map(d =>
+    d.id === draft.id
       ? { ...d, status: 'published' as const }
       : d
   ));
-  
+
   // Show pending state
   setPendingAction({ type: 'publish', id: draft.id });
-  
+
   try {
     await fetch('/api/entries/publish', { ... });
     // Success - clear pending state
@@ -446,23 +468,23 @@ const handlePublish = async () => {
   <Step title="Check Webhook Status">
     <WebhookStatusCheck repo={repo} />
   </Step>
-  
+
   <Step title="Test Connection">
-    <TestConnectionButton 
+    <TestConnectionButton
       onTest={async () => {
         const result = await testWebhook();
-        return { 
-          success: result.ok, 
-          message: result.ok ? 'Success!' : result.error 
+        return {
+          success: result.ok,
+          message: result.ok ? 'Success!' : result.error
         };
-      }} 
+      }}
     />
   </Step>
-  
+
   <Step title="Recent Deliveries">
     <WebhookDeliveriesList limit={10} />
   </Step>
-  
+
   <Step title="Common Issues">
     <CommonIssuesAccordion />
   </Step>
@@ -480,8 +502,8 @@ const handlePublish = async () => {
 ```typescript
 // File: src/shared/components/common/onboarding-tooltip.tsx
 
-<OnboardingTooltip 
-  step={1} 
+<OnboardingTooltip
+  step={1}
   title="This is your draft"
   content="Drafts are automatically created when you merge a PR. Review and edit before publishing."
   targetElement="draft-card"
@@ -506,31 +528,31 @@ const handlePublish = async () => {
 // File: src/app/(dashboard)/usage/page.tsx
 
 <UsageDashboard>
-  <UsageCard 
+  <UsageCard
     title="Entries This Month"
     value={usage.entriesPublished}
     limit={planLimits.entriesPerMonth}
     unit="entries"
   />
-  
-  <UsageCard 
+
+  <UsageCard
     title="AI Rewrites"
     value={usage.aiRewrites}
     limit={planLimits.aiRewritesPerMonth}
     unit="rewrites"
   />
-  
-  <UsageCard 
+
+  <UsageCard
     title="Connected Repos"
     value={connectedRepos.length}
     limit={planLimits.connectedRepos}
     unit="repos"
   />
-  
+
   <UsageTrendChart data={usageHistory} />
-  
+
   {usageNearLimit && (
-    <UpgradePrompt 
+    <UpgradePrompt
       message={`You've used ${percentage}% of your monthly limit`}
       cta="Upgrade to Pro"
     />
@@ -638,20 +660,20 @@ gitlog status
 
 ## 📊 DX Improvement Priority Matrix
 
-| Improvement | Impact | Effort | Priority |
-| :---- | :---- | :---- | :---- |
-| **Better Error Messages** | ⭐⭐⭐⭐⭐ | Low | P0 |
-| **One-Click GitHub App** | ⭐⭐⭐⭐⭐ | Medium | P0 |
-| **Optimistic UI** | ⭐⭐⭐⭐⭐ | Low | P0 |
-| **Webhook Status** | ⭐⭐⭐⭐ | Low | P1 |
-| **Interactive Onboarding** | ⭐⭐⭐⭐ | Medium | P1 |
-| **Proactive Notifications** | ⭐⭐⭐⭐ | Medium | P1 |
-| **Keyboard Shortcuts** | ⭐⭐⭐ | Low | P2 |
-| **Loading States** | ⭐⭐⭐ | Low | P2 |
-| **Usage Dashboard** | ⭐⭐⭐⭐ | Medium | P2 |
-| **CLI Tool** | ⭐⭐⭐⭐ | High | P3 |
-| **VS Code Extension** | ⭐⭐⭐⭐⭐ | High | P3 |
-| **Slack Integration** | ⭐⭐⭐⭐ | Medium | P3 |
+| Improvement                 | Impact     | Effort | Priority |
+| :-------------------------- | :--------- | :----- | :------- |
+| **Better Error Messages**   | ⭐⭐⭐⭐⭐ | Low    | P0       |
+| **One-Click GitHub App**    | ⭐⭐⭐⭐⭐ | Medium | P0       |
+| **Optimistic UI**           | ⭐⭐⭐⭐⭐ | Low    | P0       |
+| **Webhook Status**          | ⭐⭐⭐⭐   | Low    | P1       |
+| **Interactive Onboarding**  | ⭐⭐⭐⭐   | Medium | P1       |
+| **Proactive Notifications** | ⭐⭐⭐⭐   | Medium | P1       |
+| **Keyboard Shortcuts**      | ⭐⭐⭐     | Low    | P2       |
+| **Loading States**          | ⭐⭐⭐     | Low    | P2       |
+| **Usage Dashboard**         | ⭐⭐⭐⭐   | Medium | P2       |
+| **CLI Tool**                | ⭐⭐⭐⭐   | High   | P3       |
+| **VS Code Extension**       | ⭐⭐⭐⭐⭐ | High   | P3       |
+| **Slack Integration**       | ⭐⭐⭐⭐   | Medium | P3       |
 
 ---
 
@@ -673,38 +695,42 @@ gitlog status
 
 ### **Metrics to Track:**
 
-| Metric | Current | Target | How to Measure |
-| :---- | :---- | :---- | :---- |
-| **Time to First Value** | 10 min | 2 min | Analytics: signup → first draft |
-| **Onboarding Completion** | 60% | 90% | Analytics: onboarding funnel |
-| **Support Tickets** | 10/week | 2/week | Support system |
-| **Error Rate** | 5% | 1% | Error tracking |
-| **NPS Score** | N/A | 50+ | User surveys |
-| **Time to Publish** | 3 min | 1 min | Analytics: draft → publish |
+| Metric                    | Current | Target | How to Measure                  |
+| :------------------------ | :------ | :----- | :------------------------------ |
+| **Time to First Value**   | 10 min  | 2 min  | Analytics: signup → first draft |
+| **Onboarding Completion** | 60%     | 90%    | Analytics: onboarding funnel    |
+| **Support Tickets**       | 10/week | 2/week | Support system                  |
+| **Error Rate**            | 5%      | 1%     | Error tracking                  |
+| **NPS Score**             | N/A     | 50+    | User surveys                    |
+| **Time to Publish**       | 3 min   | 1 min  | Analytics: draft → publish      |
 
 ---
 
 ## 🚀 Implementation Plan
 
 ### **Week 1:**
+
 - [ ] Better error messages
 - [ ] Optimistic UI updates
 - [ ] Webhook status badge
 - [ ] Keyboard shortcuts
 
 ### **Week 2:**
+
 - [ ] Interactive onboarding
 - [ ] Improved loading states
 - [ ] Usage dashboard
 - [ ] Proactive notifications
 
 ### **Month 2:**
+
 - [ ] GitHub App integration
 - [ ] Interactive troubleshooting
 - [ ] In-app guidance
 - [ ] Performance monitoring
 
 ### **Month 3:**
+
 - [ ] CLI tool
 - [ ] VS Code extension (start)
 - [ ] Slack integration
@@ -713,4 +739,4 @@ gitlog status
 
 **Ready to improve DX? Start with the Top 5 Quick Wins!** 🚀
 
-*Last Updated: 2026-03-08*
+_Last Updated: 2026-03-08_

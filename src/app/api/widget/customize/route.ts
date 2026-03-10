@@ -27,7 +27,7 @@ interface WidgetConfig {
 export async function PUT(request: NextRequest) {
   try {
     const { userId } = await auth();
-    
+
     if (!userId) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
@@ -36,20 +36,14 @@ export async function PUT(request: NextRequest) {
     const { widgetId, repoId, config } = body;
 
     if (!widgetId || !repoId || !config) {
-      return NextResponse.json(
-        { error: 'Missing required fields' },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
     }
 
     // Get existing widget config
     const existingConfig = await kv.get<WidgetConfig>(`widget:${userId}:${repoId}`);
 
     if (!existingConfig) {
-      return NextResponse.json(
-        { error: 'Widget not found' },
-        { status: 404 }
-      );
+      return NextResponse.json({ error: 'Widget not found' }, { status: 404 });
     }
 
     // Update config with new values
@@ -71,17 +65,14 @@ export async function PUT(request: NextRequest) {
     });
   } catch (error) {
     console.error('Error updating widget config:', error);
-    return NextResponse.json(
-      { error: 'Failed to update widget config' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to update widget config' }, { status: 500 });
   }
 }
 
 export async function GET(request: NextRequest) {
   try {
     const { userId } = await auth();
-    
+
     if (!userId) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
@@ -90,20 +81,14 @@ export async function GET(request: NextRequest) {
     const repoId = searchParams.get('repoId');
 
     if (!repoId) {
-      return NextResponse.json(
-        { error: 'Repository ID is required' },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: 'Repository ID is required' }, { status: 400 });
     }
 
     // Get widget config from Vercel KV
     const widgetConfig = await kv.get<WidgetConfig>(`widget:${userId}:${repoId}`);
 
     if (!widgetConfig) {
-      return NextResponse.json(
-        { error: 'Widget not found' },
-        { status: 404 }
-      );
+      return NextResponse.json({ error: 'Widget not found' }, { status: 404 });
     }
 
     return NextResponse.json({
@@ -112,9 +97,6 @@ export async function GET(request: NextRequest) {
     });
   } catch (error) {
     console.error('Error getting widget config:', error);
-    return NextResponse.json(
-      { error: 'Failed to get widget config' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to get widget config' }, { status: 500 });
   }
 }

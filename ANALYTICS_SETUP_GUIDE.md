@@ -1,7 +1,7 @@
 # Analytics Setup Guide
 
 **Created:** 2026-03-10  
-**Status:** ✅ **CONFIGURED**  
+**Status:** ✅ **CONFIGURED**
 
 ---
 
@@ -27,6 +27,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 ```
 
 **What it tracks:**
+
 - ✅ Page views
 - ✅ User geography
 - ✅ Device types
@@ -48,16 +49,19 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
    - Get Measurement ID (G-XXXXXXXXXX)
 
 2. **Add to `.env.local`:**
+
    ```env
    NEXT_PUBLIC_GA_MEASUREMENT_ID=G-XXXXXXXXXX
    ```
 
 3. **Install Package:**
+
    ```bash
    npm install react-ga4
    ```
 
 4. **Create Component:**
+
    ```typescript
    // src/shared/components/analytics/google-analytics.tsx
    import Script from 'next/script';
@@ -93,6 +97,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
    ```
 
 5. **Add to Root Layout:**
+
    ```typescript
    import { GoogleAnalytics } from '@/shared/components/analytics/google-analytics';
 
@@ -156,21 +161,25 @@ export function trackEmailDigest(repoId: string, subscriberCount: number) {
 ## 📈 Key Metrics to Track
 
 ### **Acquisition:**
+
 - Total visitors
 - Traffic sources (organic, social, direct)
 - Top referrers
 
 ### **Engagement:**
+
 - Page views per session
 - Average session duration
 - Bounce rate
 
 ### **Conversion:**
+
 - Sign-up rate
 - Free → Pro conversion
 - Churn rate
 
 ### **Product:**
+
 - Changelog views
 - Widget embeds
 - API calls
@@ -181,12 +190,14 @@ export function trackEmailDigest(repoId: string, subscriberCount: number) {
 ## 🎯 Analytics Dashboard Setup
 
 ### **Vercel Analytics Dashboard:**
+
 1. Go to Vercel Dashboard
 2. Select your project
 3. Click "Analytics" tab
 4. View real-time data
 
 ### **Google Analytics Dashboard:**
+
 1. Go to Google Analytics
 2. Select property
 3. Create custom reports:
@@ -208,5 +219,5 @@ export function trackEmailDigest(repoId: string, subscriberCount: number) {
 
 **Analytics setup complete!** 📊
 
-*Last Updated: 2026-03-10*  
-*Status: Ready to Track*
+_Last Updated: 2026-03-10_  
+_Status: Ready to Track_

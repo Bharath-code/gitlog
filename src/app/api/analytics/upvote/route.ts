@@ -8,16 +8,13 @@ export async function POST(request: NextRequest) {
     const { entryId } = body;
 
     if (!entryId) {
-      return NextResponse.json(
-        { error: 'Entry ID is required' },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: 'Entry ID is required' }, { status: 400 });
     }
 
     // Get or generate visitor ID
     const cookieHeader = request.headers.get('cookie');
-    let visitorId = getVisitorIdFromCookie(cookieHeader);
-    
+    let visitorId = getVisitorIdFromCookie(cookieHeader || undefined);
+
     if (!visitorId) {
       const userAgent = request.headers.get('user-agent') || '';
       const ip = request.headers.get('x-forwarded-for') || '';
@@ -27,30 +24,27 @@ export async function POST(request: NextRequest) {
     // Check if already voted
     const voteKey = `analytics:upvotes:${entryId}:voters`;
     const hasVoted = await kv.sismember(voteKey, visitorId);
-    
+
     if (hasVoted) {
-      return NextResponse.json(
-        { error: 'Already voted' },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: 'Already voted' }, { status: 400 });
     }
 
     // Increment upvote count
     const upvoteKey = `analytics:upvotes:${entryId}`;
     await kv.incr(upvoteKey);
-    
+
     // Add voter to set
     await kv.sadd(voteKey, visitorId);
 
     // Get new vote count
-    const votes = await kv.get<number>(upvoteKey) || 0;
+    const votes = (await kv.get<number>(upvoteKey)) || 0;
 
     // Create response with visitor cookie
     const response = NextResponse.json({
       success: true,
       votes,
     });
-    
+
     // Set visitor ID cookie (expires in 1 year)
     response.cookies.set('visitor_id', visitorId, {
       maxAge: 60 * 60 * 24 * 365,
@@ -61,10 +55,7 @@ export async function POST(request: NextRequest) {
     return response;
   } catch (error) {
     console.error('Error handling upvote:', error);
-    return NextResponse.json(
-      { error: 'Failed to process upvote' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to process upvote' }, { status: 500 });
   }
 }
 
@@ -74,15 +65,12 @@ export async function GET(request: NextRequest) {
     const entryId = searchParams.get('entryId');
 
     if (!entryId) {
-      return NextResponse.json(
-        { error: 'Entry ID is required' },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: 'Entry ID is required' }, { status: 400 });
     }
 
     // Get upvote count
     const upvoteKey = `analytics:upvotes:${entryId}`;
-    const votes = await kv.get<number>(upvoteKey) || 0;
+    const votes = (await kv.get<number>(upvoteKey)) || 0;
 
     return NextResponse.json({
       success: true,
@@ -90,9 +78,6 @@ export async function GET(request: NextRequest) {
     });
   } catch (error) {
     console.error('Error getting upvotes:', error);
-    return NextResponse.json(
-      { error: 'Failed to get upvotes' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to get upvotes' }, { status: 500 });
   }
 }

@@ -75,9 +75,7 @@ export default function GettingStartedPage() {
           </p>
           <div className="flex gap-3 justify-center flex-wrap">
             <Link href="/sign-in">
-              <Button className="bg-accent hover:bg-accent/90">
-                Sign In
-              </Button>
+              <Button className="bg-accent hover:bg-accent/90">Sign In</Button>
             </Link>
             <Link href="/dashboard">
               <Button variant="outline">

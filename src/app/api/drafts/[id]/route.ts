@@ -2,10 +2,7 @@ import { currentUser } from '@clerk/nextjs/server';
 import { NextResponse } from 'next/server';
 import { getEntry, updateEntry } from '@/shared/lib/db/entry';
 
-export async function GET(
-  req: Request,
-  { params }: { params: Promise<{ id: string }> }
-) {
+export async function GET(req: Request, { params }: { params: Promise<{ id: string }> }) {
   try {
     const { id } = await params;
     const user = await currentUser();
@@ -27,17 +24,11 @@ export async function GET(
     return NextResponse.json(entry);
   } catch (error) {
     console.error('Fetch draft error:', error);
-    return NextResponse.json(
-      { error: 'Failed to fetch draft' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to fetch draft' }, { status: 500 });
   }
 }
 
-export async function PUT(
-  req: Request,
-  { params }: { params: Promise<{ id: string }> }
-) {
+export async function PUT(req: Request, { params }: { params: Promise<{ id: string }> }) {
   try {
     const { id } = await params;
     const user = await currentUser();
@@ -68,17 +59,11 @@ export async function PUT(
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error('Update draft error:', error);
-    return NextResponse.json(
-      { error: 'Failed to update draft' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to update draft' }, { status: 500 });
   }
 }
 
-export async function DELETE(
-  req: Request,
-  { params }: { params: Promise<{ id: string }> }
-) {
+export async function DELETE(req: Request, { params }: { params: Promise<{ id: string }> }) {
   try {
     const { id } = await params;
     const user = await currentUser();
@@ -108,9 +93,6 @@ export async function DELETE(
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error('Delete draft error:', error);
-    return NextResponse.json(
-      { error: 'Failed to delete draft' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to delete draft' }, { status: 500 });
   }
 }

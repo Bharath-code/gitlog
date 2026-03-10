@@ -13,21 +13,23 @@
 **File:** `src/shared/lib/payment/dodo.ts`
 
 **Functions:**
+
 ```typescript
-createCheckoutSession({ customerId, planId, successUrl, cancelUrl })
-createCustomer({ email, name, metadata })
-getCustomer(customerId)
-verifyWebhookSignature(payload, signature)
+createCheckoutSession({ customerId, planId, successUrl, cancelUrl });
+createCustomer({ email, name, metadata });
+getCustomer(customerId);
+verifyWebhookSignature(payload, signature);
 ```
 
 **Webhook Event Types:**
+
 ```typescript
-PAYMENT_SUCCESS
-PAYMENT_FAILED
-SUBSCRIPTION_CREATED
-SUBSCRIPTION_RENEWED
-SUBSCRIPTION_CANCELLED
-SUBSCRIPTION_UPDATED
+PAYMENT_SUCCESS;
+PAYMENT_FAILED;
+SUBSCRIPTION_CREATED;
+SUBSCRIPTION_RENEWED;
+SUBSCRIPTION_CANCELLED;
+SUBSCRIPTION_UPDATED;
 ```
 
 **Note:** Since `@dodopayment/node` isn't published on npm, we're using their REST API directly. This is more reliable and gives us full control.
@@ -39,23 +41,31 @@ SUBSCRIPTION_UPDATED
 **File:** `src/app/api/payment/checkout/route.ts`
 
 **Flow:**
+
 1. Get current user from Clerk
 2. Get or create DodoPayment customer
 3. Create checkout session
 4. Return checkout URL
 
 **Request:**
+
 ```typescript
-POST /api/payment/checkout
-Body: { plan: 'pro' }
+POST / api / payment / checkout;
+Body: {
+  plan: 'pro';
+}
 ```
 
 **Response:**
+
 ```typescript
-{ url: 'https://checkout.dodopayment.com/...' }
+{
+  url: 'https://checkout.dodopayment.com/...';
+}
 ```
 
 **Features:**
+
 - Auto-creates DodoPayment customer
 - Stores customer ID in KV
 - Supports geo-pricing (India ₹499 vs Intl $19)
@@ -69,16 +79,17 @@ Body: { plan: 'pro' }
 
 **Events Handled:**
 
-| Event | Action |
-| :---- | :---- |
-| `payment.success` | Upgrade to Pro |
-| `subscription.created` | Upgrade to Pro |
-| `subscription.renewed` | Keep Pro active |
+| Event                    | Action            |
+| :----------------------- | :---------------- |
+| `payment.success`        | Upgrade to Pro    |
+| `subscription.created`   | Upgrade to Pro    |
+| `subscription.renewed`   | Keep Pro active   |
 | `subscription.cancelled` | Downgrade to Free |
-| `subscription.updated` | Update plan |
-| `payment.failed` | Log for follow-up |
+| `subscription.updated`   | Update plan       |
+| `payment.failed`         | Log for follow-up |
 
 **Security:**
+
 - Signature verification
 - Metadata validation
 - Error logging
@@ -90,6 +101,7 @@ Body: { plan: 'pro' }
 **File:** `src/app/(dashboard)/upgrade/page.tsx`
 
 **Features:**
+
 - Side-by-side plan comparison
 - Free vs Pro features
 - Pricing (₹499/mo India, $19/mo Intl)
@@ -98,6 +110,7 @@ Body: { plan: 'pro' }
 - Trust signals
 
 **UI:**
+
 ```
 ┌─────────────────────────────────────────────────────┐
 │  ← Back    Choose Your Plan                         │
@@ -122,6 +135,7 @@ Body: { plan: 'pro' }
 **File:** `src/app/(dashboard)/payment/success/page.tsx`
 
 **Features:**
+
 - Success animation
 - Processing state (2s delay)
 - Pro features list
@@ -130,6 +144,7 @@ Body: { plan: 'pro' }
 - Receipt info
 
 **UI:**
+
 ```
 ┌─────────────────────────────────────┐
 │            ✓ (green check)          │
@@ -157,6 +172,7 @@ Body: { plan: 'pro' }
 **File:** `src/app/(dashboard)/payment/cancel/page.tsx`
 
 **Features:**
+
 - Friendly cancellation message
 - Free plan features reminder
 - "Back to Dashboard" CTA
@@ -164,6 +180,7 @@ Body: { plan: 'pro' }
 - Contact info
 
 **UI:**
+
 ```
 ┌─────────────────────────────────────┐
 │            ✕ (gray X)               │
@@ -189,6 +206,7 @@ Body: { plan: 'pro' }
 ## 🔄 Payment Flow
 
 ### **Upgrade Flow**
+
 ```
 User clicks "Upgrade to Pro"
     ↓
@@ -214,6 +232,7 @@ Redirect to /payment/success
 ```
 
 ### **Webhook Processing**
+
 ```
 DodoPayment POST webhook
     ↓
@@ -234,6 +253,7 @@ Return 200 OK
 ## 💳 Pricing Configuration
 
 ### **Environment Variables**
+
 ```env
 # DodoPayment
 DODOPAYMENT_API_KEY=live_...
@@ -243,17 +263,19 @@ DODOPAYMENT_PRO_PLAN_ID=plan_...        # Intl: $19
 ```
 
 ### **Geo-Pricing**
-| Region | Plan | Price |
-| :---- | :---- | :---- |
-| **India** | Pro | ₹499/month |
-| **International** | Pro | $19/month |
-| **Both** | Free | ₹0/$0 |
+
+| Region            | Plan | Price      |
+| :---------------- | :--- | :--------- |
+| **India**         | Pro  | ₹499/month |
+| **International** | Pro  | $19/month  |
+| **Both**          | Free | ₹0/$0      |
 
 ---
 
 ## 🔐 Security Features
 
 ### **Webhook Verification**
+
 ```typescript
 const isValid = await verifyWebhookSignature(payload, signature);
 if (!isValid) {
@@ -262,6 +284,7 @@ if (!isValid) {
 ```
 
 ### **Customer Metadata**
+
 ```typescript
 metadata: {
   userId: user.id,  // Clerk user ID
@@ -270,6 +293,7 @@ metadata: {
 ```
 
 ### **Plan Validation**
+
 ```typescript
 if (!plan || !['pro'].includes(plan)) {
   return NextResponse.json({ error: 'Invalid plan' }, { status: 400 });
@@ -281,6 +305,7 @@ if (!plan || !['pro'].includes(plan)) {
 ## 📊 Database Updates
 
 ### **User Plan Storage**
+
 ```typescript
 kv.set(`user:${userId}:plan`, 'pro');
 kv.set(`user:${userId}:dodo_customer_id`, 'cus_...');
@@ -288,6 +313,7 @@ kv.set(`user:${userId}:dodo_subscription_id`, 'sub_...');
 ```
 
 ### **Failed Payments Log**
+
 ```typescript
 kv.lpush(`payments:failed`, {
   userId,
@@ -301,6 +327,7 @@ kv.lpush(`payments:failed`, {
 ## 🧪 Testing Checklist
 
 ### **Checkout Flow**
+
 - [ ] Click "Upgrade to Pro"
 - [ ] Verify checkout session created
 - [ ] Redirect to DodoPayment
@@ -310,6 +337,7 @@ kv.lpush(`payments:failed`, {
 - [ ] Verify success page shows
 
 ### **Webhook Testing**
+
 - [ ] Use DodoPayment CLI for local testing
 - [ ] Test `payment.success` event
 - [ ] Test `subscription.cancelled` event
@@ -317,6 +345,7 @@ kv.lpush(`payments:failed`, {
 - [ ] Verify signature validation
 
 ### **Cancel Flow**
+
 - [ ] Start checkout
 - [ ] Cancel on DodoPayment
 - [ ] Verify cancel page shows
@@ -326,16 +355,17 @@ kv.lpush(`payments:failed`, {
 
 ## 📝 API Endpoints Summary
 
-| Endpoint | Method | Auth | Description |
-| :---- | :---- | :---- | :---- |
-| `/api/payment/checkout` | POST | User | Create checkout session |
-| `/api/payment/webhook` | POST | Webhook | Handle payment events |
+| Endpoint                | Method | Auth    | Description             |
+| :---------------------- | :----- | :------ | :---------------------- |
+| `/api/payment/checkout` | POST   | User    | Create checkout session |
+| `/api/payment/webhook`  | POST   | Webhook | Handle payment events   |
 
 ---
 
 ## 🎯 Next Steps (Day 7)
 
 ### **Testing + Dogfooding**
+
 - [ ] Test complete payment flow
 - [ ] Connect GitLog repo to GitLog
 - [ ] Merge test PRs
@@ -345,6 +375,7 @@ kv.lpush(`payments:failed`, {
 - [ ] Fix any bugs found
 
 ### **Bug Fixes**
+
 - [ ] Fix any webhook issues
 - [ ] Fix any UI bugs
 - [ ] Improve error messages
@@ -354,11 +385,11 @@ kv.lpush(`payments:failed`, {
 
 ## 📈 Progress Update
 
-| Phase | Progress | Status |
-| :---- | :---- | :---- |
-| **Foundation (Day 1-2)** | 100% | ✅ Complete |
-| **Core Features (Day 3-5)** | 100% | ✅ Complete |
-| **Payments + Polish (Day 6-8)** | 50% | 🔄 In Progress |
+| Phase                           | Progress | Status         |
+| :------------------------------ | :------- | :------------- |
+| **Foundation (Day 1-2)**        | 100%     | ✅ Complete    |
+| **Core Features (Day 3-5)**     | 100%     | ✅ Complete    |
+| **Payments + Polish (Day 6-8)** | 50%      | 🔄 In Progress |
 
 **Overall Progress:** 85% (Almost MVP complete!)
 
@@ -373,28 +404,32 @@ _None yet (fresh implementation)_
 ## 📊 Cost Breakdown
 
 ### **DodoPayment Fees**
-| Transaction Type | Fee |
-| :---- | :---- |
-| **India (UPI/Cards)** | 2-3% |
-| **International Cards** | 3-4% |
-| **Subscription** | Same as one-time |
+
+| Transaction Type        | Fee              |
+| :---------------------- | :--------------- |
+| **India (UPI/Cards)**   | 2-3%             |
+| **International Cards** | 3-4%             |
+| **Subscription**        | Same as one-time |
 
 ### **Example Revenue Split**
-| Scenario | Revenue | Fees | You Receive |
-| :---- | :---- | :---- | :---- |
-| 50 India users | ₹24,950 | ~₹624 | ₹24,326 |
-| 50 US users | $950 | ~$33 | $917 |
+
+| Scenario       | Revenue | Fees  | You Receive |
+| :------------- | :------ | :---- | :---------- |
+| 50 India users | ₹24,950 | ~₹624 | ₹24,326     |
+| 50 US users    | $950    | ~$33  | $917        |
 
 ---
 
 ## 🎨 Design System Updates
 
 ### **New Components**
+
 - `UpgradePage` - Plan comparison
 - `PaymentSuccess` - Success confirmation
 - `PaymentCancel` - Cancellation handling
 
 ### **New Utilities**
+
 - `dodo.ts` - Payment API helper
 - Webhook event types
 - Signature verification
@@ -407,4 +442,4 @@ _None yet (fresh implementation)_
 
 ---
 
-*Last Updated: 2026-03-08*
+_Last Updated: 2026-03-08_

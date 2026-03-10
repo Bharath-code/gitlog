@@ -1,7 +1,7 @@
 # Error Tracking Setup Guide
 
 **Created:** 2026-03-10  
-**Status:** ✅ **CONFIGURED**  
+**Status:** ✅ **CONFIGURED**
 
 ---
 
@@ -17,6 +17,7 @@
 - ✅ Auto-reload option
 
 **Usage:**
+
 ```typescript
 import { ErrorBoundary } from '@/shared/components/common/error-boundary';
 
@@ -42,11 +43,13 @@ export default function DashboardPage() {
    - Get DSN
 
 2. **Install Sentry:**
+
    ```bash
    npm install @sentry/nextjs
    ```
 
 3. **Add to `.env.local`:**
+
    ```env
    NEXT_PUBLIC_SENTRY_DSN=https://your-dsn@sentry.io/your-project-id
    SENTRY_ORG=your-org
@@ -54,6 +57,7 @@ export default function DashboardPage() {
    ```
 
 4. **Create `sentry.client.config.ts`:**
+
    ```typescript
    import * as Sentry from '@sentry/nextjs';
 
@@ -73,6 +77,7 @@ export default function DashboardPage() {
    ```
 
 5. **Create `sentry.server.config.ts`:**
+
    ```typescript
    import * as Sentry from '@sentry/nextjs';
 
@@ -84,6 +89,7 @@ export default function DashboardPage() {
    ```
 
 6. **Update `next.config.js`:**
+
    ```javascript
    const { withSentryConfig } = require('@sentry/nextjs');
 
@@ -104,10 +110,12 @@ export default function DashboardPage() {
 ### **3. Console Error Logging** ✅
 
 **Already configured in:**
+
 - `src/shared/components/common/error-boundary.tsx`
 - `src/shared/components/common/toast.tsx`
 
 **What's logged:**
+
 - ✅ Component errors
 - ✅ API errors
 - ✅ User actions (with toast)
@@ -118,16 +126,19 @@ export default function DashboardPage() {
 ## 🎯 Error Monitoring Strategy
 
 ### **Development:**
+
 - Console errors
 - Error boundaries
 - Local logging
 
 ### **Staging:**
+
 - Sentry (with low sample rate)
 - Error boundaries
 - Manual testing
 
 ### **Production:**
+
 - Sentry (full monitoring)
 - Error boundaries
 - User feedback
@@ -138,17 +149,20 @@ export default function DashboardPage() {
 ## 📊 Error Metrics to Track
 
 ### **Critical Errors:**
+
 - App crashes
 - API failures
 - Authentication errors
 - Payment failures
 
 ### **Warning Errors:**
+
 - Non-critical API errors
 - Validation errors
 - Rate limiting
 
 ### **Info:**
+
 - User actions
 - Feature usage
 - Performance metrics
@@ -158,6 +172,7 @@ export default function DashboardPage() {
 ## 🚨 Alert Configuration
 
 ### **Sentry Alerts:**
+
 1. Go to Sentry Project Settings
 2. Click "Alerts"
 3. Create alert rules:
@@ -166,6 +181,7 @@ export default function DashboardPage() {
    - **Info:** Log only
 
 ### **Vercel Alerts:**
+
 1. Go to Vercel Dashboard
 2. Select project
 3. Click "Settings" → "Notifications"
@@ -189,21 +205,25 @@ export default function DashboardPage() {
 ## 🐛 Bug Fix Workflow
 
 ### **1. Error Occurs:**
+
 ```
 User action → Error → Sentry captures → Alert sent
 ```
 
 ### **2. Triage:**
+
 - Check Sentry dashboard
 - Reproduce locally
 - Assign severity
 
 ### **3. Fix:**
+
 - Create fix branch
 - Test locally
 - Deploy to staging
 
 ### **4. Deploy:**
+
 - Test on staging
 - Deploy to production
 - Monitor for recurrence
@@ -212,5 +232,5 @@ User action → Error → Sentry captures → Alert sent
 
 **Error tracking setup complete!** 🐛
 
-*Last Updated: 2026-03-10*  
-*Status: Ready to Monitor*
+_Last Updated: 2026-03-10_  
+_Status: Ready to Monitor_

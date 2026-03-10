@@ -8,7 +8,7 @@ import { render } from '@react-email/render';
 /**
  * Scheduled Publishing Cron Job
  * Runs daily at 9:00 AM UTC
- * 
+ *
  * Vercel Cron Configuration:
  * Add to vercel.json:
  * {
@@ -46,7 +46,12 @@ export async function POST(request: NextRequest) {
         }
 
         const userId = user.id;
-        const shouldPublish = shouldPublishToday(user.publishSchedule, user.scheduleDay, dayOfWeek, dayOfMonth);
+        const shouldPublish = shouldPublishToday(
+          user.publishSchedule,
+          user.scheduleDay,
+          dayOfWeek,
+          dayOfMonth
+        );
 
         if (!shouldPublish) {
           continue;
@@ -88,10 +93,7 @@ export async function POST(request: NextRequest) {
     });
   } catch (error) {
     console.error('Cron job error:', error);
-    return NextResponse.json(
-      { error: 'Failed to run scheduled publish' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to run scheduled publish' }, { status: 500 });
   }
 }
 
@@ -107,8 +109,10 @@ function shouldPublishToday(
 
   if (schedule === 'monthly') {
     // Handle end-of-month cases (e.g., 31st in a 30-day month)
-    return dayOfMonth === scheduleDay || 
-           (dayOfMonth > scheduleDay && dayOfMonth === new Date().getDate());
+    return (
+      dayOfMonth === scheduleDay ||
+      (dayOfMonth > scheduleDay && dayOfMonth === new Date().getDate())
+    );
   }
 
   return false;
@@ -120,10 +124,10 @@ async function sendEmailDigest(userId: string, userEmail: string, entries: any[]
     const repoName = entries[0].repoId?.split('/')[1] || 'Your Product';
     const changelogUrl = `${process.env.NEXT_PUBLIC_APP_URL}/changelog/${userEmail}/${entries[0].repoId}`;
 
-    const emailHtml = render(
+    const emailHtml = await render(
       ReleaseEmailTemplate({
         repoName,
-        entries: entries.map(e => ({
+        entries: entries.map((e) => ({
           id: e.id,
           title: e.title,
           aiRewrite: e.aiRewrite || e.body,

@@ -15,9 +15,12 @@ interface PullRequestPayload {
     user: {
       login: string;
     } | null;
-    labels: Array<{
-      name: string;
-    } | string>;
+    labels: Array<
+      | {
+          name: string;
+        }
+      | string
+    >;
     base: {
       repo: {
         full_name: string;
@@ -49,10 +52,7 @@ export async function POST(req: NextRequest) {
       const isValid = await verifyWebhookSignature(payload, signature);
       if (!isValid) {
         console.error('Invalid webhook signature');
-        return NextResponse.json(
-          { error: 'Invalid signature' },
-          { status: 401 }
-        );
+        return NextResponse.json({ error: 'Invalid signature' }, { status: 401 });
       }
     }
 
@@ -78,7 +78,10 @@ export async function POST(req: NextRequest) {
   } catch (error) {
     console.error('Webhook processing error:', error);
     return NextResponse.json(
-      { error: 'Webhook processing failed', message: error instanceof Error ? error.message : 'Unknown error' },
+      {
+        error: 'Webhook processing failed',
+        message: error instanceof Error ? error.message : 'Unknown error',
+      },
       { status: 500 }
     );
   }

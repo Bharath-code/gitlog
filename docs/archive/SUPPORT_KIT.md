@@ -22,19 +22,19 @@
 
 ### **Primary Channels**
 
-| Channel | URL | Response Time |
-| :---- | :---- | :---- |
-| **Email** | hello@gitlog.app | <24 hours |
-| **Twitter** | @gitlogapp | <4 hours |
-| **GitHub Issues** | github.com/gitlogapp/gitlog | <48 hours |
+| Channel           | URL                         | Response Time |
+| :---------------- | :-------------------------- | :------------ |
+| **Email**         | hello@gitlog.app            | <24 hours     |
+| **Twitter**       | @gitlogapp                  | <4 hours      |
+| **GitHub Issues** | github.com/gitlogapp/gitlog | <48 hours     |
 
 ### **Secondary Channels**
 
-| Channel | Purpose | Monitoring |
-| :---- | :---- | :---- |
-| **Discord** (future) | Community support | Community-managed |
-| **Intercom** (future) | In-app chat | <1 hour |
-| **Status Page** (future) | System status | Real-time |
+| Channel                  | Purpose           | Monitoring        |
+| :----------------------- | :---------------- | :---------------- |
+| **Discord** (future)     | Community support | Community-managed |
+| **Intercom** (future)    | In-app chat       | <1 hour           |
+| **Status Page** (future) | System status     | Real-time         |
 
 ### **Support Hours**
 
@@ -218,12 +218,14 @@ A: GitLog auto-generates changelogs from your GitHub PRs. Merge a PR, and it app
 **Q: Is GitLog free?**
 
 A: Yes! GitLog has a generous free plan:
+
 - 50 changelog entries per month
 - 1 connected repository
 - 50 AI rewrites per month
 - Public changelog page
 
 Pro plan (₹499/mo or $19/mo) includes:
+
 - Unlimited entries
 - Unlimited repositories
 - Unlimited AI rewrites
@@ -237,6 +239,7 @@ Pro plan (₹499/mo or $19/mo) includes:
 A: GitLog reads your PR title, description, and labels, then uses Google's Gemini AI to rewrite it into plain English that non-technical users can understand.
 
 Example:
+
 - **PR:** "feat: add dark mode toggle using Tailwind dark: classes"
 - **Rewrite:** "Added dark mode toggle in settings. Users can now switch between light and dark themes with one click."
 
@@ -259,6 +262,7 @@ A: Yes! GitLog supports both public and private GitHub repositories. Only entrie
 **Q: How do I connect my GitHub repo?**
 
 A: After signing in:
+
 1. Click "Connect Repository"
 2. Select your repo from the list
 3. GitLog will automatically create a webhook
@@ -269,6 +273,7 @@ A: After signing in:
 **Q: What GitHub permissions does GitLog need?**
 
 A: GitLog requests:
+
 - **Read access** to your repositories (to fetch PRs)
 - **Write access** to webhooks (to auto-sync merges)
 
@@ -279,6 +284,7 @@ We never modify your code or repositories.
 **Q: My PRs aren't syncing. What should I do?**
 
 A: Try these steps:
+
 1. Check that the webhook was created in your repo settings
 2. Click "Sync Now" in your dashboard
 3. Make sure the PR was actually merged (not just closed)
@@ -299,6 +305,7 @@ A: Yes! Pro users can connect unlimited repositories. Free users can connect 1 r
 **Q: What payment methods do you accept?**
 
 A: We accept:
+
 - All major credit/debit cards (Visa, Mastercard, Amex)
 - UPI (for Indian users)
 - International cards
@@ -328,6 +335,7 @@ A: Yes! Popular open source projects (100+ stars) get Pro for free. Email hello@
 **Q: What happens if I hit the free plan limit?**
 
 A: You'll see an upgrade prompt. Your existing entries stay published, but you can't publish new entries until:
+
 - You upgrade to Pro, or
 - The next month begins (limits reset monthly)
 
@@ -338,6 +346,7 @@ A: You'll see an upgrade prompt. Your existing entries stay published, but you c
 **Q: Is my code secure with GitLog?**
 
 A: Yes! We take security seriously:
+
 - GitHub tokens are encrypted at rest
 - We never store your actual code, only PR metadata
 - All data is transmitted over HTTPS
@@ -364,6 +373,7 @@ A: Yes! We perform daily backups of all user data. In the unlikely event of data
 **Problem:** Can't sign in with GitHub
 
 **Solutions:**
+
 1. Clear browser cache and cookies
 2. Try in an incognito window
 3. Make sure pop-ups aren't blocked
@@ -377,6 +387,7 @@ A: Yes! We perform daily backups of all user data. In the unlikely event of data
 **Problem:** Signed in but redirected to sign-in page
 
 **Solutions:**
+
 1. Check that cookies are enabled
 2. Try a different browser
 3. Disable ad blockers temporarily
@@ -389,6 +400,7 @@ A: Yes! We perform daily backups of all user data. In the unlikely event of data
 **Problem:** Can't connect repository
 
 **Solutions:**
+
 1. Make sure you're the repo owner or have admin access
 2. Check that the repo isn't archived
 3. Try disconnecting and reconnecting your GitHub account in Clerk settings
@@ -399,6 +411,7 @@ A: Yes! We perform daily backups of all user data. In the unlikely event of data
 **Problem:** PRs not appearing after merge
 
 **Solutions:**
+
 1. Check webhook was created: Repo Settings → Webhooks
 2. Click "Sync Now" in dashboard
 3. Make sure PR was merged (not just closed)
@@ -410,6 +423,7 @@ A: Yes! We perform daily backups of all user data. In the unlikely event of data
 **Problem:** Webhook errors in GitHub
 
 **Solutions:**
+
 1. Check webhook URL is correct: `https://gitlog.app/api/github/sync`
 2. Verify webhook secret matches in your env vars
 3. Check webhook delivery logs for error codes
@@ -422,6 +436,7 @@ A: Yes! We perform daily backups of all user data. In the unlikely event of data
 **Problem:** AI rewrite not generating
 
 **Solutions:**
+
 1. Check that your PR has a title (required)
 2. Try clicking "Regenerate"
 3. Check if you've hit free plan limit (50 rewrites/month)
@@ -432,6 +447,7 @@ A: Yes! We perform daily backups of all user data. In the unlikely event of data
 **Problem:** AI output is gibberish
 
 **Solutions:**
+
 1. This is rare—usually caused by very technical PR descriptions
 2. Try editing the PR description to be more user-focused
 3. Use the "Regenerate" button with a different tone
@@ -444,6 +460,7 @@ A: Yes! We perform daily backups of all user data. In the unlikely event of data
 **Problem:** Can't publish entry
 
 **Solutions:**
+
 1. Check if you've hit free plan limit (50 entries/month)
 2. Make sure the entry has a title
 3. Try refreshing the page
@@ -454,6 +471,7 @@ A: Yes! We perform daily backups of all user data. In the unlikely event of data
 **Problem:** Published entry not showing on public page
 
 **Solutions:**
+
 1. Refresh the public page (Ctrl/Cmd + Shift + R for hard refresh)
 2. Check that the entry status is "published" (not draft)
 3. Wait 30 seconds (cache may take a moment to update)
@@ -466,6 +484,7 @@ A: Yes! We perform daily backups of all user data. In the unlikely event of data
 **Problem:** Payment failed
 
 **Solutions:**
+
 1. Check card details are correct
 2. Verify card has sufficient funds
 3. Try a different card
@@ -477,6 +496,7 @@ A: Yes! We perform daily backups of all user data. In the unlikely event of data
 **Problem:** Upgraded but still showing Free plan
 
 **Solutions:**
+
 1. Sign out and sign back in
 2. Check your email for payment confirmation
 3. Wait 5 minutes (webhook may be delayed)
@@ -487,6 +507,7 @@ A: Yes! We perform daily backups of all user data. In the unlikely event of data
 **Problem:** Want to cancel subscription
 
 **Solutions:**
+
 1. Go to Dashboard → Settings → Billing
 2. Click "Cancel Subscription"
 3. Confirm cancellation
@@ -500,12 +521,12 @@ Can't find the cancel button? Email hello@gitlog.app and I'll cancel it for you.
 
 ### **Severity Levels**
 
-| Level | Definition | Response Time | Examples |
-| :---- | :---- | :---- | :---- |
-| **Critical** | Data loss, security breach, complete outage | Immediate | All users can't sign in, data deleted |
-| **High** | Major feature broken, no workaround | 4 hours | Can't publish entries, webhooks not working |
-| **Medium** | Minor feature broken, workaround exists | 24 hours | AI rewrite slow, UI glitch |
-| **Low** | Cosmetic, enhancement | 1 week | Typos, color issues, feature request |
+| Level        | Definition                                  | Response Time | Examples                                    |
+| :----------- | :------------------------------------------ | :------------ | :------------------------------------------ |
+| **Critical** | Data loss, security breach, complete outage | Immediate     | All users can't sign in, data deleted       |
+| **High**     | Major feature broken, no workaround         | 4 hours       | Can't publish entries, webhooks not working |
+| **Medium**   | Minor feature broken, workaround exists     | 24 hours      | AI rewrite slow, UI glitch                  |
+| **Low**      | Cosmetic, enhancement                       | 1 week        | Typos, color issues, feature request        |
 
 ### **Bug Response Workflow**
 
@@ -531,25 +552,31 @@ Can't find the cancel button? Email hello@gitlog.app and I'll cancel it for you.
 
 ```markdown
 ## Bug Description
+
 [Clear description]
 
 ## Steps to Reproduce
+
 1. Step 1
 2. Step 2
 3. Step 3
 
 ## Expected Result
+
 [What should happen]
 
 ## Actual Result
+
 [What actually happens]
 
 ## Environment
+
 - Browser: [Chrome/Firefox/Safari]
 - OS: [macOS/Windows/Linux]
 - URL: [https://...]
 
 ## Screenshots/Logs
+
 [Attach if applicable]
 ```
 
@@ -622,31 +649,31 @@ Not at all likely ← → Extremely likely
 
 ### **User Documentation**
 
-| Guide | URL | Status |
-| :---- | :---- | :---- |
-| Getting Started | /docs/getting-started | ✅ |
-| Connecting GitHub | /docs/github-setup | ✅ |
-| Writing Changelogs | /docs/best-practices | ✅ |
-| Billing & Plans | /docs/billing | ✅ |
-| API Reference | /docs/api | ⏳ Phase 2 |
+| Guide              | URL                   | Status     |
+| :----------------- | :-------------------- | :--------- |
+| Getting Started    | /docs/getting-started | ✅         |
+| Connecting GitHub  | /docs/github-setup    | ✅         |
+| Writing Changelogs | /docs/best-practices  | ✅         |
+| Billing & Plans    | /docs/billing         | ✅         |
+| API Reference      | /docs/api             | ⏳ Phase 2 |
 
 ### **Developer Documentation**
 
-| Guide | URL | Status |
-| :---- | :---- | :---- |
-| Webhook Events | /docs/webhooks | ✅ |
-| API Authentication | /docs/api/auth | ⏳ |
-| Rate Limits | /docs/api/limits | ⏳ |
-| SDK/Libraries | /docs/sdks | ⏳ Phase 2 |
+| Guide              | URL              | Status     |
+| :----------------- | :--------------- | :--------- |
+| Webhook Events     | /docs/webhooks   | ✅         |
+| API Authentication | /docs/api/auth   | ⏳         |
+| Rate Limits        | /docs/api/limits | ⏳         |
+| SDK/Libraries      | /docs/sdks       | ⏳ Phase 2 |
 
 ### **Internal Documentation**
 
-| Document | Location | Status |
-| :---- | :---- | :---- |
-| On-call rotation | Notion | ⏳ |
-| Escalation procedures | Notion | ⏳ |
-| Known issues | Notion | ✅ |
-| Feature roadmap | Notion | ✅ |
+| Document              | Location | Status |
+| :-------------------- | :------- | :----- |
+| On-call rotation      | Notion   | ⏳     |
+| Escalation procedures | Notion   | ⏳     |
+| Known issues          | Notion   | ✅     |
+| Feature roadmap       | Notion   | ✅     |
 
 ---
 
@@ -654,38 +681,41 @@ Not at all likely ← → Extremely likely
 
 ### **Response Time Targets**
 
-| Channel | Target | Actual (Week 1) |
-| :---- | :---- | :---- |
-| Email | <24 hours | ___ |
-| Twitter | <4 hours | ___ |
-| GitHub Issues | <48 hours | ___ |
+| Channel       | Target    | Actual (Week 1) |
+| :------------ | :-------- | :-------------- |
+| Email         | <24 hours | \_\_\_          |
+| Twitter       | <4 hours  | \_\_\_          |
+| GitHub Issues | <48 hours | \_\_\_          |
 
 ### **Satisfaction Targets**
 
-| Metric | Target | Actual |
-| :---- | :---- | :---- |
-| CSAT | >90% | ___ |
-| NPS | >50 | ___ |
-| First Response Time | <4 hours | ___ |
-| Resolution Time | <24 hours | ___ |
+| Metric              | Target    | Actual |
+| :------------------ | :-------- | :----- |
+| CSAT                | >90%      | \_\_\_ |
+| NPS                 | >50       | \_\_\_ |
+| First Response Time | <4 hours  | \_\_\_ |
+| Resolution Time     | <24 hours | \_\_\_ |
 
 ---
 
 ## 🎯 Support Team Goals
 
 ### **Week 1**
+
 - [ ] Respond to all inquiries within 24 hours
 - [ ] Document top 5 issues in FAQ
 - [ ] Set up email templates
 - [ ] Create GitHub Issues template
 
 ### **Month 1**
+
 - [ ] Achieve 90%+ CSAT
 - [ ] Reduce response time to <12 hours
 - [ ] Create video tutorials (3 videos)
 - [ ] Hire first support contractor (if needed)
 
 ### **Month 3**
+
 - [ ] Implement Intercom for in-app chat
 - [ ] Create community forum
 - [ ] Achieve <4 hour response time
@@ -693,5 +723,5 @@ Not at all likely ← → Extremely likely
 
 ---
 
-*Last Updated: 2026-03-08*  
-*Version: 1.0*
+_Last Updated: 2026-03-08_  
+_Version: 1.0_

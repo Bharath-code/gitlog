@@ -43,23 +43,20 @@ export function PublishModal({ draft, isOpen, onConfirm, onCancel }: PublishModa
         </div>
 
         {/* Title */}
-        <h3 className="text-xl font-bold text-center mb-2">
-          Publish this entry?
-        </h3>
+        <h3 className="text-xl font-bold text-center mb-2">Publish this entry?</h3>
 
         {/* Preview */}
         <div className="mb-6 space-y-3">
           <div className="flex items-center justify-center gap-2">
             <Badge>{draft.category}</Badge>
           </div>
-          
-          <p className="font-semibold text-center">
-            {draft.title}
-          </p>
+
+          <p className="font-semibold text-center">{draft.title}</p>
 
           {draft.aiRewrite && (
             <p className="text-sm text-muted text-center">
-              {draft.aiRewrite.slice(0, 100)}{draft.aiRewrite.length > 100 ? '...' : ''}
+              {draft.aiRewrite.slice(0, 100)}
+              {draft.aiRewrite.length > 100 ? '...' : ''}
             </p>
           )}
 
@@ -74,19 +71,14 @@ export function PublishModal({ draft, isOpen, onConfirm, onCancel }: PublishModa
         {/* Info Box */}
         <div className="mb-6 rounded-lg bg-surface-highlight p-3">
           <p className="text-xs text-muted">
-            ✨ This entry will be visible on your public changelog page immediately.
-            You can unpublish it later if needed.
+            ✨ This entry will be visible on your public changelog page immediately. You can
+            unpublish it later if needed.
           </p>
         </div>
 
         {/* Actions */}
         <div className="flex gap-3">
-          <Button
-            variant="outline"
-            onClick={onCancel}
-            disabled={publishing}
-            className="flex-1"
-          >
+          <Button variant="outline" onClick={onCancel} disabled={publishing} className="flex-1">
             <X className="h-4 w-4 mr-2" />
             Cancel
           </Button>

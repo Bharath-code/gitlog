@@ -24,54 +24,60 @@
 ### **Logo**
 
 **Primary Logo:**
+
 ```
 [GitMerge Icon] GitLog
 Auto-changelog from GitHub
 ```
 
 **Logo Usage:**
+
 - Minimum size: 32px height
 - Clear space: 1x logo height on all sides
 - Background: Dark (#0a0a0b) or light (#ffffff)
 - Don't stretch, rotate, or add effects
 
 **Icon Only:**
+
 - Use GitMerge icon for favicons, avatars
 - Always maintain aspect ratio
 
 ### **Colors**
 
-| Color | Hex | Usage |
-| :---- | :---- | :---- |
-| **Background** | `#0a0a0b` | Primary background |
-| **Foreground** | `#fafafa` | Primary text |
-| **Accent** | `#ff6b35` | Primary brand color |
-| **Success** | `#10b981` | Success states |
-| **Surface** | `#141416` | Cards, surfaces |
+| Color          | Hex       | Usage               |
+| :------------- | :-------- | :------------------ |
+| **Background** | `#0a0a0b` | Primary background  |
+| **Foreground** | `#fafafa` | Primary text        |
+| **Accent**     | `#ff6b35` | Primary brand color |
+| **Success**    | `#10b981` | Success states      |
+| **Surface**    | `#141416` | Cards, surfaces     |
 
 ### **Typography**
 
-| Element | Font | Usage |
-| :---- | :---- | :---- |
-| **Headlines** | Cormorant Garamond | Display, bold |
-| **Body** | IBM Plex Sans | Regular text |
-| **Code/Mono** | IBM Plex Mono | Technical text |
+| Element       | Font               | Usage          |
+| :------------ | :----------------- | :------------- |
+| **Headlines** | Cormorant Garamond | Display, bold  |
+| **Body**      | IBM Plex Sans      | Regular text   |
+| **Code/Mono** | IBM Plex Mono      | Technical text |
 
 ### **Voice & Tone**
 
 **Personality:**
+
 - **Developer-friendly** - We speak their language
 - **Straightforward** - No fluff, no BS
 - **Helpful** - We solve real pain
 - **Confident** - We know our value
 
 **Do:**
+
 - Use active voice
 - Be specific and concrete
 - Show empathy for developer pain
 - Use examples and demos
 
 **Don't:**
+
 - Use marketing jargon
 - Over-promise
 - Sound corporate or stiff
@@ -95,11 +101,11 @@ Auto-changelog from GitHub
 
 ### **Key Messages**
 
-| Audience | Message |
-| :---- | :---- |
-| **Solo Founders** | "Stop writing the same release twice. GitLog turns your PRs into changelogs automatically." |
-| **Small Teams** | "Keep your users in the loop without the manual work. Auto-generate changelogs from GitHub." |
-| **Open Source** | "Your contributors deserve visibility. Auto-generate public changelogs from merged PRs." |
+| Audience          | Message                                                                                      |
+| :---------------- | :------------------------------------------------------------------------------------------- |
+| **Solo Founders** | "Stop writing the same release twice. GitLog turns your PRs into changelogs automatically."  |
+| **Small Teams**   | "Keep your users in the loop without the manual work. Auto-generate changelogs from GitHub." |
+| **Open Source**   | "Your contributors deserve visibility. Auto-generate public changelogs from merged PRs."     |
 
 ### **Pain Points We Solve**
 
@@ -110,13 +116,13 @@ Auto-changelog from GitHub
 
 ### **Benefits**
 
-| Feature | Benefit |
-| :---- | :---- |
-| Auto-sync from GitHub | **Save 3-6 hours per release** |
-| AI rewrite to plain English | **Users actually understand what changed** |
-| Public changelog page | **Professional, shareable, SEO-optimized** |
-| Draft-first workflow | **You stay in control, nothing auto-publishes** |
-| ₹499/$19 pricing | **60% cheaper than competitors** |
+| Feature                     | Benefit                                         |
+| :-------------------------- | :---------------------------------------------- |
+| Auto-sync from GitHub       | **Save 3-6 hours per release**                  |
+| AI rewrite to plain English | **Users actually understand what changed**      |
+| Public changelog page       | **Professional, shareable, SEO-optimized**      |
+| Draft-first workflow        | **You stay in control, nothing auto-publishes** |
+| ₹499/$19 pricing            | **60% cheaper than competitors**                |
 
 ---
 
@@ -195,6 +201,7 @@ Twitter: @[handle] | GitHub: /[handle]
 ### **Twitter/X Thread**
 
 **Tweet 1/8:**
+
 ```
 I built a changelog tool that writes itself.
 
@@ -206,6 +213,7 @@ Here's how it works (and why I built it): 🧵
 ```
 
 **Tweet 2/8:**
+
 ```
 The problem: Changelogs ROT.
 
@@ -219,6 +227,7 @@ The issue isn't discipline. It's FRICTION.
 ```
 
 **Tweet 3/8:**
+
 ```
 Copying PR info to another tool is manual work.
 
@@ -228,6 +237,7 @@ So I asked: what if the changelog updated ITSELF?
 ```
 
 **Tweet 4/8:**
+
 ```
 Introducing GitLog:
 
@@ -241,6 +251,7 @@ Done.
 ```
 
 **Tweet 5/8:**
+
 ```
 [Screen recording: GitHub merge → GitLog dashboard → Public page]
 
@@ -248,6 +259,7 @@ That took 45 seconds. I didn't write a word.
 ```
 
 **Tweet 6/8:**
+
 ```
 Free plan: 50 entries/month
 Pro plan: ₹499/mo (India) or $19/mo (Intl)
@@ -258,6 +270,7 @@ Try it: https://gitlog.app
 ```
 
 **Tweet 7/8:**
+
 ```
 Built with:
 - Next.js 15
@@ -272,6 +285,7 @@ Feedback welcome! What would make you use this?
 ```
 
 **Tweet 8/8:**
+
 ```
 P.S. If you're a founder shipping weekly, this will save you 3-6 hours per release.
 
@@ -405,45 +419,49 @@ Would love your feedback and support! 🚀
 ### **Profile Bios**
 
 **Twitter/X:**
+
 ```
 GitLog (@gitlogapp)
 Auto-generate changelogs from GitHub PRs. Merge → 30s → Public changelog. Zero manual work. Built by @[yourhandle]. Try free: https://gitlog.app
 ```
 
 **LinkedIn:**
+
 ```
 GitLog
 Auto-generate changelogs from GitHub PRs. Save 3-6 hours per release. Try free: https://gitlog.app
 ```
 
 **GitHub:**
+
 ```
 GitLog - Auto-changelog from GitHub PRs. Merge → 30s → Public changelog. Zero manual work.
 ```
 
 ### **Content Calendar (Week 1-2)**
 
-| Day | Platform | Content |
-| :---- | :---- | :---- |
-| **Day 1** | Twitter | Launch thread |
-| **Day 1** | LinkedIn | Launch post |
-| **Day 2** | Twitter | Demo GIF (merge → changelog) |
-| **Day 3** | Twitter | Before/After: messy PR → clean changelog |
-| **Day 4** | LinkedIn | "How I built GitLog in 6 days" |
-| **Day 5** | Twitter | User testimonial (if available) |
-| **Day 6** | Twitter | Feature highlight: AI rewrite |
-| **Day 7** | LinkedIn | Week 1 learnings + metrics |
-| **Day 8** | Twitter | Feature highlight: Public changelog |
-| **Day 9** | Twitter | Build in public: usage stats |
-| **Day 10** | LinkedIn | Customer story (if available) |
-| **Day 11** | Twitter | Feature highlight: Draft workflow |
-| **Day 12** | Twitter | Meme: "Changelogs be like..." |
-| **Day 13** | LinkedIn | Tech stack deep dive |
-| **Day 14** | Twitter | Week 2 recap + thank you |
+| Day        | Platform | Content                                  |
+| :--------- | :------- | :--------------------------------------- |
+| **Day 1**  | Twitter  | Launch thread                            |
+| **Day 1**  | LinkedIn | Launch post                              |
+| **Day 2**  | Twitter  | Demo GIF (merge → changelog)             |
+| **Day 3**  | Twitter  | Before/After: messy PR → clean changelog |
+| **Day 4**  | LinkedIn | "How I built GitLog in 6 days"           |
+| **Day 5**  | Twitter  | User testimonial (if available)          |
+| **Day 6**  | Twitter  | Feature highlight: AI rewrite            |
+| **Day 7**  | LinkedIn | Week 1 learnings + metrics               |
+| **Day 8**  | Twitter  | Feature highlight: Public changelog      |
+| **Day 9**  | Twitter  | Build in public: usage stats             |
+| **Day 10** | LinkedIn | Customer story (if available)            |
+| **Day 11** | Twitter  | Feature highlight: Draft workflow        |
+| **Day 12** | Twitter  | Meme: "Changelogs be like..."            |
+| **Day 13** | LinkedIn | Tech stack deep dive                     |
+| **Day 14** | Twitter  | Week 2 recap + thank you                 |
 
 ### **Post Templates**
 
 **Demo Post:**
+
 ```
 [Screen recording: 30-second demo]
 
@@ -457,6 +475,7 @@ Try it free: https://gitlog.app
 ```
 
 **Before/After Post:**
+
 ```
 Before GitLog:
 "feat: add dark mode toggle using Tailwind dark: classes and localStorage with useEffect hook"
@@ -472,6 +491,7 @@ https://gitlog.app
 ```
 
 **Build in Public Post:**
+
 ```
 GitLog Week 1:
 
@@ -523,12 +543,12 @@ Build in public works. 🚀
 
 ### **Guest Post Targets**
 
-| Site | Audience | Pitch |
-| :---- | :---- | :---- |
-| **Indie Hackers** | Indie founders | "How I built a profitable SaaS in 6 days" |
-| **Dev.to** | Developers | "Auto-generate changelogs with GitHub webhooks" |
-| **Hashnode** | Developers | "Building a SaaS with Next.js 15 and Vercel" |
-| **Product Hunt Blog** | Makers | "From idea to launch in 6 days" |
+| Site                  | Audience       | Pitch                                           |
+| :-------------------- | :------------- | :---------------------------------------------- |
+| **Indie Hackers**     | Indie founders | "How I built a profitable SaaS in 6 days"       |
+| **Dev.to**            | Developers     | "Auto-generate changelogs with GitHub webhooks" |
+| **Hashnode**          | Developers     | "Building a SaaS with Next.js 15 and Vercel"    |
+| **Product Hunt Blog** | Makers         | "From idea to launch in 6 days"                 |
 
 ---
 
@@ -563,16 +583,17 @@ gitlog.app/ref/[user-id]
 
 ### **Partnerships**
 
-| Partner | Opportunity |
-| :---- | :---- |
-| **Vercel** | Featured in Vercel marketplace |
-| **Clerk** | Cross-promotion to Clerk users |
-| **GitHub Apps** | List in GitHub Marketplace |
-| **Indie Hackers** | Sponsor newsletter |
+| Partner           | Opportunity                    |
+| :---------------- | :----------------------------- |
+| **Vercel**        | Featured in Vercel marketplace |
+| **Clerk**         | Cross-promotion to Clerk users |
+| **GitHub Apps**   | List in GitHub Marketplace     |
+| **Indie Hackers** | Sponsor newsletter             |
 
 ### **SEO Strategy**
 
 **Target Keywords:**
+
 - "auto changelog from github" (low competition)
 - "github changelog generator" (medium)
 - "release notes tool" (medium)
@@ -580,11 +601,13 @@ gitlog.app/ref/[user-id]
 - "write changelog" (medium)
 
 **Content Plan:**
+
 - Month 1: 4 blog posts (1/week)
 - Month 2: 2 blog posts + 2 guest posts
 - Month 3: 4 blog posts + optimize top performers
 
 **Backlink Strategy:**
+
 - Submit to SaaS directories (10+ sites)
 - Guest post on dev blogs (2/month)
 - HARO responses (3/week)
@@ -643,6 +666,7 @@ Founded in March 2026 by [Your Name], GitLog is built with Next.js 15, Vercel, C
 ### **Screenshots**
 
 Include:
+
 - [ ] Dashboard overview
 - [ ] Draft card with AI rewrite
 - [ ] Public changelog page
@@ -652,6 +676,7 @@ Include:
 ### **Logo Assets**
 
 Include:
+
 - [ ] Logo (PNG, SVG)
 - [ ] Icon only (PNG, SVG)
 - [ ] Wordmark (PNG, SVG)
@@ -799,25 +824,25 @@ Would love to hear your feedback!
 
 ### **Week 1 Targets**
 
-| Metric | Target | Actual |
-| :---- | :---- | :---- |
-| Website visits | 500 | ___ |
-| Signups | 20 | ___ |
-| Connected repos | 10 | ___ |
-| Paying users | 3 | ___ |
-| MRR | $57 | ___ |
-| Twitter followers | 100 | ___ |
+| Metric            | Target | Actual |
+| :---------------- | :----- | :----- |
+| Website visits    | 500    | \_\_\_ |
+| Signups           | 20     | \_\_\_ |
+| Connected repos   | 10     | \_\_\_ |
+| Paying users      | 3      | \_\_\_ |
+| MRR               | $57    | \_\_\_ |
+| Twitter followers | 100    | \_\_\_ |
 
 ### **Month 1 Targets**
 
-| Metric | Target | Actual |
-| :---- | :---- | :---- |
-| Website visits | 5,000 | ___ |
-| Signups | 150 | ___ |
-| Paying users | 15 | ___ |
-| MRR | $300 | ___ |
-| Twitter followers | 500 | ___ |
-| Email subscribers | 200 | ___ |
+| Metric            | Target | Actual |
+| :---------------- | :----- | :----- |
+| Website visits    | 5,000  | \_\_\_ |
+| Signups           | 150    | \_\_\_ |
+| Paying users      | 15     | \_\_\_ |
+| MRR               | $300   | \_\_\_ |
+| Twitter followers | 500    | \_\_\_ |
+| Email subscribers | 200    | \_\_\_ |
 
 ---
 
@@ -825,29 +850,29 @@ Would love to hear your feedback!
 
 ### **Day 1 (Launch Day)**
 
-| Time (IST) | Task | Platform |
-| :---- | :---- | :---- |
-| **9:00 AM** | Post on Indie Hackers | indiehackers.com |
-| **10:00 AM** | Post Twitter thread | Twitter/X |
-| **11:00 AM** | Post on Reddit | r/SaaS, r/indiehackers |
-| **12:00 PM** | LinkedIn post | LinkedIn |
-| **2:00 PM** | Submit to Product Hunt | producthunt.com |
-| **4:00 PM** | DM 20 indie founders | Twitter/X |
-| **6:00 PM** | Respond to all comments | All platforms |
-| **8:00 PM** | Day 1 recap tweet | Twitter/X |
+| Time (IST)   | Task                    | Platform               |
+| :----------- | :---------------------- | :--------------------- |
+| **9:00 AM**  | Post on Indie Hackers   | indiehackers.com       |
+| **10:00 AM** | Post Twitter thread     | Twitter/X              |
+| **11:00 AM** | Post on Reddit          | r/SaaS, r/indiehackers |
+| **12:00 PM** | LinkedIn post           | LinkedIn               |
+| **2:00 PM**  | Submit to Product Hunt  | producthunt.com        |
+| **4:00 PM**  | DM 20 indie founders    | Twitter/X              |
+| **6:00 PM**  | Respond to all comments | All platforms          |
+| **8:00 PM**  | Day 1 recap tweet       | Twitter/X              |
 
 ### **Day 2-7**
 
-| Day | Focus | Key Task |
-| :---- | :---- | :---- |
-| **Day 2** | Engage | Respond to all PH comments |
-| **Day 3** | Content | Post demo video |
-| **Day 4** | Outreach | Guest post pitch (5 sites) |
-| **Day 5** | Content | Blog post: "How I built GitLog" |
-| **Day 6** | Engage | Reply to all emails |
-| **Day 7** | Recap | Week 1 metrics post |
+| Day       | Focus    | Key Task                        |
+| :-------- | :------- | :------------------------------ |
+| **Day 2** | Engage   | Respond to all PH comments      |
+| **Day 3** | Content  | Post demo video                 |
+| **Day 4** | Outreach | Guest post pitch (5 sites)      |
+| **Day 5** | Content  | Blog post: "How I built GitLog" |
+| **Day 6** | Engage   | Reply to all emails             |
+| **Day 7** | Recap    | Week 1 metrics post             |
 
 ---
 
-*Last Updated: 2026-03-08*  
-*Version: 1.0*
+_Last Updated: 2026-03-08_  
+_Version: 1.0_

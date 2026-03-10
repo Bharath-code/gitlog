@@ -28,7 +28,7 @@ export function UpvoteButton({ entryId, initialVotes = 0 }: UpvoteButtonProps) {
 
   const handleUpvote = async () => {
     if (hasVoted) {
-      toast.info('You\'ve already upvoted this entry');
+      toast.info("You've already upvoted this entry");
       return;
     }
 
@@ -45,15 +45,15 @@ export function UpvoteButton({ entryId, initialVotes = 0 }: UpvoteButtonProps) {
       }
 
       const data = await response.json();
-      
+
       setVotes(data.votes);
       setHasVoted(true);
-      
+
       // Save to localStorage
       const votedEntries = JSON.parse(localStorage.getItem('voted_entries') || '[]');
       votedEntries.push(entryId);
       localStorage.setItem('voted_entries', JSON.stringify(votedEntries));
-      
+
       toast.success('Thanks for your feedback!');
     } catch (error) {
       console.error('Error upvoting:', error);
@@ -69,16 +69,11 @@ export function UpvoteButton({ entryId, initialVotes = 0 }: UpvoteButtonProps) {
       disabled={hasVoted || loading}
       variant="outline"
       size="sm"
-      className={cn(
-        'gap-2 transition-all',
-        hasVoted && 'bg-accent/10 border-accent text-accent'
-      )}
+      className={cn('gap-2 transition-all', hasVoted && 'bg-accent/10 border-accent text-accent')}
     >
       <ThumbsUp className={cn('h-4 w-4', hasVoted && 'fill-current')} />
       <span>{votes}</span>
-      <span className="text-xs text-muted">
-        {hasVoted ? 'Upvoted' : 'Upvote'}
-      </span>
+      <span className="text-xs text-muted">{hasVoted ? 'Upvoted' : 'Upvote'}</span>
     </Button>
   );
 }

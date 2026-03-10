@@ -14,9 +14,6 @@ export async function GET() {
     return NextResponse.json({ drafts });
   } catch (error) {
     console.error('Fetch drafts error:', error);
-    return NextResponse.json(
-      { error: 'Failed to fetch drafts' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to fetch drafts' }, { status: 500 });
   }
 }

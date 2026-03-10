@@ -7,10 +7,7 @@ export async function GET(request: NextRequest) {
     const username = searchParams.get('username');
 
     if (!username) {
-      return NextResponse.json(
-        { error: 'Username is required' },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: 'Username is required' }, { status: 400 });
     }
 
     // Get all repos for this user
@@ -46,9 +43,6 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ repos });
   } catch (error) {
     console.error('Error fetching user repos:', error);
-    return NextResponse.json(
-      { error: 'Failed to fetch repos' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to fetch repos' }, { status: 500 });
   }
 }

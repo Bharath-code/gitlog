@@ -5,7 +5,7 @@ import { validateApiKey } from '@/features/api/api-key-manager';
 /**
  * GET /api/public/v1/changelog
  * Get published changelog entries
- * 
+ *
  * Query params:
  * - limit: number (default: 50, max: 100)
  * - offset: number (default: 0)
@@ -26,10 +26,7 @@ export async function GET(request: NextRequest) {
     const validatedKey = await validateApiKey(apiKey);
 
     if (!validatedKey) {
-      return NextResponse.json(
-        { error: 'Invalid or expired API key' },
-        { status: 401 }
-      );
+      return NextResponse.json({ error: 'Invalid or expired API key' }, { status: 401 });
     }
 
     // Parse query params
@@ -40,26 +37,28 @@ export async function GET(request: NextRequest) {
 
     // Get entries for this user
     const entryKeys = await kv.keys(`entry:${validatedKey.userId}:*`);
-    const entries = await Promise.all(entryKeys.map(key => kv.get<any>(key)));
+    const entries = await Promise.all(entryKeys.map((key) => kv.get<any>(key)));
 
     // Filter published entries
-    let publishedEntries = entries.filter(e => e && e.status === 'published');
+    let publishedEntries = entries.filter((e) => e && e.status === 'published');
 
     // Filter by category if specified
     if (category) {
-      publishedEntries = publishedEntries.filter(e => e.category === category);
+      publishedEntries = publishedEntries.filter((e) => e.category === category);
     }
 
     // Sort by published date
-    publishedEntries.sort((a, b) => 
-      new Date(b.publishedAt || b.mergedAt).getTime() - new Date(a.publishedAt || a.mergedAt).getTime()
+    publishedEntries.sort(
+      (a, b) =>
+        new Date(b.publishedAt || b.mergedAt).getTime() -
+        new Date(a.publishedAt || a.mergedAt).getTime()
     );
 
     // Paginate
     const paginatedEntries = publishedEntries.slice(offset, offset + limit);
 
     // Format for public API (remove sensitive data)
-    const safeEntries = paginatedEntries.map(e => ({
+    const safeEntries = paginatedEntries.map((e) => ({
       id: e.id,
       title: e.title,
       description: e.aiRewrite || e.body,
@@ -81,9 +80,6 @@ export async function GET(request: NextRequest) {
     });
   } catch (error) {
     console.error('Error fetching changelog entries:', error);
-    return NextResponse.json(
-      { error: 'Failed to fetch changelog entries' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to fetch changelog entries' }, { status: 500 });
   }
 }

@@ -1,14 +1,14 @@
 /**
  * GitLog Widget Script
- * 
+ *
  * Embed this script on your website to show a "What's New" widget
  * that displays your latest changelog entries.
- * 
+ *
  * Usage:
  * <script src="https://gitlog.app/widget.js" data-widget-id="your-widget-id" async></script>
  */
 
-(function() {
+(function () {
   'use strict';
 
   // Get widget ID from script tag
@@ -56,7 +56,7 @@
     try {
       // Fetch widget data
       const response = await fetch(`${config.apiUrl}/${widgetId}`);
-      
+
       if (!response.ok) {
         throw new Error('Failed to load widget data');
       }
@@ -286,23 +286,37 @@
           </div>
 
           <div id="gitlog-widget-content">
-            ${entries.length === 0 
-              ? '<div style="padding: 1rem; text-align: center; color: rgba(255, 255, 255, 0.5); font-size: 0.875rem;">No recent updates</div>'
-              : entries.map(entry => `
+            ${
+              entries.length === 0
+                ? '<div style="padding: 1rem; text-align: center; color: rgba(255, 255, 255, 0.5); font-size: 0.875rem;">No recent updates</div>'
+                : entries
+                    .map(
+                      (entry) => `
                   <a href="${entry.prUrl}" target="_blank" rel="noopener noreferrer" class="gitlog-entry">
-                    ${config.options.showCategory ? `
+                    ${
+                      config.options.showCategory
+                        ? `
                       <span class="gitlog-category gitlog-category-${entry.category.toLowerCase()}">
                         ${entry.category}
                       </span>
-                    ` : ''}
+                    `
+                        : ''
+                    }
                     <div class="gitlog-title">${entry.aiRewrite || entry.title}</div>
-                    ${config.options.showDate ? `
-                      <div class="gitlog-date">${new Date(entry.mergedAt).toLocaleDateString('en-US', {
-                        month: 'short',
-                        day: 'numeric',
-                        year: 'numeric',
-                      })}</div>
-                    ` : ''}
+                    ${
+                      config.options.showDate
+                        ? `
+                      <div class="gitlog-date">${new Date(entry.mergedAt).toLocaleDateString(
+                        'en-US',
+                        {
+                          month: 'short',
+                          day: 'numeric',
+                          year: 'numeric',
+                        }
+                      )}</div>
+                    `
+                        : ''
+                    }
                     <span class="gitlog-link">
                       View details
                       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -312,7 +326,9 @@
                       </svg>
                     </span>
                   </a>
-                `).join('')
+                `
+                    )
+                    .join('')
             }
           </div>
 

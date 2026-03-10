@@ -1,35 +1,31 @@
-import type { Metadata } from "next";
-import {
-  Cormorant_Garamond,
-  IBM_Plex_Mono,
-  IBM_Plex_Sans,
-} from "next/font/google";
+import type { Metadata } from 'next';
+import { Cormorant_Garamond, IBM_Plex_Mono, IBM_Plex_Sans } from 'next/font/google';
 import { ClerkProvider } from '@clerk/nextjs';
-import { Analytics } from "@vercel/analytics/react";
+import { Analytics } from '@vercel/analytics/react';
 
-import { siteConfig } from "@/shared/config/site";
+import { siteConfig } from '@/shared/config/site';
 import { ToastProvider } from '@/shared/components/common/toast';
 import { ErrorBoundary } from '@/shared/components/common/error-boundary';
 import { CommandPalette } from '@/shared/components/common/command-palette';
 
-import "./globals.css";
+import './globals.css';
 
 const display = Cormorant_Garamond({
-  subsets: ["latin"],
-  weight: ["500", "600", "700"],
-  variable: "--font-display",
+  subsets: ['latin'],
+  weight: ['500', '600', '700'],
+  variable: '--font-display',
 });
 
 const sans = IBM_Plex_Sans({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-sans",
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-sans',
 });
 
 const mono = IBM_Plex_Mono({
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  variable: "--font-mono",
+  subsets: ['latin'],
+  weight: ['400', '500', '600'],
+  variable: '--font-mono',
 });
 
 export const metadata: Metadata = {
@@ -44,15 +40,15 @@ export const metadata: Metadata = {
     description: siteConfig.description,
     url: siteConfig.url,
     siteName: siteConfig.name,
-    type: "website",
+    type: 'website',
   },
   twitter: {
-    card: "summary_large_image",
+    card: 'summary_large_image',
     title: siteConfig.name,
     description: siteConfig.description,
   },
   icons: {
-    icon: "/icon.svg",
+    icon: '/icon.svg',
   },
 };
 

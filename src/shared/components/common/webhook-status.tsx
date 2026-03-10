@@ -69,73 +69,89 @@ export function WebhookStatusBadge({ repoName, className }: WebhookStatusBadgePr
     switch (status.status) {
       case 'active':
         return (
-          <Tooltip content={
-            <div className="space-y-1">
-              <p className="font-semibold">Webhook Active</p>
-              <p className="text-xs">Last delivery: {formatDistance(status.lastDelivery || new Date(), new Date())} ago</p>
-              {status.lastSuccess && (
-                <p className="text-xs">Last success: {formatDistance(status.lastSuccess, new Date())} ago</p>
-              )}
-            </div>
-          }>
+          <Tooltip
+            content={
+              <div className="space-y-1">
+                <p className="font-semibold">Webhook Active</p>
+                <p className="text-xs">
+                  Last delivery: {formatDistance(status.lastDelivery || new Date(), new Date())} ago
+                </p>
+                {status.lastSuccess && (
+                  <p className="text-xs">
+                    Last success: {formatDistance(status.lastSuccess, new Date())} ago
+                  </p>
+                )}
+              </div>
+            }
+          >
             <Badge className="bg-success/10 text-success border-success/20 cursor-help">
               <CheckCircle className="h-3 w-3 mr-1" />
               Active
             </Badge>
           </Tooltip>
         );
-      
+
       case 'error':
         return (
-          <Tooltip content={
-            <div className="space-y-2">
-              <p className="font-semibold text-red-500">Webhook Failed</p>
-              <p className="text-xs">{status.errorMessage}</p>
-              <p className="text-xs">Failures: {status.failureCount}</p>
-              <Button
-                size="sm"
-                variant="outline"
-                onClick={() => fetch(`/api/github/webhook/test?repo=${encodeURIComponent(repoName)}`, { method: 'POST' })}
-                className="w-full mt-2"
-              >
-                Test Connection
-              </Button>
-            </div>
-          }>
+          <Tooltip
+            content={
+              <div className="space-y-2">
+                <p className="font-semibold text-red-500">Webhook Failed</p>
+                <p className="text-xs">{status.errorMessage}</p>
+                <p className="text-xs">Failures: {status.failureCount}</p>
+                <Button
+                  size="sm"
+                  variant="outline"
+                  onClick={() =>
+                    fetch(`/api/github/webhook/test?repo=${encodeURIComponent(repoName)}`, {
+                      method: 'POST',
+                    })
+                  }
+                  className="w-full mt-2"
+                >
+                  Test Connection
+                </Button>
+              </div>
+            }
+          >
             <Badge className="bg-red-500/10 text-red-500 border-red-500/20 cursor-help">
               <XCircle className="h-3 w-3 mr-1" />
               Failed ({status.failureCount})
             </Badge>
           </Tooltip>
         );
-      
+
       case 'inactive':
         return (
-          <Tooltip content={
-            <div className="space-y-2">
-              <p className="font-semibold">No Recent Deliveries</p>
-              <p className="text-xs">No webhook deliveries in the last 24 hours</p>
-              <Button
-                size="sm"
-                variant="outline"
-                onClick={() => fetch(`/api/github/sync/manual`, { 
-                  method: 'POST',
-                  body: JSON.stringify({ repo: repoName })
-                })}
-                className="w-full mt-2"
-              >
-                <RefreshCw className="h-3 w-3 mr-1" />
-                Trigger Test
-              </Button>
-            </div>
-          }>
+          <Tooltip
+            content={
+              <div className="space-y-2">
+                <p className="font-semibold">No Recent Deliveries</p>
+                <p className="text-xs">No webhook deliveries in the last 24 hours</p>
+                <Button
+                  size="sm"
+                  variant="outline"
+                  onClick={() =>
+                    fetch(`/api/github/sync/manual`, {
+                      method: 'POST',
+                      body: JSON.stringify({ repo: repoName }),
+                    })
+                  }
+                  className="w-full mt-2"
+                >
+                  <RefreshCw className="h-3 w-3 mr-1" />
+                  Trigger Test
+                </Button>
+              </div>
+            }
+          >
             <Badge variant="secondary" className="cursor-help">
               <AlertCircle className="h-3 w-3 mr-1" />
               Inactive
             </Badge>
           </Tooltip>
         );
-      
+
       default:
         return (
           <Badge variant="secondary" className={className}>
@@ -149,7 +165,7 @@ export function WebhookStatusBadge({ repoName, className }: WebhookStatusBadgePr
   return (
     <div className={cn('inline-flex items-center gap-2', className)}>
       {renderStatus()}
-      
+
       {/* Recent Deliveries Dropdown */}
       {status.recentDeliveries.length > 0 && (
         <div className="relative">
@@ -161,7 +177,7 @@ export function WebhookStatusBadge({ repoName, className }: WebhookStatusBadgePr
           >
             {status.recentDeliveries.length} recent
           </Button>
-          
+
           {showDetails && (
             <div className="absolute right-0 top-full mt-1 w-80 rounded-lg border border-line bg-surface shadow-lg z-50">
               <div className="p-3 border-b border-line">
@@ -174,7 +190,10 @@ export function WebhookStatusBadge({ repoName, className }: WebhookStatusBadgePr
                     className="p-3 border-b border-line last:border-0 hover:bg-surface-highlight"
                   >
                     <div className="flex items-center justify-between mb-1">
-                      <Badge variant={delivery.status === 'success' ? 'success' : 'secondary'} className="text-xs">
+                      <Badge
+                        variant={delivery.status === 'success' ? 'success' : 'secondary'}
+                        className="text-xs"
+                      >
                         {delivery.status}
                       </Badge>
                       <span className="text-xs text-muted">
@@ -186,9 +205,7 @@ export function WebhookStatusBadge({ repoName, className }: WebhookStatusBadgePr
                       {delivery.status_code && (
                         <span className="ml-2">HTTP {delivery.status_code}</span>
                       )}
-                      {delivery.duration && (
-                        <span className="ml-2">{delivery.duration}ms</span>
-                      )}
+                      {delivery.duration && <span className="ml-2">{delivery.duration}ms</span>}
                     </div>
                   </div>
                 ))}

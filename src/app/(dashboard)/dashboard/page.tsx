@@ -11,21 +11,21 @@ import { Info } from 'lucide-react';
 
 export default async function DashboardPage() {
   const user = await currentUser();
-  
+
   if (!user) {
     redirect('/sign-in');
   }
 
   // Fetch recent drafts
   const drafts = await getDrafts(user.id, 10);
-  
+
   // Fetch usage
   const month = new Date().toISOString().slice(0, 7); // YYYY-MM
-  const usage = await kv.get<{ entriesPublished: number; aiRewrites: number }>(
+  const usage = (await kv.get<{ entriesPublished: number; aiRewrites: number }>(
     `usage:${user.id}:${month}`
-  ) || { entriesPublished: 0, aiRewrites: 0 };
+  )) || { entriesPublished: 0, aiRewrites: 0 };
 
-  const plan = await kv.get<'free' | 'pro'>(`user:${user.id}:plan`) || 'free';
+  const plan = (await kv.get<'free' | 'pro'>(`user:${user.id}:plan`)) || 'free';
 
   return (
     <div className="p-6 space-y-6">
@@ -44,19 +44,13 @@ export default async function DashboardPage() {
         <SyncButton />
       </div>
 
-      <UsageCard
-        plan={plan}
-        usage={usage}
-      />
+      <UsageCard plan={plan} usage={usage} />
 
       <div className="space-y-4">
         <div className="flex items-center justify-between">
           <h2 className="text-xl font-semibold">Recent Drafts</h2>
           {drafts.length > 0 && (
-            <a
-              href="/dashboard/drafts"
-              className="text-sm text-accent hover:underline"
-            >
+            <a href="/dashboard/drafts" className="text-sm text-accent hover:underline">
               View all →
             </a>
           )}

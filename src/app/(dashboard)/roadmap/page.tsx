@@ -108,7 +108,7 @@ export default function RoadmapPage() {
           </p>
         </div>
         <div className="flex gap-2">
-          <Badge variant="accent">Phase 2</Badge>
+          <Badge variant="default">Phase 2</Badge>
           <Button
             onClick={handleSync}
             disabled={syncing}
@@ -145,9 +145,7 @@ export default function RoadmapPage() {
                 /roadmap/your-username/your-repo
               </code>
             </p>
-            <p className="text-sm text-muted">
-              Users can upvote features they want to see most.
-            </p>
+            <p className="text-sm text-muted">Users can upvote features they want to see most.</p>
           </div>
         </div>
       </Card>

@@ -13,19 +13,13 @@ export async function GET() {
     // Get GitHub token from Clerk
     const githubToken = await kv.get<string>(`user:${user.id}:github_token`);
     if (!githubToken) {
-      return NextResponse.json(
-        { error: 'GitHub account not connected' }, 
-        { status: 400 }
-      );
+      return NextResponse.json({ error: 'GitHub account not connected' }, { status: 400 });
     }
 
     const repos = await getUserRepos(githubToken);
     return NextResponse.json({ repos });
   } catch (error) {
     console.error('Error fetching repos:', error);
-    return NextResponse.json(
-      { error: 'Failed to fetch repositories' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to fetch repositories' }, { status: 500 });
   }
 }

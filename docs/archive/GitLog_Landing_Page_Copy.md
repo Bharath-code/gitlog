@@ -61,13 +61,13 @@ Section Title:
 Changelogs rot. You know it. We know it.
 
 Body:
-You shipped dark mode last week. 
-Did you update the changelog? 
+You shipped dark mode last week.
+Did you update the changelog?
 
 Be honest.
 
-Most founders start strong. Write a few entries. 
-Then life happens. PRs pile up. The changelog 
+Most founders start strong. Write a few entries.
+Then life happens. PRs pile up. The changelog
 isn't updated. Users have no idea what changed.
 
 GitLog fixes this forever. Your PRs ARE your changelog.
@@ -100,7 +100,7 @@ Feature Grid:
    gitlog.app/your-repo. Zero config needed.
 
 🗺️ Roadmap from Issues (Coming Soon)
-   Issues tagged "roadmap" auto-appear as 
+   Issues tagged "roadmap" auto-appear as
    upvotable cards. Your users vote. You build.
 
 🧩 Embeddable Widget (Coming Soon)
@@ -185,34 +185,34 @@ Section Title:
 Questions? Here are answers.
 
 Q: Does this work with private repos?
-A: Yes! GitLog supports both public and private GitHub repositories. 
+A: Yes! GitLog supports both public and private GitHub repositories.
    Your data stays private unless you publish it.
 
 Q: What if my commits are messy?
-A: No problem. GitLog's AI reads the PR title, body, labels, 
-   and even the diff. It rewrites everything to clean, 
+A: No problem. GitLog's AI reads the PR title, body, labels,
+   and even the diff. It rewrites everything to clean,
    user-facing English. You review before publishing.
 
 Q: Can I edit entries before publishing?
-A: Absolutely. Every entry starts as a draft. Edit the AI 
-   output, change categories, or write from scratch. 
+A: Absolutely. Every entry starts as a draft. Edit the AI
+   output, change categories, or write from scratch.
    You're in control.
 
 Q: What happens if I stop using GitLog?
-A: Your public changelog stays live. You can export all 
+A: Your public changelog stays live. You can export all
    your data anytime (JSON or Markdown). No hostage-taking.
 
 Q: Do you offer discounts for open source?
-A: Pro plan is free for popular open source projects 
+A: Pro plan is free for popular open source projects
    (100+ stars). Just reach out.
 
 Q: How is this different from GitHub Releases?
-A: GitHub Releases are for developers. GitLog is for 
+A: GitHub Releases are for developers. GitLog is for
    your USERS. Think: marketing page, not release notes.
    Different audience, different format.
 
 Q: Can I use a custom domain?
-A: Coming in Phase 2 (Month 3-4). You'll be able to 
+A: Coming in Phase 2 (Month 3-4). You'll be able to
    host at changelog.yourproduct.com.
 
 Still have questions? Email me: [your-email]@gitlog.app
@@ -268,7 +268,7 @@ Powered by: Next.js, Vercel, Clerk, Claude
 
 ## Version B: Post-Launch (Free User Signup Focus)
 
-*Same as Version A, with these changes:*
+_Same as Version A, with these changes:_
 
 ### Hero Section (Post-Launch)
 
@@ -327,12 +327,12 @@ This is magic."
 — @founder1, built [Product1] to $5k MRR
 
 Testimonial 2:
-"Finally, a changelog tool that doesn't require 
+"Finally, a changelog tool that doesn't require
 discipline. It just works."
 — @founder2, acquired by [Company]
 
 Testimonial 3:
-"The AI rewrite is scary good. Turns my commit 
+"The AI rewrite is scary good. Turns my commit
 mess into sentences my users actually understand."
 — @founder3, YC W25
 
@@ -344,7 +344,7 @@ Add your testimonial:
 
 ## Version C: Launch Day (Indie Hackers / Reddit Post)
 
-*This is the copy for your launch posts, not the landing page.*
+_This is the copy for your launch posts, not the landing page._
 
 ### Indie Hackers Post Template
 
@@ -364,7 +364,7 @@ The Insight:
 Changelogs rot because they require MANUAL WORK. You're copying PR info to another tool. Nobody does this consistently.
 
 The Solution:
-GitLog auto-syncs merged PRs from GitHub → rewrites them to plain English with AI → publishes to a beautiful public page. 
+GitLog auto-syncs merged PRs from GitHub → rewrites them to plain English with AI → publishes to a beautiful public page.
 
 Merge a PR. 30 seconds later it's on your changelog. Zero manual work.
 
@@ -385,10 +385,10 @@ What's Coming:
 Try It:
 → https://gitlog.app
 
-I'm giving lifetime Pro at $9/mo to the first 20 people who sign up. 
+I'm giving lifetime Pro at $9/mo to the first 20 people who sign up.
 Just mention this post in the feedback form.
 
-Would love your thoughts! What am I missing? What would make 
+Would love your thoughts! What am I missing? What would make
 you actually use this?
 
 — [Your Name]
@@ -414,7 +414,7 @@ The problem: Changelogs ROT.
 I've shipped 50+ projects. Every one had a rotting changelog.
 
 Week 1: ✅
-Week 2: ✅  
+Week 2: ✅
 Week 3: ...crickets.
 
 The issue isn't discipline. It's FRICTION.
@@ -509,61 +509,61 @@ Would love feedback! What's missing? What would make this actually useful for yo
 
 ## Microcopy Library
 
-*Reusable snippets for buttons, toasts, modals.*
+_Reusable snippets for buttons, toasts, modals._
 
 ### Buttons
 
-| Context | Copy |
-| :---- | :---- |
-| Primary CTA (pre-launch) | Join the waitlist → |
-| Primary CTA (post-launch) | Start for free → |
-| Secondary CTA | See how it works ↓ |
-| GitHub OAuth | Connect GitHub |
-| AI Rewrite | Rewrite with AI |
-| Publish | Publish |
-| Upgrade | Upgrade to Pro |
-| Cancel | No thanks, I like writing changelogs manually |
+| Context                   | Copy                                          |
+| :------------------------ | :-------------------------------------------- |
+| Primary CTA (pre-launch)  | Join the waitlist →                           |
+| Primary CTA (post-launch) | Start for free →                              |
+| Secondary CTA             | See how it works ↓                            |
+| GitHub OAuth              | Connect GitHub                                |
+| AI Rewrite                | Rewrite with AI                               |
+| Publish                   | Publish                                       |
+| Upgrade                   | Upgrade to Pro                                |
+| Cancel                    | No thanks, I like writing changelogs manually |
 
 ### Toasts / Notifications
 
-| Trigger | Copy |
-| :---- | :---- |
-| PR synced | ✅ PR synced! Draft entry created. |
-| AI rewrite complete | ✨ Rewrite ready! Review before publishing. |
-| Entry published | 🚀 Published! View on your changelog → |
-| Free limit hit | ⚠️ You've hit the free limit (50 entries/month). Upgrade to Pro for unlimited. |
-| Upgrade successful | 🎉 Welcome to Pro! Unlimited entries unlocked. |
-| Webhook failed | ⚠️ Sync failed. Try manual sync. |
+| Trigger             | Copy                                                                           |
+| :------------------ | :----------------------------------------------------------------------------- |
+| PR synced           | ✅ PR synced! Draft entry created.                                             |
+| AI rewrite complete | ✨ Rewrite ready! Review before publishing.                                    |
+| Entry published     | 🚀 Published! View on your changelog →                                         |
+| Free limit hit      | ⚠️ You've hit the free limit (50 entries/month). Upgrade to Pro for unlimited. |
+| Upgrade successful  | 🎉 Welcome to Pro! Unlimited entries unlocked.                                 |
+| Webhook failed      | ⚠️ Sync failed. Try manual sync.                                               |
 
 ### Modals
 
-| Trigger | Title | Body | CTA |
-| :---- | :---- | :---- | :---- |
-| Free limit hit | You've hit the free limit | You've published 50 entries this month. Upgrade to Pro for unlimited changelog entries and repos. | Upgrade to Pro — $19/mo |
-| Delete entry | Delete this entry? | This will permanently remove the entry. This action cannot be undone. | Delete |
-| Disconnect repo | Disconnect [repo]? | GitLog will stop syncing new PRs. Published entries stay live. | Disconnect |
+| Trigger         | Title                     | Body                                                                                              | CTA                     |
+| :-------------- | :------------------------ | :------------------------------------------------------------------------------------------------ | :---------------------- |
+| Free limit hit  | You've hit the free limit | You've published 50 entries this month. Upgrade to Pro for unlimited changelog entries and repos. | Upgrade to Pro — $19/mo |
+| Delete entry    | Delete this entry?        | This will permanently remove the entry. This action cannot be undone.                             | Delete                  |
+| Disconnect repo | Disconnect [repo]?        | GitLog will stop syncing new PRs. Published entries stay live.                                    | Disconnect              |
 
 ### Empty States
 
-| Context | Copy |
-| :---- | :---- |
-| No repos connected | No repos connected yet. Connect your first repo to start syncing PRs. [Connect Repo →] |
-| No drafts | No drafts yet! Merge a PR on GitHub and it'll appear here in under 30 seconds. [Manual Sync →] |
-| No published entries | Nothing published yet. Review your drafts and publish your first entry! [View Drafts →] |
-| Public page (no entries) | This project hasn't published any changelog entries yet. Check back soon! |
+| Context                  | Copy                                                                                           |
+| :----------------------- | :--------------------------------------------------------------------------------------------- |
+| No repos connected       | No repos connected yet. Connect your first repo to start syncing PRs. [Connect Repo →]         |
+| No drafts                | No drafts yet! Merge a PR on GitHub and it'll appear here in under 30 seconds. [Manual Sync →] |
+| No published entries     | Nothing published yet. Review your drafts and publish your first entry! [View Drafts →]        |
+| Public page (no entries) | This project hasn't published any changelog entries yet. Check back soon!                      |
 
 ---
 
 ## A/B Test Ideas
 
-| Element | Variant A | Variant B | Metric |
-| :---- | :---- | :---- | :---- |
-| Hero CTA | "Join the waitlist" | "Get early access" | Signup rate |
-| Pricing | "$19/mo" | "$19/month" | Click-through |
-| Social proof | "200+ founders" | "Trusted by 200+ founders" | Credibility |
-| Free plan limit | "50 entries/month" | "50 updates/month" | Clarity |
-| Demo | Animated GIF | Interactive embed | Engagement |
+| Element         | Variant A           | Variant B                  | Metric        |
+| :-------------- | :------------------ | :------------------------- | :------------ |
+| Hero CTA        | "Join the waitlist" | "Get early access"         | Signup rate   |
+| Pricing         | "$19/mo"            | "$19/month"                | Click-through |
+| Social proof    | "200+ founders"     | "Trusted by 200+ founders" | Credibility   |
+| Free plan limit | "50 entries/month"  | "50 updates/month"         | Clarity       |
+| Demo            | Animated GIF        | Interactive embed          | Engagement    |
 
 ---
 
-*Last updated: 2026-03-08 | Use Version A for pre-launch, Version B for post-launch.*
+_Last updated: 2026-03-08 | Use Version A for pre-launch, Version B for post-launch._

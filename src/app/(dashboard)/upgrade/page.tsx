@@ -21,11 +21,7 @@ const plans = {
       'Public changelog page',
       'GitLog branding',
     ],
-    limitations: [
-      'No priority support',
-      'No custom domains',
-      'No analytics',
-    ],
+    limitations: ['No priority support', 'No custom domains', 'No analytics'],
   },
   pro: {
     name: 'Pro',
@@ -212,33 +208,29 @@ export default function UpgradePage() {
                 How does pricing work for international users?
               </h4>
               <p className="text-sm text-muted">
-                Indian users pay ₹499/month while international users pay $19/month.
-                DodoPayment automatically detects your location and shows the appropriate currency.
+                Indian users pay ₹499/month while international users pay $19/month. DodoPayment
+                automatically detects your location and shows the appropriate currency.
               </p>
             </div>
             <div>
-              <h4 className="font-semibold text-sm mb-1">
-                Can I cancel anytime?
-              </h4>
+              <h4 className="font-semibold text-sm mb-1">Can I cancel anytime?</h4>
               <p className="text-sm text-muted">
-                Yes! You can cancel your subscription anytime from your dashboard.
-                You'll continue to have Pro access until the end of your billing period.
+                Yes! You can cancel your subscription anytime from your dashboard. You'll continue
+                to have Pro access until the end of your billing period.
               </p>
             </div>
             <div>
-              <h4 className="font-semibold text-sm mb-1">
-                What payment methods are accepted?
-              </h4>
+              <h4 className="font-semibold text-sm mb-1">What payment methods are accepted?</h4>
               <p className="text-sm text-muted">
-                We accept all major credit/debit cards (Visa, Mastercard, Amex) and UPI for Indian users.
+                We accept all major credit/debit cards (Visa, Mastercard, Amex) and UPI for Indian
+                users.
               </p>
             </div>
             <div>
-              <h4 className="font-semibold text-sm mb-1">
-                Is there a free trial?
-              </h4>
+              <h4 className="font-semibold text-sm mb-1">Is there a free trial?</h4>
               <p className="text-sm text-muted">
-                Yes! We offer a 14-day free trial for new Pro users. No credit card required to start.
+                Yes! We offer a 14-day free trial for new Pro users. No credit card required to
+                start.
               </p>
             </div>
           </div>

@@ -28,10 +28,10 @@ export default function SettingsPage() {
           fetch('/api/user/plan'),
           fetch('/api/user/repos'),
         ]);
-        
+
         const planData = await planRes.json();
         const reposData = await reposRes.json();
-        
+
         setPlan(planData.plan || 'free');
         setRepos(reposData.repos || []);
       } catch (error) {
@@ -40,20 +40,20 @@ export default function SettingsPage() {
         setLoading(false);
       }
     }
-    
+
     fetchData();
   }, []);
 
   const handleDisconnect = async (repoId: string) => {
     if (!confirm('Disconnect this repository?')) return;
-    
+
     try {
       const res = await fetch(`/api/user/repos/${repoId}`, {
         method: 'DELETE',
       });
-      
+
       if (res.ok) {
-        setRepos(repos.filter(r => r.id !== repoId));
+        setRepos(repos.filter((r) => r.id !== repoId));
       }
     } catch (error) {
       console.error('Disconnect error:', error);
@@ -84,7 +84,7 @@ export default function SettingsPage() {
             <h1 className="text-3xl font-bold">Settings</h1>
             <p className="text-muted mt-1">Manage your account and repositories</p>
           </div>
-          
+
           <Link href="/dashboard">
             <Button variant="outline">Back to Dashboard</Button>
           </Link>
@@ -122,21 +122,15 @@ export default function SettingsPage() {
                     <div>
                       <div className="flex items-center gap-2">
                         <span className="font-semibold">{repo.name}</span>
-                        {repo.private && (
-                          <Badge variant="secondary">Private</Badge>
-                        )}
+                        {repo.private && <Badge variant="secondary">Private</Badge>}
                       </div>
                       <span className="text-sm text-muted">
                         Connected {new Date(repo.connectedAt).toLocaleDateString()}
                       </span>
                     </div>
                   </div>
-                  
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => handleDisconnect(repo.id)}
-                  >
+
+                  <Button variant="outline" size="sm" onClick={() => handleDisconnect(repo.id)}>
                     <Trash2 className="h-4 w-4 mr-2" />
                     Disconnect
                   </Button>
@@ -149,7 +143,7 @@ export default function SettingsPage() {
         {/* Account Settings */}
         <Card className="p-6">
           <h2 className="text-xl font-semibold mb-4">Account</h2>
-          
+
           <div className="space-y-4">
             <div>
               <label className="block text-sm font-medium mb-2">Email</label>
@@ -160,7 +154,7 @@ export default function SettingsPage() {
                 className="w-full rounded-lg border border-line bg-surface px-4 py-2.5 text-foreground"
               />
             </div>
-            
+
             <div>
               <label className="block text-sm font-medium mb-2">GitHub Account</label>
               <div className="flex items-center justify-between p-3 rounded-lg border border-line bg-surface">
@@ -178,12 +172,12 @@ export default function SettingsPage() {
               <CreditCard className="h-5 w-5 text-muted" />
               <h2 className="text-xl font-semibold">Billing & Subscription</h2>
             </div>
-            
+
             <Badge className={plan === 'pro' ? 'bg-accent text-white' : ''}>
               {plan === 'free' ? 'Free' : 'Pro'}
             </Badge>
           </div>
-          
+
           <div className="space-y-4">
             <div className="p-4 rounded-lg bg-surface-highlight">
               <div className="flex items-center justify-between">
@@ -193,17 +187,13 @@ export default function SettingsPage() {
                     {plan === 'free' ? '50 entries/month, 1 repo' : 'Unlimited everything'}
                   </p>
                 </div>
-                
+
                 {plan === 'free' ? (
                   <Link href="/upgrade">
-                    <Button className="bg-accent hover:bg-accent/90">
-                      Upgrade to Pro
-                    </Button>
+                    <Button className="bg-accent hover:bg-accent/90">Upgrade to Pro</Button>
                   </Link>
                 ) : (
-                  <Button variant="outline">
-                    Manage Subscription
-                  </Button>
+                  <Button variant="outline">Manage Subscription</Button>
                 )}
               </div>
             </div>

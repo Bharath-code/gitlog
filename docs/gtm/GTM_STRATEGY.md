@@ -2,7 +2,7 @@
 
 **Created:** 2026-03-09  
 **Status:** Ready to Execute  
-**Launch Date:** [TBD]  
+**Launch Date:** [TBD]
 
 ---
 
@@ -11,22 +11,25 @@
 **Product:** GitLog - Auto-Changelog from GitHub  
 **Value Prop:** Merge a PR → See it on your public changelog in under 60 seconds. Zero manual writing.  
 **Target:** Solo SaaS founders, small teams, open source maintainers  
-**Goal:** 100 users in Week 1, $1k MRR in Month 1  
+**Goal:** 100 users in Week 1, $1k MRR in Month 1
 
 ---
 
 ## 📊 Market Opportunity
 
 ### Problem
+
 - Developers merge PRs daily, users don't know what changed
 - Writing changelogs manually requires context-switching
 - Most founders start changelogs, do it twice, then abandon it
 - GitHub Releases exist but are technical and dev-only
 
 ### Solution
+
 GitLog connects to GitHub once and auto-generates a public changelog from merged PRs. Zero manual writing.
 
 ### Market Size
+
 - **TAM:** 50M+ developers on GitHub
 - **SAM:** 5M+ indie hackers, SaaS founders, OSS maintainers
 - **SOM:** 50k+ paying users (conservative 1% conversion)
@@ -41,9 +44,10 @@ GitLog connects to GitHub once and auto-generates a public changelog from merged
 **Stage:** Live product with 10-500 users  
 **Activity:** 2+ PRs/week, active on Twitter/X  
 **Pain:** Has tried maintaining changelog before (and quit)  
-**Budget:** Pays for tools under $20/mo without blinking  
+**Budget:** Pays for tools under $20/mo without blinking
 
 **Where to Find Them:**
+
 - Twitter/X (#buildinpublic, #SaaS, #indiehackers)
 - Reddit (r/SaaS, r/entrepreneur, r/webdev)
 - Indie Hackers community
@@ -55,11 +59,13 @@ GitLog connects to GitHub once and auto-generates a public changelog from merged
 ### Secondary ICP
 
 **Open Source Maintainers**
+
 - 100+ GitHub stars
 - Active development (weekly commits)
 - Want to communicate with users better
 
 **Small Teams (2-5 people)**
+
 - No dedicated product marketer
 - Ship weekly
 - Need user-facing updates
@@ -68,16 +74,18 @@ GitLog connects to GitHub once and auto-generates a public changelog from merged
 
 ## 💰 Pricing Strategy
 
-| Plan | Price | Features | Target |
-| :---- | :---- | :---- | :---- |
-| **Free** | $0/mo | 50 entries, 1 repo, 50 AI rewrites | Hobby projects, testing |
-| **Pro** | $19/mo (₹499 India) | Unlimited everything | Serious founders |
+| Plan     | Price               | Features                           | Target                  |
+| :------- | :------------------ | :--------------------------------- | :---------------------- |
+| **Free** | $0/mo               | 50 entries, 1 repo, 50 AI rewrites | Hobby projects, testing |
+| **Pro**  | $19/mo (₹499 India) | Unlimited everything               | Serious founders        |
 
 **Geo-Pricing:**
+
 - India: ₹499/mo (73% discount)
 - International: $19/mo
 
 **Competitive Advantage:**
+
 - Canny: $49/mo (60% cheaper)
 - Featurebase: $29/mo (34% cheaper)
 - Frill: $49/mo (60% cheaper)
@@ -114,6 +122,7 @@ GitLog connects to GitHub once and auto-generates a public changelog from merged
 ### Pre-Launch (Week 0)
 
 **Day -7 to -1:**
+
 - [ ] Prepare all launch assets
 - [ ] Write launch posts for each channel
 - [ ] Create demo video (Loom, 2 min)
@@ -128,6 +137,7 @@ GitLog connects to GitHub once and auto-generates a public changelog from merged
 ### Launch Day (Day 1)
 
 **Morning (6 AM PST):**
+
 - [ ] Product Hunt goes live
 - [ ] Twitter thread posted
 - [ ] Reddit posts published
@@ -135,12 +145,14 @@ GitLog connects to GitHub once and auto-generates a public changelog from merged
 - [ ] Email to waitlist
 
 **Afternoon (12 PM PST):**
+
 - [ ] Respond to all comments
 - [ ] Share PH progress updates
 - [ ] DM early supporters
 - [ ] Monitor analytics
 
 **Evening (6 PM PST):**
+
 - [ ] Launch day recap post
 - [ ] Thank you thread
 - [ ] Plan Day 2 content
@@ -150,6 +162,7 @@ GitLog connects to GitHub once and auto-generates a public changelog from merged
 ### Week 1 (Day 1-7)
 
 **Daily Tasks:**
+
 - [ ] 3-5 tweets/day (features, testimonials, behind-the-scenes)
 - [ ] Respond to all comments within 2 hours
 - [ ] Share user wins/testimonials
@@ -157,6 +170,7 @@ GitLog connects to GitHub once and auto-generates a public changelog from merged
 - [ ] DM interested users personally
 
 **Content Calendar:**
+
 - **Monday:** Launch announcement
 - **Tuesday:** Feature deep-dive (Widget)
 - **Wednesday:** Customer story/testimonial
@@ -170,6 +184,7 @@ GitLog connects to GitHub once and auto-generates a public changelog from merged
 ### Week 2-4 (Growth)
 
 **Focus:**
+
 - [ ] Content marketing (blog posts)
 - [ ] SEO optimization
 - [ ] Paid ads testing ($100 budget)
@@ -185,6 +200,7 @@ GitLog connects to GitHub once and auto-generates a public changelog from merged
 **Goal:** 1,000 followers, 50 signups in Week 1
 
 **Content Pillars:**
+
 1. **Build in Public** (40%)
    - Metrics, revenue, user count
    - Behind-the-scenes development
@@ -206,6 +222,7 @@ GitLog connects to GitHub once and auto-generates a public changelog from merged
    - Ask questions, run polls
 
 **Launch Thread Template:**
+
 ```
 🚀 Introducing GitLog - Auto-generate changelogs from GitHub
 
@@ -259,6 +276,7 @@ Questions? Drop them below 👇
 ```
 
 **Daily Tweet Ideas:**
+
 - "Just shipped [feature]! Here's why it matters..."
 - "Day 3 of #buildinpublic: 23 signups, $0 MRR"
 - "Before GitLog: [pain]. After GitLog: [gain]"
@@ -272,6 +290,7 @@ Questions? Drop them below 👇
 **Goal:** 500 upvotes, 30 signups per post
 
 **Subreddits:**
+
 1. r/SaaS (450k members)
 2. r/entrepreneur (2M members)
 3. r/webdev (1M members)
@@ -281,6 +300,7 @@ Questions? Drop them below 👇
 7. r/github (100k members)
 
 **Post Template (r/SaaS):**
+
 ```
 Title: I built an auto-changelog generator from GitHub (free for 50 entries/mo)
 
@@ -333,6 +353,7 @@ Thanks for the support! 🙏
 ```
 
 **Engagement Rules:**
+
 - ✅ Respond to every comment within 2 hours
 - ✅ Be humble, ask for feedback
 - ✅ Share learnings and metrics
@@ -347,6 +368,7 @@ Thanks for the support! 🙏
 **Goal:** #1 Product of the Day, 200+ upvotes
 
 **Pre-Launch (1 week before):**
+
 - [ ] Create Product Hunt listing
 - [ ] Collect 10+ hunter endorsements
 - [ ] Prepare comments from beta users
@@ -355,6 +377,7 @@ Thanks for the support! 🙏
 - [ ] Write compelling tagline
 
 **Launch Day:**
+
 - [ ] Post at 12:01 AM PST
 - [ ] First comment: Founder story + demo video
 - [ ] Share to email list immediately
@@ -363,6 +386,7 @@ Thanks for the support! 🙏
 - [ ] Post updates throughout day
 
 **PH Post Template:**
+
 ```
 🚀 GitLog - Auto-changelog from GitHub
 
@@ -385,6 +409,7 @@ Try it: https://gitlog.app
 ```
 
 **Hunter Comment:**
+
 ```
 Hey Product Hunt! 👋
 
@@ -421,6 +446,7 @@ Thanks for the support! 🙏
 **Goal:** 100 upvotes, 20 signups
 
 **Post Template:**
+
 ```
 Title: Auto-generating changelogs from GitHub ($0 → $500 MRR in 30 days)
 
@@ -538,6 +564,7 @@ No pressure at all - just thought it might help! 🙏
 ## 📊 Success Metrics
 
 ### Week 1 Goals
+
 - [ ] 100 signups
 - [ ] 15 Pro users ($285 MRR)
 - [ ] 1,000 Twitter followers
@@ -546,6 +573,7 @@ No pressure at all - just thought it might help! 🙏
 - [ ] 5 user testimonials
 
 ### Month 1 Goals
+
 - [ ] 500 signups
 - [ ] 50 Pro users ($950 MRR)
 - [ ] 5,000 Twitter followers
@@ -554,6 +582,7 @@ No pressure at all - just thought it might help! 🙏
 - [ ] Break even on costs
 
 ### Month 3 Goals
+
 - [ ] 2,000 signups
 - [ ] 200 Pro users ($3,800 MRR)
 - [ ] 20,000 Twitter followers
@@ -566,6 +595,7 @@ No pressure at all - just thought it might help! 🙏
 ## 🎯 Content Calendar (Week 1)
 
 ### Day 1 (Launch Day)
+
 - **Twitter:** Launch thread (9 AM, 1 PM, 6 PM)
 - **Reddit:** r/SaaS, r/entrepreneur (9 AM)
 - **Product Hunt:** Live all day
@@ -573,31 +603,37 @@ No pressure at all - just thought it might help! 🙏
 - **Email:** Waitlist launch (9 AM)
 
 ### Day 2
+
 - **Twitter:** Feature deep-dive (Widget) + demo GIF
 - **LinkedIn:** Founder story post
 - **Reddit:** Respond to all comments
 
 ### Day 3
+
 - **Twitter:** Customer testimonial + screenshot
 - **Dev.to:** Technical post ("How I built GitLog in 8 days")
 - **Twitter Spaces:** Join #buildinpublic conversation
 
 ### Day 4
+
 - **Twitter:** Feature deep-dive (Social Posts) + demo
 - **Reddit:** r/webdev post (technical angle)
 - **LinkedIn:** Behind-the-scenes metrics
 
 ### Day 5
+
 - **Twitter:** User spotlight + case study
 - **Indie Hackers:** Progress update
 - **Twitter:** Week 1 metrics thread
 
 ### Day 6
+
 - **Twitter:** Behind-the-scenes (tech stack, challenges)
 - **Reddit:** r/programming (technical post)
 - **Email:** Week 1 recap to users
 
 ### Day 7
+
 - **Twitter:** Week 1 recap thread (metrics, learnings)
 - **LinkedIn:** Lessons learned post
 - **Plan Week 2 content**
@@ -607,6 +643,7 @@ No pressure at all - just thought it might help! 🙏
 ## 🎨 Launch Assets Checklist
 
 ### Visual Assets
+
 - [ ] Product screenshots (10+)
 - [ ] Feature demo GIFs (5+)
 - [ ] Demo video (Loom, 2 min)
@@ -615,6 +652,7 @@ No pressure at all - just thought it might help! 🙏
 - [ ] OG images for sharing
 
 ### Written Assets
+
 - [ ] Launch post templates (per channel)
 - [ ] Email templates (waitlist, onboarding)
 - [ ] DM templates (Twitter, LinkedIn)
@@ -623,6 +661,7 @@ No pressure at all - just thought it might help! 🙏
 - [ ] About page copy
 
 ### Technical Assets
+
 - [ ] Landing page optimized for conversion
 - [ ] Analytics setup (PostHog, GA)
 - [ ] Error tracking (Sentry)
@@ -634,6 +673,7 @@ No pressure at all - just thought it might help! 🙏
 ## 🚨 Crisis Management
 
 ### If Launch Flops
+
 - [ ] Don't panic - iterate based on feedback
 - [ ] Double down on what worked
 - [ ] Pivot messaging if needed
@@ -641,6 +681,7 @@ No pressure at all - just thought it might help! 🙏
 - [ ] Talk to users personally
 
 ### If Negative Feedback
+
 - [ ] Respond within 2 hours
 - [ ] Acknowledge the issue
 - [ ] Explain the fix timeline
@@ -648,6 +689,7 @@ No pressure at all - just thought it might help! 🙏
 - [ ] Turn critic into advocate
 
 ### If Technical Issues
+
 - [ ] Acknowledge immediately
 - [ ] Post status updates every 30 min
 - [ ] Fix ASAP
@@ -659,6 +701,7 @@ No pressure at all - just thought it might help! 🙏
 ## 📈 Post-Launch Strategy
 
 ### Week 2-4: Growth
+
 - Content marketing (2 blog posts/week)
 - SEO optimization
 - Paid ads testing ($100 budget)
@@ -666,6 +709,7 @@ No pressure at all - just thought it might help! 🙏
 - Guest post pitches
 
 ### Month 2: Scale
+
 - Double down on winning channels
 - Hire VA for customer support
 - Build integration partnerships
@@ -673,6 +717,7 @@ No pressure at all - just thought it might help! 🙏
 - Start podcast tour
 
 ### Month 3: Optimize
+
 - Improve conversion rate (A/B tests)
 - Reduce churn (onboarding improvements)
 - Increase LTV (upsells, annual plans)
@@ -683,5 +728,5 @@ No pressure at all - just thought it might help! 🙏
 
 **Ready to launch!** 🚀
 
-*Last Updated: 2026-03-09*  
-*Status: Ready to Execute*
+_Last Updated: 2026-03-09_  
+_Status: Ready to Execute_

@@ -10,13 +10,10 @@ export async function GET() {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const plan = await kv.get<'free' | 'pro'>(`user:${user.id}:plan`) || 'free';
+    const plan = (await kv.get<'free' | 'pro'>(`user:${user.id}:plan`)) || 'free';
     return NextResponse.json({ plan });
   } catch (error) {
     console.error('Fetch plan error:', error);
-    return NextResponse.json(
-      { error: 'Failed to fetch plan' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to fetch plan' }, { status: 500 });
   }
 }

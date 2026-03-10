@@ -28,25 +28,27 @@ export async function POST(req: Request) {
     }
 
     // Check plan limits
-    const plan = await kv.get<'free' | 'pro'>(`user:${user.id}:plan`) || 'free';
-    
+    const plan = (await kv.get<'free' | 'pro'>(`user:${user.id}:plan`)) || 'free';
+
     if (plan === 'free') {
       const month = new Date().toISOString().slice(0, 7);
-      const usage = await kv.get<{ entriesPublished: number }>(`usage:${user.id}:${month}`) || { entriesPublished: 0 };
-      
+      const usage = (await kv.get<{ entriesPublished: number }>(`usage:${user.id}:${month}`)) || {
+        entriesPublished: 0,
+      };
+
       if (usage.entriesPublished >= pricing.free.entriesPerMonth) {
         return NextResponse.json(
-          { 
+          {
             error: `Free plan limit reached (${pricing.free.entriesPerMonth} entries/month)`,
             upgrade: true,
           },
           { status: 403 }
         );
       }
-      
+
       // Increment usage
-      await kv.set(`usage:${user.id}:${month}`, { 
-        entriesPublished: usage.entriesPublished + 1 
+      await kv.set(`usage:${user.id}:${month}`, {
+        entriesPublished: usage.entriesPublished + 1,
       });
     }
 
@@ -56,9 +58,6 @@ export async function POST(req: Request) {
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error('Publish error:', error);
-    return NextResponse.json(
-      { error: 'Failed to publish entry' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to publish entry' }, { status: 500 });
   }
 }

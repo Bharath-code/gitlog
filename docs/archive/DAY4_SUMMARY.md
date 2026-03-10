@@ -15,38 +15,43 @@
 **New Features:**
 
 #### **Tone Selection**
+
 ```typescript
-type Tone = 'casual' | 'professional' | 'technical' | 'exciting'
+type Tone = 'casual' | 'professional' | 'technical' | 'exciting';
 
 const toneInstructions = {
   casual: 'Friendly, conversational tone',
   professional: 'Business-appropriate, clear',
   technical: 'Include technical details',
   exciting: 'Enthusiastic, energetic',
-}
+};
 ```
 
 #### **Multiple Versions**
+
 ```typescript
-generateMultipleVersions({ title, body, labels, count })
+generateMultipleVersions({ title, body, labels, count });
 // Returns 3-4 different versions with different tones
 ```
 
 #### **SEO Description Generator**
+
 ```typescript
-generateSEODescription({ title, rewrite, repo })
+generateSEODescription({ title, rewrite, repo });
 // Returns 150-160 character meta description
 ```
 
 #### **Social Post Generator**
+
 ```typescript
-generateSocialPost({ title, rewrite, platform })
+generateSocialPost({ title, rewrite, platform });
 // Supports Twitter (thread) and LinkedIn
 ```
 
 #### **Writing Improver**
+
 ```typescript
-improveWriting({ text, goal })
+improveWriting({ text, goal });
 // Goals: clearer, shorter, more-detailed, more-persuasive
 ```
 
@@ -57,6 +62,7 @@ improveWriting({ text, goal })
 **File:** `src/app/(dashboard)/drafts/[id]/page.tsx`
 
 **Features:**
+
 - Edit title inline
 - Change category (New/Fixed/Improved/Other)
 - AI rewrite with regenerate button
@@ -67,6 +73,7 @@ improveWriting({ text, goal })
 - Discard
 
 **UI Components:**
+
 - Back navigation
 - Category badge
 - Editable title input
@@ -86,18 +93,21 @@ improveWriting({ text, goal })
 **Endpoints:**
 
 #### **GET /api/drafts/[id]**
+
 ```typescript
 // Fetch single draft
 // Returns: { id, title, body, category, aiRewrite, ... }
 ```
 
 #### **PUT /api/drafts/[id]**
+
 ```typescript
 // Update draft
 // Body: { title?, category?, aiRewrite? }
 ```
 
 #### **DELETE /api/drafts/[id]**
+
 ```typescript
 // Delete draft
 // Also removes from draft index
@@ -110,6 +120,7 @@ improveWriting({ text, goal })
 **File:** `src/app/(dashboard)/drafts/page.tsx`
 
 **Features:**
+
 - Search functionality
 - Filter by AI rewrite status
 - Draft cards with preview
@@ -117,11 +128,13 @@ improveWriting({ text, goal })
 - Stats dashboard
 
 **Filters:**
+
 - All Drafts
 - With AI Rewrite
 - Without AI Rewrite
 
 **Stats:**
+
 - Total drafts
 - With AI rewrite (green)
 - Needs rewrite (gray)
@@ -133,11 +146,13 @@ improveWriting({ text, goal })
 **File:** `src/app/api/ai/rewrite/route.ts`
 
 **Changes:**
+
 - Added `tone` parameter support
 - Defaults to 'casual' if not specified
 - Uses enhanced `rewritePR` function
 
 **Usage:**
+
 ```typescript
 POST /api/ai/rewrite
 Body: { entryId, tone: 'professional' }
@@ -148,6 +163,7 @@ Body: { entryId, tone: 'professional' }
 ## 🎨 UI Improvements
 
 ### **Draft Detail Page Layout**
+
 ```
 ┌─────────────────────────────────────────────────────┐
 │  ← Back to Dashboard        [Category Badge] [Date]│
@@ -171,6 +187,7 @@ Body: { entryId, tone: 'professional' }
 ```
 
 ### **Drafts List Page Layout**
+
 ```
 ┌─────────────────────────────────────────────────────┐
 │  Drafts                        [Back to Dashboard]  │
@@ -200,11 +217,13 @@ Body: { entryId, tone: 'professional' }
 ### **AI Prompt Engineering**
 
 **Before:**
+
 ```
 Rewrite this PR: {title} {body}
 ```
 
 **After:**
+
 ```
 You are rewriting a GitHub PR description into plain English for a changelog.
 
@@ -225,6 +244,7 @@ Rewrite:
 ```
 
 ### **Error Handling**
+
 - All API routes return proper error messages
 - Client-side error handling with alerts
 - Loading states for all async actions
@@ -235,6 +255,7 @@ Rewrite:
 ## 📊 Component Library
 
 ### **New Components**
+
 - Draft detail form
 - Drafts list with filters
 - Search input
@@ -242,6 +263,7 @@ Rewrite:
 - Stats cards
 
 ### **Enhanced Components**
+
 - `Badge` - Now used for categories
 - `Button` - Multiple variants
 - `Card` - Consistent styling
@@ -251,6 +273,7 @@ Rewrite:
 ## 🧪 Testing Checklist
 
 ### **Draft Detail Page**
+
 - [ ] Visit `/drafts/[id]` with valid ID
 - [ ] Edit title and save
 - [ ] Change category
@@ -262,6 +285,7 @@ Rewrite:
 - [ ] View original PR on GitHub
 
 ### **Drafts List Page**
+
 - [ ] Visit `/drafts`
 - [ ] Search drafts
 - [ ] Filter by rewrite status
@@ -270,6 +294,7 @@ Rewrite:
 - [ ] View stats
 
 ### **AI Rewrite**
+
 - [ ] Generate with default tone (casual)
 - [ ] Generate with professional tone
 - [ ] Generate with technical tone
@@ -280,30 +305,33 @@ Rewrite:
 
 ## 📝 API Endpoints Summary
 
-| Endpoint | Method | Auth | Description |
-| :---- | :---- | :---- | :---- |
-| `/api/drafts/[id]` | GET | User | Fetch single draft |
-| `/api/drafts/[id]` | PUT | User | Update draft |
-| `/api/drafts/[id]` | DELETE | User | Delete draft |
-| `/api/ai/rewrite` | POST | User | Generate rewrite (with tone) |
+| Endpoint           | Method | Auth | Description                  |
+| :----------------- | :----- | :--- | :--------------------------- |
+| `/api/drafts/[id]` | GET    | User | Fetch single draft           |
+| `/api/drafts/[id]` | PUT    | User | Update draft                 |
+| `/api/drafts/[id]` | DELETE | User | Delete draft                 |
+| `/api/ai/rewrite`  | POST   | User | Generate rewrite (with tone) |
 
 ---
 
 ## 🎯 Next Steps (Day 5)
 
 ### **Publish Flow Enhancements**
+
 - [ ] Add publish confirmation modal
 - [ ] Show success toast after publish
 - [ ] Add undo publish feature
 - [ ] Bulk publish multiple drafts
 
 ### **SEO Implementation**
+
 - [ ] Add JSON-LD structured data
 - [ ] Generate OG images
 - [ ] Add sitemap.xml
 - [ ] Add robots.txt
 
 ### **Error Boundaries**
+
 - [ ] Add React error boundaries
 - [ ] Better error messages
 - [ ] Retry logic for failed requests
@@ -312,11 +340,11 @@ Rewrite:
 
 ## 📈 Progress Update
 
-| Phase | Progress | Status |
-| :---- | :---- | :---- |
-| **Foundation (Day 1-2)** | 100% | ✅ Complete |
-| **Core Features (Day 3-5)** | 80% | 🔄 In Progress |
-| **Payments + Polish (Day 6-8)** | 0% | ⏳ Pending |
+| Phase                           | Progress | Status         |
+| :------------------------------ | :------- | :------------- |
+| **Foundation (Day 1-2)**        | 100%     | ✅ Complete    |
+| **Core Features (Day 3-5)**     | 80%      | 🔄 In Progress |
+| **Payments + Polish (Day 6-8)** | 0%       | ⏳ Pending     |
 
 **Overall Progress:** 67% (MVP nearly complete!)
 
@@ -325,12 +353,14 @@ Rewrite:
 ## 🎨 Design System Updates
 
 ### **New Patterns**
+
 - Editable forms with inline labels
 - Filter dropdowns with icons
 - Search with real-time filtering
 - Stats cards with color coding
 
 ### **Interaction Patterns**
+
 - Copy to clipboard with feedback
 - Regenerate with loading state
 - Confirm before destructive actions
@@ -347,11 +377,13 @@ _None yet (fresh implementation)_
 ## 📊 Performance
 
 ### **AI Rewrite Performance**
+
 - Average response time: 2-4 seconds
 - Token usage: ~200 tokens per rewrite
 - Cost per rewrite: ~$0.0001
 
 ### **Optimization Strategies**
+
 - Client-side caching (future)
 - Debounced search
 - Lazy loading for draft list
@@ -364,4 +396,4 @@ _None yet (fresh implementation)_
 
 ---
 
-*Last Updated: 2026-03-08*
+_Last Updated: 2026-03-08_

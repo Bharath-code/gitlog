@@ -18,7 +18,7 @@ export function generateVisitorId(userAgent?: string, ip?: string): string {
 
 export function getVisitorIdFromCookie(cookie?: string): string | null {
   if (!cookie) return null;
-  
+
   // Parse visitor_id from cookie
   const match = cookie.match(/visitor_id=([^;]+)/);
   return match ? match[1] : null;
@@ -31,10 +31,10 @@ export async function trackVisitor(
   try {
     const today = new Date().toISOString().split('T')[0];
     const visitorKey = `analytics:visitor:${visitorId}`;
-    
+
     // Get existing visitor data
     const existing = await kv.get<Visitor>(visitorKey);
-    
+
     if (existing) {
       // Update existing visitor
       existing.lastVisit = today;
@@ -76,7 +76,7 @@ export async function getVisitorStats(
     const today = new Date();
     const cutoffDate = new Date(today);
     cutoffDate.setDate(cutoffDate.getDate() - days);
-    
+
     // Get all visitors who viewed this entry
     const keys = await kv.keys('analytics:visitor:*');
     let totalVisitors = 0;
@@ -89,7 +89,7 @@ export async function getVisitorStats(
       if (visitor && visitor.entries.includes(entryId)) {
         totalVisitors++;
         totalPageViews += visitor.pageViews;
-        
+
         const firstVisit = new Date(visitor.firstVisit);
         if (firstVisit >= cutoffDate) {
           newVisitors++;
@@ -116,10 +116,7 @@ export async function getVisitorStats(
   }
 }
 
-export async function getUniqueVisitorsCount(
-  entryId: string,
-  days: number = 30
-): Promise<number> {
+export async function getUniqueVisitorsCount(entryId: string, days: number = 30): Promise<number> {
   try {
     const stats = await getVisitorStats(entryId, days);
     return stats.totalVisitors;

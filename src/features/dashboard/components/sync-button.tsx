@@ -11,18 +11,18 @@ export function SyncButton() {
   const handleSync = async () => {
     setSyncing(true);
     try {
-      const res = await fetch('/api/github/sync/manual', { 
+      const res = await fetch('/api/github/sync/manual', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({}),
       });
-      
+
       const data = await res.json();
-      
+
       if (!res.ok) {
         throw new Error(data.error || 'Sync failed');
       }
-      
+
       // Show success and reload
       alert(data.message || 'Sync completed!');
       window.location.reload();
@@ -35,14 +35,8 @@ export function SyncButton() {
   };
 
   return (
-    <Button 
-      onClick={handleSync} 
-      disabled={syncing}
-      variant="outline"
-      size="sm"
-      className="gap-2"
-    >
-      <RefreshCw className={cn("h-4 w-4", syncing && "animate-spin")} />
+    <Button onClick={handleSync} disabled={syncing} variant="outline" size="sm" className="gap-2">
+      <RefreshCw className={cn('h-4 w-4', syncing && 'animate-spin')} />
       {syncing ? 'Syncing...' : 'Sync Now'}
     </Button>
   );

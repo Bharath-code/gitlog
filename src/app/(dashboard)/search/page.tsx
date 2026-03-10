@@ -31,10 +31,10 @@ export default function SearchPage() {
           fetch('/api/drafts'),
           fetch('/api/entries/published'),
         ]);
-        
+
         const draftsData = await draftsRes.json();
         const publishedData = await publishedRes.json();
-        
+
         setDrafts(draftsData.drafts || []);
         setPublished(publishedData.entries || []);
       } catch (error) {
@@ -43,7 +43,7 @@ export default function SearchPage() {
         setLoading(false);
       }
     }
-    
+
     fetchData();
   }, []);
 
@@ -69,11 +69,9 @@ export default function SearchPage() {
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-3xl font-bold">Search</h1>
-            <p className="text-muted mt-1">
-              Search across all your drafts and published entries
-            </p>
+            <p className="text-muted mt-1">Search across all your drafts and published entries</p>
           </div>
-          
+
           <Link href="/dashboard">
             <Button variant="outline">Back to Dashboard</Button>
           </Link>
@@ -107,9 +105,7 @@ export default function SearchPage() {
               Connect a repository and merge your first PR to get started
             </p>
             <Link href="/dashboard/settings">
-              <Button className="mt-4 bg-accent hover:bg-accent/90">
-                Connect Repository
-              </Button>
+              <Button className="mt-4 bg-accent hover:bg-accent/90">Connect Repository</Button>
             </Link>
           </Card>
         )}

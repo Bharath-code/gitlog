@@ -56,7 +56,7 @@ export async function createRelease(data: {
  */
 export async function getReleases(userId: string, repoId: string): Promise<Release[]> {
   const keys = await kv.keys(`release:${userId}:${repoId}:*`);
-  const releases = await Promise.all(keys.map(key => kv.get<Release>(key)));
+  const releases = await Promise.all(keys.map((key) => kv.get<Release>(key)));
   return releases.filter((r): r is Release => r !== null);
 }
 
@@ -106,7 +106,9 @@ export async function addEntriesToRelease(releaseId: string, entryIds: string[])
 /**
  * Parse semantic version string
  */
-export function parseVersion(version: string): { major: number; minor: number; patch: number } | null {
+export function parseVersion(
+  version: string
+): { major: number; minor: number; patch: number } | null {
   const match = version.match(/^v?(\d+)\.(\d+)\.(\d+)$/);
   if (!match) {
     return null;
@@ -122,7 +124,10 @@ export function parseVersion(version: string): { major: number; minor: number; p
 /**
  * Get next version based on change type
  */
-export function getNextVersion(currentVersion: string, changeType: 'major' | 'minor' | 'patch'): string {
+export function getNextVersion(
+  currentVersion: string,
+  changeType: 'major' | 'minor' | 'patch'
+): string {
   const current = parseVersion(currentVersion);
   if (!current) {
     return 'v1.0.0';
@@ -152,15 +157,12 @@ export function getNextVersion(currentVersion: string, changeType: 'major' | 'mi
  * Auto-suggest version based on entries
  */
 export function suggestVersion(entries: any[]): string {
-  const hasBreaking = entries.some(e => 
-    e.labels?.includes('breaking') || 
-    e.labels?.includes('breaking-change')
+  const hasBreaking = entries.some(
+    (e) => e.labels?.includes('breaking') || e.labels?.includes('breaking-change')
   );
 
-  const hasFeatures = entries.some(e => 
-    e.category === 'New' || 
-    e.labels?.includes('feat') ||
-    e.labels?.includes('feature')
+  const hasFeatures = entries.some(
+    (e) => e.category === 'New' || e.labels?.includes('feat') || e.labels?.includes('feature')
   );
 
   if (hasBreaking) {

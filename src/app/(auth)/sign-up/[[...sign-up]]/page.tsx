@@ -10,9 +10,7 @@ export default function SignUpPage() {
             <GitMerge className="h-6 w-6 text-white" />
           </div>
           <h1 className="text-2xl font-bold">Create your account</h1>
-          <p className="mt-2 text-muted">
-            Start auto-generating changelogs in seconds
-          </p>
+          <p className="mt-2 text-muted">Start auto-generating changelogs in seconds</p>
         </div>
 
         <SignUp
@@ -22,7 +20,8 @@ export default function SignUpPage() {
               card: 'bg-surface border border-line shadow-xl',
               headerTitle: 'text-foreground',
               headerSubtitle: 'text-muted',
-              socialButtonsBlockButton: 'bg-surface-highlight hover:bg-surface-elevated border-line',
+              socialButtonsBlockButton:
+                'bg-surface-highlight hover:bg-surface-elevated border-line',
               socialButtonsBlockButtonText: 'text-foreground',
               dividerLine: 'bg-line',
               dividerText: 'text-muted',

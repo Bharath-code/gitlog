@@ -64,7 +64,7 @@ export default function ApiKeysPage() {
         setKeys([...keys, data.apiKey]);
         setNewKeyName('');
         setShowNewKey(false);
-        toast.success('API key created! Store it securely - it won\'t be shown again.');
+        toast.success("API key created! Store it securely - it won't be shown again.");
       }
     } catch (error) {
       console.error('Error creating API key:', error);
@@ -83,7 +83,7 @@ export default function ApiKeysPage() {
       });
 
       if (res.ok) {
-        setKeys(keys.filter(k => k.id !== keyId));
+        setKeys(keys.filter((k) => k.id !== keyId));
         toast.success('API key revoked');
       }
     } catch (error) {
@@ -109,9 +109,7 @@ export default function ApiKeysPage() {
     <div className="space-y-8">
       <div>
         <SectionHeading title="API Keys" />
-        <p className="text-muted mt-2">
-          Create API keys to access GitLog programmatically
-        </p>
+        <p className="text-muted mt-2">Create API keys to access GitLog programmatically</p>
       </div>
 
       {/* Create New Key */}
@@ -231,9 +229,7 @@ export default function ApiKeysPage() {
         <div className="space-y-4 text-sm">
           <div>
             <h4 className="font-medium mb-2">Authentication</h4>
-            <p className="text-muted">
-              Include your API key in the Authorization header:
-            </p>
+            <p className="text-muted">Include your API key in the Authorization header:</p>
             <pre className="mt-2 p-3 rounded-lg bg-surface-highlight border border-line font-mono text-xs overflow-x-auto">
               Authorization: Bearer YOUR_API_KEY
             </pre>
@@ -261,7 +257,7 @@ export default function ApiKeysPage() {
           <div>
             <h4 className="font-medium mb-2">Example Request</h4>
             <pre className="p-3 rounded-lg bg-surface-highlight border border-line font-mono text-xs overflow-x-auto">
-{`curl -X GET https://gitlog.app/api/public/v1/changelog \\
+              {`curl -X GET https://gitlog.app/api/public/v1/changelog \\
   -H "Authorization: Bearer YOUR_API_KEY"`}
             </pre>
           </div>

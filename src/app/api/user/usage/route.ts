@@ -10,16 +10,13 @@ export async function GET() {
     }
 
     const month = new Date().toISOString().slice(0, 7); // YYYY-MM
-    const usage = await kv.get<{ entriesPublished: number; aiRewrites: number }>(
+    const usage = (await kv.get<{ entriesPublished: number; aiRewrites: number }>(
       `usage:${user.id}:${month}`
-    ) || { entriesPublished: 0, aiRewrites: 0 };
+    )) || { entriesPublished: 0, aiRewrites: 0 };
 
     return NextResponse.json({ usage });
   } catch (error) {
     console.error('Usage fetch error:', error);
-    return NextResponse.json(
-      { error: 'Failed to fetch usage' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to fetch usage' }, { status: 500 });
   }
 }

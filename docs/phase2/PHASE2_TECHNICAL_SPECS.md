@@ -2,7 +2,7 @@
 
 **Created:** 2026-03-09  
 **Version:** 1.0  
-**Status:** Ready to Implement  
+**Status:** Ready to Implement
 
 ---
 
@@ -38,6 +38,7 @@
 ### 1.2 Data Flow
 
 #### Widget Flow
+
 ```
 User Dashboard → Generate Widget ID → Save Config → Embed Script
                                               ↓
@@ -47,6 +48,7 @@ Visitor Site → Load widget.js → Fetch Entries → Display Widget
 ```
 
 #### Social Post Flow
+
 ```
 Published Entry → Trigger AI → Generate Tweets/LinkedIn → Save Draft
                                                         ↓
@@ -54,6 +56,7 @@ Published Entry → Trigger AI → Generate Tweets/LinkedIn → Save Draft
 ```
 
 #### Email Flow
+
 ```
 Entry Published → Get Subscribers → Build Template → Send via Resend
                                                     ↓
@@ -61,6 +64,7 @@ Entry Published → Get Subscribers → Build Template → Send via Resend
 ```
 
 #### Analytics Flow
+
 ```
 Page Load → Generate Visitor ID → Track View → Store in KV
                                               ↓
@@ -68,6 +72,7 @@ Page Load → Generate Visitor ID → Track View → Store in KV
 ```
 
 #### Roadmap Flow
+
 ```
 GitHub Issue (labeled) → Webhook → Sync to KV → Display Card
                                                     ↓
@@ -84,13 +89,13 @@ GitHub Issue (labeled) → Webhook → Sync to KV → Display Card
 
 ```typescript
 interface WidgetConfig {
-  id: string;              // Unique widget ID
-  userId: string;          // Owner user ID
-  repoId: string;          // Repository ID
+  id: string; // Unique widget ID
+  userId: string; // Owner user ID
+  repoId: string; // Repository ID
   colors: {
-    primary: string;       // Primary brand color (hex)
-    background: string;    // Background color (hex)
-    text: string;          // Text color (hex)
+    primary: string; // Primary brand color (hex)
+    background: string; // Background color (hex)
+    text: string; // Text color (hex)
   };
   position: 'bottom-right' | 'bottom-left' | 'top-right' | 'top-left';
   size: 'small' | 'medium' | 'large';
@@ -99,8 +104,8 @@ interface WidgetConfig {
     showCategory: boolean;
     showNewBadge: boolean;
   };
-  impressions: number;     // Total impressions
-  clicks: number;          // Total clicks
+  impressions: number; // Total impressions
+  clicks: number; // Total clicks
   createdAt: Date;
   updatedAt: Date;
 }
@@ -116,7 +121,7 @@ interface TwitterDraft {
   entryId: string;
   userId: string;
   platform: 'twitter';
-  tweets: string[];        // Array of tweet texts (≤280 chars each)
+  tweets: string[]; // Array of tweet texts (≤280 chars each)
   tone: 'professional' | 'casual' | 'exciting';
   hashtags: string[];
   changelogLink: string;
@@ -128,7 +133,7 @@ interface LinkedInDraft {
   entryId: string;
   userId: string;
   platform: 'linkedin';
-  post: string;            // 1000-1300 characters
+  post: string; // 1000-1300 characters
   hashtags: string[];
   changelogLink: string;
   cta: string;
@@ -167,16 +172,16 @@ interface EmailSubscriber {
 ```typescript
 interface PageView {
   entryId: string;
-  date: string;            // YYYY-MM-DD
+  date: string; // YYYY-MM-DD
   views: number;
   uniqueVisitors: number;
-  visitorIds: string[];    // Anonymous IDs
+  visitorIds: string[]; // Anonymous IDs
 }
 
 interface Upvotes {
   entryId: string;
   count: number;
-  voterIds: string[];      // Anonymous visitor IDs
+  voterIds: string[]; // Anonymous visitor IDs
 }
 
 // KV Keys:
@@ -199,7 +204,7 @@ interface RoadmapItem {
   voterIds: string[];
   githubIssueUrl: string;
   labels: string[];
-  linkedEntryId?: string;  // When moved to changelog
+  linkedEntryId?: string; // When moved to changelog
   createdAt: Date;
   updatedAt: Date;
 }
@@ -213,50 +218,50 @@ interface RoadmapItem {
 
 ### 3.1 Widget Endpoints
 
-| Endpoint | Method | Auth | Description |
-| :---- | :---- | :---- | :---- |
-| `/api/widget/generate` | POST | User | Generate widget for repo |
-| `/api/widget/config` | GET | User | Get widget config |
-| `/api/widget/config` | PUT | User | Update widget config |
-| `/api/widget/[widgetId]` | GET | None | Public widget data |
-| `/api/widget/track` | POST | None | Track impression/click |
+| Endpoint                 | Method | Auth | Description              |
+| :----------------------- | :----- | :--- | :----------------------- |
+| `/api/widget/generate`   | POST   | User | Generate widget for repo |
+| `/api/widget/config`     | GET    | User | Get widget config        |
+| `/api/widget/config`     | PUT    | User | Update widget config     |
+| `/api/widget/[widgetId]` | GET    | None | Public widget data       |
+| `/api/widget/track`      | POST   | None | Track impression/click   |
 
 ### 3.2 Social Endpoints
 
-| Endpoint | Method | Auth | Description |
-| :---- | :---- | :---- | :---- |
-| `/api/social/generate/twitter` | POST | User | Generate Twitter thread |
-| `/api/social/generate/linkedin` | POST | User | Generate LinkedIn post |
-| `/api/social/drafts` | GET | User | Get all social drafts |
-| `/api/social/draft/[id]` | DELETE | User | Delete draft |
+| Endpoint                        | Method | Auth | Description             |
+| :------------------------------ | :----- | :--- | :---------------------- |
+| `/api/social/generate/twitter`  | POST   | User | Generate Twitter thread |
+| `/api/social/generate/linkedin` | POST   | User | Generate LinkedIn post  |
+| `/api/social/drafts`            | GET    | User | Get all social drafts   |
+| `/api/social/draft/[id]`        | DELETE | User | Delete draft            |
 
 ### 3.3 Email Endpoints
 
-| Endpoint | Method | Auth | Description |
-| :---- | :---- | :---- | :---- |
-| `/api/email/subscribe` | POST | None | Subscribe to digest |
-| `/api/email/unsubscribe` | POST | None | Unsubscribe |
-| `/api/email/confirm` | GET | None | Confirm subscription |
-| `/api/email/send` | POST | User | Send release email |
-| `/api/email/sync-mailchimp` | POST | User | Sync to Mailchimp |
+| Endpoint                    | Method | Auth | Description          |
+| :-------------------------- | :----- | :--- | :------------------- |
+| `/api/email/subscribe`      | POST   | None | Subscribe to digest  |
+| `/api/email/unsubscribe`    | POST   | None | Unsubscribe          |
+| `/api/email/confirm`        | GET    | None | Confirm subscription |
+| `/api/email/send`           | POST   | User | Send release email   |
+| `/api/email/sync-mailchimp` | POST   | User | Sync to Mailchimp    |
 
 ### 3.4 Analytics Endpoints
 
-| Endpoint | Method | Auth | Description |
-| :---- | :---- | :---- | :---- |
-| `/api/analytics/track` | POST | None | Track page view |
-| `/api/analytics/upvote` | POST | None | Upvote entry |
-| `/api/analytics/views` | GET | User | Get view stats |
-| `/api/analytics/leaderboard` | GET | User | Get most viewed |
+| Endpoint                     | Method | Auth | Description     |
+| :--------------------------- | :----- | :--- | :-------------- |
+| `/api/analytics/track`       | POST   | None | Track page view |
+| `/api/analytics/upvote`      | POST   | None | Upvote entry    |
+| `/api/analytics/views`       | GET    | User | Get view stats  |
+| `/api/analytics/leaderboard` | GET    | User | Get most viewed |
 
 ### 3.5 Roadmap Endpoints
 
-| Endpoint | Method | Auth | Description |
-| :---- | :---- | :---- | :---- |
-| `/api/roadmap/sync` | POST | User | Sync GitHub Issues |
-| `/api/roadmap/items` | GET | User/Public | Get roadmap items |
-| `/api/roadmap/upvote` | POST | None | Upvote roadmap item |
-| `/api/roadmap/status` | PUT | User | Update item status |
+| Endpoint              | Method | Auth        | Description         |
+| :-------------------- | :----- | :---------- | :------------------ |
+| `/api/roadmap/sync`   | POST   | User        | Sync GitHub Issues  |
+| `/api/roadmap/items`  | GET    | User/Public | Get roadmap items   |
+| `/api/roadmap/upvote` | POST   | None        | Upvote roadmap item |
+| `/api/roadmap/status` | PUT    | User        | Update item status  |
 
 ---
 
@@ -437,13 +442,13 @@ interface RoadmapCardProps {
 const rateLimits = {
   // Widget tracking
   widgetTrack: { limit: 1000, window: '1h' },
-  
+
   // Upvotes
   upvote: { limit: 10, window: '1h' },
-  
+
   // Email subscriptions
   subscribe: { limit: 5, window: '1h' },
-  
+
   // Social generation
   generateSocial: { limit: 20, window: '1h' },
 };
@@ -461,13 +466,13 @@ const rateLimits = {
 
 ## 7. Performance Targets
 
-| Metric | Target | Measurement |
-| :---- | :---- | :---- |
-| Widget load time | <1s | Lighthouse |
-| Social generation | <5s | API response time |
-| Email send | <10s | End-to-end |
-| Analytics track | <100ms | API response time |
-| Roadmap sync | <30s | GitHub API → KV |
+| Metric            | Target | Measurement       |
+| :---------------- | :----- | :---------------- |
+| Widget load time  | <1s    | Lighthouse        |
+| Social generation | <5s    | API response time |
+| Email send        | <10s   | End-to-end        |
+| Analytics track   | <100ms | API response time |
+| Roadmap sync      | <30s   | GitHub API → KV   |
 
 ---
 
@@ -480,19 +485,19 @@ enum Phase2ErrorCodes {
   // Widget
   WIDGET_NOT_FOUND = 'WIDGET_NOT_FOUND',
   WIDGET_CONFIG_INVALID = 'WIDGET_CONFIG_INVALID',
-  
+
   // Social
   SOCIAL_GENERATION_FAILED = 'SOCIAL_GENERATION_FAILED',
   SOCIAL_RATE_LIMITED = 'SOCIAL_RATE_LIMITED',
-  
+
   // Email
   EMAIL_SEND_FAILED = 'EMAIL_SEND_FAILED',
   EMAIL_INVALID_RECIPIENT = 'EMAIL_INVALID_RECIPIENT',
   EMAIL_SUBSCRIBER_EXISTS = 'EMAIL_SUBSCRIBER_EXISTS',
-  
+
   // Analytics
   ANALYTICS_TRACK_FAILED = 'ANALYTICS_TRACK_FAILED',
-  
+
   // Roadmap
   ROADMAP_SYNC_FAILED = 'ROADMAP_SYNC_FAILED',
   ROADMAP_ISSUE_NOT_FOUND = 'ROADMAP_ISSUE_NOT_FOUND',
