@@ -60,7 +60,7 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en" suppressHydrationWarning>
-        <body className={`${display.variable} ${sans.variable} ${mono.variable}`}>
+        <body className={`${display.variable} ${sans.variable} ${mono.variable}`} suppressHydrationWarning>
           <ErrorBoundary>
             <ToastProvider>
               <CommandPalette />

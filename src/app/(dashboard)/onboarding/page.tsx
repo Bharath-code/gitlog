@@ -39,12 +39,23 @@ export default function OnboardingPage() {
         const res = await fetch('/api/github/repos');
         if (!res.ok) {
           const data = await res.json();
-          throw new Error(data.error || 'Failed to fetch repos');
+          
+          // If GitHub not connected or needs OAuth, redirect to OAuth flow
+          if (res.status === 400 && data.needsOAuth) {
+            // Show a brief message before redirecting
+            setTimeout(() => {
+              window.location.href = '/api/github/oauth/start';
+            }, 1000);
+            return;
+          }
+          
+          throw new Error(data.error || data.message || 'Failed to fetch repos');
         }
         const data = await res.json();
         setRepos(data.repos);
         setStep(2); // Repos loaded, ready to select
       } catch (err) {
+        console.error('Fetch repos error:', err);
         setError(err instanceof Error ? err.message : 'Failed to load repositories');
       } finally {
         setLoading(false);
@@ -138,20 +149,30 @@ export default function OnboardingPage() {
         {/* Header */}
         <div className="text-center mb-8">
           <div className="mx-auto mb-6 flex h-32 w-32 items-center justify-center">
-            {step === 1 ? (
+            {loading ? (
               <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-accent to-accent/80 shadow-lg shadow-accent-glow/20">
                 <div className="h-6 w-6 animate-spin rounded-full border-2 border-white border-t-transparent" />
+              </div>
+            ) : error ? (
+              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-red-500/10">
+                <div className="h-8 w-8 text-red-500">!</div>
               </div>
             ) : (
               <OnboardingIllustration />
             )}
           </div>
           <h1 className="text-4xl font-bold bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text">
-            {step === 1 ? 'Setting Up Your Account...' : 'Connect Your Repository'}
+            {loading
+              ? 'Setting Up Your Account...'
+              : error
+              ? 'Connection Required'
+              : 'Connect Your Repository'}
           </h1>
           <p className="text-muted mt-2 max-w-md mx-auto">
-            {step === 1
+            {loading
               ? 'Fetching your GitHub repositories...'
+              : error
+              ? 'Redirecting to GitHub OAuth...'
               : 'Select a repository to start auto-generating changelogs from merged PRs.'}
           </p>
         </div>
