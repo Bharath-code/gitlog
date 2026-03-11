@@ -5,10 +5,12 @@ import { useRouter } from 'next/navigation';
 import { useUser } from '@clerk/nextjs';
 import { Card } from '@/shared/components/ui/card';
 import { Button } from '@/shared/components/ui/button';
-import { GitMerge, Search, Check, ExternalLink, Rocket } from 'lucide-react';
+import { GitMerge, Search, Check, ExternalLink } from 'lucide-react';
 import { cn } from '@/shared/lib/utils';
 import { useToast } from '@/shared/hooks/use-toast';
 import confetti from 'canvas-confetti';
+import { OnboardingIllustration } from '@/shared/components/common/illustrations';
+import { GitLogIcon } from '@/shared/components/common/icons';
 
 interface GitHubRepo {
   id: number;
@@ -135,14 +137,16 @@ export default function OnboardingPage() {
 
         {/* Header */}
         <div className="text-center mb-8">
-          <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-accent to-accent/80 shadow-lg shadow-accent-glow/20">
+          <div className="mx-auto mb-6 flex h-32 w-32 items-center justify-center">
             {step === 1 ? (
-              <div className="h-6 w-6 animate-spin rounded-full border-2 border-white border-t-transparent" />
+              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-accent to-accent/80 shadow-lg shadow-accent-glow/20">
+                <div className="h-6 w-6 animate-spin rounded-full border-2 border-white border-t-transparent" />
+              </div>
             ) : (
-              <Rocket className="h-7 w-7 text-white" />
+              <OnboardingIllustration />
             )}
           </div>
-          <h1 className="text-3xl font-bold">
+          <h1 className="text-4xl font-bold bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text">
             {step === 1 ? 'Setting Up Your Account...' : 'Connect Your Repository'}
           </h1>
           <p className="text-muted mt-2 max-w-md mx-auto">
@@ -181,8 +185,8 @@ export default function OnboardingPage() {
             ))}
           </div>
         ) : filteredRepos.length === 0 ? (
-          <Card className="p-12 text-center">
-            <GitMerge className="mx-auto h-12 w-12 text-muted mb-4" />
+          <Card className="p-12 text-center animate-slide-up-fade">
+            <GitLogIcon className="mx-auto h-16 w-16 mb-4 opacity-50" />
             <h3 className="text-lg font-semibold">No repositories found</h3>
             <p className="text-muted mt-2">
               {searchQuery
@@ -202,13 +206,14 @@ export default function OnboardingPage() {
           </Card>
         ) : (
           <div className="space-y-3">
-            {filteredRepos.slice(0, 10).map((repo) => (
+            {filteredRepos.slice(0, 10).map((repo, index) => (
               <Card
                 key={repo.id}
                 className={cn(
-                  'p-4 transition-all hover:border-accent/50 hover:shadow-lg',
+                  'p-4 transition-all hover:border-accent/50 hover:shadow-lg animate-slide-up-fade',
                   connecting === repo.full_name && 'opacity-50'
                 )}
+                style={{ animationDelay: `${index * 50}ms`, animationFillMode: 'both' }}
               >
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">

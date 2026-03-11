@@ -30,7 +30,13 @@ export default function PublishedPage() {
       try {
         const res = await fetch('/api/entries/published');
         const data = await res.json();
-        setEntries(data);
+        // The API returns { entries: [] } but we might get { error: "..." }
+        if (data.entries && Array.isArray(data.entries)) {
+          setEntries(data.entries);
+        } else {
+          setEntries([]);
+          if (data.error) console.error('API Error:', data.error);
+        }
       } catch (error) {
         console.error('Fetch error:', error);
       } finally {

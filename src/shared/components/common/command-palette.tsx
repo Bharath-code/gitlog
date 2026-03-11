@@ -16,6 +16,7 @@ import {
   X,
 } from 'lucide-react';
 import { cn } from '@/shared/lib/utils';
+import { DialogTitle } from '@radix-ui/react-dialog';
 
 const commands = [
   { label: 'Dashboard', href: '/dashboard', icon: LayoutDashboard, shortcut: ['G', 'D'] },
@@ -64,6 +65,7 @@ export function CommandPalette() {
         open ? 'opacity-100' : 'opacity-0 pointer-events-none'
       )}
     >
+      <DialogTitle className="sr-only">Command Palette</DialogTitle>
       <div className="fixed left-[50%] top-[20%] z-50 w-full max-w-xl translate-x-[-50%] rounded-xl border border-line bg-surface shadow-2xl">
         {/* Header */}
         <div className="flex items-center border-b border-line px-4 py-3">
