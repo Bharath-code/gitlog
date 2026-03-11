@@ -1,5 +1,5 @@
 import { SignIn } from '@clerk/nextjs';
-import { GitMerge } from 'lucide-react';
+import { GitMerge, Github } from 'lucide-react';
 
 export default function SignInPage() {
   return (
@@ -11,6 +11,22 @@ export default function SignInPage() {
           </div>
           <h1 className="text-2xl font-bold">Welcome to GitLog</h1>
           <p className="mt-2 text-muted">Auto-generate changelogs from your GitHub PRs</p>
+        </div>
+
+        {/* GitHub OAuth Callout */}
+        <div className="rounded-lg border border-accent/20 bg-accent/5 p-4">
+          <div className="flex items-start gap-3">
+            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-accent/10 flex-shrink-0">
+              <Github className="h-5 w-5 text-accent" />
+            </div>
+            <div className="text-left">
+              <h3 className="font-semibold text-sm">Sign in with GitHub</h3>
+              <p className="text-xs text-muted mt-1">
+                GitHub sign-in is required to access your repositories and auto-generate changelogs
+                from PRs.
+              </p>
+            </div>
+          </div>
         </div>
 
         <SignIn
@@ -29,6 +45,8 @@ export default function SignInPage() {
               formFieldInput: 'bg-surface-highlight border-line text-foreground',
               formButtonPrimary: 'bg-accent hover:bg-accent/90',
               footerActionLink: 'text-accent hover:text-accent/90',
+              // Make GitHub button more prominent
+              socialButtonsBlockButtonArrow: 'text-foreground',
             },
           }}
           routing="path"

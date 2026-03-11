@@ -193,7 +193,7 @@ export default function DraftsPage() {
               Merge a PR on GitHub and it will appear here as a draft within 30 seconds.
             </p>
             <Link
-              href="/dashboard/settings"
+              href="/settings"
               className="inline-flex items-center rounded-md bg-accent px-4 py-2 text-sm font-semibold text-white hover:bg-accent/90 mt-4"
             >
               Connect Repository

@@ -73,7 +73,7 @@ export function useKeyboardShortcuts() {
             break;
           case 's':
             e.preventDefault();
-            router.push('/dashboard/settings');
+            router.push('/settings');
             break;
           case 'h':
             e.preventDefault();

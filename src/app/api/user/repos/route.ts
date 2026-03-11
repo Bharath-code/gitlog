@@ -3,7 +3,9 @@ import { NextResponse } from 'next/server';
 import { kv } from '@vercel/kv';
 import { getConnectedRepos } from '@/shared/lib/db/repo';
 
-// GET /api/user/repos - Get connected repos
+/**
+ * Get user's connected repositories
+ */
 export async function GET() {
   try {
     const user = await currentUser();
@@ -12,9 +14,10 @@ export async function GET() {
     }
 
     const repos = await getConnectedRepos(user.id);
+
     return NextResponse.json({ repos });
   } catch (error) {
-    console.error('Fetch repos error:', error);
+    console.error('Error fetching connected repos:', error);
     return NextResponse.json({ error: 'Failed to fetch repositories' }, { status: 500 });
   }
 }

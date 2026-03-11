@@ -138,7 +138,7 @@ export function SiteSidebar() {
             <span className="font-mono text-xs uppercase tracking-wider text-muted">
               Connected Repos
             </span>
-            <Link href="/dashboard/settings" className="text-muted hover:text-foreground">
+            <Link href="/settings" className="text-muted hover:text-foreground">
               <Settings className="h-3.5 w-3.5" />
             </Link>
           </div>

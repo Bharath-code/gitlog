@@ -83,7 +83,7 @@ export function NoDraftsEmpty() {
       description="Merge a PR on GitHub and it'll appear here within 30 seconds. Your first draft is just a merge away!"
       action={{
         label: 'Connect GitHub',
-        href: '/dashboard/settings',
+        href: '/settings',
       }}
       secondaryAction={{
         label: 'How to Connect',
@@ -171,7 +171,7 @@ export function NoEmailSubscribersEmpty() {
       description="Share your subscription link to start building your email list. First subscriber is just a share away!"
       action={{
         label: 'Get Subscription Link',
-        href: '/dashboard/settings',
+        href: '/settings',
       }}
     />
   );

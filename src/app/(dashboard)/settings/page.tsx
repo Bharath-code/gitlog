@@ -9,6 +9,7 @@ import { Trash2, Plus, ExternalLink, CreditCard, GitMerge, Search } from 'lucide
 import Link from 'next/link';
 import { SettingsTabs, SettingsTab } from '@/shared/components/settings/settings-tabs';
 import { PublishingSettingsTab } from '@/shared/components/settings/publishing-settings';
+import GitHubSettings from '@/features/settings/github-settings';
 
 interface Repo {
   id: string;
@@ -105,72 +106,10 @@ export default function SettingsPage() {
           <div className="p-6">
             {activeTab === 'general' && (
               <div className="space-y-6">
-                {/* Search Repos */}
-                <div className="relative">
-                  <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted" />
-                  <input
-                    type="text"
-                    placeholder="Search repositories..."
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full rounded-lg border border-line bg-surface pl-10 pr-4 py-2 text-sm"
-                  />
-                </div>
-
-                {/* Connected Repositories */}
+                {/* GitHub Integration Settings */}
                 <div>
-                  <div className="flex items-center justify-between mb-4">
-                    <h2 className="text-xl font-semibold">Connected Repositories</h2>
-                    <Link href="/onboarding">
-                      <Button variant="outline" size="sm">
-                        <Plus className="h-4 w-4 mr-2" />
-                        Connect New
-                      </Button>
-                    </Link>
-                  </div>
-
-                  {repos.length === 0 ? (
-                    <Card className="p-12 text-center">
-                      <GitMerge className="h-12 w-12 mx-auto text-muted mb-4 opacity-50" />
-                      <h3 className="text-lg font-semibold">No repositories connected</h3>
-                      <p className="text-muted mt-2">
-                        Connect your first repository to get started
-                      </p>
-                      <Link href="/onboarding">
-                        <Button className="mt-4">Connect Repository</Button>
-                      </Link>
-                    </Card>
-                  ) : (
-                    <div className="space-y-3">
-                      {filteredRepos.map((repo) => (
-                        <Card key={repo.id} className="flex items-center justify-between p-4">
-                          <div className="flex items-center gap-3">
-                            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-accent/10">
-                              <GitMerge className="h-5 w-5 text-accent" />
-                            </div>
-                            <div>
-                              <div className="flex items-center gap-2">
-                                <span className="font-semibold">{repo.name}</span>
-                                {repo.private && <Badge variant="secondary">Private</Badge>}
-                              </div>
-                              <span className="text-sm text-muted">
-                                Connected {new Date(repo.connectedAt).toLocaleDateString()}
-                              </span>
-                            </div>
-                          </div>
-
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            onClick={() => handleDisconnect(repo.id)}
-                          >
-                            <Trash2 className="h-4 w-4 mr-2" />
-                            Disconnect
-                          </Button>
-                        </Card>
-                      ))}
-                    </div>
-                  )}
+                  <h2 className="text-xl font-semibold mb-4">GitHub Integration</h2>
+                  <GitHubSettings />
                 </div>
 
                 {/* Account Settings */}
@@ -225,7 +164,7 @@ export default function SettingsPage() {
               <div className="text-center py-12">
                 <h3 className="text-lg font-semibold">API Keys</h3>
                 <p className="text-muted mt-2">Manage your API keys and access tokens</p>
-                <Link href="/dashboard/settings/api-keys">
+                <Link href="/settings/api-keys">
                   <Button className="mt-4">Manage API Keys</Button>
                 </Link>
               </div>

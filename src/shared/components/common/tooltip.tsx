@@ -21,7 +21,7 @@ export function Tooltip({ content, children, side = 'top', className }: TooltipP
   };
 
   return (
-    <div
+    <span
       className="relative inline-block"
       onMouseEnter={() => setIsVisible(true)}
       onMouseLeave={() => setIsVisible(false)}
@@ -53,6 +53,6 @@ export function Tooltip({ content, children, side = 'top', className }: TooltipP
           )}
         </div>
       )}
-    </div>
+    </span>
   );
 }

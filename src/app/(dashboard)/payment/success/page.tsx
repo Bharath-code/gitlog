@@ -93,7 +93,7 @@ function PaymentSuccessContent() {
             </Button>
           </Link>
 
-          <Link href="/dashboard/settings">
+          <Link href="/settings">
             <Button variant="outline" className="w-full">
               Manage Subscription
             </Button>

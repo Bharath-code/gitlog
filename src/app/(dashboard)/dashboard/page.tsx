@@ -62,7 +62,7 @@ export default async function DashboardPage() {
             description="Merge a PR on GitHub and it will appear here as a draft within 30 seconds."
             action={
               <a
-                href="/dashboard/settings"
+                href="/settings"
                 className="inline-flex items-center rounded-md bg-accent px-4 py-2 text-sm font-semibold text-white hover:bg-accent/90"
               >
                 Connect Repository

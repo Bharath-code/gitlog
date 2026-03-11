@@ -104,7 +104,7 @@ export default function SearchPage() {
             <p className="text-muted mt-2">
               Connect a repository and merge your first PR to get started
             </p>
-            <Link href="/dashboard/settings">
+            <Link href="/settings">
               <Button className="mt-4 bg-accent hover:bg-accent/90">Connect Repository</Button>
             </Link>
           </Card>
