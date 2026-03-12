@@ -2,14 +2,14 @@
 @source "../";
 
 :root {
-  /* Premium Dark Theme (Default) */
+  /* ── Palette: Dark (default) ── */
   --background: #0a0a0b;
   --foreground: #fafafa;
   --surface: #141416;
   --surface-elevated: #1a1a1d;
   --surface-highlight: #222226;
-  --muted: #8a8a92;
-  --muted-strong: #a1a1aa;
+  --muted: #a1a1ab;
+  --muted-strong: #b4b4be;
   --line: rgba(255, 255, 255, 0.06);
   --line-strong: rgba(255, 255, 255, 0.12);
   --accent: #ff6b35;
@@ -17,24 +17,56 @@
   --accent-soft: rgba(255, 107, 53, 0.1);
   --success: #10b981;
   --success-glow: rgba(16, 185, 129, 0.3);
+  --warning: #f59e0b;
+  --danger: #ef4444;
   --purple: #8b5cf6;
   --purple-glow: rgba(139, 92, 246, 0.25);
   --blue: #3b82f6;
   --blue-glow: rgba(59, 130, 246, 0.25);
 
-  /* Shadows */
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
-  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.4);
-  --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.5);
-  --shadow-xl: 0 24px 80px rgba(0, 0, 0, 0.6);
-  --glow-accent: 0 0 80px rgba(255, 107, 53, 0.15);
+  /* ── Shadows ── */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.24);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.32);
+  --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.4);
+  --shadow-xl: 0 20px 64px rgba(0, 0, 0, 0.48);
+  --glow-accent: 0 0 60px rgba(255, 107, 53, 0.12);
 
-  /* Radius */
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 16px;
-  --radius-xl: 24px;
-  --radius-2xl: 32px;
+  /* ── Radius (4px base) ── */
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 24px;
+
+  /* ── Typography Scale ── */
+  --text-xs: 0.75rem;
+  --text-sm: 0.8125rem;
+  --text-base: 0.875rem;
+  --text-lg: 1rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 2rem;
+  --text-4xl: 2.5rem;
+  --text-5xl: 3.5rem;
+  --leading-tight: 1.2;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.65;
+
+  /* ── Spacing (4px base grid) ── */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+
+  /* ── Focus ring ── */
+  --ring: var(--accent);
+  --ring-offset: var(--background);
 }
 
 /* Light Mode */
@@ -99,10 +131,12 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans), sans-serif;
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 /* Subtle gradient background */
@@ -112,36 +146,19 @@ body::before {
   z-index: -1;
   content: "";
   background:
-    radial-gradient(circle at 15% 50%, rgba(255, 107, 53, 0.08), transparent 25%),
-    radial-gradient(circle at 85% 30%, rgba(139, 92, 246, 0.06), transparent 25%),
-    radial-gradient(circle at 50% 80%, rgba(59, 130, 246, 0.05), transparent 30%);
-  filter: blur(60px);
-  transition: opacity 0.3s ease;
+    radial-gradient(circle at 15% 50%, rgba(255, 107, 53, 0.05), transparent 25%),
+    radial-gradient(circle at 85% 30%, rgba(139, 92, 246, 0.04), transparent 25%),
+    radial-gradient(circle at 50% 80%, rgba(59, 130, 246, 0.03), transparent 30%);
+  filter: blur(80px);
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
 }
 
 [data-theme="light"] body::before {
   opacity: 0.5;
 }
 
-/* Grid overlay */
-body::after {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  content: "";
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-  background-size: 80px 80px;
-  mask-image: radial-gradient(ellipse at center, black 20%, transparent 80%);
-  pointer-events: none;
-}
-
-[data-theme="light"] body::after {
-  background-image:
-    linear-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
-}
+/* Grid overlay removed — visual noise that adds no information */
 
 a {
   color: inherit;
@@ -154,11 +171,26 @@ a:hover {
   color: var(--accent);
 }
 
-button,
-input,
-textarea {
+button {
   font: inherit;
   cursor: pointer;
+}
+
+input,
+textarea,
+select {
+  font: inherit;
+  cursor: text;
+}
+
+/* ── Focus visible — accessible keyboard navigation ── */
+:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
 }
 
 ::selection {
@@ -885,18 +917,10 @@ button:active {
   animation: float 6s ease-in-out infinite;
 }
 
-.animate-pulse-glow {
-  animation: pulse-glow 3s ease-in-out infinite;
-}
-
 .animate-shimmer {
   background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
   background-size: 200% 100%;
   animation: shimmer 2s infinite;
-}
-
-.animate-spin-slow {
-  animation: spin-slow 20s linear infinite;
 }
 
 /* ========== Responsive ========== */

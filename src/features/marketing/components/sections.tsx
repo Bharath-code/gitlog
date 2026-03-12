@@ -748,43 +748,42 @@ export function FinalCtaSection() {
           <div className="space-y-6">
             <span className="eyebrow">
               <span className="h-2 w-2 rounded-full bg-accent animate-pulse" />
-              Beta access
+              Get started free
             </span>
             <h2 className="font-display text-5xl leading-tight tracking-tight text-foreground sm:text-6xl">
               Stop writing the same release twice.
             </h2>
             <p className="body-balance max-w-xl text-lg leading-relaxed text-muted">
-              Join the first group of founders using GitLog to turn merged PRs into a public
+              Join founders using GitLog to turn merged PRs into a public
               changelog that stays current without extra work.
             </p>
           </div>
 
           <div className="cta-card hover-lift">
             <div className="font-mono text-[10px] uppercase tracking-widest text-muted">
-              Request access
+              Free to start
             </div>
             <h3 className="mt-3 text-2xl font-semibold text-foreground">
-              Get invited before launch.
+              Your changelog in 2 minutes.
             </h3>
             <p className="mt-3 text-sm leading-relaxed text-muted">
-              The current CTA uses email. Replace with Clerk, a waitlist form, or full onboarding
-              later.
+              Sign up, connect a GitHub repo, and publish your first changelog entry. No credit card required.
             </p>
 
             <div className="mt-6 flex flex-col gap-3">
-              <Link href={siteConfig.links.waitlist}>
+              <Link href="/sign-up">
                 <Button className="w-full hover-lift" size="lg">
-                  Email for beta access
+                  Sign up free
                   <ArrowRight className="h-4 w-4" />
                 </Button>
               </Link>
-              <Link href={siteConfig.links.contact}>
+              <Link href="/sign-in">
                 <Button
-                  className="w-full bg-surface-highlight text-foreground hover:bg-surface-elevated hover-lift"
+                  className="w-full"
                   size="lg"
                   variant="secondary"
                 >
-                  Ask a question
+                  Already have an account? Sign in
                 </Button>
               </Link>
             </div>

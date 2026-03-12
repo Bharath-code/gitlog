@@ -2,6 +2,13 @@
 
 import { useEffect, useState, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from '@/shared/components/ui/dialog';
 
 interface Shortcut {
   keys: string[];
@@ -18,10 +25,8 @@ const shortcuts: Shortcut[] = [
   { keys: ['G', 'H'], description: 'Go to Dashboard', category: 'navigation' },
 
   // Actions
-  { keys: ['Cmd', 'K'], description: 'Search', category: 'actions' },
+  { keys: ['⌘', 'K'], description: 'Search', category: 'actions' },
   { keys: ['N'], description: 'New Draft (manual)', category: 'actions' },
-  { keys: ['P'], description: 'Publish Selected', category: 'actions' },
-  { keys: ['D'], description: 'Delete Selected', category: 'actions' },
   { keys: ['R'], description: 'AI Rewrite', category: 'actions' },
 
   // General
@@ -35,7 +40,6 @@ export function useKeyboardShortcuts() {
   const [waitingForSecondKey, setWaitingForSecondKey] = useState(false);
   const [isInputFocused, setIsInputFocused] = useState(false);
 
-  // Track if input is focused (don't trigger shortcuts when typing)
   useEffect(() => {
     const handleFocusIn = () => {
       const activeElement = document.activeElement;
@@ -53,10 +57,7 @@ export function useKeyboardShortcuts() {
 
   const handleKeyDown = useCallback(
     (e: KeyboardEvent) => {
-      // Don't trigger shortcuts when typing in inputs
-      if (isInputFocused && e.key !== 'Escape') {
-        return;
-      }
+      if (isInputFocused && e.key !== 'Escape') return;
 
       // Handle G + [key] navigation
       if (waitingForSecondKey) {
@@ -65,11 +66,11 @@ export function useKeyboardShortcuts() {
         switch (e.key.toLowerCase()) {
           case 'd':
             e.preventDefault();
-            router.push('/dashboard/drafts');
+            router.push('/drafts');
             break;
           case 'p':
             e.preventDefault();
-            router.push('/dashboard/published');
+            router.push('/published');
             break;
           case 's':
             e.preventDefault();
@@ -86,13 +87,10 @@ export function useKeyboardShortcuts() {
       // Cmd/Ctrl + K: Search
       if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
         e.preventDefault();
-        // Trigger search - you can implement this based on your search component
         const searchInput = document.querySelector(
           'input[type="text"][placeholder*="Search"]'
         ) as HTMLInputElement;
-        if (searchInput) {
-          searchInput.focus();
-        }
+        if (searchInput) searchInput.focus();
         return;
       }
 
@@ -103,49 +101,12 @@ export function useKeyboardShortcuts() {
         return;
       }
 
-      // Esc: Close modals
-      if (e.key === 'Escape') {
-        e.preventDefault();
-        setShowShortcuts(false);
-        // Close any open modals
-        const closeButtons = document.querySelectorAll('[data-state="open"]');
-        closeButtons.forEach((btn) => (btn as HTMLElement).click());
-        return;
-      }
-
       // G: Start navigation sequence
       if (e.key.toLowerCase() === 'g' && !isInputFocused) {
         e.preventDefault();
         setWaitingForSecondKey(true);
-        // Reset after 1 second if no second key pressed
         setTimeout(() => setWaitingForSecondKey(false), 1000);
         return;
-      }
-
-      // Single key shortcuts (only when not waiting for second key)
-      if (!waitingForSecondKey && !isInputFocused) {
-        switch (e.key.toLowerCase()) {
-          case 'n':
-            // New draft - implement based on your app
-            e.preventDefault();
-            console.log('New draft shortcut triggered');
-            break;
-          case 'p':
-            // Publish selected - implement based on your app
-            e.preventDefault();
-            console.log('Publish selected shortcut triggered');
-            break;
-          case 'd':
-            // Delete selected - implement based on your app
-            e.preventDefault();
-            console.log('Delete selected shortcut triggered');
-            break;
-          case 'r':
-            // AI rewrite - implement based on your app
-            e.preventDefault();
-            console.log('AI rewrite shortcut triggered');
-            break;
-        }
       }
     },
     [waitingForSecondKey, isInputFocused, router]
@@ -156,14 +117,10 @@ export function useKeyboardShortcuts() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [handleKeyDown]);
 
-  return {
-    showShortcuts,
-    setShowShortcuts,
-    shortcuts,
-  };
+  return { showShortcuts, setShowShortcuts, shortcuts };
 }
 
-// Modal component to display shortcuts
+// ── Shortcuts Dialog ──
 export function KeyboardShortcutsModal({
   isOpen,
   onClose,
@@ -171,8 +128,6 @@ export function KeyboardShortcutsModal({
   isOpen: boolean;
   onClose: () => void;
 }) {
-  if (!isOpen) return null;
-
   const categories = {
     navigation: 'Navigation',
     actions: 'Actions',
@@ -180,51 +135,37 @@ export function KeyboardShortcutsModal({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
-      <div className="w-full max-w-2xl rounded-xl border border-line bg-surface shadow-2xl">
-        {/* Header */}
-        <div className="flex items-center justify-between p-4 border-b border-line">
-          <h2 className="text-xl font-bold">Keyboard Shortcuts</h2>
-          <button
-            onClick={onClose}
-            className="p-2 rounded-lg hover:bg-surface-highlight transition-colors"
-          >
-            <span className="sr-only">Close</span>
-            <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
-          </button>
-        </div>
+    <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
+      <DialogContent className="max-w-lg bg-surface border-line">
+        <DialogHeader>
+          <DialogTitle>Keyboard Shortcuts</DialogTitle>
+          <DialogDescription className="text-muted">
+            Navigate faster with these shortcuts.
+          </DialogDescription>
+        </DialogHeader>
 
-        {/* Content */}
-        <div className="p-4 space-y-6 max-h-[60vh] overflow-y-auto">
+        <div className="space-y-5 max-h-[50vh] overflow-y-auto py-2">
           {Object.entries(categories).map(([category, label]) => {
-            const categoryShortcuts = shortcuts.filter((s) => s.category === category);
-
+            const items = shortcuts.filter((s) => s.category === category);
             return (
               <div key={category}>
-                <h3 className="text-sm font-semibold text-muted uppercase tracking-wider mb-3">
+                <h3 className="text-xs font-semibold text-muted uppercase tracking-wider mb-2">
                   {label}
                 </h3>
-                <div className="grid gap-2 md:grid-cols-2">
-                  {categoryShortcuts.map((shortcut, index) => (
+                <div className="space-y-1.5">
+                  {items.map((shortcut, i) => (
                     <div
-                      key={index}
-                      className="flex items-center justify-between p-3 rounded-lg bg-surface-highlight"
+                      key={i}
+                      className="flex items-center justify-between py-2 px-3 rounded-md bg-surface-highlight"
                     >
-                      <span className="text-sm text-foreground">{shortcut.description}</span>
+                      <span className="text-sm">{shortcut.description}</span>
                       <div className="flex items-center gap-1">
-                        {shortcut.keys.map((key, keyIndex) => (
+                        {shortcut.keys.map((key, ki) => (
                           <kbd
-                            key={keyIndex}
-                            className="px-2 py-1 text-xs font-mono rounded-md bg-background border border-line shadow-sm min-w-[28px] text-center"
+                            key={ki}
+                            className="px-1.5 py-0.5 text-[11px] font-mono rounded border border-line bg-background shadow-sm min-w-[24px] text-center"
                           >
-                            {key === 'Cmd' ? '⌘' : key === 'Ctrl' ? '⌃' : key === 'Esc' ? '⎋' : key}
+                            {key}
                           </kbd>
                         ))}
                       </div>
@@ -236,22 +177,21 @@ export function KeyboardShortcutsModal({
           })}
         </div>
 
-        {/* Footer */}
-        <div className="p-4 border-t border-line bg-surface-highlight rounded-b-xl">
-          <p className="text-xs text-muted text-center">
+        <div className="pt-3 border-t border-line text-center">
+          <p className="text-xs text-muted">
             Press{' '}
-            <kbd className="px-2 py-1 text-xs font-mono rounded-md bg-background border border-line">
+            <kbd className="px-1.5 py-0.5 text-[11px] font-mono rounded border border-line bg-background">
               ?
             </kbd>{' '}
-            to toggle this help
+            to toggle
           </p>
         </div>
-      </div>
-    </div>
+      </DialogContent>
+    </Dialog>
   );
 }
 
-// Wrapper component to add keyboard shortcuts to any page
+// Provider wrapper
 export function KeyboardShortcutsProvider({ children }: { children: React.ReactNode }) {
   const { showShortcuts, setShowShortcuts } = useKeyboardShortcuts();
 
@@ -262,3 +202,4 @@ export function KeyboardShortcutsProvider({ children }: { children: React.ReactN
     </>
   );
 }
+

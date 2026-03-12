@@ -11,6 +11,8 @@ import { BulkActions } from '@/shared/components/common/bulk-actions';
 import { Tooltip } from '@/shared/components/common/tooltip';
 import { Info } from 'lucide-react';
 import { ExportChangelog } from '@/shared/components/common/export-changelog';
+import { SkeletonList } from '@/shared/components/ui/skeleton';
+import { EmptyPublished } from '@/features/dashboard/components/empty-state';
 
 interface PublishedEntry {
   id: string;
@@ -111,12 +113,7 @@ export default function PublishedPage() {
     return (
       <div className="min-h-screen bg-background p-6">
         <div className="max-w-6xl mx-auto space-y-6">
-          <div className="h-8 w-48 bg-surface-highlight rounded animate-pulse" />
-          <div className="space-y-3">
-            {[1, 2, 3].map((i) => (
-              <div key={i} className="h-32 bg-surface rounded-xl animate-pulse" />
-            ))}
-          </div>
+          <SkeletonList count={4} />
         </div>
       </div>
     );
@@ -151,14 +148,7 @@ export default function PublishedPage() {
         </div>
 
         {entries.length === 0 ? (
-          <Card className="p-12 text-center">
-            <FileText className="h-12 w-12 mx-auto text-muted mb-4" />
-            <h3 className="text-lg font-semibold">No published entries yet</h3>
-            <p className="text-muted mt-2">Publish your first draft to see it here</p>
-            <Link href="/dashboard">
-              <Button className="mt-4 bg-accent hover:bg-accent/90">Go to Dashboard</Button>
-            </Link>
-          </Card>
+          <EmptyPublished />
         ) : (
           <div className="space-y-6">
             {/* Bulk Actions */}

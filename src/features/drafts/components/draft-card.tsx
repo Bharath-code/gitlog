@@ -4,7 +4,13 @@ import { useState } from 'react';
 import { Card } from '@/shared/components/ui/card';
 import { Button } from '@/shared/components/ui/button';
 import { Badge } from '@/shared/components/ui/badge';
-import { Sparkles, Edit, Check, Trash, ExternalLink, Eye } from 'lucide-react';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/shared/components/ui/dropdown-menu';
+import { Sparkles, Edit, Check, Eye, MoreHorizontal, Loader2 } from 'lucide-react';
 import { cn, timeAgo } from '@/shared/lib/utils';
 import { useRouter } from 'next/navigation';
 import { useToast } from '@/shared/hooks/use-toast';
@@ -27,7 +33,6 @@ export function DraftCard({ draft }: DraftCardProps) {
   const [rewriting, setRewriting] = useState(false);
   const [publishing, setPublishing] = useState(false);
   const [aiRewrite, setAiRewrite] = useState(draft.aiRewrite);
-  const [showPreview, setShowPreview] = useState(false);
 
   const handleRewrite = async () => {
     setRewriting(true);
@@ -42,10 +47,10 @@ export function DraftCard({ draft }: DraftCardProps) {
 
       const data = await res.json();
       setAiRewrite(data.aiRewrite);
-      success('AI rewrite generated! ✨');
+      success('AI rewrite generated');
     } catch (err) {
       console.error('Rewrite error:', err);
-      error('Failed to generate AI rewrite. Please try again.');
+      error('Failed to generate AI rewrite');
     } finally {
       setRewriting(false);
     }
@@ -62,23 +67,21 @@ export function DraftCard({ draft }: DraftCardProps) {
 
       if (!res.ok) throw new Error('Failed to publish');
 
-      // Celebrate! 🎉
       confetti({
-        particleCount: 100,
-        spread: 70,
+        particleCount: 80,
+        spread: 60,
         origin: { y: 0.6 },
         colors: ['#ff6b35', '#22c55e', '#3b82f6'],
       });
 
-      success('Published! Your users can see this now 🎉');
+      success('Published — your users can see this now');
 
-      // Animate to published
       setTimeout(() => {
         router.refresh();
-      }, 800);
+      }, 600);
     } catch (err) {
       console.error('Publish error:', err);
-      error('Failed to publish. Please try again.');
+      error('Failed to publish');
     } finally {
       setPublishing(false);
     }
@@ -87,89 +90,77 @@ export function DraftCard({ draft }: DraftCardProps) {
   return (
     <Card
       className={cn(
-        'group p-4 transition-all duration-300 hover-lift',
-        'border-line bg-surface hover:border-accent/50 hover:shadow-lg hover:shadow-accent-glow/5'
+        'group p-4 transition-colors',
+        'border-line bg-surface hover:border-line-strong'
       )}
     >
-      <div className="flex items-start justify-between gap-4">
-        <div className="flex-1 space-y-3">
-          <div className="flex items-center gap-2 flex-wrap">
+      <div className="flex items-center justify-between gap-4">
+        {/* Left: content */}
+        <div className="flex-1 min-w-0 space-y-1.5">
+          <div className="flex items-center gap-2">
             <Badge variant={draft.category === 'New' ? 'default' : 'secondary'}>
               {draft.category}
             </Badge>
-            <h3 className="font-semibold text-lg">{draft.title}</h3>
+            <h3 className="font-medium text-sm truncate">{draft.title}</h3>
           </div>
 
           {aiRewrite ? (
-            <p className="text-muted text-sm leading-relaxed">{aiRewrite}</p>
+            <p className="text-muted text-xs leading-relaxed line-clamp-2">{aiRewrite}</p>
           ) : (
-            <div className="flex items-center gap-2 text-sm text-muted">
-              <Sparkles className="h-3.5 w-3.5" />
-              <span>AI rewrite not generated yet</span>
+            <div className="flex items-center gap-1.5 text-xs text-muted">
+              <Sparkles className="h-3 w-3" />
+              <span>No AI rewrite yet</span>
             </div>
           )}
 
-          <div className="flex items-center gap-4 text-xs text-muted">
+          <div className="flex items-center gap-3 text-xs text-muted">
             <span>{timeAgo(draft.mergedAt)}</span>
-            {draft.repoId && (
-              <span className="flex items-center gap-1">
-                <ExternalLink className="h-3 w-3" />
-                {draft.repoId}
-              </span>
-            )}
+            {draft.repoId && <span className="truncate">{draft.repoId}</span>}
           </div>
         </div>
 
-        <div className="flex flex-col gap-2">
-          <Button
-            variant="secondary"
-            size="sm"
-            onClick={handleRewrite}
-            disabled={rewriting}
-            className="gap-1"
-          >
-            <Sparkles className={cn('h-3.5 w-3.5', rewriting && 'animate-spin')} />
-            {rewriting ? 'Writing...' : 'Rewrite'}
-          </Button>
-
-          <Button
-            variant="outline"
-            size="sm"
-            className="gap-1"
-            onClick={() => setShowPreview(true)}
-          >
-            <Eye className="h-3.5 w-3.5" />
-            Preview
-          </Button>
-
-          <Button
-            variant="outline"
-            size="sm"
-            className="gap-1"
-            onClick={() => router.push(`/dashboard/drafts/${draft.id}`)}
-          >
-            <Edit className="h-3.5 w-3.5" />
-            Edit
-          </Button>
-
+        {/* Right: actions */}
+        <div className="flex items-center gap-2 flex-shrink-0">
           <Button
             size="sm"
-            className="gap-1 bg-accent hover:bg-accent/90"
             onClick={handlePublish}
             disabled={publishing}
+            className="gap-1.5"
           >
             {publishing ? (
               <>
-                <div className="h-3.5 w-3.5 animate-spin rounded-full border-2 border-white border-t-transparent" />
-                Publishing...
+                <Loader2 className="h-3.5 w-3.5 animate-spin" />
+                <span className="hidden sm:inline">Publishing...</span>
               </>
             ) : (
               <>
                 <Check className="h-3.5 w-3.5" />
-                Publish
+                <span className="hidden sm:inline">Publish</span>
               </>
             )}
           </Button>
+
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" size="icon" aria-label="More actions">
+                <MoreHorizontal className="h-4 w-4" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuItem onClick={handleRewrite} disabled={rewriting}>
+                <Sparkles className={cn('h-4 w-4 mr-2', rewriting && 'animate-spin')} />
+                {rewriting ? 'Rewriting...' : 'AI Rewrite'}
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => router.push(`/dashboard/drafts/${draft.id}`)}>
+                <Edit className="h-4 w-4 mr-2" />
+                Edit
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <Eye className="h-4 w-4 mr-2" />
+                Preview
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
       </div>
     </Card>

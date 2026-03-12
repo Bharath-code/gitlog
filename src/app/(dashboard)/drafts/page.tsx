@@ -4,9 +4,12 @@ import { useState, useEffect } from 'react';
 import { Card } from '@/shared/components/ui/card';
 import { Button } from '@/shared/components/ui/button';
 import { Badge } from '@/shared/components/ui/badge';
+import { Input } from '@/shared/components/ui/input';
 import { FileText, Search, Filter, Edit, Check } from 'lucide-react';
 import Link from 'next/link';
 import { BulkActions } from '@/shared/components/common/bulk-actions';
+import { SkeletonList } from '@/shared/components/ui/skeleton';
+import { EmptyDrafts } from '@/features/dashboard/components/empty-state';
 
 interface Draft {
   id: string;
@@ -89,12 +92,7 @@ export default function DraftsPage() {
     return (
       <div className="min-h-screen bg-background p-6">
         <div className="max-w-6xl mx-auto space-y-6">
-          <div className="h-8 w-48 bg-surface-highlight rounded animate-pulse" />
-          <div className="space-y-3">
-            {[1, 2, 3].map((i) => (
-              <div key={i} className="h-32 bg-surface rounded-xl animate-pulse" />
-            ))}
-          </div>
+          <SkeletonList count={4} />
         </div>
       </div>
     );
@@ -129,12 +127,12 @@ export default function DraftsPage() {
           <div className="flex items-center gap-4 flex-wrap">
             <div className="relative flex-1 min-w-64">
               <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted" />
-              <input
+              <Input
                 type="text"
                 placeholder="Search drafts..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full rounded-lg border border-line bg-surface pl-10 pr-4 py-2 text-sm text-foreground placeholder:text-muted focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
+                className="pl-10"
               />
             </div>
 
@@ -185,21 +183,7 @@ export default function DraftsPage() {
         )}
 
         {/* Empty State */}
-        {drafts.length === 0 && (
-          <Card className="p-12 text-center">
-            <FileText className="h-12 w-12 mx-auto text-muted mb-4 opacity-50" />
-            <h3 className="text-lg font-semibold">No drafts yet</h3>
-            <p className="text-muted mt-2">
-              Merge a PR on GitHub and it will appear here as a draft within 30 seconds.
-            </p>
-            <Link
-              href="/settings"
-              className="inline-flex items-center rounded-md bg-accent px-4 py-2 text-sm font-semibold text-white hover:bg-accent/90 mt-4"
-            >
-              Connect Repository
-            </Link>
-          </Card>
-        )}
+        {drafts.length === 0 && <EmptyDrafts />}
       </div>
     </div>
   );

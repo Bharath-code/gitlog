@@ -5,6 +5,7 @@ import { useUser } from '@clerk/nextjs';
 import { Card } from '@/shared/components/ui/card';
 import { Button } from '@/shared/components/ui/button';
 import { Badge } from '@/shared/components/ui/badge';
+import { Input } from '@/shared/components/ui/input';
 import { Trash2, Plus, ExternalLink, CreditCard, GitMerge, Search } from 'lucide-react';
 import Link from 'next/link';
 import { SettingsTabs, SettingsTab } from '@/shared/components/settings/settings-tabs';
@@ -118,12 +119,12 @@ export default function SettingsPage() {
                   <Card className="p-6">
                     <div className="space-y-4">
                       <div>
-                        <label className="block text-sm font-medium mb-2">Email</label>
-                        <input
+                        <label htmlFor="settings-email" className="block text-sm font-medium mb-2">Email</label>
+                        <Input
+                          id="settings-email"
                           type="email"
                           value={user?.emailAddresses[0]?.emailAddress || ''}
                           readOnly
-                          className="w-full rounded-lg border border-line bg-surface-highlight px-3 py-2 text-sm"
                         />
                       </div>
 
@@ -137,7 +138,7 @@ export default function SettingsPage() {
                             </span>
                           </div>
                           {plan === 'free' && (
-                            <Link href="/dashboard/upgrade">
+                            <Link href="/upgrade">
                               <Button size="sm">Upgrade to Pro</Button>
                             </Link>
                           )}

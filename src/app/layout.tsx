@@ -4,7 +4,7 @@ import { ClerkProvider } from '@clerk/nextjs';
 import { Analytics } from '@vercel/analytics/react';
 
 import { siteConfig } from '@/shared/config/site';
-import { ToastProvider } from '@/shared/components/common/toast';
+import { Toaster } from '@/shared/components/ui/sonner';
 import { ErrorBoundary } from '@/shared/components/common/error-boundary';
 import { CommandPalette } from '@/shared/components/common/command-palette';
 
@@ -62,14 +62,14 @@ export default function RootLayout({
       <html lang="en" suppressHydrationWarning>
         <body className={`${display.variable} ${sans.variable} ${mono.variable}`} suppressHydrationWarning>
           <ErrorBoundary>
-            <ToastProvider>
-              <CommandPalette />
-              {children}
-              <Analytics />
-            </ToastProvider>
+            <CommandPalette />
+            {children}
+            <Toaster />
+            <Analytics />
           </ErrorBoundary>
         </body>
       </html>
     </ClerkProvider>
   );
 }
+

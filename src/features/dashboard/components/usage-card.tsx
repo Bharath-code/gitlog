@@ -72,7 +72,7 @@ export function UsageCard({ plan, usage }: UsageCardProps) {
 
         {plan === 'free' && entriesRemaining < 10 && (
           <a
-            href="/dashboard/upgrade"
+            href="/upgrade"
             className="flex-shrink-0 rounded-md bg-accent px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-accent/90"
           >
             Upgrade to Pro

@@ -4,9 +4,11 @@ import { useState } from 'react';
 import { Button } from '@/shared/components/ui/button';
 import { RefreshCw } from 'lucide-react';
 import { cn } from '@/shared/lib/utils';
+import { useToast } from '@/shared/hooks/use-toast';
 
 export function SyncButton() {
   const [syncing, setSyncing] = useState(false);
+  const { success, error } = useToast();
 
   const handleSync = async () => {
     setSyncing(true);
@@ -23,12 +25,11 @@ export function SyncButton() {
         throw new Error(data.error || 'Sync failed');
       }
 
-      // Show success and reload
-      alert(data.message || 'Sync completed!');
+      success(data.message || 'Sync completed');
       window.location.reload();
-    } catch (error) {
-      console.error('Sync error:', error);
-      alert('Failed to sync. Please make sure you have connected a repository.');
+    } catch (err) {
+      console.error('Sync error:', err);
+      error('Failed to sync. Make sure you have a connected repository.');
     } finally {
       setSyncing(false);
     }
