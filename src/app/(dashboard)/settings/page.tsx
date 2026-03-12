@@ -152,34 +152,7 @@ export default function SettingsPage() {
 
             {activeTab === 'publishing' && <PublishingSettingsTab />}
 
-            {activeTab === 'integrations' && (
-              <div className="text-center py-12">
-                <h3 className="text-lg font-semibold">Integrations Coming Soon</h3>
-                <p className="text-muted mt-2">
-                  Slack, Discord, and email integrations are on the way!
-                </p>
-              </div>
-            )}
 
-            {activeTab === 'api' && (
-              <div className="text-center py-12">
-                <h3 className="text-lg font-semibold">API Keys</h3>
-                <p className="text-muted mt-2">Manage your API keys and access tokens</p>
-                <Link href="/settings/api-keys">
-                  <Button className="mt-4">Manage API Keys</Button>
-                </Link>
-              </div>
-            )}
-
-            {activeTab === 'billing' && (
-              <div className="text-center py-12">
-                <h3 className="text-lg font-semibold">Billing & Subscription</h3>
-                <p className="text-muted mt-2">Manage your subscription and payment methods</p>
-                <Link href="/dashboard/billing">
-                  <Button className="mt-4">Manage Billing</Button>
-                </Link>
-              </div>
-            )}
           </div>
         </Card>
       </div>

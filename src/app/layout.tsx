@@ -61,6 +61,9 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en" suppressHydrationWarning>
         <body className={`${display.variable} ${sans.variable} ${mono.variable}`} suppressHydrationWarning>
+          <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:z-[100] focus:p-4 focus:bg-background focus:text-foreground outline-none">
+            Skip to content
+          </a>
           <ErrorBoundary>
             <CommandPalette />
             {children}

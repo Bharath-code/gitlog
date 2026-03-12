@@ -14,7 +14,6 @@ import { Sparkles, Edit, Check, Eye, MoreHorizontal, Loader2 } from 'lucide-reac
 import { cn, timeAgo } from '@/shared/lib/utils';
 import { useRouter } from 'next/navigation';
 import { useToast } from '@/shared/hooks/use-toast';
-import confetti from 'canvas-confetti';
 
 interface DraftCardProps {
   draft: {
@@ -67,6 +66,7 @@ export function DraftCard({ draft }: DraftCardProps) {
 
       if (!res.ok) throw new Error('Failed to publish');
 
+      const confetti = (await import('canvas-confetti')).default;
       confetti({
         particleCount: 80,
         spread: 60,

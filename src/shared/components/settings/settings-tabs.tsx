@@ -2,7 +2,7 @@
 
 import { Tabs, TabsList, TabsTrigger } from '@/shared/components/ui/tabs';
 
-export type SettingsTab = 'general' | 'publishing' | 'integrations' | 'api' | 'billing';
+export type SettingsTab = 'general' | 'publishing';
 
 interface SettingsTabsProps {
   activeTab: SettingsTab;
@@ -11,10 +11,7 @@ interface SettingsTabsProps {
 
 const tabs: { id: SettingsTab; label: string }[] = [
   { id: 'general', label: 'General' },
-  { id: 'publishing', label: 'Publishing' },
-  { id: 'integrations', label: 'Integrations' },
-  { id: 'api', label: 'API Keys' },
-  { id: 'billing', label: 'Billing' },
+  { id: 'publishing', label: 'Publishing' }
 ];
 
 export function SettingsTabs({ activeTab, onTabChange }: SettingsTabsProps) {

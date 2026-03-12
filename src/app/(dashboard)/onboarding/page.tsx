@@ -8,7 +8,6 @@ import { Button } from '@/shared/components/ui/button';
 import { GitMerge, Search, Check, ExternalLink } from 'lucide-react';
 import { cn } from '@/shared/lib/utils';
 import { useToast } from '@/shared/hooks/use-toast';
-import confetti from 'canvas-confetti';
 import { OnboardingIllustration } from '@/shared/components/common/illustrations';
 import { GitLogIcon } from '@/shared/components/common/icons';
 
@@ -87,6 +86,7 @@ export default function OnboardingPage() {
       }
 
       // Celebrate! 🎉
+      const confetti = (await import('canvas-confetti')).default;
       confetti({
         particleCount: 150,
         spread: 80,
@@ -190,6 +190,7 @@ export default function OnboardingPage() {
             <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted" />
             <input
               type="text"
+              aria-label="Search repositories"
               placeholder="Search repositories..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}

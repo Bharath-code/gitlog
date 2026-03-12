@@ -9,7 +9,7 @@ export default function TermsPage() {
         <div className="space-y-4">
           <Badge>Legal</Badge>
           <h1 className="text-4xl font-bold">Terms of Service</h1>
-          <p className="text-muted">Last updated: {new Date().toLocaleDateString()}</p>
+          <p className="text-muted">Last updated: March 11, 2026</p>
         </div>
 
         {/* Content */}

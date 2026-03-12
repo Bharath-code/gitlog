@@ -24,7 +24,6 @@ export default function ReleasesPage() {
   const { info } = useToast();
   const [loading, setLoading] = useState(true);
   const [releases, setReleases] = useState<Release[]>([]);
-  const [showCreateModal, setShowCreateModal] = useState(false);
 
   useEffect(() => {
     loadReleases();
@@ -61,23 +60,19 @@ export default function ReleasesPage() {
           <SectionHeading title="Releases" />
           <p className="text-muted mt-2">Group changelog entries into versioned releases</p>
         </div>
-        <Button onClick={() => setShowCreateModal(true)} className="bg-accent hover:bg-accent/90">
-          <Plus className="h-4 w-4 mr-2" />
-          Create Release
-        </Button>
       </div>
 
       {releases.length === 0 ? (
         <Card className="p-12 text-center">
           <Package className="h-16 w-16 mx-auto text-muted mb-4" />
-          <h3 className="text-xl font-semibold mb-2">No releases yet</h3>
+          <h3 className="text-xl font-semibold mb-2">Release management</h3>
           <p className="text-muted mb-4">
-            Create your first versioned release to group changelog entries
+            Group your changelog entries into versioned releases.
+            This feature is currently under active development.
           </p>
-          <Button onClick={() => setShowCreateModal(true)} className="bg-accent hover:bg-accent/90">
-            <Plus className="h-4 w-4 mr-2" />
-            Create Your First Release
-          </Button>
+          <Badge variant="secondary" className="px-4 py-1.5 text-sm">
+            Coming Soon
+          </Badge>
         </Card>
       ) : (
         <div className="grid gap-6">
@@ -138,25 +133,6 @@ export default function ReleasesPage() {
               </div>
             </Card>
           ))}
-        </div>
-      )}
-
-      {/* Create Release Modal would go here */}
-      {showCreateModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50">
-          <Card className="w-full max-w-2xl p-6">
-            <h2 className="text-2xl font-bold mb-4">Create New Release</h2>
-            <p className="text-muted mb-4">
-              Release grouping is coming in Phase 3. This is a placeholder for the full
-              implementation.
-            </p>
-            <div className="flex justify-end gap-2">
-              <Button variant="outline" onClick={() => setShowCreateModal(false)}>
-                Close
-              </Button>
-              <Button className="bg-accent hover:bg-accent/90">Create Release (Coming Soon)</Button>
-            </div>
-          </Card>
         </div>
       )}
     </div>
